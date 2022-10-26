@@ -9,12 +9,10 @@ namespace Domain.src.Service
     public class UserManager
     {
         private IUserRepository _UserRepository ;
-        private IEmergencyContact _EmergencyContact ;
 
 
-        public UserManager(IUserRepository userRepository, IEmergencyContact emergencyContact){
+        public UserManager(IUserRepository userRepository){
             _UserRepository = userRepository;
-            _EmergencyContact = emergencyContact;
         }
 
 
@@ -85,7 +83,7 @@ namespace Domain.src.Service
         public void CreateEmergencyContact(User user,FullName name, Relationship relationship, PhoneNumber phone){
             // MAXIMO 1 CONTACTO POR USUARIO
             // Buscamos si el usuario ya tiene un contacto de emergencia creado.
-            var contactExists = this._EmergencyContact.Find();
+            var contactExists = this._UserRepository.Find();
 
             if(contactExists.Count() > 0){
             // - Si ya posee arrojamos error
