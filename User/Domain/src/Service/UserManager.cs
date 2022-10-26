@@ -3,15 +3,18 @@ using Domain.src.Enum;
 using Domain.src.Interface;
 using Domain.src.ValueObject;
 
+
 namespace Domain.src.Service
 {
     public class UserManager
     {
         private IUserRepository _UserRepository ;
+        private IEmergencyContact _EmergencyContact ;
 
 
-        public UserManager(IUserRepository userRepository){
+        public UserManager(IUserRepository userRepository, IEmergencyContact emergencyContact){
             _UserRepository = userRepository;
+            _EmergencyContact = emergencyContact;
         }
 
 
@@ -24,12 +27,17 @@ namespace Domain.src.Service
         /// <returns>Usuario Creado</returns>
         public User CreateUser(Email email,Username username, string password){
             // Buscamos que el nombre de usuario y el email no hayan registrados
+            var userExists = this._UserRepository.Find(); 
+
+            if(userExists.Count() > 0){
             // - Si ya han sido utilizados arrojamos un error
+            }
 
             // Creamos un nuevo usuario
-            var user = new User(email,username,password);
+            User user = new User(email,username,password);
 
             // Hasheamos la contrasenia 
+            this.CryptPassword(user);
 
             // Retornamos el nuevo usuario
             return user;
@@ -42,7 +50,11 @@ namespace Domain.src.Service
         /// <param name="newEmail"></param>
         public void ChangeEmail(User user, Email newEmail){
             // Buscamos si el email no ha sido utilizado por otro usuario
+            var emailExists = this._UserRepository.Find();
+
+            if(emailExists.Count() > 0){
             // - si ya ha sido utilizado arrojamo un error
+            }
 
             user.ChangeEmail(newEmail);
         }
@@ -54,7 +66,11 @@ namespace Domain.src.Service
         /// <param name="newUsername"></param>
         public void ChangeUsername(User user, Username newUsername){
             // Buscamos si el nombre de usuario no ha sido utilizado por otro usuario
+            var usernameExists = this._UserRepository.Find();
+
+            if(usernameExists.Count() > 0){
             // - si ya ha sido utilizado arrojamo un error
+            }
 
             user.ChangeUsername(newUsername);
         }
@@ -69,7 +85,12 @@ namespace Domain.src.Service
         public void CreateEmergencyContact(User user,FullName name, Relationship relationship, PhoneNumber phone){
             // MAXIMO 1 CONTACTO POR USUARIO
             // Buscamos si el usuario ya tiene un contacto de emergencia creado.
+            var contactExists = this._EmergencyContact.Find();
+
+            if(contactExists.Count() > 0){
             // - Si ya posee arrojamos error
+            }
+
             user.CreateEmergencyContact(name,relationship,phone);
         }
 
@@ -81,7 +102,7 @@ namespace Domain.src.Service
         /// <param name="user"></param>
         private void CryptPassword(User user){
             // Encriptamos contrasenia
-            var passwordHashed = "Random";
+            string passwordHashed = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
             // Asignamos contrasenia encriptada al usuario
 
@@ -95,7 +116,11 @@ namespace Domain.src.Service
         /// <param name="password"></param>
         private void DecryptPassword(User user, string password){
             // Comparamos las contrasenias
+            bool result = BCrypt.Net.BCrypt.Verify(password, user.Password);
+
             // Si las contrasenias no coinciden arrojamos error de contrasenia incorrecta
+            if(!result){
+            }
 
         }
 

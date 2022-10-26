@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ZLrfAp0q2R8R/jqqN9j/Bn3fNKmaSP+89pxROyXBb/Vf3KQppOqiLOMEr2YIJ4w87dYYTxir0TJK8C7KhcNxkw==",
+  "dgSpecHash": "M1vtq9LuOHLI+WVuAZVvzgQYoF8+UYnAl/ms5PdThcHcrbIOddr6K0r3CLdlynvXJXzD0+3tHVlc8VMjnfvYZw==",
   "success": true,
   "projectFilePath": "/home/icorlli/projects/Fitbox/User/Domain/Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/root/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
