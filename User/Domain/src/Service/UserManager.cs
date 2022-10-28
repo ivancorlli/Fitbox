@@ -1,4 +1,5 @@
 using Domain.src.Aggregate.UserAggregate;
+using Domain.src.Entity;
 using Domain.src.Enum;
 using Domain.src.Interface;
 using Domain.src.ValueObject;
@@ -89,7 +90,7 @@ namespace Domain.src.Service
             // - Si ya posee arrojamos error
             }
 
-            user.CreateEmergencyContact(name,relationship,phone);
+            user.CreateEmergencyContact(new EmergencyContact(name,relationship,phone));
         }
 
 

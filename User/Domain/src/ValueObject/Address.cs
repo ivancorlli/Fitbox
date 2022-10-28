@@ -14,7 +14,7 @@ namespace Domain.src.ValueObject
             PostalCode = postalCode;
         }
 
-        public string Country {get;}
+        public string Country {get;private set;}
         public string City {get;}
         public string State {get;}
         public dynamic PostalCode {get;}
