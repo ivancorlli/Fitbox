@@ -1,0 +1,12 @@
+/home/icorlli/projects/Fitbox/User/Domain/bin/Debug/net6.0/Domain.deps.json
+/home/icorlli/projects/Fitbox/User/Domain/bin/Debug/net6.0/Domain.dll
+/home/icorlli/projects/Fitbox/User/Domain/bin/Debug/net6.0/ref/Domain.dll
+/home/icorlli/projects/Fitbox/User/Domain/bin/Debug/net6.0/Domain.pdb
+/home/icorlli/projects/Fitbox/User/Domain/obj/Debug/net6.0/Domain.csproj.AssemblyReference.cache
+/home/icorlli/projects/Fitbox/User/Domain/obj/Debug/net6.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/icorlli/projects/Fitbox/User/Domain/obj/Debug/net6.0/Domain.AssemblyInfoInputs.cache
+/home/icorlli/projects/Fitbox/User/Domain/obj/Debug/net6.0/Domain.AssemblyInfo.cs
+/home/icorlli/projects/Fitbox/User/Domain/obj/Debug/net6.0/Domain.csproj.CoreCompileInputs.cache
+/home/icorlli/projects/Fitbox/User/Domain/obj/Debug/net6.0/Domain.dll
+/home/icorlli/projects/Fitbox/User/Domain/obj/Debug/net6.0/ref/Domain.dll
+/home/icorlli/projects/Fitbox/User/Domain/obj/Debug/net6.0/Domain.pdb

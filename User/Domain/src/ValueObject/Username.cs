@@ -10,6 +10,6 @@ namespace Domain.src.ValueObject
         public Username(string value){
             Value = value;
         }
-        public string Value {get; }
+        public string Value {get;}
     }
 }
