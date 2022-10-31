@@ -5,7 +5,7 @@ namespace Domain.src.Entity
 {
     public record EmergencyContact
     {
-        public FullName Name {get; private set;}
+        public Name Name {get; private set;}
         public Relationship Relationship {get; private set;}
         public PhoneNumber PhoneNumber {get;private set;}
 
@@ -15,20 +15,12 @@ namespace Domain.src.Entity
         /// <param name="name"></param>
         /// <param name="relationship"></param>
         /// <param name="phoneNumber"></param>        
-        internal EmergencyContact(FullName name,Relationship relationship,PhoneNumber phoneNumber){
+        internal EmergencyContact(Name name,Relationship relationship,PhoneNumber phoneNumber){
             Name = name;
             Relationship = relationship;
             PhoneNumber = phoneNumber;
         }
         
-        /// <summary>
-        /// Cambia el nombre
-        /// </summary>
-        /// <param name="name"></param>
-        public void ChangeName(FullName name){
-            Name = name;
-        }
-
         /// <summary>
         /// Cambia la relacion
         /// </summary>

@@ -81,7 +81,7 @@ namespace Domain.src.Service
         /// <param name="name"></param>
         /// <param name="relationship"></param>
         /// <param name="phone"></param>
-        public void CreateEmergencyContact(User user,FullName name, Relationship relationship, PhoneNumber phone){
+        public void CreateEmergencyContact(User user,Name name, Relationship relationship, PhoneNumber phone){
             // MAXIMO 1 CONTACTO POR USUARIO
             // Buscamos si el usuario ya tiene un contacto de emergencia creado.
             var contactExists = this._UserRepository.Find();

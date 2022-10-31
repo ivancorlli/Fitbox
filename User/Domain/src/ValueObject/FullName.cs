@@ -5,14 +5,29 @@ using System.Threading.Tasks;
 
 namespace Domain.src.ValueObject
 {
-    public record FullName
+    public record Name
     {   
 
-        public FullName(string name,  string surname){
-            Name = name;
-            Surname = surname;
+        public Name(string name,  string surname){
+            FirstName = name;
+            LastName = surname;
         }
-       public string Name {get;}
-       public string Surname {get;} 
+       public string FirstName {get;private set;}
+       public string LastName {get;private set;}
+
+        /// <summary>
+        /// Acutailiza el nombre y apellido
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="surname"></param>
+       public void UpdateName(string? name, string? surname){
+            if(!string.IsNullOrEmpty(name)){
+                FirstName = name;
+            }
+
+            if (!string.IsNullOrEmpty(surname)){
+                 LastName = surname;   
+            }
+       } 
     }
 }

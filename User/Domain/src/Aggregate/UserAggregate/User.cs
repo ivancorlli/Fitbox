@@ -14,7 +14,7 @@ namespace Domain.src.Aggregate.UserAggregate
         public UserStatus Status {get;private set;}
         public bool EmailVerified {get; private set;}
         public bool IsNew {get; private set;}
-        public FullName? Name {get; private set;}
+        public Name? Name {get; private set;}
         public Gender? Gender {get;private set;}
         public DateTime? Birth {get;private set;}
         public Biography? Biography {get; private set;}
@@ -126,7 +126,7 @@ namespace Domain.src.Aggregate.UserAggregate
             /// Actualiza el nombre
             /// </summary>
             /// <param name="name"></param>
-            public void UpdateName(FullName name){
+            public void UpdateName(Name name){
                 Name = name;
             }
 
