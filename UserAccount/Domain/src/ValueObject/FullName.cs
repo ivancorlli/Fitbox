@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Domain.src.ValueObject
 {
-    public record Name
+    public record FullName
     {   
 
-        public Name(string name,  string surname){
+        public FullName(string name,  string surname){
             FirstName = name;
             LastName = surname;
         }

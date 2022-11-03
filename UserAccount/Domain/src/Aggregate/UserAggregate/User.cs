@@ -14,7 +14,7 @@ namespace Domain.src.Aggregate.UserAggregate
         public UserStatus Status {get;private set;}
         public bool EmailVerified {get; private set;}
         public bool IsNew {get; private set;}
-        public Name? Name {get; private set;}
+        public FullName? Name {get; private set;}
         public Gender? Gender {get;private set;}
         public DateTime? Birth {get;private set;}
         public Biography? Biography {get; private set;}
@@ -97,10 +97,17 @@ namespace Domain.src.Aggregate.UserAggregate
             }
 
             /// <summary>
-            /// Verifica la cuenta 
+            /// Verifica el email 
             /// </summary>
-            public void VerifyAccount(){
+            public void VerifyEmail(){
                 EmailVerified = true;
+            }
+
+            /// <summary>
+            /// Desverifica/Desaprueba el email
+            /// </summary>
+            public void UnverifyEmail(){
+                EmailVerified = false;
             }
 
             /// <summary>
@@ -109,25 +116,61 @@ namespace Domain.src.Aggregate.UserAggregate
             public void NotIsNew(){
                 IsNew = false;
             }
+            
+            /// <summary>
+            /// Suspende la cuenta
+            /// </summary>
+            public void SuspendAccount(){
+                Status = UserStatus.Suspended;
+            }
 
             /// <summary>
-            /// Actualiza el estado 
+            /// Elimina la cuenta del usuario
             /// </summary>
-            /// <param name="status"></param>
-            public void UpdateStatus(UserStatus status){
-                if(string.IsNullOrEmpty(status.ToString())){
-                Status = status;
+            public void DeleteAccount(){
+                Status = UserStatus.Deleted;
+            }
+
+            public void DisactiveAccount(){
+                Status = UserStatus.Inactive;
+            }
+            
+            /// <summary>
+            /// Revisa si la cuenta esta inactiva
+            /// </summary>
+            /// <returns>True or False</returns>
+            public bool IsInactive(){
+                if (Status == UserStatus.Inactive){
+                    return true;
                 }else{
-                    // Error: estado necesario
+                    return false;
                 }
             }
+
+            /// <summary>
+            /// Revisa si la cuenta esta suspendida
+            /// </summary>
+            /// <returns>True or False</returns>
+            public bool IsSuspended(){
+                if (Status == UserStatus.Suspended){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
 
             /// <summary>
             /// Actualiza el nombre
             /// </summary>
             /// <param name="name"></param>
-            public void UpdateName(Name name){
+            public void UpdateName(FullName name){
+                if(name != null){
+
                 Name = name;
+                }else{
+
+                }
             }
 
             /// <summary>
@@ -135,7 +178,12 @@ namespace Domain.src.Aggregate.UserAggregate
             /// </summary>
             /// <param name="gender"></param>
             public void UpdateGender(Gender gender){
+                if(gender != null){
+
                 Gender = gender;
+                }else{
+
+                }
             }
 
             /// <summary>
@@ -143,8 +191,27 @@ namespace Domain.src.Aggregate.UserAggregate
             /// </summary>
             /// <param name="birth"></param>
             public void UpdateBirth(DateTime birth){
+                if(birth != null){
+
                 Birth = birth;
+                }else {
+
+                }
             }
+
+            /// <summary>
+            /// Actualiza la biografia
+            /// </summary>
+            /// <param name="biography"></param>
+            public void UpdateBiography(Biography biography){
+                if(biography != null){
+                    Biography = biography;
+                }else {
+
+                }
+            }
+
+
 
 
         // ------------------------------------------ Other Methods ----------------------------------------- //
@@ -155,6 +222,13 @@ namespace Domain.src.Aggregate.UserAggregate
         /// <param name="contact"></param>
         public void CreateEmergencyContact(EmergencyContact contact){
             EmergencyContact = contact;
+        }
+
+        /// <summary>
+        /// Elimina el contacto de emergencia
+        /// </summary>
+        public void DeleteEmergencyContact(){
+            EmergencyContact = null;
         }
        
         
