@@ -104,3 +104,5 @@
 /home/icorlli/projects/Fitbox/User/Tests/obj/Debug/net6.0/ref/Tests.dll
 /home/icorlli/projects/Fitbox/User/Tests/obj/Debug/net6.0/Tests.pdb
 /home/icorlli/projects/Fitbox/User/Tests/obj/Debug/net6.0/Tests.genruntimeconfig.cache
+/home/icorlli/projects/Fitbox/UserAccount/Tests/obj/Debug/net6.0/Tests.dll
+/home/icorlli/projects/Fitbox/UserAccount/Tests/obj/Debug/net6.0/Tests.pdb

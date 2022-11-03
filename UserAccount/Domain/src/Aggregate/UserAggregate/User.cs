@@ -1,3 +1,4 @@
+using System;
 using Domain.src.Enum;
 using Domain.src.Entity;
 using Domain.src.ValueObject;
@@ -20,7 +21,6 @@ namespace Domain.src.Aggregate.UserAggregate
         public Biography? Biography {get; private set;}
         public Address? Address {get; private set;}
         public PhoneNumber? PhoneNumber {get; private set;}
-        public bool? PhoneVerified {get; private set;}
         public Uri? FrontImage {get; private set;}
         public Uri? ProfileImage {get; private set;}
         public MedicalRecord? MedicalRecord {get; private set;}
@@ -177,9 +177,8 @@ namespace Domain.src.Aggregate.UserAggregate
             /// Actualiza el genero
             /// </summary>
             /// <param name="gender"></param>
-            public void UpdateGender(Gender gender){
-                if(gender != null){
-
+            public void ChangeGender(Gender gender){
+                if(string.IsNullOrEmpty(gender.ToString())){
                 Gender = gender;
                 }else{
 
@@ -190,7 +189,7 @@ namespace Domain.src.Aggregate.UserAggregate
             /// Actualiza fecha de nacimiento
             /// </summary>
             /// <param name="birth"></param>
-            public void UpdateBirth(DateTime birth){
+            public void ChangeBirth(DateTime birth){
                 if(birth != null){
 
                 Birth = birth;
@@ -203,7 +202,7 @@ namespace Domain.src.Aggregate.UserAggregate
             /// Actualiza la biografia
             /// </summary>
             /// <param name="biography"></param>
-            public void UpdateBiography(Biography biography){
+            public void ChangeBiography(Biography biography){
                 if(biography != null){
                     Biography = biography;
                 }else {
@@ -211,25 +210,83 @@ namespace Domain.src.Aggregate.UserAggregate
                 }
             }
 
+            /// <summary>
+            /// Actualiza la direccion
+            /// </summary>
+            /// <param name="address"></param>
+            public void CreateAddress(Address address){
+                if(address != null){
+                    Address = address;
+                }else{
+
+                }
+            }
+
+            /// <summary>
+            /// Elimina la direccion
+            /// </summary>
+            public void DeleteAddress(){
+                Address = null;
+            }
 
 
+            /// <summary>
+            /// Actualiza el numero de telefono
+            /// </summary>
+            /// <param name="phone"></param>
+            public void CreatePhoneNumber(PhoneNumber phone){
+                if(phone != null){
+                    PhoneNumber = phone;
+                }else{
 
-        // ------------------------------------------ Other Methods ----------------------------------------- //
+                }
+            }
 
-        /// <summary>
-        /// Crea contacto de emergencia
-        /// </summary>
-        /// <param name="contact"></param>
-        public void CreateEmergencyContact(EmergencyContact contact){
-            EmergencyContact = contact;
-        }
+            /// <summary>
+            /// Elimina el numero de telefono
+            /// </summary>
+            public void DeletePhoneNumber(){
+                PhoneNumber = null;
+            }
 
-        /// <summary>
-        /// Elimina el contacto de emergencia
-        /// </summary>
-        public void DeleteEmergencyContact(){
-            EmergencyContact = null;
-        }
+            /// <summary>
+            /// Crea contacto de emergencia
+            /// </summary>
+            /// <param name="contact"></param>
+            public void CreateEmergencyContact(EmergencyContact contact){
+                EmergencyContact = contact;
+            }
+
+            /// <summary>
+            /// Elimina el contacto de emergencia
+            /// </summary>
+            public void DeleteEmergencyContact(){
+                EmergencyContact = null;
+            }
+
+            /// <summary>
+            /// Crear imagen de portada
+            /// </summary>
+            /// <param name="image"></param>
+            public void UploadFrontImage(Uri image){
+                if(image != null){
+                FrontImage = image;
+                }else{
+
+                }
+            }
+
+            /// <summary>
+            /// Crea imagen de perfil
+            /// </summary>
+            /// <param name="image"></param>
+            public void UploadProfileImage(Uri image){
+                if(image != null){
+                    FrontImage = image;
+                }else{
+
+                }
+            }
        
         
     }

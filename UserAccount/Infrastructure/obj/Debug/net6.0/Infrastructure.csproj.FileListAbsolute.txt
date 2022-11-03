@@ -10,3 +10,15 @@
 /home/icorlli/projects/Fitbox/User/Infrastructure/obj/Debug/net6.0/Infrastructure.dll
 /home/icorlli/projects/Fitbox/User/Infrastructure/obj/Debug/net6.0/ref/Infrastructure.dll
 /home/icorlli/projects/Fitbox/User/Infrastructure/obj/Debug/net6.0/Infrastructure.pdb
+/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/bin/Debug/net6.0/Infrastructure.deps.json
+/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/bin/Debug/net6.0/Infrastructure.dll
+/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/bin/Debug/net6.0/Infrastructure.pdb
+/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/obj/Debug/net6.0/Infrastructure.csproj.AssemblyReference.cache
+/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/obj/Debug/net6.0/Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/obj/Debug/net6.0/Infrastructure.AssemblyInfoInputs.cache
+/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/obj/Debug/net6.0/Infrastructure.AssemblyInfo.cs
+/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/obj/Debug/net6.0/Infrastructure.csproj.CoreCompileInputs.cache
+/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/obj/Debug/net6.0/Infrastructure.dll
+/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/obj/Debug/net6.0/refint/Infrastructure.dll
+/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/obj/Debug/net6.0/Infrastructure.pdb
+/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/obj/Debug/net6.0/ref/Infrastructure.dll

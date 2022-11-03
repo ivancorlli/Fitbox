@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "9zG6MJ6IwKsDDlo3yCFFhT+PSQAByzOqsU62j+qkuljdP3zkEbNzRhlR4KM364vBTSyRXWC4XHBe0ts5QUHpnQ==",
+  "dgSpecHash": "Cbk++l418hnnMgZH7e64iDV0UnMdpkp/hDWH17ok/PEGu/EjDPcGr3rZtCod09yilYV2/mv4q8w0PW1JNosVag==",
   "success": true,
-  "projectFilePath": "/home/icorlli/projects/Fitbox/User/Infrastructure/Infrastructure.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "/root/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.8/microsoft.aspnetcore.app.ref.6.0.8.nupkg.sha512"
+  ],
   "logs": []
 }

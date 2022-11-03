@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jk3d8u5+ndvfMzjBCovw9EY9E60skkyaBzN32+wD4Upur/HeMtmv8FfM6qd1o5VTvPiZ3AMGc5JAKW7XzVwPIw==",
+  "dgSpecHash": "XOpg02k0eZpRB7HfIAjAa/sFFoKlfchmgPzXDRohxFPtPP2pNwyQ3uyBVP4HvuTF8K7OVtC9Jpd1gCr8td8Z/Q==",
   "success": true,
-  "projectFilePath": "/home/icorlli/projects/Fitbox/User/Tests/Tests.csproj",
+  "projectFilePath": "/home/icorlli/projects/Fitbox/UserAccount/Tests/Tests.csproj",
   "expectedPackageFiles": [
     "/root/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/root/.nuget/packages/coverlet.collector/3.1.0/coverlet.collector.3.1.0.nupkg.sha512",
@@ -96,7 +96,8 @@
     "/root/.nuget/packages/xunit.core/2.4.1/xunit.core.2.4.1.nupkg.sha512",
     "/root/.nuget/packages/xunit.extensibility.core/2.4.1/xunit.extensibility.core.2.4.1.nupkg.sha512",
     "/root/.nuget/packages/xunit.extensibility.execution/2.4.1/xunit.extensibility.execution.2.4.1.nupkg.sha512",
-    "/root/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512"
+    "/root/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.8/microsoft.aspnetcore.app.ref.6.0.8.nupkg.sha512"
   ],
   "logs": []
 }

@@ -5,10 +5,14 @@
       "BCrypt.Net-Next/4.0.3": {
         "type": "package",
         "compile": {
-          "lib/net6.0/BCrypt.Net-Next.dll": {}
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/BCrypt.Net-Next.dll": {}
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Domain/1.0.0": {
@@ -75,11 +79,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/icorlli/projects/Fitbox/User/Application/Application.csproj",
+      "projectUniqueName": "/home/icorlli/projects/Fitbox/UserAccount/Application/Application.csproj",
       "projectName": "Application",
-      "projectPath": "/home/icorlli/projects/Fitbox/User/Application/Application.csproj",
+      "projectPath": "/home/icorlli/projects/Fitbox/UserAccount/Application/Application.csproj",
       "packagesPath": "/root/.nuget/packages/",
-      "outputPath": "/home/icorlli/projects/Fitbox/User/Application/obj/",
+      "outputPath": "/home/icorlli/projects/Fitbox/UserAccount/Application/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/root/.nuget/NuGet/NuGet.Config"
@@ -88,14 +92,15 @@
         "net6.0"
       ],
       "sources": {
+        "/home/icorlli/Release_Packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/home/icorlli/projects/Fitbox/User/Domain/Domain.csproj": {
-              "projectPath": "/home/icorlli/projects/Fitbox/User/Domain/Domain.csproj"
+            "/home/icorlli/projects/Fitbox/UserAccount/Domain/Domain.csproj": {
+              "projectPath": "/home/icorlli/projects/Fitbox/UserAccount/Domain/Domain.csproj"
             }
           }
         }
@@ -115,16 +120,23 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.8, 6.0.8]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/dotnet6-6.0.110/sdk/6.0.110/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
       }
     }
   }
