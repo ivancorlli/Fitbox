@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1mMSE1k/ai4mdcypOnhsaX6v6/Hqhn88LU3N+zvTWJqVAZjOQi9v7hMcPFmum+pJTo/JcRX/4+HG+oZ+bSrWbA==",
+  "dgSpecHash": "AltgCaYZGRtttrRaIOI7NlKD4VkrbEOTB5Sl+hAkdul+AuZW84iGx6rPPHPWCPJcAEDFn4RI7OanQMGHMXY/LQ==",
   "success": true,
-  "projectFilePath": "/home/icorlli/projects/BaseFitbox/BaseFitbox.csproj",
+  "projectFilePath": "/home/icorlli/projects/Fitbox/BaseFitbox/BaseFitbox.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

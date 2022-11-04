@@ -1,0 +1,12 @@
+/home/icorlli/projects/Fitbox/BaseFitbox/bin/Debug/net6.0/BaseFitbox.deps.json
+/home/icorlli/projects/Fitbox/BaseFitbox/bin/Debug/net6.0/BaseFitbox.dll
+/home/icorlli/projects/Fitbox/BaseFitbox/bin/Debug/net6.0/ref/BaseFitbox.dll
+/home/icorlli/projects/Fitbox/BaseFitbox/bin/Debug/net6.0/BaseFitbox.pdb
+/home/icorlli/projects/Fitbox/BaseFitbox/obj/Debug/net6.0/BaseFitbox.csproj.AssemblyReference.cache
+/home/icorlli/projects/Fitbox/BaseFitbox/obj/Debug/net6.0/BaseFitbox.GeneratedMSBuildEditorConfig.editorconfig
+/home/icorlli/projects/Fitbox/BaseFitbox/obj/Debug/net6.0/BaseFitbox.AssemblyInfoInputs.cache
+/home/icorlli/projects/Fitbox/BaseFitbox/obj/Debug/net6.0/BaseFitbox.AssemblyInfo.cs
+/home/icorlli/projects/Fitbox/BaseFitbox/obj/Debug/net6.0/BaseFitbox.csproj.CoreCompileInputs.cache
+/home/icorlli/projects/Fitbox/BaseFitbox/obj/Debug/net6.0/BaseFitbox.dll
+/home/icorlli/projects/Fitbox/BaseFitbox/obj/Debug/net6.0/ref/BaseFitbox.dll
+/home/icorlli/projects/Fitbox/BaseFitbox/obj/Debug/net6.0/BaseFitbox.pdb

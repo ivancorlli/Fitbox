@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/icorlli/projects/BaseFitbox/BaseFitbox.csproj",
-      "projectName": "BaseFitbox",
-      "projectPath": "/home/icorlli/projects/BaseFitbox/BaseFitbox.csproj",
+      "projectUniqueName": "/home/icorlli/projects/Fitbox/BaseFitbox/BaseFitbox.csproj",
+      "projectName": "FitboxBase",
+      "projectPath": "/home/icorlli/projects/Fitbox/BaseFitbox/BaseFitbox.csproj",
       "packagesPath": "/root/.nuget/packages/",
-      "outputPath": "/home/icorlli/projects/BaseFitbox/obj/",
+      "outputPath": "/home/icorlli/projects/Fitbox/BaseFitbox/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/root/.nuget/NuGet/NuGet.Config"
