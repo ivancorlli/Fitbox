@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>BaseFitbox</id>
-    <version>1.0.0</version>
+    <id>FitboxBase</id>
+    <version>1.0.1</version>
     <authors>Ivan Corlli</authors>
     <description>Sharedkernell of bases interfaces for the project.</description>
     <tags>Entity,Repository</tags>

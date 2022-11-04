@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "cSaahbBjhB5KQAZ3ul7RMucVRGDmxylnxkTOo80dpFmqabL7Ki7dh6k/o8MF7+W2LFiGquu5xKbOIRuZLfycrw==",
+  "dgSpecHash": "zTbVfwNAXQjNMzl7KIVbvhzU1QmDOY9D0UlO+N573pBAG/5s2ZasVZFaGhuA99qPOwZ2KrSRN/g5lM7By0fA7w==",
   "success": true,
   "projectFilePath": "/home/icorlli/projects/Fitbox/UserAccount/Domain/Domain.csproj",
   "expectedPackageFiles": [
-    "/root/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
-    "/root/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.8/microsoft.aspnetcore.app.ref.6.0.8.nupkg.sha512"
+    "/root/.nuget/packages/basefitbox/1.0.0/basefitbox.1.0.0.nupkg.sha512",
+    "/root/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512"
   ],
   "logs": []
 }
