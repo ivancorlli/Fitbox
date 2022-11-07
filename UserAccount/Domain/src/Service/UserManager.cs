@@ -9,11 +9,11 @@ namespace Domain.src.Service
 {
     public class UserManager
     {
-        private IUserRepository _UserRepository ;
+        private IUserReadRepository _Read ;
 
 
-        public UserManager(IUserRepository userRepository){
-            _UserRepository = userRepository;
+        public UserManager(IUserReadRepository read){
+            _Read = read;
         }
 
 
@@ -26,7 +26,7 @@ namespace Domain.src.Service
         /// <returns>Usuario Creado</returns>
         public User CreateUser(Email email,Username username, string password){
             // Buscamos que el nombre de usuario y el email no hayan registrados
-            var userExists = this._UserRepository.Find(); 
+            var userExists = this._Read.Find(); 
 
             if(userExists.Count() > 0){
             // - Si ya han sido utilizados arrojamos un error
@@ -49,7 +49,7 @@ namespace Domain.src.Service
         /// <param name="newEmail"></param>
         public void ChangeEmail(User user, Email newEmail){
             // Buscamos si el email no ha sido utilizado por otro usuario
-            var emailExists = this._UserRepository.Find();
+            var emailExists = this._Read.Find();
 
             if(emailExists.Count() > 0){
             // - si ya ha sido utilizado arrojamo un error
@@ -65,7 +65,7 @@ namespace Domain.src.Service
         /// <param name="newUsername"></param>
         public void ChangeUsername(User user, Username newUsername){
             // Buscamos si el nombre de usuario no ha sido utilizado por otro usuario
-            var usernameExists = this._UserRepository.Find();
+            var usernameExists = this._Read.Find();
 
             if(usernameExists.Count() > 0){
             // - si ya ha sido utilizado arrojamo un error
@@ -84,7 +84,7 @@ namespace Domain.src.Service
         public void CreateEmergencyContact(User user,FullName name, Relationship relationship, PhoneNumber phone){
             // MAXIMO 1 CONTACTO POR USUARIO
             // Buscamos si el usuario ya tiene un contacto de emergencia creado.
-            var contactExists = this._UserRepository.Find();
+            var contactExists = this._Read.Find();
 
             if(contactExists.Count() > 0){
             // - Si ya posee arrojamos error

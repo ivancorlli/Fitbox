@@ -21,6 +21,7 @@
         ],
         "sources": {
           "/home/icorlli/Release_Packages": {},
+          "/root/.nuget/NuGet/projects/Fitbox/BaseFitbox/bin/Debug/BaseFitbox.1.0.0.nupkg": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "0oj9V/bUP4XH5vbLr9ItDyH3Y8/S53Bglu/vIa2Y8pOkVi5+BLPVWAU4it+8A+rEJ0OSYsnuJWAYveya/lThhw==",
+  "dgSpecHash": "6GX3+oPyWRuaMYEjNMe5dR7dl/16wOHak3HLiTrXAT0+rvS/9N0p8nwwhqeqE5725Ln6mc1hWND2vKNSJImlNQ==",
   "success": true,
   "projectFilePath": "/home/icorlli/projects/Fitbox/BaseFitbox/BaseFitbox.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/root/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.8/microsoft.aspnetcore.app.ref.6.0.8.nupkg.sha512"
+  ],
   "logs": []
 }
