@@ -2,6 +2,7 @@ using Domain.src.Aggregate.UserAggregate;
 using Domain.src.Entity;
 using Domain.src.Enum;
 using Domain.src.Interface;
+using Domain.src.Specification;
 using Domain.src.ValueObject;
 
 
@@ -9,11 +10,11 @@ namespace Domain.src.Service
 {
     public class UserManager
     {
-        private IUserReadRepository _Read ;
+        private IUserRepository _User ;
 
 
-        public UserManager(IUserReadRepository read){
-            _Read = read;
+        public UserManager(IUserRepository user){
+            _User = user;
         }
 
 
@@ -24,9 +25,9 @@ namespace Domain.src.Service
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns>Usuario Creado</returns>
-        public User CreateUser(Email email,Username username, string password){
+        public async Task<User> CreateUser(Email email,Username username, string password){
             // Buscamos que el nombre de usuario y el email no hayan registrados
-            var userExists = this._Read.Find(); 
+            var userExists = await this._User.Find(new UserByEmailUsername(email,username)); 
 
             if(userExists.Count() > 0){
             // - Si ya han sido utilizados arrojamos un error
@@ -47,9 +48,9 @@ namespace Domain.src.Service
         /// </summary>
         /// <param name="user"></param>
         /// <param name="newEmail"></param>
-        public void ChangeEmail(User user, Email newEmail){
+        public async Task ChangeEmail(User user, Email newEmail){
             // Buscamos si el email no ha sido utilizado por otro usuario
-            var emailExists = this._Read.Find();
+            var emailExists = await this._User.Find();
 
             if(emailExists.Count() > 0){
             // - si ya ha sido utilizado arrojamo un error
@@ -63,9 +64,9 @@ namespace Domain.src.Service
         /// </summary>
         /// <param name="user"></param>
         /// <param name="newUsername"></param>
-        public void ChangeUsername(User user, Username newUsername){
+        public async Task ChangeUsername(User user, Username newUsername){
             // Buscamos si el nombre de usuario no ha sido utilizado por otro usuario
-            var usernameExists = this._Read.Find();
+            var usernameExists = await this._User.Find();
 
             if(usernameExists.Count() > 0){
             // - si ya ha sido utilizado arrojamo un error
@@ -81,10 +82,10 @@ namespace Domain.src.Service
         /// <param name="name"></param>
         /// <param name="relationship"></param>
         /// <param name="phone"></param>
-        public void CreateEmergencyContact(User user,FullName name, Relationship relationship, PhoneNumber phone){
+        public async Task CreateEmergencyContact(User user,FullName name, Relationship relationship, PhoneNumber phone){
             // MAXIMO 1 CONTACTO POR USUARIO
             // Buscamos si el usuario ya tiene un contacto de emergencia creado.
-            var contactExists = this._Read.Find();
+            var contactExists = await this._User.Find();
 
             if(contactExists.Count() > 0){
             // - Si ya posee arrojamos error
