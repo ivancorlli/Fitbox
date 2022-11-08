@@ -2,19 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentResults;
 
 namespace Domain.src.ValueObject
 {
     public record Address
     {
-        /// <summary>
-        /// Crea una nueva direccion
-        /// </summary>
-        /// <param name="country"></param>
-        /// <param name="city"></param>
-        /// <param name="state"></param>
-        /// <param name="postalCode"></param>
-        public Address(string country, string city, string state, int postalCode ){
+
+        private Address(string country, string city, string state, int postalCode ){
             Country = country;
             City = city;
             State = state;
@@ -25,6 +20,13 @@ namespace Domain.src.ValueObject
         public string City {get;private set;}
         public string State {get;private set;}
         public dynamic PostalCode {get;private set;}
+
+        public Result Create(string country, string city, string state, int postalCode ){
+            if(string.IsNullOrEmpty(country)){
+                return Result.Fail("Pais requerido");
+            }
+            return Result.Ok();
+        }
         
         /// <summary>
         /// Cambia el pais
