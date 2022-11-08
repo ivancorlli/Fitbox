@@ -4,7 +4,8 @@ using Domain.src.Enum;
 using Domain.src.Interface;
 using Domain.src.Specification;
 using Domain.src.ValueObject;
-
+using Domain.src.DomainError;
+using FluentResults;
 
 namespace Domain.src.Service
 {
@@ -25,12 +26,17 @@ namespace Domain.src.Service
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns>Usuario Creado</returns>
-        public async Task<User> CreateUser(Email email,Username username, string password){
+        public async Task<Result<User>> CreateUser(Email email,Username username, string password){
             // Buscamos que el nombre de usuario y el email no hayan registrados
-            var userExists = await this._User.Find(new UserByEmailUsername(email,username)); 
+            var userExists = await this._User.Find(new UserByEmailOrUsername(email,username)); 
 
             if(userExists.Count() > 0){
-            // - Si ya han sido utilizados arrojamos un error
+                var lUser = userExists[0];
+
+                if(lUser.Email.Value == email.Value)
+                    return Result.Fail(new EmailAlredyUsed(email));
+                if(lUser.Username.Value == username.Value)
+                    return Result.Fail(new UsernameAlreadyUsed(username));
             }
 
             // Creamos un nuevo usuario
@@ -40,7 +46,7 @@ namespace Domain.src.Service
             this.CryptPassword(user);
 
             // Retornamos el nuevo usuario
-            return user;
+            return Result.Ok<User>(user);
         }
 
         /// <summary>
@@ -48,15 +54,16 @@ namespace Domain.src.Service
         /// </summary>
         /// <param name="user"></param>
         /// <param name="newEmail"></param>
-        public async Task ChangeEmail(User user, Email newEmail){
+        public async Task<Result> ChangeEmail(User user, Email newEmail){
             // Buscamos si el email no ha sido utilizado por otro usuario
             var emailExists = await this._User.Find();
 
             if(emailExists.Count() > 0){
-            // - si ya ha sido utilizado arrojamo un error
+                return Result.Fail(new EmailAlredyUsed(newEmail));
             }
 
             user.ChangeEmail(newEmail);
+            return Result.Ok();
         }
 
         /// <summary>
@@ -64,15 +71,16 @@ namespace Domain.src.Service
         /// </summary>
         /// <param name="user"></param>
         /// <param name="newUsername"></param>
-        public async Task ChangeUsername(User user, Username newUsername){
+        public async Task<Result> ChangeUsername(User user, Username newUsername){
             // Buscamos si el nombre de usuario no ha sido utilizado por otro usuario
             var usernameExists = await this._User.Find();
 
             if(usernameExists.Count() > 0){
-            // - si ya ha sido utilizado arrojamo un error
+                return Result.Fail(new UsernameAlreadyUsed(newUsername));
             }
 
             user.ChangeUsername(newUsername);
+            return Result.Ok();
         }
 
         /// <summary>

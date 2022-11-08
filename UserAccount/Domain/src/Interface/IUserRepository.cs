@@ -12,7 +12,7 @@ namespace Domain.src.Interface
 
         // Lectura
         Task<User> GetById(Guid Id);  
-        Task<IEnumerable<User>> Find();   
-        Task<IEnumerable<User>> Find(Specification<User> specification);   
+        Task<ICollection<User>> Find();   
+        Task<IList<User>> Find(Specification<User> specification);   
     }
 }

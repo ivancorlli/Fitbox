@@ -28,7 +28,7 @@ namespace Application.src.User.Command.CreateAccount
 
             
             // Guardamos usuario en base de datos
-            var userSaved = await _UserRepository.Add(newUser);
+            var userSaved = await _UserRepository.Add(newUser.Value);
             return Unit.Value;
         }
     }
