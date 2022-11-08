@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "Pr1bFoKulmlLw/Zcue8U+b1cZmmpGOsmTbvw2FnPo0/jFMNzxCpscxwwAyrk7cqWeJpsie3LJYNnpDZykxzrsA==",
+=======
+  "dgSpecHash": "wqgYSMog4PTIyXpZ5Dx6RxZl4PRCyEwRUvCTWRXWlVMNmp+ZR/hBpzrrvkgICpFKR5vXn7fl04fTITMSPgn2+w==",
+>>>>>>> a5e34d0 (local)
   "success": true,
   "projectFilePath": "/home/icorlli/projects/Fitbox/UserAccount/Application/Application.csproj",
   "expectedPackageFiles": [
@@ -10,7 +14,12 @@
     "/root/.nuget/packages/mediatr/11.0.0/mediatr.11.0.0.nupkg.sha512",
     "/root/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512",
     "/root/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.1/microsoft.extensions.logging.abstractions.6.0.1.nupkg.sha512",
+<<<<<<< HEAD
     "/root/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+=======
+    "/root/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.8/microsoft.aspnetcore.app.ref.6.0.8.nupkg.sha512"
+>>>>>>> a5e34d0 (local)
   ],
   "logs": []
 }

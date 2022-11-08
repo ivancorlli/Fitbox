@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "tFXx/Nfgcezrb3EGhb+G3NHp15Qj72v274sxpTG9ueUfqEPrtdvdcwSwZv+kTsEDwi1DyVO1YJj/CGZWWMphlQ==",
+=======
+  "dgSpecHash": "vYIUbM5DFJ4RWz5C2OD7yG/aQlKBslN7n+OqW+tmN+b23nAKnqcehIM74nLmfoNr/gUkbJGaua8o8RJGB9sclA==",
+>>>>>>> a5e34d0 (local)
   "success": true,
   "projectFilePath": "/home/icorlli/projects/Fitbox/UserAccount/Tests/Tests.csproj",
   "expectedPackageFiles": [
@@ -101,7 +105,8 @@
     "/root/.nuget/packages/xunit.core/2.4.1/xunit.core.2.4.1.nupkg.sha512",
     "/root/.nuget/packages/xunit.extensibility.core/2.4.1/xunit.extensibility.core.2.4.1.nupkg.sha512",
     "/root/.nuget/packages/xunit.extensibility.execution/2.4.1/xunit.extensibility.execution.2.4.1.nupkg.sha512",
-    "/root/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512"
+    "/root/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.8/microsoft.aspnetcore.app.ref.6.0.8.nupkg.sha512"
   ],
   "logs": []
 }

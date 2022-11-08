@@ -1,45 +1,31 @@
-using Domain.src.utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using FluentResults;
-using System.Globalization;
 
 namespace Domain.src.ValueObject
 {
     public record Address
     {
 
-
-        public string Country {get;private set;}
-        public string City {get;private set;}
-        public string State {get;private set;}
-        public dynamic PostalCode {get;private set;}
-
-        private Address(string country, string city, string state, int postalCode){
+        private Address(string country, string city, string state, int postalCode ){
             Country = country;
             City = city;
             State = state;
             PostalCode = postalCode;
         }
 
-        public static Result<Address> Create(string country, string city, string state, int postalCode){
-            
-            var validationResult = Result.Merge(
-                ValidateCountry(country),
-                ValidateCity(city),
-                ValidateState(state),
-                ValidatePostalCode(postalCode)
-            );
+        public string Country {get;private set;}
+        public string City {get;private set;}
+        public string State {get;private set;}
+        public dynamic PostalCode {get;private set;}
 
-            if(validationResult.IsFailed){
-                return Result.Fail<Address>(validationResult.Errors[0].Message);
-            }else{
-                return Result.Ok<Address>(new Address(
-                    Capitalize.Create(country),
-                    Capitalize.Create(city),
-                    Capitalize.Create(state),
-                    postalCode
-                ));
+        public Result Create(string country, string city, string state, int postalCode ){
+            if(string.IsNullOrEmpty(country)){
+                return Result.Fail("Pais requerido");
             }
-            
+            return Result.Ok();
         }
         
         /// <summary>
