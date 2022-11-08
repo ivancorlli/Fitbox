@@ -1,10 +1,14 @@
 {
   "version": 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
   "dgSpecHash": "Wvv39QhL5XabaNRP8/ImRzNf/HyQxjJroi0YDsLkTTwP7LCHKQv/lLYQNe+1KBv6ZWceOUlFsHY1d0lw1Megzg==",
 =======
   "dgSpecHash": "c+7siAVLgnPV08+6FpmQrH2hR3YqxQoMxuC3gPvz0FGtEDRur80tzeh1d4Ly7agiB7Dg6loKxY1gOJAXkJBfkQ==",
 >>>>>>> a5e34d0 (local)
+=======
+  "dgSpecHash": "c+7siAVLgnPV08+6FpmQrH2hR3YqxQoMxuC3gPvz0FGtEDRur80tzeh1d4Ly7agiB7Dg6loKxY1gOJAXkJBfkQ==",
+>>>>>>> dev
   "success": true,
   "projectFilePath": "/home/icorlli/projects/Fitbox/UserAccount/Domain/Domain.csproj",
   "expectedPackageFiles": [
@@ -13,11 +17,16 @@
     "/root/.nuget/packages/fluentresults/3.15.0/fluentresults.3.15.0.nupkg.sha512",
     "/root/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.1/microsoft.extensions.logging.abstractions.6.0.1.nupkg.sha512",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "/root/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512"
 =======
     "/root/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "/root/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.8/microsoft.aspnetcore.app.ref.6.0.8.nupkg.sha512"
 >>>>>>> a5e34d0 (local)
+=======
+    "/root/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.8/microsoft.aspnetcore.app.ref.6.0.8.nupkg.sha512"
+>>>>>>> dev
   ],
   "logs": []
 }

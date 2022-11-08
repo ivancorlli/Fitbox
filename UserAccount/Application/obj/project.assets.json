@@ -43,6 +43,7 @@
           "lib/netstandard2.1/FluentResults.dll": {
             "related": ".xml"
           }
+<<<<<<< HEAD
         }
       },
       "FluentResults/3.15.0": {
@@ -56,6 +57,8 @@
         },
         "runtime": {
           "lib/netstandard2.1/FluentResults.dll": {}
+=======
+>>>>>>> dev
         }
       },
       "MediatR/11.0.0": {
@@ -110,6 +113,7 @@
         },
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
+<<<<<<< HEAD
         }
       },
       "Microsoft.Extensions.Logging.Abstractions/6.0.1": {
@@ -131,6 +135,8 @@
         },
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
+=======
+>>>>>>> dev
         }
       },
       "Domain/1.0.0": {

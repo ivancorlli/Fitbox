@@ -68,6 +68,7 @@
         },
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
+<<<<<<< HEAD
         }
       },
       "FluentResults/3.15.0": {
@@ -102,6 +103,8 @@
         },
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
+=======
+>>>>>>> dev
         }
       }
     }
