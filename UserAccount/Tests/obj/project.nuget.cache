@@ -1,11 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "HTZKliFwQrTA2txowrkBCzAq9nazP+inRx7cyG/30UVvDVnxCSDvvb9PadYr1vfpAUk7N3eWGolty22CjhhR6g==",
+  "dgSpecHash": "U5J6uACcW17Hsq/QwROCVC0xayGykAZHRJWhHFoV560yZfcD7sdaTZXOX3zv9lsCH66ddGAT95xZoIPVMWJLyw==",
   "success": true,
   "projectFilePath": "/home/icorlli/projects/Fitbox/UserAccount/Tests/Tests.csproj",
   "expectedPackageFiles": [
-    "/root/.nuget/packages/ardalis.specification/6.1.0/ardalis.specification.6.1.0.nupkg.sha512",
-    "/root/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/root/.nuget/packages/coverlet.collector/3.1.0/coverlet.collector.3.1.0.nupkg.sha512",
     "/root/.nuget/packages/fluentresults/3.15.0/fluentresults.3.15.0.nupkg.sha512",
     "/root/.nuget/packages/mediatr/11.0.0/mediatr.11.0.0.nupkg.sha512",
@@ -94,22 +92,14 @@
     "/root/.nuget/packages/system.threading.timer/4.3.0/system.threading.timer.4.3.0.nupkg.sha512",
     "/root/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/root/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
-    "/root/.nuget/packages/xunit/2.4.1/xunit.2.4.1.nupkg.sha512",
+    "/root/.nuget/packages/xunit/2.4.2/xunit.2.4.2.nupkg.sha512",
     "/root/.nuget/packages/xunit.abstractions/2.0.3/xunit.abstractions.2.0.3.nupkg.sha512",
-    "/root/.nuget/packages/xunit.analyzers/0.10.0/xunit.analyzers.0.10.0.nupkg.sha512",
-    "/root/.nuget/packages/xunit.assert/2.4.1/xunit.assert.2.4.1.nupkg.sha512",
-    "/root/.nuget/packages/xunit.core/2.4.1/xunit.core.2.4.1.nupkg.sha512",
-    "/root/.nuget/packages/xunit.extensibility.core/2.4.1/xunit.extensibility.core.2.4.1.nupkg.sha512",
-    "/root/.nuget/packages/xunit.extensibility.execution/2.4.1/xunit.extensibility.execution.2.4.1.nupkg.sha512",
-    "/root/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512",
-    "/root/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.8/microsoft.aspnetcore.app.ref.6.0.8.nupkg.sha512"
+    "/root/.nuget/packages/xunit.analyzers/1.0.0/xunit.analyzers.1.0.0.nupkg.sha512",
+    "/root/.nuget/packages/xunit.assert/2.4.2/xunit.assert.2.4.2.nupkg.sha512",
+    "/root/.nuget/packages/xunit.core/2.4.2/xunit.core.2.4.2.nupkg.sha512",
+    "/root/.nuget/packages/xunit.extensibility.core/2.4.2/xunit.extensibility.core.2.4.2.nupkg.sha512",
+    "/root/.nuget/packages/xunit.extensibility.execution/2.4.2/xunit.extensibility.execution.2.4.2.nupkg.sha512",
+    "/root/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file /home/icorlli/projects/Fitbox/UserAccount/Tests/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

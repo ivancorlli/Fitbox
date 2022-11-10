@@ -1,24 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "O3YIKWTFxK6AlTOhUBtHP9F/VllIwl3smnZWbHsMwcODo6A1hXvopiAszlkwTrHqmIgWj+26iYUqzg9xSZm/0w==",
+  "dgSpecHash": "nw1vbqGkhB9phTTjLxAK9SBDh2MmJm7+j/g8B596dmmVnOOnrNHYgskbTcgzqWDNo4jLcbaKIzjiCeRYIKEAdw==",
   "success": true,
   "projectFilePath": "/home/icorlli/projects/Fitbox/UserAccount/Application/Application.csproj",
   "expectedPackageFiles": [
-    "/root/.nuget/packages/ardalis.specification/6.1.0/ardalis.specification.6.1.0.nupkg.sha512",
-    "/root/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/root/.nuget/packages/fluentresults/3.15.0/fluentresults.3.15.0.nupkg.sha512",
     "/root/.nuget/packages/mediatr/11.0.0/mediatr.11.0.0.nupkg.sha512",
     "/root/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512",
     "/root/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.1/microsoft.extensions.logging.abstractions.6.0.1.nupkg.sha512",
-    "/root/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "/root/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.8/microsoft.aspnetcore.app.ref.6.0.8.nupkg.sha512"
+    "/root/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file /home/icorlli/projects/Fitbox/UserAccount/Application/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
