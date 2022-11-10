@@ -1,0 +1,5 @@
+Centrarse en el modelo de entidades por CAPACIDADES no por sus atributos, al centrarse en las capacidades solo saldran los atributos necesarios.
+
+Al momento de crear Aggregates hay que tener en cuenta las REGLAS, estas reglas definiran las formas de modelar el aggregate, asi podremos definir correctamente la forma de mantener la consistencia.
+
+Los value object pueden crearse por fuera de un aggregate, pero no las entitdades.
