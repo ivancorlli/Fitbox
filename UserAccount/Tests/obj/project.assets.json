@@ -41,15 +41,6 @@
           "System.Threading.Tasks.Extensions": "4.5.4"
         },
         "compile": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-          "lib/netstandard2.1/FluentResults.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.1/FluentResults.dll": {}
-=======
-=======
->>>>>>> dev
           "lib/netstandard2.1/FluentResults.dll": {
             "related": ".xml"
           }
@@ -58,10 +49,6 @@
           "lib/netstandard2.1/FluentResults.dll": {
             "related": ".xml"
           }
-<<<<<<< HEAD
->>>>>>> a5e34d0 (local)
-=======
->>>>>>> dev
         }
       },
       "MediatR/11.0.0": {
@@ -138,15 +125,6 @@
       "Microsoft.Extensions.Logging.Abstractions/6.0.1": {
         "type": "package",
         "compile": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
-        },
-        "runtime": {
-          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
-=======
-=======
->>>>>>> dev
           "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
             "related": ".xml"
           }
@@ -155,10 +133,6 @@
           "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
             "related": ".xml"
           }
-<<<<<<< HEAD
->>>>>>> a5e34d0 (local)
-=======
->>>>>>> dev
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
@@ -6525,5 +6499,13 @@
         "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /home/icorlli/projects/Fitbox/UserAccount/Tests/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

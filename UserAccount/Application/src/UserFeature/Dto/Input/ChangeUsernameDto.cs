@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Application.src.User.Dto.Input
 {
-    public class ChangeUsernameDto
+    public record ChangeUsernameDto
     {   
         [Required]
         public Guid Id {get;set;} = Guid.Empty;

@@ -19,9 +19,11 @@ namespace Application.src.User.Command.CreateAccount
         {    
             var userInput = request.newAccount;
 
+            var newEmail = Email.Create(userInput.Email);
+
             // Creamos un nuevo usuario
             var newUser = await _UserManager.CreateUser(
-                new Email(userInput.Email),
+                newEmail.Value,
                 new Username(userInput.Username),
                 userInput.Password
             );

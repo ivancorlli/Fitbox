@@ -1,14 +1,6 @@
 {
   "version": 2,
-<<<<<<< HEAD
-<<<<<<< HEAD
-  "dgSpecHash": "tFXx/Nfgcezrb3EGhb+G3NHp15Qj72v274sxpTG9ueUfqEPrtdvdcwSwZv+kTsEDwi1DyVO1YJj/CGZWWMphlQ==",
-=======
-  "dgSpecHash": "vYIUbM5DFJ4RWz5C2OD7yG/aQlKBslN7n+OqW+tmN+b23nAKnqcehIM74nLmfoNr/gUkbJGaua8o8RJGB9sclA==",
->>>>>>> a5e34d0 (local)
-=======
-  "dgSpecHash": "vYIUbM5DFJ4RWz5C2OD7yG/aQlKBslN7n+OqW+tmN+b23nAKnqcehIM74nLmfoNr/gUkbJGaua8o8RJGB9sclA==",
->>>>>>> dev
+  "dgSpecHash": "HTZKliFwQrTA2txowrkBCzAq9nazP+inRx7cyG/30UVvDVnxCSDvvb9PadYr1vfpAUk7N3eWGolty22CjhhR6g==",
   "success": true,
   "projectFilePath": "/home/icorlli/projects/Fitbox/UserAccount/Tests/Tests.csproj",
   "expectedPackageFiles": [
@@ -112,5 +104,12 @@
     "/root/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512",
     "/root/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.8/microsoft.aspnetcore.app.ref.6.0.8.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /home/icorlli/projects/Fitbox/UserAccount/Tests/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

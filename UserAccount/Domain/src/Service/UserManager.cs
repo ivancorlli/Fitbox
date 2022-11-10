@@ -90,16 +90,18 @@ namespace Domain.src.Service
         /// <param name="name"></param>
         /// <param name="relationship"></param>
         /// <param name="phone"></param>
-        public async Task CreateEmergencyContact(User user,FullName name, Relationship relationship, PhoneNumber phone){
+        public async Task<Result> CreateEmergencyContact(User user,FullName name, Relationship relationship, PhoneNumber phone){
             // MAXIMO 1 CONTACTO POR USUARIO
             // Buscamos si el usuario ya tiene un contacto de emergencia creado.
             var contactExists = await this._User.Find();
 
             if(contactExists.Count() > 0){
-            // - Si ya posee arrojamos error
+            // - 
             }
 
             user.CreateEmergencyContact(new EmergencyContact(name,relationship,phone));
+
+            return Result.Ok();
         }
 
 

@@ -10,6 +10,11 @@ namespace Domain.src.Specification
 
             if(!string.IsNullOrEmpty(email.Value) && !string.IsNullOrEmpty(username.Value) ){
                 Query.Where(X=>X.Email.Value == email.Value || X.Username.Value == username.Value);
+                
+            }else if (!string.IsNullOrEmpty(email.Value)){
+                Query.Where(X=>X.Email.Value == email.Value);
+            }else if (!string.IsNullOrEmpty(username.Value)){
+                Query.Where(X=>X.Username.Value == username.Value);
             }
         }
     }

@@ -12,7 +12,8 @@ namespace Domain.src.Aggregate.UserAggregate
         public Email Email {get; private set;}
         public Username Username {get; private set;}
         public string Password {get; private set;}
-        public UserStatus Status {get;private set;}
+        public AccountStatus Status {get;private set;}
+        public AccountType Type {get;private set;}
         public bool EmailVerified {get; private set;}
         public bool IsNew {get; private set;}
         public FullName? Name {get; private set;}
@@ -37,7 +38,8 @@ namespace Domain.src.Aggregate.UserAggregate
             Email = email;
             Username = username;
             Password = password;
-            Status = UserStatus.Active;
+            Status = AccountStatus.Active;
+            Type = AccountType.Personal;
             EmailVerified = false;
             IsNew = true;
         }
@@ -121,18 +123,18 @@ namespace Domain.src.Aggregate.UserAggregate
             /// Suspende la cuenta
             /// </summary>
             public void SuspendAccount(){
-                Status = UserStatus.Suspended;
+                Status = AccountStatus.Suspended;
             }
 
             /// <summary>
             /// Elimina la cuenta del usuario
             /// </summary>
             public void DeleteAccount(){
-                Status = UserStatus.Deleted;
+                Status = AccountStatus.Deleted;
             }
 
             public void DisactiveAccount(){
-                Status = UserStatus.Inactive;
+                Status = AccountStatus.Inactive;
             }
             
             /// <summary>
@@ -140,7 +142,7 @@ namespace Domain.src.Aggregate.UserAggregate
             /// </summary>
             /// <returns>True or False</returns>
             public bool IsInactive(){
-                if (Status == UserStatus.Inactive){
+                if (Status == AccountStatus.Inactive){
                     return true;
                 }else{
                     return false;
@@ -152,7 +154,7 @@ namespace Domain.src.Aggregate.UserAggregate
             /// </summary>
             /// <returns>True or False</returns>
             public bool IsSuspended(){
-                if (Status == UserStatus.Suspended){
+                if (Status == AccountStatus.Suspended){
                     return true;
                 }else{
                     return false;

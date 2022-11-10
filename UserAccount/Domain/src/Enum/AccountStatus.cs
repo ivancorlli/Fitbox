@@ -1,6 +1,6 @@
 namespace Domain.src.Enum
 {
-    public enum UserStatus
+    public enum AccountStatus
     {
         Active,
         Inactive,
