@@ -4,120 +4,6 @@
     "/home/icorlli/projects/Fitbox/UserAccount/Tests/Tests.csproj": {}
   },
   "projects": {
-    "/home/icorlli/projects/Fitbox/UserAccount/Application/Application.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/home/icorlli/projects/Fitbox/UserAccount/Application/Application.csproj",
-        "projectName": "Application",
-        "projectPath": "/home/icorlli/projects/Fitbox/UserAccount/Application/Application.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/home/icorlli/projects/Fitbox/UserAccount/Application/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net6.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
-          "dependencies": {
-            "FluentResults": {
-              "target": "Package",
-              "version": "[3.15.0, )"
-            },
-            "MediatR": {
-              "target": "Package",
-              "version": "[11.0.0, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/dotnet6-6.0.110/sdk/6.0.110/RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/Infrastructure.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/Infrastructure.csproj",
-        "projectName": "Infrastructure",
-        "projectPath": "/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/Infrastructure.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net6.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/dotnet6-6.0.110/sdk/6.0.110/RuntimeIdentifierGraph.json"
-        }
-      }
-    },
     "/home/icorlli/projects/Fitbox/UserAccount/Tests/Tests.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -139,14 +25,7 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {
-              "/home/icorlli/projects/Fitbox/UserAccount/Application/Application.csproj": {
-                "projectPath": "/home/icorlli/projects/Fitbox/UserAccount/Application/Application.csproj"
-              },
-              "/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/Infrastructure.csproj": {
-                "projectPath": "/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/Infrastructure.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -159,6 +38,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[*, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.11.0, )"
