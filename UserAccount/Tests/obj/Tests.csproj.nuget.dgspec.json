@@ -4,14 +4,14 @@
     "/home/icorlli/projects/Fitbox/UserAccount/Tests/Tests.csproj": {}
   },
   "projects": {
-    "/home/icorlli/projects/Fitbox/UserAccount/Tests/Tests.csproj": {
+    "/home/icorlli/projects/Fitbox/UserAccount/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/icorlli/projects/Fitbox/UserAccount/Tests/Tests.csproj",
-        "projectName": "Tests",
-        "projectPath": "/home/icorlli/projects/Fitbox/UserAccount/Tests/Tests.csproj",
+        "projectUniqueName": "/home/icorlli/projects/Fitbox/UserAccount/Domain/Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "/home/icorlli/projects/Fitbox/UserAccount/Domain/Domain.csproj",
         "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/home/icorlli/projects/Fitbox/UserAccount/Tests/obj/",
+        "outputPath": "/home/icorlli/projects/Fitbox/UserAccount/Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/root/.nuget/NuGet/NuGet.Config"
@@ -37,10 +37,66 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/dotnet6-6.0.110/sdk/6.0.110/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/icorlli/projects/Fitbox/UserAccount/Tests/Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/icorlli/projects/Fitbox/UserAccount/Tests/Tests.csproj",
+        "projectName": "Tests",
+        "projectPath": "/home/icorlli/projects/Fitbox/UserAccount/Tests/Tests.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/home/icorlli/projects/Fitbox/UserAccount/Tests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/root/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/icorlli/projects/Fitbox/UserAccount/Domain/Domain.csproj": {
+                "projectPath": "/home/icorlli/projects/Fitbox/UserAccount/Domain/Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "FluentAssertions": {
               "target": "Package",
-              "version": "[*, )"
+              "version": "[6.8.0, )"
             },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
