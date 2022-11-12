@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "/bfeKedkyEiGkbN4d/X0CubRmkGzQ5E4/Co2O1Zu2GRM2Sfrg8GpxnqjMi+QOfKzo+9yhycoZ9tk1JWM554wzg==",
+  "dgSpecHash": "STx0MVgqHtYd496mKhfg5vSxmbwBykkCPFUHL6ja6RW8nomiv7+UWd3Sc3MrfnxTbFNQIrG4oNQXtm0pu/Ie+A==",
   "success": true,
   "projectFilePath": "/home/icorlli/projects/Fitbox/UserAccount/Domain/Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/root/.nuget/packages/fluentresults/3.15.0/fluentresults.3.15.0.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.1/microsoft.extensions.logging.abstractions.6.0.1.nupkg.sha512",
+    "/root/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.8/microsoft.aspnetcore.app.ref.6.0.8.nupkg.sha512"
+  ],
   "logs": []
 }

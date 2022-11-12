@@ -117,7 +117,6 @@
 /home/icorlli/projects/Fitbox/UserAccount/Tests/bin/Debug/net6.0/Tests.deps.json
 /home/icorlli/projects/Fitbox/UserAccount/Tests/bin/Debug/net6.0/Tests.runtimeconfig.json
 /home/icorlli/projects/Fitbox/UserAccount/Tests/bin/Debug/net6.0/Tests.dll
-/home/icorlli/projects/Fitbox/UserAccount/Tests/bin/Debug/net6.0/ref/Tests.dll
 /home/icorlli/projects/Fitbox/UserAccount/Tests/bin/Debug/net6.0/Tests.pdb
 /home/icorlli/projects/Fitbox/UserAccount/Tests/bin/Debug/net6.0/FluentAssertions.dll
 /home/icorlli/projects/Fitbox/UserAccount/Tests/bin/Debug/net6.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll
@@ -209,3 +208,6 @@
 /home/icorlli/projects/Fitbox/UserAccount/Tests/bin/Debug/net6.0/CoverletSourceRootsMapping
 /home/icorlli/projects/Fitbox/UserAccount/Tests/bin/Debug/net6.0/Domain.dll
 /home/icorlli/projects/Fitbox/UserAccount/Tests/bin/Debug/net6.0/Domain.pdb
+/home/icorlli/projects/Fitbox/UserAccount/Tests/obj/Debug/net6.0/refint/Tests.dll
+/home/icorlli/projects/Fitbox/UserAccount/Tests/bin/Debug/net6.0/FluentResults.dll
+/home/icorlli/projects/Fitbox/UserAccount/Tests/bin/Debug/net6.0/Microsoft.Extensions.Logging.Abstractions.dll
