@@ -75,6 +75,7 @@ namespace Tests.src.Domain.Entity
             user.Birth.Should().BeNull();
             user.Biography.Should().BeNull();
             user.Address.Should().BeNull();
+            user.Phone.Should().BeNull();
         }
 
         [Fact]
@@ -161,6 +162,41 @@ namespace Tests.src.Domain.Entity
             user.Address.Should().NotBeNull();
             user.Address.Should().BeOfType<Address>();    
 
+        }
+
+        [Fact]
+        public void Should_Create_EmeregencyContact(){
+            var newUser = User.Create(username.Value,email.Value,password);
+            var user = newUser.Value;
+
+            var name = FullName.Create("fernando", "corlli");
+            var relation = RelationShip.Father;
+            var phone = Phone.Create(410036,3876,"ar");
+
+            user.CreateEmergencyContact(name.Value,relation,phone.Value);
+
+            user.EmergencyContact.Should().NotBeNull();
+            user.EmergencyContact.Should().BeOfType<EmergencyContact>();
+ 
+        }
+
+         [Fact]
+        public void Should_Delete_EmeregencyContact(){
+            var newUser = User.Create(username.Value,email.Value,password);
+            var user = newUser.Value;
+
+            var name = FullName.Create("fernando", "corlli");
+            var relation = RelationShip.Father;
+            var phone = Phone.Create(410036,3876,"ar");
+
+            user.CreateEmergencyContact(name.Value,relation,phone.Value);
+
+            user.EmergencyContact.Should().NotBeNull();
+            user.EmergencyContact.Should().BeOfType<EmergencyContact>();
+
+            user.DeleteEmergencyContact();
+            user.EmergencyContact.Should().BeNull();
+ 
         }
 
     }

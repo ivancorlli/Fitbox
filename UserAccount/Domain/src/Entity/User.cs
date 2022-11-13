@@ -23,6 +23,8 @@ namespace Domain.src.Entity
         public DateTime? Birth {get;private set;}
         public Bio? Biography {get;private set;}
         public Address? Address {get;private set;}
+        public Phone? Phone {get;private set;}
+        public EmergencyContact? EmergencyContact {get;private set;}
 
 
         private User(Username username,Email email, string password){
@@ -48,14 +50,27 @@ namespace Domain.src.Entity
 
         }
 
+        /// <summary>
+        /// Cambia el nombre 
+        /// </summary>
+        /// <param name="name"></param>
         public void ChangeName(FullName name){
             Name = name;
         }
 
+        /// <summary>
+        /// Cambia el genero
+        /// </summary>
+        /// <param name="gender"></param>
         public void ChangeGender(Gender gender){
             Gender=gender;
         }
 
+        /// <summary>
+        /// Cambia la fecha de nacimiento
+        /// </summary>
+        /// <param name="birth"></param>
+        /// <returns></returns>
         public Result ChangeBirth(DateTime birth){
             if(birth > DateTime.Now){
                 return Result.Fail(new Error("La fecha de nacimiento no puede ser mayor a la fecha de hoy"));
@@ -65,15 +80,43 @@ namespace Domain.src.Entity
             }
         }
 
+        /// <summary>
+        /// Cambia la biografia
+        /// </summary>
+        /// <param name="bio"></param>
         public void ChangeBio(Bio bio){
             Biography = bio;
         }
 
+        /// <summary>
+        /// Cambia la direccion
+        /// </summary>
+        /// <param name="address"></param>
         public void ChangeAddress(Address address)
         {
             Address = address;
         }
 
+        /// <summary>
+        /// Crea un contacto de emergencia
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="relationShip"></param>
+        /// <param name="phone"></param>
+        public void CreateEmergencyContact(FullName name, RelationShip relationShip, Phone phone){
+            EmergencyContact = new EmergencyContact(name,relationShip,phone);
+        }
+
+        /// <summary>
+        /// Elimina el contacto de emergencia
+        /// </summary>
+        public void DeleteEmergencyContact(){
+            EmergencyContact = null;
+        }
+
+        internal void ChangePhone(Phone phone){
+            Phone = phone;
+        }
 
         // ---------------------------------------------- Validation ------------------------------------------------------------ //
         private static Result ValidatePassword(string pass){
