@@ -191,12 +191,21 @@ namespace Tests.src.Domain.Entity
 
             user.CreateEmergencyContact(name.Value,relation,phone.Value);
 
-            user.EmergencyContact.Should().NotBeNull();
-            user.EmergencyContact.Should().BeOfType<EmergencyContact>();
-
             user.DeleteEmergencyContact();
             user.EmergencyContact.Should().BeNull();
  
+        }
+
+        [Fact]
+        public void Should_Create_MedicalInfo(){
+            var newUser = User.Create(username.Value,email.Value,password);
+            var user = newUser.Value;
+
+            var medical = MedicalInfo.Create("fasdfsdf");
+
+            user.CreateMedicalInfo(medical.Value);
+
+            user.Medical.Should().BeOfType<MedicalInfo>();
         }
 
     }

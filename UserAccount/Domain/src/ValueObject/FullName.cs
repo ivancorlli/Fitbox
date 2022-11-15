@@ -4,6 +4,7 @@ using Domain.src.Utils;
 using System.Text.RegularExpressions;
 using FluentResults;
 
+
 namespace Domain.src.ValueObject
 {
     public class FullName

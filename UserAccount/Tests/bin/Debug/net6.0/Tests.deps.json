@@ -8,10 +8,10 @@
     ".NETCoreApp,Version=v6.0": {
       "Tests/1.0.0": {
         "dependencies": {
+          "Bogus": "34.0.2",
           "Domain": "1.0.0",
           "FluentAssertions": "6.8.0",
           "Microsoft.NET.Test.Sdk": "17.4.0",
-          "coverlet.collector": "3.2.0",
           "xunit": "2.4.2",
           "xunit.runner.visualstudio": "2.4.5"
         },
@@ -19,7 +19,14 @@
           "Tests.dll": {}
         }
       },
-      "coverlet.collector/3.2.0": {},
+      "Bogus/34.0.2": {
+        "runtime": {
+          "lib/net6.0/Bogus.dll": {
+            "assemblyVersion": "34.0.2.0",
+            "fileVersion": "34.0.2.0"
+          }
+        }
+      },
       "FluentAssertions/6.8.0": {
         "dependencies": {
           "System.Configuration.ConfigurationManager": "4.4.0"
@@ -1090,12 +1097,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "coverlet.collector/3.2.0": {
+    "Bogus/34.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-xjY8xBigSeWIYs4I7DgUHqSNoGqnHi7Fv7/7RZD02rvZyG3hlsjnQKiVKVWKgr9kRKgmV+dEfu8KScvysiC0Wg==",
-      "path": "coverlet.collector/3.2.0",
-      "hashPath": "coverlet.collector.3.2.0.nupkg.sha512"
+      "sha512": "sha512-2KQAuMn3fLAQ2r6jeiffZnpv0bi3GCW3iRB2v1KeHIEBu8MNTh9dBlLTZwGvM0pr+9doKkU8L5JgCURmTmT88A==",
+      "path": "bogus/34.0.2",
+      "hashPath": "bogus.34.0.2.nupkg.sha512"
     },
     "FluentAssertions/6.8.0": {
       "type": "package",

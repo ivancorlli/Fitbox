@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Domain.src.Enum;
 
+[assembly:InternalsVisibleTo("Tests")]
 namespace Domain.src.ValueObject
 {
     public record EmergencyContact

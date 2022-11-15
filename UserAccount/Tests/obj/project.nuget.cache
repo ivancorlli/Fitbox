@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "VlUW0yLtVVJj9pV53QYMdbzRMlAkVmMDClgNQ2K3NPq2RU1/lbZlXsyFEe0RwFdsvBqYx2kUQ2q9YQ+3j3HQug==",
+  "dgSpecHash": "yLQna8h5bUzRyoRh3f/7V7UlvFOa6sXX3U3+/vcuN2F5iW2pXF0mZYBEpuhlAHmG2oIwtNs7NMyoo6KYamZ9GQ==",
   "success": true,
   "projectFilePath": "/home/icorlli/projects/Fitbox/UserAccount/Tests/Tests.csproj",
   "expectedPackageFiles": [
-    "/root/.nuget/packages/coverlet.collector/3.2.0/coverlet.collector.3.2.0.nupkg.sha512",
+    "/root/.nuget/packages/bogus/34.0.2/bogus.34.0.2.nupkg.sha512",
     "/root/.nuget/packages/fluentassertions/6.8.0/fluentassertions.6.8.0.nupkg.sha512",
     "/root/.nuget/packages/fluentresults/3.15.0/fluentresults.3.15.0.nupkg.sha512",
     "/root/.nuget/packages/microsoft.codecoverage/17.4.0/microsoft.codecoverage.17.4.0.nupkg.sha512",
@@ -97,8 +97,7 @@
     "/root/.nuget/packages/xunit.core/2.4.2/xunit.core.2.4.2.nupkg.sha512",
     "/root/.nuget/packages/xunit.extensibility.core/2.4.2/xunit.extensibility.core.2.4.2.nupkg.sha512",
     "/root/.nuget/packages/xunit.extensibility.execution/2.4.2/xunit.extensibility.execution.2.4.2.nupkg.sha512",
-    "/root/.nuget/packages/xunit.runner.visualstudio/2.4.5/xunit.runner.visualstudio.2.4.5.nupkg.sha512",
-    "/root/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.8/microsoft.aspnetcore.app.ref.6.0.8.nupkg.sha512"
+    "/root/.nuget/packages/xunit.runner.visualstudio/2.4.5/xunit.runner.visualstudio.2.4.5.nupkg.sha512"
   ],
   "logs": []
 }

@@ -13,3 +13,15 @@
 /home/icorlli/projects/Fitbox/User/Application/obj/Debug/net6.0/Application.dll
 /home/icorlli/projects/Fitbox/User/Application/obj/Debug/net6.0/ref/Application.dll
 /home/icorlli/projects/Fitbox/User/Application/obj/Debug/net6.0/Application.pdb
+/home/icorlli/projects/Fitbox/UserAccount/Application/bin/Debug/net6.0/Application.deps.json
+/home/icorlli/projects/Fitbox/UserAccount/Application/bin/Debug/net6.0/Application.dll
+/home/icorlli/projects/Fitbox/UserAccount/Application/bin/Debug/net6.0/ref/Application.dll
+/home/icorlli/projects/Fitbox/UserAccount/Application/bin/Debug/net6.0/Application.pdb
+/home/icorlli/projects/Fitbox/UserAccount/Application/obj/Debug/net6.0/Application.csproj.AssemblyReference.cache
+/home/icorlli/projects/Fitbox/UserAccount/Application/obj/Debug/net6.0/Application.GeneratedMSBuildEditorConfig.editorconfig
+/home/icorlli/projects/Fitbox/UserAccount/Application/obj/Debug/net6.0/Application.AssemblyInfoInputs.cache
+/home/icorlli/projects/Fitbox/UserAccount/Application/obj/Debug/net6.0/Application.AssemblyInfo.cs
+/home/icorlli/projects/Fitbox/UserAccount/Application/obj/Debug/net6.0/Application.csproj.CoreCompileInputs.cache
+/home/icorlli/projects/Fitbox/UserAccount/Application/obj/Debug/net6.0/Application.dll
+/home/icorlli/projects/Fitbox/UserAccount/Application/obj/Debug/net6.0/ref/Application.dll
+/home/icorlli/projects/Fitbox/UserAccount/Application/obj/Debug/net6.0/Application.pdb

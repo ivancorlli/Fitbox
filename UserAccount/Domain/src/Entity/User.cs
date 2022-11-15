@@ -1,16 +1,21 @@
+using System.Resources;
+using System.Runtime.CompilerServices;
 using Domain.src.Enum;
 using Domain.src.ValueObject;
 using FluentResults;
 
+
+[assembly:InternalsVisibleTo("Tests")]
 namespace Domain.src.Entity
 {
+
     public class User
     {   
         private static int _Min_Pass = 7;
         private static int _Max_Pass = 25;
 
 
-        public Guid Id {get; private set;}
+        public Guid Id {get;}
         public Username Username {get;private set;}
         public Email Email {get;private set;}
         public string Password {get; private set;}
@@ -25,6 +30,7 @@ namespace Domain.src.Entity
         public Address? Address {get;private set;}
         public Phone? Phone {get;private set;}
         public EmergencyContact? EmergencyContact {get;private set;}
+        public MedicalInfo? Medical {get;private set;}
 
 
         private User(Username username,Email email, string password){
@@ -39,7 +45,7 @@ namespace Domain.src.Entity
 
         }
 
-        public static Result<User> Create(Username username, Email email, string password){
+        internal static Result<User> Create(Username username, Email email, string password){
             var validPass = ValidatePassword(password);
 
             if(validPass.IsSuccess){
@@ -116,6 +122,10 @@ namespace Domain.src.Entity
 
         internal void ChangePhone(Phone phone){
             Phone = phone;
+        }
+
+        public void CreateMedicalInfo(MedicalInfo medical){
+            Medical = medical;
         }
 
         // ---------------------------------------------- Validation ------------------------------------------------------------ //

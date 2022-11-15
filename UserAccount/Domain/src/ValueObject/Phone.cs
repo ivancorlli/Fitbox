@@ -20,18 +20,40 @@ namespace Domain.src.ValueObject
             CountryPrefix = country?.ToUpper();
         }
 
-        public static Result<Phone> Create(long number,int areaCode,string? prefix){
+        /// <summary>
+        /// Crea un numero de telefono
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="areaCode"></param>
+        /// <returns></returns>
+        public static Result<Phone> Create(long number,int areaCode){
 
                 var validPhone = Result.Merge(
-                    ValidateNumber(number)
+                    ValidateNumber(number),
+                    ValidateAreaCode(areaCode)
                 );
 
-                if (!string.IsNullOrEmpty(prefix)){
-                    validPhone = Result.Merge(
-                    ValidateNumber(number),
-                    ValidatePrefix(prefix)
-                );
+                if(validPhone.IsFailed){
+                    return Result.Fail(new Error(validPhone.Errors[0].Message));
+                }else {
+                    Phone phone =  new Phone(number,areaCode,null);
+                    return Result.Ok<Phone>(phone);
                 }
+        }
+
+        /// <summary>
+        /// Crea un numero de telefono
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="areaCode"></param>
+        /// <param name="prefix"></param>
+        /// <returns></returns>
+        public static Result<Phone> Create(long number,int areaCode,string prefix){
+                    var validPhone = Result.Merge(
+                    ValidateNumber(number),
+                    ValidateAreaCode(areaCode),
+                    ValidatePrefix(prefix));
+                
 
                 if(validPhone.IsFailed){
                     return Result.Fail(new Error(validPhone.Errors[0].Message));
@@ -41,6 +63,12 @@ namespace Domain.src.ValueObject
                 }
         }
 
+
+        /// <summary>
+        /// Cambia el numero de telefono
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
         public Result ChangeNumber(long number){
             var validNumber = ValidateNumber(number);
             if(validNumber.IsSuccess){
@@ -51,6 +79,11 @@ namespace Domain.src.ValueObject
             }
         }
 
+        /// <summary>
+        /// Cambia el codigo de area
+        /// </summary>
+        /// <param name="areaCode"></param>
+        /// <returns></returns>
         public Result ChangeAreaCode(int areaCode){
             var validAreaCode = ValidateAreaCode(areaCode);
             if(validAreaCode.IsSuccess){
@@ -61,6 +94,11 @@ namespace Domain.src.ValueObject
             }
         }
 
+        /// <summary>
+        /// Cambia el prefijo del pais
+        /// </summary>
+        /// <param name="prefix"></param>
+        /// <returns></returns>
          public Result ChangePrefix(string prefix){
             var validPrefix = ValidatePrefix(prefix);
             if(validPrefix.IsSuccess){
@@ -71,10 +109,16 @@ namespace Domain.src.ValueObject
             }
         }
 
+        /// <summary>
+        /// Verifica el numero de telefono
+        /// </summary>
         public void VerifyPhone(){
             IsVerified = true;
         }
 
+        /// <summary>
+        /// Desverifica el numero de telefono
+        /// </summary>
         public void UnVerifyPhone(){
             IsVerified = false;
         }
