@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Resources;
 using System.Runtime.CompilerServices;
 using Domain.src.Enum;
@@ -56,6 +57,63 @@ namespace Domain.src.Entity
 
         }
 
+        // ================================== ACCOUNT METHODS ========================================= //
+
+        /// <summary>
+        /// Cambia el email
+        /// </summary>
+        /// <param name="username"></param>
+        internal void ChangeUsername(Username username){
+            Username = username;
+        }
+
+        /// <summary>
+        /// Cambia el email
+        /// </summary>
+        /// <param name="email"></param>
+        internal void ChangeEmail(Email email){
+            Email =email;
+        }
+
+        /// <summary>
+        /// Suspende la cuenta 
+        /// </summary>
+        internal void SuspendAccount(){
+            if(Status == AccountStatus.Suspended)return;
+            Status = AccountStatus.Suspended;
+        }
+
+        /// <summary>
+        /// Desactiva la cuenta
+        /// </summary>
+        public void InactiveAccount(){
+            if(Status == AccountStatus.Inactive)return;
+            Status = AccountStatus.Inactive;
+        }
+
+        /// <summary>
+        /// Reactiva la cuenta
+        /// </summary>
+        public Result ReactivateAccount(){
+            if(Status == AccountStatus.Inactive){
+                Status = AccountStatus.Active;
+                return Result.Ok();
+            }else {
+                return Result.Fail(new Error("Esta cuenta "));
+            }
+        }
+
+        internal Result DeleteAccount(){
+            if(Status == AccountStatus.Deleted){
+                return Result.Fail(new Error("No puedes eliminar esta cuenta por que ya ha sido eliminada"));
+            }else {
+                Status = AccountStatus.Deleted;
+                return Result.Ok();
+            }
+        }
+
+
+
         /// <summary>
         /// Cambia el nombre 
         /// </summary>
@@ -78,12 +136,18 @@ namespace Domain.src.Entity
         /// <param name="birth"></param>
         /// <returns></returns>
         public Result ChangeBirth(DateTime birth){
+            var isLegal = (DateTime.UtcNow - birth).TotalDays /365;
+
             if(birth > DateTime.Now){
                 return Result.Fail(new Error("La fecha de nacimiento no puede ser mayor a la fecha de hoy"));
-            }else{
-                Birth = birth;
-                return Result.Ok();
+
             }
+            if(isLegal < 13){
+                return Result.Fail(new Error("No puedes continuar, tienes menos de 13 años"));
+            }
+            Birth = birth;
+            return Result.Ok();
+            
         }
 
         /// <summary>
@@ -120,12 +184,49 @@ namespace Domain.src.Entity
             EmergencyContact = null;
         }
 
-        internal void ChangePhone(Phone phone){
+        /// <summary>
+        /// Cambia el numero de telefono
+        /// </summary>
+        /// <param name="phone"></param>
+        public void ChangePhone(Phone phone){
             Phone = phone;
         }
 
+        /// <summary>
+        /// Crea un registro de informacion medica
+        /// </summary>
+        /// <param name="medical"></param>
         public void CreateMedicalInfo(MedicalInfo medical){
             Medical = medical;
+        }
+
+        /// <summary>
+        /// Elimina la informacion medica
+        /// </summary>
+        public void DeleteMedicalInfo(){
+            Medical= null;
+        }
+
+        /// <summary>
+        /// Verifica el email
+        /// </summary>
+        public void VerifyEmail(){
+            EmailVerified = true;
+        }
+
+        /// <summary>
+        /// Invalida el email
+        /// </summary>
+        public void UnVerifyEmail(){
+            EmailVerified = false;
+        }
+        
+        /// <summary>
+        /// El usuario deja de ser nuevo
+        /// </summary>
+        /// <returns></returns>
+        public void IsNotNew(){
+            IsNew= false;
         }
 
         // ---------------------------------------------- Validation ------------------------------------------------------------ //

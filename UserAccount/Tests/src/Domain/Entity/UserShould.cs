@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using System.Reflection.Metadata;
 using Domain.src.Entity;
 using Xunit;
 using FluentAssertions;
@@ -6,7 +8,7 @@ using Domain.src.Enum;
 using FluentResults;
 using System.Collections.Generic;
 using System;
-
+using Bogus;
 
 namespace Tests.src.Domain.Entity
 {
@@ -109,7 +111,7 @@ namespace Tests.src.Domain.Entity
         }
 
         [Fact]
-        public void Chande_Birth(){
+        public void Change_Birth(){
             var newUser = User.Create(username.Value,email.Value,password);
             var user = newUser.Value;
 
@@ -125,7 +127,21 @@ namespace Tests.src.Domain.Entity
             var newUser = User.Create(username.Value,email.Value,password);
             var user = newUser.Value;
 
-            var newBirth = DateTime.Parse("2030/04/01");
+            var newBirth = (DateTime.Now).AddDays(5);
+
+            var brithChanged = user.ChangeBirth(newBirth);
+
+            brithChanged.IsSuccess.Should().BeFalse();
+            brithChanged.Errors.Count.Should().BeGreaterThanOrEqualTo(1);
+            user.Birth.Should().BeNull();
+        }
+
+        [Fact]
+        public void Return_Error_If_Age_Is_Lower_Than_13(){
+            var newUser = User.Create(username.Value,email.Value,password);
+            var user = newUser.Value;
+
+            var newBirth = DateTime.Now;
 
             var brithChanged = user.ChangeBirth(newBirth);
 
@@ -197,16 +213,108 @@ namespace Tests.src.Domain.Entity
         }
 
         [Fact]
-        public void Should_Create_MedicalInfo(){
+        public void Change_Phone(){
             var newUser = User.Create(username.Value,email.Value,password);
             var user = newUser.Value;
 
-            var medical = MedicalInfo.Create("fasdfsdf");
+            var phone = Phone.Create(410036,38765,"AR");
+
+            user.ChangePhone(phone.Value);
+            user.Phone.Should().BeOfType<Phone>();
+            user.Phone!.PhoneNumber.Should().Be(410036);
+        }
+
+        [Fact]
+        public void Create_MedicalInfo(){
+            var newUser = User.Create(username.Value,email.Value,password);
+            var user = newUser.Value;
+
+            var medical = MedicalInfo.Create(new Uri("http://www.contoso.com/"));
 
             user.CreateMedicalInfo(medical.Value);
 
             user.Medical.Should().BeOfType<MedicalInfo>();
         }
 
+        [Fact]
+        public void Verify_Email(){
+            var newUser = User.Create(username.Value,email.Value,password);
+            var user = newUser.Value;
+
+            user.VerifyEmail();
+
+            user.EmailVerified.Should().BeTrue();
+        }
+
+        [Fact]
+        public void UnVerify_Email(){
+            var newUser = User.Create(username.Value,email.Value,password);
+            var user = newUser.Value;
+
+            user.VerifyEmail();
+            user.UnVerifyEmail();
+            user.EmailVerified.Should().BeFalse();
+        }
+
+        [Fact]
+        public void Not_Be_New(){
+            var newUser = User.Create(username.Value,email.Value,password);
+            var user = newUser.Value;
+
+            user.IsNotNew();
+            user.IsNew.Should().BeFalse();
+        }
+
+        [Fact]
+        public void Change_Username(){
+            var newUser = User.Create(username.Value,email.Value,password);
+            var user = newUser.Value;
+
+            var newusename= Username.Create("ivancorlli13"); 
+            
+            user.ChangeUsername(newusename.Value);
+
+            user.Username.Value.Should().Be(newusename.Value.Value);
+        }
+
+        [Fact]
+        public void ChangeEmail(){
+            var newUser = User.Create(username.Value,email.Value,password);
+            var user = newUser.Value;
+
+            var newEmail= Email.Create("ivancorlli13@gmail.com");
+            user.ChangeEmail(newEmail.Value);
+
+            user.Email.Value.Should().Be(newEmail.Value.Value); 
+        }
+
+        [Fact]
+        public void SuspendAccount(){
+            var newUser = User.Create(username.Value,email.Value,password);
+            var user = newUser.Value;
+
+            user.SuspendAccount();
+            
+            user.Status.Should().Be(AccountStatus.Suspended);
+        }
+
+        [Fact]
+        public void InactiveAccount(){
+            var newUser = User.Create(username.Value,email.Value,password);
+            var user = newUser.Value;
+
+            user.InactiveAccount();
+            
+            user.Status.Should().Be(AccountStatus.Inactive);
+        }
+        [Fact]
+        public void ReactivateAccount(){
+            var newUser = User.Create(username.Value,email.Value,password);
+            var user = newUser.Value;
+
+            user.ReactivateAccount();
+            
+            user.Status.Should().Be(AccountStatus.Active);
+        }
     }
 }
