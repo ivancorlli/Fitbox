@@ -1,6 +1,5 @@
-using System.Globalization;
-using System.Resources;
 using System.Runtime.CompilerServices;
+using Domain.src.DomainError;
 using Domain.src.Enum;
 using Domain.src.ValueObject;
 using FluentResults;
@@ -48,13 +47,17 @@ namespace Domain.src.Entity
 
         internal static Result<User> Create(Username username, Email email, string password){
             var validPass = ValidatePassword(password);
-
+            var userp = password.Contains(username.Value);
+            var emailp = password.Contains(email.Value);
+            if(userp)
+                return Result.Fail(new Error("La contraseña no puede contener tu nombre de usuario"));
+            if(emailp)
+                return Result.Fail(new Error("La contraseña no puede contener tu email"));
             if(validPass.IsSuccess){
-                return Result.Ok<User>(new User(username,email,password));
+                return Result.Ok<User>(new User(username,email,EncryptPassword(password)));
             }else {
                 return Result.Fail(new Error(validPass.Errors[0].Message));
             }
-
         }
 
         // ================================== ACCOUNT METHODS ========================================= //
@@ -74,6 +77,39 @@ namespace Domain.src.Entity
         internal void ChangeEmail(Email email){
             Email =email;
             UnVerifyEmail();
+        }
+
+        /// <summary>
+        /// Cambia la contrasenia
+        /// </summary>
+        /// <param name="pass">Nueva contrasenia</param>
+        /// <returns></returns>
+        internal Result ChangePassword(string pass){
+            var username = pass.Contains(char.Parse(Username.Value));
+            var email = pass.Contains(char.Parse(Email.Value));
+            var name = false;
+            var surname = false;
+            var phone = false;
+            if(Name  != null){
+                name = pass.Contains(char.Parse(Name.FirstName));
+                surname = pass.Contains(char.Parse(Name.LastName));
+            }
+            if(Phone != null){
+                phone = pass.Contains(char.Parse(Phone.PhoneNumber.ToString()));
+            }
+            if(username)
+                return Result.Fail(new Error("La contraseña no puede contener tu nombre de usuario"));
+            if(email)
+                return Result.Fail(new Error("La contraseña no puede contener tu email"));
+            if(name)
+                return Result.Fail(new Error("La contraseña no puede contener tu nombre"));
+            if(surname)
+                return Result.Fail(new Error("La contraseña no puede contener tu apellid"));
+            if(phone){
+                return Result.Fail(new Error("La contrasña no puede contener tu numero de telefono"));
+            }
+            Password = EncryptPassword(pass);
+            return Result.Ok();
         }
 
         /// <summary>
@@ -129,6 +165,9 @@ namespace Domain.src.Entity
             Status = AccountStatus.Deleted;
             return Result.Ok();
         }
+        
+        // ================================================================================================================ //      
+    
 
         /// <summary>
         /// Cambia el nombre 
@@ -245,8 +284,28 @@ namespace Domain.src.Entity
             IsNew= false;
         }
 
-    
+
+        /// <summary>
+        /// Verifica la contrasenia ingresada
+        /// </summary>
+        /// <param name="inputPassword"></param>
+        /// <param name="hash"></param>
+        /// <returns></returns>
+        public Result<bool> VerifyPassword(string inputPassword,string hash){
+            var verified = BCrypt.Net.BCrypt.Verify(inputPassword,hash);
+
+            if(!verified)
+                return Result.Fail(new IncorrectPassword());
+
+            return Result.Ok(verified);
+        }
         // ---------------------------------------------- Validation ------------------------------------------------------------ //
+        
+        /// <summary>
+        /// Valida la contrasenia
+        /// </summary>
+        /// <param name="pass"></param>
+        /// <returns></returns>
         private static Result ValidatePassword(string pass){
             return Result.Merge(
                 Result.FailIf(pass.StartsWith("1234"),new Error("Contraseña insegura, no puede iniciar con 1234")),
@@ -256,6 +315,16 @@ namespace Domain.src.Entity
                 Result.FailIf(pass.Length < _Min_Pass,new Error($"La Contraseña debe tener mas de {_Min_Pass} caracteres"))
             );
 
+        }
+        /// <summary>
+        /// Encirpta la contraseña
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        private static string EncryptPassword(string password){
+            var salt = BCrypt.Net.BCrypt.GenerateSalt(10);
+            var passEncrypted = BCrypt.Net.BCrypt.HashPassword(password,salt);
+            return passEncrypted;
         }
     }
 }
