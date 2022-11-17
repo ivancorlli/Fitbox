@@ -141,7 +141,7 @@ namespace Tests.src.Domain.ValueObject
             var newPhone = Phone.Create(number,areaCode,country);
 
 
-            newPhone.Value.UnVerifyPhone();
+            newPhone.Value.ChangeNumber(3656478);
 
             newPhone.Value.Should().BeOfType<Phone>();
             newPhone.Value.IsVerified.Should().BeFalse();
