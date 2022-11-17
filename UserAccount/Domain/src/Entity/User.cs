@@ -73,46 +73,62 @@ namespace Domain.src.Entity
         /// <param name="email"></param>
         internal void ChangeEmail(Email email){
             Email =email;
+            UnVerifyEmail();
         }
 
         /// <summary>
         /// Suspende la cuenta 
         /// </summary>
-        internal void SuspendAccount(){
-            if(Status == AccountStatus.Suspended)return;
+        internal Result SuspendAccount(){
+            if(Status == AccountStatus.Deleted)
+                return Result.Fail(new Error("No puedes suspender una cuenta eliminada"));
+            if(Status == AccountStatus.Suspended)
+                return Result.Ok();
             Status = AccountStatus.Suspended;
+            return Result.Ok();
         }
 
         /// <summary>
         /// Desactiva la cuenta
         /// </summary>
-        public void InactiveAccount(){
-            if(Status == AccountStatus.Inactive)return;
+        public Result InactivateAccount(){
+            if(Status == AccountStatus.Deleted)
+                return Result.Fail(new Error("No puedes desactivar una cuenta eliminada"));
+            if(Status == AccountStatus.Suspended)
+                return Result.Fail(new Error("No puedes desactivar una cuenta suspendida"));
+            if(Status == AccountStatus.Inactive)
+                return Result.Ok();
             Status = AccountStatus.Inactive;
+            return Result.Ok();
         }
 
         /// <summary>
         /// Reactiva la cuenta
         /// </summary>
         public Result ReactivateAccount(){
-            if(Status == AccountStatus.Inactive){
-                Status = AccountStatus.Active;
-                return Result.Ok();
-            }else {
-                return Result.Fail(new Error("Esta cuenta "));
+            if(Status == AccountStatus.Deleted){
+                return Result.Fail(new Error("No puedes reactivar una cuenta eliminada"));
             }
+            Status = AccountStatus.Active;
+            return Result.Ok();
         }
 
+        /// <summary>
+        /// Elimina la cuenta
+        /// </summary>
+        /// <returns></returns>
         internal Result DeleteAccount(){
             if(Status == AccountStatus.Deleted){
                 return Result.Fail(new Error("No puedes eliminar esta cuenta por que ya ha sido eliminada"));
-            }else {
-                Status = AccountStatus.Deleted;
-                return Result.Ok();
             }
+
+            if(Status == AccountStatus.Suspended){
+                return Result.Fail(new Error("No puedes eliminar una cuenta suspendida"));
+            }
+
+            Status = AccountStatus.Deleted;
+            return Result.Ok();
         }
-
-
 
         /// <summary>
         /// Cambia el nombre 
@@ -217,7 +233,7 @@ namespace Domain.src.Entity
         /// <summary>
         /// Invalida el email
         /// </summary>
-        public void UnVerifyEmail(){
+        private void UnVerifyEmail(){
             EmailVerified = false;
         }
         
@@ -229,6 +245,7 @@ namespace Domain.src.Entity
             IsNew= false;
         }
 
+    
         // ---------------------------------------------- Validation ------------------------------------------------------------ //
         private static Result ValidatePassword(string pass){
             return Result.Merge(

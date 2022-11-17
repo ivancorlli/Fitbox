@@ -73,6 +73,7 @@ namespace Domain.src.ValueObject
             var validNumber = ValidateNumber(number);
             if(validNumber.IsSuccess){
                 PhoneNumber = number;
+                UnVerifyPhone();
                 return Result.Ok();
             }else {
                 return Result.Fail(new Error(validNumber.Errors[0].Message));
@@ -88,6 +89,7 @@ namespace Domain.src.ValueObject
             var validAreaCode = ValidateAreaCode(areaCode);
             if(validAreaCode.IsSuccess){
                 AreaCode = areaCode;
+                UnVerifyPhone();
                 return Result.Ok();
             }else {
                 return Result.Fail(new Error(validAreaCode.Errors[0].Message));
@@ -119,7 +121,7 @@ namespace Domain.src.ValueObject
         /// <summary>
         /// Desverifica el numero de telefono
         /// </summary>
-        public void UnVerifyPhone(){
+        private void UnVerifyPhone(){
             IsVerified = false;
         }
         

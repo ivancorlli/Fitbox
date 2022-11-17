@@ -252,7 +252,7 @@ namespace Tests.src.Domain.Entity
             var user = newUser.Value;
 
             user.VerifyEmail();
-            user.UnVerifyEmail();
+            user.ChangeEmail(Email.Create("pedro@gmail.com").Value);
             user.EmailVerified.Should().BeFalse();
         }
 
@@ -303,7 +303,7 @@ namespace Tests.src.Domain.Entity
             var newUser = User.Create(username.Value,email.Value,password);
             var user = newUser.Value;
 
-            user.InactiveAccount();
+            user.InactivateAccount();
             
             user.Status.Should().Be(AccountStatus.Inactive);
         }
