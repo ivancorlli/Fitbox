@@ -4,6 +4,7 @@ using Domain.src.Entity;
 using Domain.src.ValueObject;
 
 [assembly:InternalsVisibleTo("Tests")]
+[assembly: InternalsVisibleTo("InternalsVisible.DynamicProxyGenAssembly2")] 
 namespace Domain.src.Interface
 {
     public interface IUserReadRepository

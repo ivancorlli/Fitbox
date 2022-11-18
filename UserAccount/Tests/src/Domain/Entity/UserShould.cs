@@ -67,6 +67,7 @@ namespace Tests.src.Domain.Entity
             }
         }
 
+
         [Fact]
         public void Return_Optionals_In_Null(){
             var newUser = User.Create(username.Value,email.Value,password);
@@ -78,6 +79,18 @@ namespace Tests.src.Domain.Entity
             user.Biography.Should().BeNull();
             user.Address.Should().BeNull();
             user.Phone.Should().BeNull();
+        }
+
+        [Fact]
+        public void Change_Password(){
+            var newUser = User.Create(username.Value,email.Value,password);
+            var user = newUser.Value;
+            var newPass = "NuevaContrasenia156";
+
+            user.ChangePassword(newPass);
+
+            user.Password.Should().NotBe(newPass);
+
         }
 
         [Fact]

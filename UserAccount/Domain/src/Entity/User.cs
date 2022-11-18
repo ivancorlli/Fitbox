@@ -85,8 +85,8 @@ namespace Domain.src.Entity
         /// <param name="pass">Nueva contrasenia</param>
         /// <returns></returns>
         internal Result ChangePassword(string pass){
-            var username = pass.Contains(char.Parse(Username.Value));
-            var email = pass.Contains(char.Parse(Email.Value));
+            var username = pass.Contains(Username.Value);
+            var email = pass.Contains(Email.Value);
             var name = false;
             var surname = false;
             var phone = false;
