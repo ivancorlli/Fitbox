@@ -135,6 +135,7 @@ namespace Tests.src.Domain.Service
 
             user.Username.Should().Be(newUsername);
         }
+
         [Fact]
         public async Task Not_Change_Username_If_Username_Exists(){
             var mockEmail = Email.Create("ivancorlli@gmail.com").Value;
@@ -160,6 +161,57 @@ namespace Tests.src.Domain.Service
             result.IsSuccess.Should().BeFalse();
             result.Errors[0].Should().BeOfType<UserAlreadyExists>();
             
+        }
+
+        [Fact]
+        public async Task Change_Phone(){
+            var mockEmail = Email.Create("ivancorlli@gmail.com").Value;
+            var mokcusername = Username.Create("ivancorlli13").Value;
+            var mockuser = User.Create(mokcusername,mockEmail,"15410036").Value;
+            var mockPhone = Phone.Create(410036,3876);
+            _MockRepo.Setup(user => user.GetUserByPhone(mockPhone.Value))
+            .ReturnsAsync(mockuser)
+            .Verifiable();
+
+            var email = Email.Create("ivancorlli13@gmail.com").Value;
+            var username = Username.Create("ivancorlli").Value;
+            var user = User.Create(username,email,"1564687632").Value;
+
+            var newPhone = Phone.Create(554865,3876).Value;
+
+            await _Manager.ChangePhone(user,newPhone);
+            
+            _MockRepo.Verify(x=>x.GetUserByPhone(newPhone));
+            _MockRepo.VerifyNoOtherCalls();
+
+            user.Phone.Should().Be(newPhone);
+        }
+
+        [Fact]
+        public async Task Not_Change_Phone_If_Phone_Exists(){
+            var mockEmail = Email.Create("ivancorlli@gmail.com").Value;
+            var mokcusername = Username.Create("ivancorlli13").Value;
+            var mockuser = User.Create(mokcusername,mockEmail,"15410036").Value;
+            var mockPhone = Phone.Create(410036,3876);
+            mockuser.ChangePhone(mockPhone.Value);
+            _MockRepo.Setup(user => user.GetUserByPhone(mockPhone.Value))
+            .ReturnsAsync(mockuser)
+            .Verifiable();
+
+            var email = Email.Create("ivancorlli13@gmail.com").Value;
+            var username = Username.Create("ivancorlli").Value;
+            var user = User.Create(username,email,"1564687632").Value;
+
+            var newPhone = Phone.Create(410036,3876); 
+
+             var result = await _Manager.ChangePhone(user,newPhone.Value);
+            
+            _MockRepo.Verify(x=>x.GetUserByPhone(newPhone.Value));
+            _MockRepo.VerifyNoOtherCalls();
+
+            result.IsSuccess.Should().BeFalse();
+            result.Errors[0].Should().BeOfType<UserAlreadyExists>();
+
         }
     }
 }

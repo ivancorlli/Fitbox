@@ -243,7 +243,7 @@ namespace Domain.src.Entity
         /// Cambia el numero de telefono
         /// </summary>
         /// <param name="phone"></param>
-        public void ChangePhone(Phone phone){
+        internal void ChangePhone(Phone phone){
             Phone = phone;
         }
 

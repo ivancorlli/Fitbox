@@ -12,5 +12,6 @@ namespace Domain.src.Interface
         internal Task<User> GetUserById(Guid Id);
         internal Task<User> GetUserByEmail(Email email);
         internal Task<User> GetUserByUsername(Username username);
+        internal Task<User> GetUserByPhone(Phone phone);
     }
 }

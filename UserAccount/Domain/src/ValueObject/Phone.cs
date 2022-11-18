@@ -36,7 +36,7 @@ namespace Domain.src.ValueObject
                 if(validPhone.IsFailed){
                     return Result.Fail(new Error(validPhone.Errors[0].Message));
                 }else {
-                    Phone phone =  new Phone(number,areaCode,null);
+                    var phone =  new Phone(number,areaCode,null);
                     return Result.Ok<Phone>(phone);
                 }
         }
