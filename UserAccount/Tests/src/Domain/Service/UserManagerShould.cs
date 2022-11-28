@@ -213,5 +213,6 @@ namespace Tests.src.Domain.Service
             result.Errors[0].Should().BeOfType<UserAlreadyExists>();
 
         }
+
     }
 }
