@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jLyolbq7iS+Ozx5MVqC+uSRgTt+uBU97PruOhtRlZEHg+GvhtybDBk3C5UQovHCU5nvM7ZGo/8fulTrDJzSxTg==",
+  "dgSpecHash": "12o1hHLE6j89svFjWbOL6kyHkPt9PUapXziFtac9JBMVprRugYfp9JRbmIkut/VM0pArYPgv8Fi/9fJubfLnrA==",
   "success": true,
-  "projectFilePath": "/home/icorlli/projects/Fitbox/UserAccount/Infrastructure/Infrastructure.csproj",
+  "projectFilePath": "/home/icorlli/Fitbox/UserAccount/Infrastructure/Infrastructure.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
