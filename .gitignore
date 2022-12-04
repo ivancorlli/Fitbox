@@ -5,3 +5,6 @@
 .PAT.txt
 ./PAT.txt
 .PAT.txt/
+./TestResults
+/TestResults
+TestReults/
