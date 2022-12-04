@@ -14,14 +14,20 @@ namespace Domain.src.ValueObject
         private static int _Min = 2;
         private static Regex _Reg = new Regex("^[a-zA-Z]+$");
 
-        public string FirstName {get;private set;}
-        public string LastName {get;private set;}
+        public string FirstName {get;init;}
+        public string LastName {get;init;}
 
         private FullName(string name,string surname){
             FirstName = name;
             LastName = surname;
         }
 
+        /// <summary>
+        /// Crea un nombre completo
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="surname"></param>
+        /// <returns></returns>
         public static Result<FullName> Create(string name, string surname){
             var validFullname = Result.Merge(
                 ValidateFirst(name),
@@ -38,28 +44,7 @@ namespace Domain.src.ValueObject
                 return Result.Fail(new Error(validFullname.Errors[0].Message));
             }
         }
-
-        public Result ChangeFirstName(string name){
-            var validName = ValidateFirst(name);
-            if(validName.IsFailed){
-                return Result.Fail(validName.Errors[0].Message);
-            }else {
-                FirstName = Capitalize.Create(name);
-                return Result.Ok();
-            }
-        }
-
-         public Result ChangeLastName(string surname){
-            var validName = ValidateLast(surname);
-            if(validName.IsFailed){
-                return Result.Fail(validName.Errors[0].Message);
-            }else {
-                LastName = Capitalize.Create(surname);
-                return Result.Ok();
-            }
-        }
-
-        
+ 
         private static Result ValidateFirst(string name){
             return Result.Merge(
                 Result.FailIf(string.IsNullOrEmpty(name),"Nombre requerido"),
@@ -78,6 +63,29 @@ namespace Domain.src.ValueObject
             );
         }
 
+        /// <summary>
+        /// Cambia el nombre
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns>Nueva instancia de FullName</returns>
+        public Result<FullName> WithName(string name){
+            var validName = ValidateFirst(name);
+            if(validName.IsFailed)
+                return Result.Fail(new Error(validName.Errors[0].Message));
+            var newName = Capitalize.Create(name);
+            var newFullName = FullName.Create(newName,LastName);
+            return Result.Ok<FullName>(newFullName.Value);
+        }
+
+        public Result<FullName> WithSurname(string surname)
+        {
+            var validSurname = ValidateLast(surname);
+             if(validSurname.IsFailed)
+                return Result.Fail(new Error(validSurname.Errors[0].Message));
+            var newName = Capitalize.Create(surname);
+            var newFullName = FullName.Create(FirstName,newName);
+            return Result.Ok<FullName>(newFullName.Value);
+        }
 
     }
 }

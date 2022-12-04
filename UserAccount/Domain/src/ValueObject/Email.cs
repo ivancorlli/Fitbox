@@ -1,7 +1,4 @@
 using System.Text.RegularExpressions;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FluentResults;
 
 
@@ -14,7 +11,7 @@ namespace Domain.src.ValueObject
         private static int _Min = 6;
         private static Regex _Reg = new Regex("^[a-zA-Z0-9._]+(?:\\.[a-z0-9._]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
 
-        public string Value {get;}
+        public string Value {get;init;}
 
         private Email(string value){
             Value = value.ToLower();
@@ -37,7 +34,6 @@ namespace Domain.src.ValueObject
                 Result.FailIf(email.Length < _Min, new Error($"El email debe tener mas de {_Min} caracteres"))
             );
         }
-
 
     }
 }

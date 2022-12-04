@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "L4xPGfOYKu43/k2ioq4LRt9ZDHr2opdf+8ZsvR8Zij2+fmZ8DNrjkW9azZOcGqF5pYIH0skFDO1SiS3KcbFYzg==",
+  "dgSpecHash": "qZ3pdqGbS7lpdyUwtdB5SPxM2QJDGiiO9RFQJ7a/7fc0vwzlk9yKg4LSmpo/mrNwwp8VUsZ8LtGiFScwRWMs1A==",
   "success": true,
   "projectFilePath": "/home/icorlli/Fitbox/UserAccount/Application/Application.csproj",
   "expectedPackageFiles": [
+    "/home/icorlli/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/home/icorlli/.nuget/packages/fluentresults/3.15.0/fluentresults.3.15.0.nupkg.sha512",
     "/home/icorlli/.nuget/packages/mediatr/11.0.0/mediatr.11.0.0.nupkg.sha512",
     "/home/icorlli/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512",

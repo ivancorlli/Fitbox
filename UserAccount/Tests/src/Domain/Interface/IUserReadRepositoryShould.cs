@@ -76,38 +76,38 @@ namespace Tests.src.Domain.Interface
             userFound.Should().BeNull();
         }
 
-         [Fact]
-        public async Task Get_User_By_Phone_If_Exists()
-        {
-            var email = Email.Create("ivancorlli@gmail.com");
-            var username = Username.Create("ivancorlli");
-            var user = User.Create(username.Value,email.Value,"15410036"); 
-            var phone = Phone.Create(410036,3876,"Ar");
+        //  [Fact]
+        // public async Task Get_User_By_Phone_If_Exists()
+        // {
+        //     var email = Email.Create("ivancorlli@gmail.com");
+        //     var username = Username.Create("ivancorlli");
+        //     var user = User.Create(username.Value,email.Value,"15410036"); 
+        //     var phone = Phone.Create(410036,3876,"Ar");
 
-            _Mock.Setup(repo => repo.GetUserByPhone(phone.Value)).ReturnsAsync(user.Value).Verifiable();
+        //     _Mock.Setup(repo => repo.GetUserByPhone(phone.Value)).ReturnsAsync(user.Value).Verifiable();
             
-            var userFound = await _Mock.Object.GetUserByPhone(phone.Value);
+        //     var userFound = await _Mock.Object.GetUserByPhone(phone.Value);
 
-            _Mock.Verify(x=>x.GetUserByPhone(phone.Value));
-            userFound.Should().Be(user.Value);
-        }
+        //     _Mock.Verify(x=>x.GetUserByPhone(phone.Value));
+        //     userFound.Should().Be(user.Value);
+        // }
 
-        [Fact]
-        public async Task Return_Null_If_Phone_Not_Match(){
-            var email = Email.Create("ivancorlli@gmail.com");
-            var username = Username.Create("ivancorlli");
-            var user = User.Create(username.Value,email.Value,"15410036"); 
-            var phone = Phone.Create(410036,3876,"Ar");
+        // [Fact]
+        // public async Task Return_Null_If_Phone_Not_Match(){
+        //     var email = Email.Create("ivancorlli@gmail.com");
+        //     var username = Username.Create("ivancorlli");
+        //     var user = User.Create(username.Value,email.Value,"15410036"); 
+        //     var phone = Phone.Create(410036,3876,"Ar");
 
-            _Mock.Setup(repo => repo.GetUserByPhone(phone.Value)).Verifiable();
+        //     _Mock.Setup(repo => repo.GetUserByPhone(phone.Value)).Verifiable();
             
-            var searchPhone = Phone.Create(410036,3876,"Ar");
-            var userFound = await _Mock.Object.GetUserByPhone(searchPhone.Value);
+        //     var searchPhone = Phone.Create(410036,3876,"Ar");
+        //     var userFound = await _Mock.Object.GetUserByPhone(searchPhone.Value);
 
-            _Mock.Verify(x=>x.GetUserByPhone(searchPhone.Value));
-            _Mock.VerifyNoOtherCalls();
-            userFound.Should().BeNull();
-        }
+        //     _Mock.Verify(x=>x.GetUserByPhone(searchPhone.Value));
+        //     _Mock.VerifyNoOtherCalls();
+        //     userFound.Should().BeNull();
+        // }
 
     }
 }

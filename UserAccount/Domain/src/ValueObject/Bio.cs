@@ -10,7 +10,7 @@ namespace Domain.src.ValueObject
     {   
         private static int _Max = 300;
 
-        public string Value {get;}
+        public string Value {get;init;}
 
         private Bio(string value){
             Value = value;

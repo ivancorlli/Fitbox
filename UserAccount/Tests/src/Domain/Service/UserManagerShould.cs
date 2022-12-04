@@ -168,7 +168,7 @@ namespace Tests.src.Domain.Service
             var mockEmail = Email.Create("ivancorlli@gmail.com").Value;
             var mokcusername = Username.Create("ivancorlli13").Value;
             var mockuser = User.Create(mokcusername,mockEmail,"15410036").Value;
-            var mockPhone = Phone.Create(410036,3876);
+            var mockPhone = Phone.Create(4106,38767835);
             _MockRepo.Setup(user => user.GetUserByPhone(mockPhone.Value))
             .ReturnsAsync(mockuser)
             .Verifiable();
@@ -177,7 +177,7 @@ namespace Tests.src.Domain.Service
             var username = Username.Create("ivancorlli").Value;
             var user = User.Create(username,email,"1564687632").Value;
 
-            var newPhone = Phone.Create(554865,3876).Value;
+            var newPhone = Phone.Create(3876,38768795).Value;
 
             await _Manager.ChangePhone(user,newPhone);
             
@@ -192,7 +192,7 @@ namespace Tests.src.Domain.Service
             var mockEmail = Email.Create("ivancorlli@gmail.com").Value;
             var mokcusername = Username.Create("ivancorlli13").Value;
             var mockuser = User.Create(mokcusername,mockEmail,"15410036").Value;
-            var mockPhone = Phone.Create(410036,3876);
+            var mockPhone = Phone.Create(410,38768796);
             mockuser.ChangePhone(mockPhone.Value);
             _MockRepo.Setup(user => user.GetUserByPhone(mockPhone.Value))
             .ReturnsAsync(mockuser)
@@ -202,7 +202,7 @@ namespace Tests.src.Domain.Service
             var username = Username.Create("ivancorlli").Value;
             var user = User.Create(username,email,"1564687632").Value;
 
-            var newPhone = Phone.Create(410036,3876); 
+            var newPhone = Phone.Create(410,38768796); 
 
              var result = await _Manager.ChangePhone(user,newPhone.Value);
             

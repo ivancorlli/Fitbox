@@ -13,31 +13,36 @@ namespace Domain.src.ValueObject
 
         
         private static int _Max = 15;
-        private static int _Min = 2;
+        private static int _Min = 3;
         private static Regex _Reg = new Regex("^[a-zA-Z ]+$");
         private static int _MaxLoc = 25;
 
-        public string Country {get;private set;}
-        public string City {get;private set;}
-        public string State {get;private set;}
-        public int AreaCode {get;private set;}
+        public string Country {get;init;}
+        public string City {get;init;}
+        public string State {get;init;}
+        public ZipCode ZipCode {get;init;}
 
-        private Address(string country,string city,string state,int areCode){
+        private Address(string country,string city,string state,ZipCode zipCode){
             Country = country;
             City = city;
             State = state;
-            AreaCode =areCode;
+            ZipCode =zipCode;
         }
 
-        public static Result<Address> Create(string country,string city,string state,int areCode){
+        /// <summary>
+        /// Crea una direccion
+        /// </summary>
+        /// <param name="country"></param>
+        /// <param name="city"></param>
+        /// <param name="state"></param>
+        /// <param name="zipCode"></param>
+        /// <returns>Nueva instancia de Address</returns>
+        public static Result<Address> Create(string country,string city,string state,ZipCode zipCode){
             var validAddres = Result.Merge(
                 ValidateCountry(country),
                 ValidateCity(city),
-                ValidateState(state),
-                ValidateAreaCode(areCode)
+                ValidateState(state)
             );
-
-
             if(validAddres.IsFailed){
                 return Result.Fail(new Error(validAddres.Errors[0].Message));
             }else {
@@ -45,15 +50,13 @@ namespace Domain.src.ValueObject
                     Capitalize.Create(country),
                     Capitalize.Create(city),
                     Capitalize.Create(state),
-                    areCode);
+                    zipCode
+                    );
                 return Result.Ok<Address>(newAddress);
             }
-
-
-
         }
 
-
+// ------------------------------------------ Validaciones -------------------------------------------------------
         private static Result ValidateCountry(string country){
             return Result.Merge(
                 Result.FailIf(string.IsNullOrEmpty(country),new Error("El nombre de pais es requerido")),
@@ -81,60 +84,56 @@ namespace Domain.src.ValueObject
             );
         }
 
-        private static  Result ValidateAreaCode(int areaCode){
-            return Result.Merge(
-                Result.FailIf(areaCode <= 0,new Error("El codigo de area no puede ser menor o igaul a 0")),
-                Result.FailIf(areaCode.ToString().Length <= 2,new Error("El codigo de area debe tener mas de dos digitos")),
-                Result.FailIf(areaCode.ToString().Length >8 ,new Error("El codigo de area no puede tener mas de 8 digitos"))
-            );
-        }
+        
 
-        public Result ChangeCountry(string country)
-        {   
-            var validCountry = ValidateCountry(country);
+// --------------------------------------- Metodos ---------------------------------------------------------------
 
-            if(validCountry.IsFailed){
-                return Result.Fail(new Error(validCountry.Errors[0].Message));
-            }else {
-                Country = Capitalize.Create(country);
-                return Result.Ok();
-            }
-        }
-
-        public Result ChangeCity(string city)
-        {   
-            var validCity = ValidateCity(city);
-
-            if(validCity.IsFailed){
+        /// <summary>
+        /// Cambia la ciudad,localidad y codigo postal
+        /// </summary>
+        /// <param name="city"></param>
+        /// <param name="state"></param>
+        /// <param name="zipCode"></param>
+        /// <returns>Nueva instancia de Address</returns>
+        public Result<Address> WithCity(string city,string state,ZipCode zipCode)
+        {
+            var validCity = Result.Merge(
+                ValidateCity(city),
+                ValidateState(state)
+                );
+            if(validCity.IsFailed)
                 return Result.Fail(new Error(validCity.Errors[0].Message));
-            }else {
-                City = Capitalize.Create(city);
-                return Result.Ok();
-            }
+            
+            var newCity = Capitalize.Create(city);
+            var newState = Capitalize.Create(state);
+            var newAddres = Address.Create(
+                this.Country,
+                newCity,
+                newState,
+                zipCode
+            );
+                return Result.Ok<Address>(newAddres.Value);
         }
 
-        public Result ChangeState(string state)
-        {   
+        /// <summary>
+        /// Cambia la localidad y codigo postal
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="zipCode"></param>
+        /// <returns>Nueva instancia de Address</returns>
+        public Result<Address>  WithState(string state,ZipCode zipCode){
             var validState = ValidateState(state);
-
-            if(validState.IsFailed){
+            if(validState.IsFailed)
                 return Result.Fail(new Error(validState.Errors[0].Message));
-            }else {
-                State = Capitalize.Create(state);
-                return Result.Ok();
-            }
+            var newState = Capitalize.Create(state);
+            var newAddres = Address.Create(
+                this.Country,
+                this.City,
+                newState,
+                zipCode
+            );
+                return Result.Ok<Address>(newAddres.Value);
         }
 
-         public Result ChangeAreaCode(int area)
-        {   
-            var validArea = ValidateAreaCode(area);
-
-            if(validArea.IsFailed){
-                return Result.Fail(new Error(validArea.Errors[0].Message));
-            }else {
-                AreaCode = area;
-                return Result.Ok();
-            }
-        }
     }
 }

@@ -1,5 +1,4 @@
 using System.Runtime.CompilerServices;
-using Domain.src.DomainError;
 using Domain.src.Enum;
 using Domain.src.ValueObject;
 using FluentResults;
@@ -11,59 +10,49 @@ namespace Domain.src.Entity
 
     public class User
     {   
-        private static int _Min_Pass = 7;
-        private static int _Max_Pass = 25;
-
-
         public Guid Id {get;}
         public Username Username {get;private set;}
         public Email Email {get;private set;}
-        public string Password {get; private set;}
         public AccountStatus Status {get; private set;}
+        public Password Password {get;private set;}
         public bool IsNew {get; private set;}
         public bool EmailVerified {get;private set;}
-        public AccountType UserType {get;private set;}
+        public bool PhoneVerified {get;private set;}
+        public Phone? Phone {get;private set;}
         public FullName? Name {get;private set;}
         public Gender? Gender {get;private set;}
         public DateTime? Birth {get;private set;}
         public Bio? Biography {get;private set;}
         public Address? Address {get;private set;}
-        public Phone? Phone {get;private set;}
         public EmergencyContact? EmergencyContact {get;private set;}
         public MedicalInfo? Medical {get;private set;}
 
 
-        private User(Username username,Email email, string password){
+        private User(Username username,Email email, Password password){
             Id = Guid.NewGuid();
             Username = username;
             Email = email;
             Password = password;
             Status = AccountStatus.Active;
-            UserType = AccountType.Personal;
             IsNew = true;
             EmailVerified = false;
-
+            PhoneVerified = false;
         }
 
-        internal static Result<User> Create(Username username, Email email, string password){
-            var validPass = ValidatePassword(password);
-            var userp = password.Contains(username.Value);
-            var emailp = password.Contains(email.Value);
-            if(userp)
-                return Result.Fail(new Error("La contraseña no puede contener tu nombre de usuario"));
-            if(emailp)
-                return Result.Fail(new Error("La contraseña no puede contener tu email"));
-            if(validPass.IsSuccess){
-                return Result.Ok<User>(new User(username,email,EncryptPassword(password)));
-            }else {
+        internal static Result<User> Create(Username username, Email email, string password)
+        { 
+            var validPass = ValidPasswordData(username,email,password);
+            if (validPass.IsFailed)
                 return Result.Fail(new Error(validPass.Errors[0].Message));
-            }
+            var newPass = Password.Create(password);
+            if (newPass.IsFailed)
+                return Result.Fail(new Error(newPass.Errors[0].Message));
+            return Result.Ok<User>(new User(username,email,newPass.Value));
         }
-
         // ================================== ACCOUNT METHODS ========================================= //
 
         /// <summary>
-        /// Cambia el email
+        /// Cambia el nombre de usuario
         /// </summary>
         /// <param name="username"></param>
         internal void ChangeUsername(Username username){
@@ -75,32 +64,35 @@ namespace Domain.src.Entity
         /// </summary>
         /// <param name="email"></param>
         internal void ChangeEmail(Email email){
-            Email =email;
-            UnVerifyEmail();
+            Email = email;
+            UnverifyEmail();
+        }
+
+        /// <summary>
+        /// Cambia el numero de telefono
+        /// </summary>
+        /// <param name="phone"></param>
+        internal void ChangePhone(Phone phone){
+            Phone = phone;
+            UnverifyPhone();
         }
 
         /// <summary>
         /// Cambia la contrasenia
         /// </summary>
-        /// <param name="pass">Nueva contrasenia</param>
+        /// <param name="password"></param>
         /// <returns></returns>
-        internal Result ChangePassword(string pass){
-            var username = pass.Contains(Username.Value);
-            var email = pass.Contains(Email.Value);
+        public Result ChangePassword(string password){
             var name = false;
             var surname = false;
             var phone = false;
             if(Name  != null){
-                name = pass.Contains(char.Parse(Name.FirstName));
-                surname = pass.Contains(char.Parse(Name.LastName));
+                name = password.Contains(char.Parse(Name.FirstName));
+                surname = password.Contains(char.Parse(Name.LastName));
             }
             if(Phone != null){
-                phone = pass.Contains(char.Parse(Phone.PhoneNumber.ToString()));
+                phone = password.Contains(char.Parse(Phone.PhoneNumber.ToString()));
             }
-            if(username)
-                return Result.Fail(new Error("La contraseña no puede contener tu nombre de usuario"));
-            if(email)
-                return Result.Fail(new Error("La contraseña no puede contener tu email"));
             if(name)
                 return Result.Fail(new Error("La contraseña no puede contener tu nombre"));
             if(surname)
@@ -108,69 +100,56 @@ namespace Domain.src.Entity
             if(phone){
                 return Result.Fail(new Error("La contrasña no puede contener tu numero de telefono"));
             }
-            Password = EncryptPassword(pass);
-            return Result.Ok();
-        }
-
-        /// <summary>
-        /// Suspende la cuenta 
-        /// </summary>
-        internal Result SuspendAccount(){
-            if(Status == AccountStatus.Deleted)
-                return Result.Fail(new Error("No puedes suspender una cuenta eliminada"));
-            if(Status == AccountStatus.Suspended)
+            var validPass = ValidPasswordData(Username,Email,password);
+            if(validPass.IsFailed)
+                return Result.Fail(new Error(validPass.Errors[0].Message));
+            var newPass = Password.Create(password);
+            if(newPass.IsFailed)
+                return Result.Fail(new Error(newPass.Errors[0].Message));
+            Password= newPass.Value;
                 return Result.Ok();
-            Status = AccountStatus.Suspended;
-            return Result.Ok();
+        }
+
+
+        /// <summary>
+        /// Marca al usuario como no nuevo
+        /// </summary>
+        public void IsNotNew(){
+            IsNew = false;
         }
 
         /// <summary>
-        /// Desactiva la cuenta
+        /// Verifica el email
         /// </summary>
-        public Result InactivateAccount(){
-            if(Status == AccountStatus.Deleted)
-                return Result.Fail(new Error("No puedes desactivar una cuenta eliminada"));
-            if(Status == AccountStatus.Suspended)
-                return Result.Fail(new Error("No puedes desactivar una cuenta suspendida"));
-            if(Status == AccountStatus.Inactive)
-                return Result.Ok();
-            Status = AccountStatus.Inactive;
-            return Result.Ok();
+        public void VerifyEmail(){
+            EmailVerified = true;
         }
 
         /// <summary>
-        /// Reactiva la cuenta
+        /// Desverifica el email
         /// </summary>
-        public Result ReactivateAccount(){
-            if(Status == AccountStatus.Deleted){
-                return Result.Fail(new Error("No puedes reactivar una cuenta eliminada"));
-            }
-            Status = AccountStatus.Active;
-            return Result.Ok();
+        private void  UnverifyEmail(){
+            EmailVerified = false;
         }
 
         /// <summary>
-        /// Elimina la cuenta
+        /// Verifica el telefono
         /// </summary>
-        /// <returns></returns>
-        internal Result DeleteAccount(){
-            if(Status == AccountStatus.Deleted){
-                return Result.Fail(new Error("No puedes eliminar esta cuenta por que ya ha sido eliminada"));
-            }
-
-            if(Status == AccountStatus.Suspended){
-                return Result.Fail(new Error("No puedes eliminar una cuenta suspendida"));
-            }
-
-            Status = AccountStatus.Deleted;
-            return Result.Ok();
+        public void VerifyPhone(){
+            PhoneVerified = true;
         }
+
+        /// <summary>
+        /// Desverifica el telefono
+        /// </summary>
+        private void  UnverifyPhone(){
+            PhoneVerified = false;
+        }        
         
-        // ================================================================================================================ //      
-    
+        // ================================== PROPERTIES  METHODS ========================================= //
 
         /// <summary>
-        /// Cambia el nombre 
+        /// Cambia el nombre y apellido
         /// </summary>
         /// <param name="name"></param>
         public void ChangeName(FullName name){
@@ -182,7 +161,7 @@ namespace Domain.src.Entity
         /// </summary>
         /// <param name="gender"></param>
         public void ChangeGender(Gender gender){
-            Gender=gender;
+            Gender = gender;
         }
 
         /// <summary>
@@ -204,7 +183,7 @@ namespace Domain.src.Entity
             return Result.Ok();
             
         }
-
+        
         /// <summary>
         /// Cambia la biografia
         /// </summary>
@@ -221,14 +200,14 @@ namespace Domain.src.Entity
         {
             Address = address;
         }
-
-        /// <summary>
+        
+         /// <summary>
         /// Crea un contacto de emergencia
         /// </summary>
         /// <param name="name"></param>
         /// <param name="relationShip"></param>
         /// <param name="phone"></param>
-        public void CreateEmergencyContact(FullName name, RelationShip relationShip, Phone phone){
+        internal void CreateEmergencyContact(FullName name, RelationShip relationShip, Phone phone){
             EmergencyContact = new EmergencyContact(name,relationShip,phone);
         }
 
@@ -237,14 +216,6 @@ namespace Domain.src.Entity
         /// </summary>
         public void DeleteEmergencyContact(){
             EmergencyContact = null;
-        }
-
-        /// <summary>
-        /// Cambia el numero de telefono
-        /// </summary>
-        /// <param name="phone"></param>
-        internal void ChangePhone(Phone phone){
-            Phone = phone;
         }
 
         /// <summary>
@@ -262,69 +233,17 @@ namespace Domain.src.Entity
             Medical= null;
         }
 
-        /// <summary>
-        /// Verifica el email
-        /// </summary>
-        public void VerifyEmail(){
-            EmailVerified = true;
+        // ================================================================================================================ //      
+
+        private static Result ValidPasswordData(Username username,Email email,string password){
+            var userp = password.Contains(username.Value);
+            var emailp = password.Contains(email.Value);
+            if(userp)
+                return Result.Fail(new Error("La contraseña no puede contener tu nombre de usuario"));
+            if(emailp)
+                return Result.Fail(new Error("La contraseña no puede contener tu email")); 
+            return Result.Ok();
         }
 
-        /// <summary>
-        /// Invalida el email
-        /// </summary>
-        private void UnVerifyEmail(){
-            EmailVerified = false;
-        }
-        
-        /// <summary>
-        /// El usuario deja de ser nuevo
-        /// </summary>
-        /// <returns></returns>
-        public void IsNotNew(){
-            IsNew= false;
-        }
-
-
-        /// <summary>
-        /// Verifica la contrasenia ingresada
-        /// </summary>
-        /// <param name="inputPassword"></param>
-        /// <param name="hash"></param>
-        /// <returns></returns>
-        public Result<bool> VerifyPassword(string inputPassword,string hash){
-            var verified = BCrypt.Net.BCrypt.Verify(inputPassword,hash);
-
-            if(!verified)
-                return Result.Fail(new IncorrectPassword());
-
-            return Result.Ok(verified);
-        }
-        // ---------------------------------------------- Validation ------------------------------------------------------------ //
-        
-        /// <summary>
-        /// Valida la contrasenia
-        /// </summary>
-        /// <param name="pass"></param>
-        /// <returns></returns>
-        private static Result ValidatePassword(string pass){
-            return Result.Merge(
-                Result.FailIf(pass.StartsWith("1234"),new Error("Contraseña insegura, no puede iniciar con 1234")),
-                Result.FailIf(pass.StartsWith("qwer"),new Error("Contraseña insegura, no puede iniciar con qwer")),
-                Result.FailIf(pass.StartsWith("asdf"), new Error("Contraseña insegura, no puede iniciar con asdf")),
-                Result.FailIf(pass.Length > _Max_Pass,new Error("Contraseña demasiado larga")),
-                Result.FailIf(pass.Length < _Min_Pass,new Error($"La Contraseña debe tener mas de {_Min_Pass} caracteres"))
-            );
-
-        }
-        /// <summary>
-        /// Encirpta la contraseña
-        /// </summary>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        private static string EncryptPassword(string password){
-            var salt = BCrypt.Net.BCrypt.GenerateSalt(10);
-            var passEncrypted = BCrypt.Net.BCrypt.HashPassword(password,salt);
-            return passEncrypted;
-        }
     }
 }

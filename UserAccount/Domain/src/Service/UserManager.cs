@@ -7,7 +7,7 @@ using Domain.src.Entity;
 
 namespace Domain.src.Service
 {
-    public class UserManager
+    public sealed class UserManager:IUserManager
     {
         private readonly IUserReadRepository _UserRepo;
 
@@ -41,14 +41,14 @@ namespace Domain.src.Service
             return Result.Ok<User>(newUser.Value);
         }
 
-        public async Task<Result<User>> ChangeUsername(User user, Username username){
+        public async Task<Result> ChangeUsername(User user, Username username){
                 // Verificamos que no exista el nombre de usuario
                 var usernameExists = await _UserRepo.GetUserByUsername(username);
                     if(usernameExists != null)
                         return Result.Fail(new UserAlreadyExists(usernameExists.Username.Value));
                 // Cambiamos el nombre de usuario
                 user.ChangeUsername(username);
-            return Result.Ok<User>(user);
+            return Result.Ok();
         }
 
         public async Task<Result> ChangeEmail(User user, Email email){

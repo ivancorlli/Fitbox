@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "mC+mYI75KnPaqZ9KQMiDeNJyeFz6ZdoPIpzpsvcZDa8aF6PTtvij0xq/Q5+Bj9X4MEo3yTrX0z6Nwsl7tH6E4Q==",
+  "dgSpecHash": "dh39cbDnk7FgprYt5kqD8Iz9Sm82kwcaL0KaH+MivOAil0Yh6u4zKLvoOoI6u4NkbYyzJvwK2LdcMvDhczpr8A==",
   "success": true,
   "projectFilePath": "/home/icorlli/Fitbox/UserAccount/Tests/Tests.csproj",
   "expectedPackageFiles": [
     "/home/icorlli/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/home/icorlli/.nuget/packages/bogus/34.0.2/bogus.34.0.2.nupkg.sha512",
     "/home/icorlli/.nuget/packages/castle.core/5.1.0/castle.core.5.1.0.nupkg.sha512",
+    "/home/icorlli/.nuget/packages/coverlet.collector/3.2.0/coverlet.collector.3.2.0.nupkg.sha512",
     "/home/icorlli/.nuget/packages/fluentassertions/6.8.0/fluentassertions.6.8.0.nupkg.sha512",
     "/home/icorlli/.nuget/packages/fluentresults/3.15.0/fluentresults.3.15.0.nupkg.sha512",
     "/home/icorlli/.nuget/packages/microsoft.codecoverage/17.4.0/microsoft.codecoverage.17.4.0.nupkg.sha512",
