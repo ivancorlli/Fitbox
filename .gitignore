@@ -2,9 +2,12 @@
 /.vscode
 /.vscode/
 .vscode/
+
 .PAT.txt
 ./PAT.txt
 .PAT.txt/
+
+TestResults
 ./TestResults
 /TestResults
 TestReults/
