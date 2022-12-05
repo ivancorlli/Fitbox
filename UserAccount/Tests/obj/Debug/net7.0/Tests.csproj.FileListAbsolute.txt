@@ -1,3 +1,4 @@
+/home/icorlli/Fitbox/UserAccount/Tests/bin/Debug/net7.0/CoverletSourceRootsMapping
 /home/icorlli/Fitbox/UserAccount/Tests/bin/Debug/net7.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll
 /home/icorlli/Fitbox/UserAccount/Tests/bin/Debug/net7.0/xunit.runner.reporters.netcoreapp10.dll
 /home/icorlli/Fitbox/UserAccount/Tests/bin/Debug/net7.0/xunit.runner.utility.netcoreapp10.dll
@@ -111,4 +112,3 @@
 /home/icorlli/Fitbox/UserAccount/Tests/obj/Debug/net7.0/Tests.pdb
 /home/icorlli/Fitbox/UserAccount/Tests/obj/Debug/net7.0/Tests.genruntimeconfig.cache
 /home/icorlli/Fitbox/UserAccount/Tests/obj/Debug/net7.0/ref/Tests.dll
-/home/icorlli/Fitbox/UserAccount/Tests/bin/Debug/net7.0/CoverletSourceRootsMapping
