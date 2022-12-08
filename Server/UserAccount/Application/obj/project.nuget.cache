@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "GTv1Fox7Ip8QTagFn2pr1dv0MI7GRu97Pi6j7fdfmQpez8CkeQM89D7QphUhvYbfkjj5hTyMZsQIsqjZL1N1BQ==",
+  "success": true,
+  "projectFilePath": "/home/icorlli/Fitbox/Server/UserAccount/Application/Application.csproj",
+  "expectedPackageFiles": [
+    "/home/icorlli/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
+    "/home/icorlli/.nuget/packages/fluentresults/3.15.0/fluentresults.3.15.0.nupkg.sha512",
+    "/home/icorlli/.nuget/packages/mediatr/11.0.0/mediatr.11.0.0.nupkg.sha512",
+    "/home/icorlli/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512",
+    "/home/icorlli/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.1/microsoft.extensions.logging.abstractions.6.0.1.nupkg.sha512",
+    "/home/icorlli/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+  ],
+  "logs": []
+}
