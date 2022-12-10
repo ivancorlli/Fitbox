@@ -1,16 +1,16 @@
 using System.Runtime.CompilerServices;
 using Domain.src.Enum;
+using Domain.src.Error;
 using Domain.src.ValueObject;
-using FluentResults;
+using Shared.src.Abstractions;
+using Shared.src.Error;
 
-
-[assembly:InternalsVisibleTo("Tests")]
+[assembly: InternalsVisibleTo("Tests")]
 namespace Domain.src.Entity
 {
 
-    public class User
+    public class User:AggregateRoot 
     {   
-        public Guid Id {get;}
         public Username Username {get;private set;}
         public Email Email {get;private set;}
         public AccountStatus Status {get; private set;}
@@ -19,7 +19,7 @@ namespace Domain.src.Entity
         public bool EmailVerified {get;private set;}
         public bool PhoneVerified {get;private set;}
         public Phone? Phone {get;private set;}
-        public FullName? Name {get;private set;}
+        public PersonName? Name {get;private set;}
         public Gender? Gender {get;private set;}
         public DateTime? Birth {get;private set;}
         public Bio? Biography {get;private set;}
@@ -29,7 +29,6 @@ namespace Domain.src.Entity
 
 
         private User(Username username,Email email, Password password){
-            Id = Guid.NewGuid();
             Username = username;
             Email = email;
             Password = password;
@@ -39,14 +38,14 @@ namespace Domain.src.Entity
             PhoneVerified = false;
         }
 
-        internal static Result<User> Create(Username username, Email email, string password)
+        public static Result<User> Create(Username username, Email email, string password)
         { 
             var validPass = ValidPasswordData(username,email,password);
-            if (validPass.IsFailed)
-                return Result.Fail(new Error(validPass.Errors[0].Message));
+            if (validPass.IsFailure)
+                return Result.Fail<User>(new ValidationError(validPass.Error.Message));
             var newPass = Password.Create(password);
-            if (newPass.IsFailed)
-                return Result.Fail(new Error(newPass.Errors[0].Message));
+            if (newPass.IsFailure)
+                return Result.Fail<User>(new ValidationError(newPass.Error.Message));
             return Result.Ok<User>(new User(username,email,newPass.Value));
         }
         // ================================== ACCOUNT METHODS ========================================= //
@@ -55,7 +54,7 @@ namespace Domain.src.Entity
         /// Cambia el nombre de usuario
         /// </summary>
         /// <param name="username"></param>
-        internal void ChangeUsername(Username username){
+        public void ChangeUsername(Username username){
             Username = username;
         }
 
@@ -63,7 +62,7 @@ namespace Domain.src.Entity
         /// Cambia el email
         /// </summary>
         /// <param name="email"></param>
-        internal void ChangeEmail(Email email){
+        public void ChangeEmail(Email email){
             Email = email;
             UnverifyEmail();
         }
@@ -72,7 +71,7 @@ namespace Domain.src.Entity
         /// Cambia el numero de telefono
         /// </summary>
         /// <param name="phone"></param>
-        internal void ChangePhone(Phone phone){
+        public void ChangePhone(Phone phone){
             Phone = phone;
             UnverifyPhone();
         }
@@ -94,18 +93,18 @@ namespace Domain.src.Entity
                 phone = password.Contains(char.Parse(Phone.PhoneNumber.ToString()));
             }
             if(name)
-                return Result.Fail(new Error("La contraseña no puede contener tu nombre"));
+                return Result.Fail(new ValidationError("La contraseña no puede contener tu nombre"));
             if(surname)
-                return Result.Fail(new Error("La contraseña no puede contener tu apellid"));
+                return Result.Fail(new ValidationError("La contraseña no puede contener tu apellido"));
             if(phone){
-                return Result.Fail(new Error("La contrasña no puede contener tu numero de telefono"));
+                return Result.Fail(new ValidationError("La contrasña no puede contener tu numero de telefono"));
             }
             var validPass = ValidPasswordData(Username,Email,password);
-            if(validPass.IsFailed)
-                return Result.Fail(new Error(validPass.Errors[0].Message));
+            if(validPass.IsFailure)
+                return Result.Fail(new ValidationError(validPass.Error.Message));
             var newPass = Password.Create(password);
-            if(newPass.IsFailed)
-                return Result.Fail(new Error(newPass.Errors[0].Message));
+            if(newPass.IsFailure)
+                return Result.Fail(new ValidationError(newPass.Error.Message));
             Password= newPass.Value;
                 return Result.Ok();
         }
@@ -152,7 +151,7 @@ namespace Domain.src.Entity
         /// Cambia el nombre y apellido
         /// </summary>
         /// <param name="name"></param>
-        public void ChangeName(FullName name){
+        public void ChangeName(PersonName name){
             Name = name;
         }
 
@@ -173,11 +172,11 @@ namespace Domain.src.Entity
             var isLegal = (DateTime.UtcNow - birth).TotalDays /365;
 
             if(birth > DateTime.Now){
-                return Result.Fail(new Error("La fecha de nacimiento no puede ser mayor a la fecha de hoy"));
+                return Result.Fail(new ValidationError("La fecha de nacimiento no puede ser mayor a la fecha de hoy"));
 
             }
             if(isLegal < 13){
-                return Result.Fail(new Error("No puedes continuar, tienes menos de 13 años"));
+                return Result.Fail(new ValidationError("No puedes continuar, eres menor de 13 años"));
             }
             Birth = birth;
             return Result.Ok();
@@ -207,7 +206,7 @@ namespace Domain.src.Entity
         /// <param name="name"></param>
         /// <param name="relationShip"></param>
         /// <param name="phone"></param>
-        internal void CreateEmergencyContact(FullName name, RelationShip relationShip, Phone phone){
+        public void CreateEmergencyContact(PersonName name, RelationShip relationShip, Phone phone){
             EmergencyContact = new EmergencyContact(name,relationShip,phone);
         }
 
@@ -239,9 +238,9 @@ namespace Domain.src.Entity
             var userp = password.Contains(username.Value);
             var emailp = password.Contains(email.Value);
             if(userp)
-                return Result.Fail(new Error("La contraseña no puede contener tu nombre de usuario"));
+                return Result.Fail(new ValidationError("La contraseña no puede contener tu nombre de usuario"));
             if(emailp)
-                return Result.Fail(new Error("La contraseña no puede contener tu email")); 
+                return Result.Fail(new ValidationError("La contraseña no puede contener tu email")); 
             return Result.Ok();
         }
 

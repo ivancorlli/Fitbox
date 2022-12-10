@@ -1,30 +1,48 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Domain.src.DomainError;
-using FluentResults;
+
+using Domain.src.Error;
+using Domain.src.Utils;
+using FluentValidation;
+using Shared.src.Error;
 
 namespace Domain.src.ValueObject
 {
     public record Password
     {
-        private static int _Min_Pass = 7;
-        private static int _Max_Pass = 25;     
+        public static int MinLenght = 7;
+        public static int MaxLength = 25;     
 
-        public string Value {get; init;}   
+        public string Value {get;private set;}   
 
         private Password(string password){
             Value = password;
         }
 
-         internal static Result<Password> Create(string password){
-            var validPass = ValidatePassword(password);
-            if(validPass.IsSuccess){
-                return Result.Ok<Password>(new Password(EncryptPassword(password)));
-            }else {
-                return Result.Fail(new Error(validPass.Errors[0].Message));
+         /// <summary>
+        /// Encirpta la contraseña
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        private Password EncryptPassword(){
+            var salt = BCrypt.Net.BCrypt.GenerateSalt(10);
+            var passEncrypted = BCrypt.Net.BCrypt.HashPassword(Value,salt);
+            return new Password(passEncrypted);
+        }
+
+        /// <summary>
+        /// Crea contrasenia
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        internal static Result<Password> Create(string password){
+            Password newPassword = new(password);
+            PasswordValidator validator = new();
+            var result = validator.Validate(newPassword);
+            if(!result.IsValid)
+            {
+                var errors = ConvertDomainError.Convert(result);
+                return Result.Fail<Password>(errors[0]);
             }
+            return Result.Ok<Password>(newPassword.EncryptPassword());
         }
         /// <summary>
         /// Verifica la contrasenia ingresada
@@ -34,38 +52,26 @@ namespace Domain.src.ValueObject
         /// <returns></returns>
         public Result<bool> VerifyPassword(string inputPassword,string hash){
             var verified = BCrypt.Net.BCrypt.Verify(inputPassword,hash);
-
             if(!verified)
-                return Result.Fail(new IncorrectPassword());
+                return Result.Fail<bool>(new IncorrectPassword());
 
             return Result.Ok(verified);
         }
+    }
 
-        /// <summary>
-        /// Valida la contrasenia
-        /// </summary>
-        /// <param name="pass"></param>
-        /// <returns></returns>
-        private static Result ValidatePassword(string pass){
-            return Result.Merge(
-                Result.FailIf(pass.StartsWith("1234"),new Error("Contraseña insegura, no puede iniciar con 1234")),
-                Result.FailIf(pass.StartsWith("qwer"),new Error("Contraseña insegura, no puede iniciar con qwer")),
-                Result.FailIf(pass.StartsWith("QWER"),new Error("Contraseña insegura, no puede iniciar con qwer")),
-                Result.FailIf(pass.StartsWith("asdf"), new Error("Contraseña insegura, no puede iniciar con asdf")),
-                Result.FailIf(pass.StartsWith("ASDF"), new Error("Contraseña insegura, no puede iniciar con asdf")),
-                Result.FailIf(pass.Length > _Max_Pass,new Error("Contraseña demasiado larga")),
-                Result.FailIf(pass.Length < _Min_Pass,new Error($"La contraseña debe tener mas de {_Min_Pass} caracteres"))
-            );
-        }
-        /// <summary>
-        /// Encirpta la contraseña
-        /// </summary>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        private static string EncryptPassword(string password){
-            var salt = BCrypt.Net.BCrypt.GenerateSalt(10);
-            var passEncrypted = BCrypt.Net.BCrypt.HashPassword(password,salt);
-            return passEncrypted;
+    internal class PasswordValidator : AbstractValidator<Password>
+    {
+        public PasswordValidator()
+        {
+            RuleFor(x=>x.Value)
+                .NotEmpty()
+                .Must(value => !value.StartsWith("1234"))
+                .Must(value => !value.StartsWith("qwer"))
+                .Must(value => !value.StartsWith("QWER"))
+                .Must(value => !value.StartsWith("asdf"))
+                .Must(value => !value.StartsWith("ASDF"))
+                .MaximumLength(Password.MaxLength)
+                .MinimumLength(Password.MinLenght);
         }
     }
 }

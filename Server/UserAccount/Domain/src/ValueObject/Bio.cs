@@ -1,14 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentResults;
+using FluentValidation;
+using FluentValidation.Results;
+using Shared.src.Constant;
+using Shared.src.Error;
+using Domain.src.Utils;
 
 namespace Domain.src.ValueObject
 {
     public record Bio
     {   
-        private static int _Max = 300;
+        public static int MaxLength = 300;
 
         public string Value {get;init;}
 
@@ -16,28 +16,32 @@ namespace Domain.src.ValueObject
             Value = value;
         }
 
+        /// <summary>
+        /// Crea biografia
+        /// </summary>
+        /// <param name="bio"></param>
+        /// <returns></returns>
         public static Result<Bio> Create(string bio){
-            if(string.IsNullOrEmpty(bio)){
-            var newBio = new Bio("");
-                return Result.Ok<Bio>(newBio);
-            }else{
-                var validBio = ValidateBio(bio);
-                if(validBio.IsFailed){
-                    return Result.Fail(new Error(validBio.Errors[0].Message));
-                }else {
-                    var newBio = new Bio(bio);
-                    return Result.Ok<Bio>(newBio);
-                }
+           Bio newBio = new(bio);
+           BioValidator validator = new();
+           ValidationResult result = validator.Validate(newBio);
+           if(!result.IsValid)
+           {
+            var errors = ConvertDomainError.Convert(result);
+            return Result.Fail<Bio>(errors[0]);
+           }
 
-            }
+           return Result.Ok<Bio>(newBio);
         }
-
-        private static Result ValidateBio(string bio){
-            return Result.Merge(
-                Result.FailIf(bio.Length > _Max,new Error($"La biografia no debe tener mas de {_Max} caracteres"))
-            );
-        }
-
         
+    }
+    internal class BioValidator:AbstractValidator<Bio>
+    {   
+        public BioValidator(){
+            RuleFor(x=>x.Value)
+                .MaximumLength(Bio.MaxLength)
+                .WithErrorCode(ErrorTypes.ValidationError);
+        }
+
     }
 }

@@ -1,9 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using FluentResults;
+using Domain.src.Utils;
+using FluentValidation;
+using Shared.src.Constant;
+using Shared.src.Error;
 
 namespace Domain.src.ValueObject
 {
@@ -11,8 +10,8 @@ namespace Domain.src.ValueObject
     {
 
 
-        private static int _Max = 300;
-        private static Regex _Reg = new Regex("^[a-zA-Z0-9., ]+$");
+        public static int MaxLength = 300;
+        public static Regex Reg = new Regex("^[a-zA-Z0-9., ]+$");
 
         public Uri? Aptitude {get; private set;}
         public string? Disabilities {get;private set;}
@@ -45,37 +44,43 @@ namespace Domain.src.ValueObject
         /// <param name="disabilities"></param>
         /// <returns></returns>
         public static Result<MedicalInfo> Create(string disabilities){
-            var validText = ValidateText(disabilities);
-            if(validText.IsFailed){
-                return Result.Fail(new Error(validText.Errors[0].Message));
-            }else{
-            return Result.Ok<MedicalInfo>(new MedicalInfo(disabilities));
+            MedicalInfo medical = new(disabilities);
+            MedicalInfoValiator validator = new();
+            var result = validator.Validate(medical);
+            if(!result.IsValid)
+            {
+                var errors = ConvertDomainError.Convert(result);
+                return Result.Fail<MedicalInfo>(errors[0]);
             }
+            return Result.Ok<MedicalInfo>(medical);
         }
 
         /// <summary>
         /// Crea un registro medico de la aptitud fisica y las dificultades para realizar actividad fisica
         /// </summary>
-        /// <param name="aprirude"></param>
+        /// <param name="aptirude"></param>
         /// <param name="disabilities"></param>
         /// <returns></returns>
-        public static Result<MedicalInfo> Create(Uri aprirude,string disabilities){
-            var validText =Result.Merge(
-                ValidateText(disabilities)
-            );
-            
-            if(validText.IsFailed){
-                return Result.Fail(new Error(validText.Errors[0].Message));
-            }else{
-                return Result.Ok<MedicalInfo>(new MedicalInfo(disabilities));
+        public static Result<MedicalInfo> Create(Uri aptirude,string disabilities){
+            MedicalInfo medical = new(aptirude,disabilities);
+            MedicalInfoValiator validator = new();
+            var result = validator.Validate(medical);
+            if(!result.IsValid)
+            {
+                var errors = ConvertDomainError.Convert(result);
+                return Result.Fail<MedicalInfo>(errors[0]);
             }
+            return Result.Ok<MedicalInfo>(medical);
         }
-
-        private static Result ValidateText(string text){
-            return Result.Merge(
-                Result.FailIf(!_Reg.IsMatch(text),new Error("Formato de texto invalido")),
-                Result.FailIf(text.Length > _Max,new Error("El texto es demasiado largo"))
-            );
+    }
+    internal class MedicalInfoValiator : AbstractValidator<MedicalInfo>
+    {
+        public MedicalInfoValiator()
+        {
+            RuleFor(x=>x.Disabilities)
+                .Matches(MedicalInfo.Reg)
+                .MaximumLength(MedicalInfo.MaxLength)
+                .WithErrorCode(ErrorTypes.ValidationError);
         }
     }
 }

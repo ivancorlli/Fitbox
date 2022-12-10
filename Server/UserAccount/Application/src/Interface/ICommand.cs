@@ -13,5 +13,7 @@ namespace Application.src.Interface
     }
 
     public interface ICommand<TResponse> :IRequest<Result<TResponse>>
-    {}
+    {
+        
+    }
 }

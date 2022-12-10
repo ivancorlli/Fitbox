@@ -32,6 +32,19 @@
           }
         }
       },
+      "FluentValidation/11.4.0": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/FluentValidation.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/FluentValidation.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "MediatR/11.0.0": {
         "type": "package",
         "dependencies": {
@@ -91,13 +104,27 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
-          "FluentResults": "3.15.0"
+          "FluentValidation": "11.4.0",
+          "Shared": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Domain.dll": {}
         },
         "runtime": {
           "bin/placeholder/Domain.dll": {}
+        }
+      },
+      "Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "MediatR": "11.1.0"
+        },
+        "compile": {
+          "bin/placeholder/Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shared.dll": {}
         }
       }
     }
@@ -148,6 +175,29 @@
         "lib/netstandard2.0/FluentResults.xml",
         "lib/netstandard2.1/FluentResults.dll",
         "lib/netstandard2.1/FluentResults.xml"
+      ]
+    },
+    "FluentValidation/11.4.0": {
+      "sha512": "WZJyrNf4suiaI6avVG32W9kmBLC3+V5rDTcLeRJjeU4tDmTyDIOz1459DzCKppXs34YpZg9rCUzDY3M4XxG7Ug==",
+      "type": "package",
+      "path": "fluentvalidation/11.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "fluent-validation-icon.png",
+        "fluentvalidation.11.4.0.nupkg.sha512",
+        "fluentvalidation.nuspec",
+        "lib/net5.0/FluentValidation.dll",
+        "lib/net5.0/FluentValidation.xml",
+        "lib/net6.0/FluentValidation.dll",
+        "lib/net6.0/FluentValidation.xml",
+        "lib/net7.0/FluentValidation.dll",
+        "lib/net7.0/FluentValidation.xml",
+        "lib/netstandard2.0/FluentValidation.dll",
+        "lib/netstandard2.0/FluentValidation.xml",
+        "lib/netstandard2.1/FluentValidation.dll",
+        "lib/netstandard2.1/FluentValidation.xml"
       ]
     },
     "MediatR/11.0.0": {
@@ -273,6 +323,11 @@
       "type": "project",
       "path": "../Domain/Domain.csproj",
       "msbuildProject": "../Domain/Domain.csproj"
+    },
+    "Shared/1.0.0": {
+      "type": "project",
+      "path": "../../Shared/Shared.csproj",
+      "msbuildProject": "../../Shared/Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -351,5 +406,16 @@
         "runtimeIdentifierGraphPath": "/home/icorlli/.dotnet/sdk/7.0.100/RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Detected package downgrade: MediatR from 11.1.0 to 11.0.0. Reference the package directly from the project to select a different version. \n Application -> Domain -> Shared -> MediatR (>= 11.1.0) \n Application -> MediatR (>= 11.0.0)",
+      "libraryId": "MediatR",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }
