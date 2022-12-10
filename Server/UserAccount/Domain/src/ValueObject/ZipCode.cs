@@ -1,17 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using FluentResults;
+using Domain.src.Utils;
+using FluentValidation;
+using Shared.src.Constant;
+using Shared.src.Error;
 
 namespace Domain.src.ValueObject
 {
     public record ZipCode
     {
-        private static int _Min = 3;
-        private static int _Max = 8; 
-        private static Regex _Reg = new Regex("^[a-zA-Z0-9- ]+$");
+        public static int MinLength = 3;
+        public static int MaxLength = 8; 
+        public static Regex Reg = new Regex("^[a-zA-Z0-9- ]+$");
 
         public string Value {get;init;}
 
@@ -19,23 +18,34 @@ namespace Domain.src.ValueObject
             Value =zipCode;
         }
 
+        /// <summary>
+        /// Crea codigo postal
+        /// </summary>
+        /// <param name="zipCode"></param>
+        /// <returns></returns>
         public static Result<ZipCode> Create(string zipCode){
-            var validZip = Validate(zipCode);
-
-            if(validZip.IsFailed)
-                return Result.Fail(new Error(validZip.Errors[0].Message));
-            var newZip = new ZipCode(zipCode);
-                return Result.Ok<ZipCode>(newZip);
-        }
-
-        private static Result Validate(string zip){
-            return Result.Merge(
-                Result.FailIf(string.IsNullOrEmpty(zip),new Error("Debe ingresar un codigo postal")),
-                Result.FailIf(! _Reg.IsMatch(zip),new Error("Codigo postal invalido")),
-                Result.FailIf(zip.Length < _Min, new Error($"El codigo postal debe tener mas de {_Min} caracteres")),
-                Result.FailIf(zip.Length > _Max, new Error($"El odigo postal no debe tener mas de {_Max} caracteres"))
-            );
+            ZipCode zip = new(zipCode);
+            ZipCodeValidator validator = new();
+            var result = validator.Validate(zip);
+            if(!result.IsValid)
+            {
+                var errors = ConvertDomainError.Convert(result);
+                return Result.Fail<ZipCode>(errors[0]);
+            }
+            return Result.Ok<ZipCode>(zip);
         }
         
+    }
+    internal class ZipCodeValidator : AbstractValidator<ZipCode>
+    {
+        public ZipCodeValidator()
+        {
+            RuleFor(x=>x.Value)
+                .NotEmpty()
+                .Matches(ZipCode.Reg)
+                .MaximumLength(ZipCode.MaxLength)
+                .MinimumLength(ZipCode.MinLength)
+                .WithErrorCode(ErrorTypes.ValidationError);
+        }
     }
 }

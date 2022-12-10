@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "U2DP1ShSTL2MA//lnPyz2BDOvOiAHx/M5DTgWiSGH7ju5/dSBFtc+SGAsIQ1NEtzNwV/K7Tm48O12BmEuGE6ig==",
+  "dgSpecHash": "qh5JQvWzkOrsfPIDIdRrf3Z6o9W/Zez8nCEYy+zdO6GzwaB6Oc/za7LEEJySxFe/HkgKOKyhW8tzhh9AB3GVPw==",
   "success": true,
   "projectFilePath": "/home/icorlli/Fitbox/Server/UserAccount/Tests/Tests.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,8 @@
     "/home/icorlli/.nuget/packages/coverlet.collector/3.2.0/coverlet.collector.3.2.0.nupkg.sha512",
     "/home/icorlli/.nuget/packages/fluentassertions/6.8.0/fluentassertions.6.8.0.nupkg.sha512",
     "/home/icorlli/.nuget/packages/fluentresults/3.15.0/fluentresults.3.15.0.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/mediatr/11.0.0/mediatr.11.0.0.nupkg.sha512",
+    "/home/icorlli/.nuget/packages/fluentvalidation/11.4.0/fluentvalidation.11.4.0.nupkg.sha512",
+    "/home/icorlli/.nuget/packages/mediatr/11.1.0/mediatr.11.1.0.nupkg.sha512",
     "/home/icorlli/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512",
     "/home/icorlli/.nuget/packages/microsoft.codecoverage/17.4.0/microsoft.codecoverage.17.4.0.nupkg.sha512",
     "/home/icorlli/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.1/microsoft.extensions.logging.abstractions.6.0.1.nupkg.sha512",

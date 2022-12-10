@@ -4,6 +4,65 @@
     "/home/icorlli/Fitbox/Server/UserAccount/Application/Application.csproj": {}
   },
   "projects": {
+    "/home/icorlli/Fitbox/Server/Shared/Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/icorlli/Fitbox/Server/Shared/Shared.csproj",
+        "projectName": "Shared",
+        "projectPath": "/home/icorlli/Fitbox/Server/Shared/Shared.csproj",
+        "packagesPath": "/home/icorlli/.nuget/packages/",
+        "outputPath": "/home/icorlli/Fitbox/Server/Shared/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/icorlli/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[11.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/icorlli/.dotnet/sdk/7.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "/home/icorlli/Fitbox/Server/UserAccount/Application/Application.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -92,7 +151,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/home/icorlli/Fitbox/Server/Shared/Shared.csproj": {
+                "projectPath": "/home/icorlli/Fitbox/Server/Shared/Shared.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -109,9 +172,9 @@
               "target": "Package",
               "version": "[4.0.3, )"
             },
-            "FluentResults": {
+            "FluentValidation": {
               "target": "Package",
-              "version": "[3.15.0, )"
+              "version": "[11.4.0, )"
             }
           },
           "imports": [
