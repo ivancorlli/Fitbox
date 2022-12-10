@@ -1,26 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "RHypIZuDRoA//gLJt9jSpnCuxnI3MWvXjeMw/L8+rtqdPPNHNxpcv6pBVnTsfpTnuaSevebZ74KVfA7+ulDqBA==",
-  "success": false,
+  "dgSpecHash": "IjI1d8YQesrfLyGYY8JWQghU+k/PbQJ2RNguGhNe4+7FRRfUuNxTX3fZRkK8G7xkayPFur2Umzpl+JemyKQe/Q==",
+  "success": true,
   "projectFilePath": "/home/icorlli/Fitbox/Server/UserAccount/Application/Application.csproj",
   "expectedPackageFiles": [
     "/home/icorlli/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/fluentresults/3.15.0/fluentresults.3.15.0.nupkg.sha512",
     "/home/icorlli/.nuget/packages/fluentvalidation/11.4.0/fluentvalidation.11.4.0.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/mediatr/11.0.0/mediatr.11.0.0.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.1/microsoft.extensions.logging.abstractions.6.0.1.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+    "/home/icorlli/.nuget/packages/mediatr/11.1.0/mediatr.11.1.0.nupkg.sha512",
+    "/home/icorlli/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Detected package downgrade: MediatR from 11.1.0 to 11.0.0. Reference the package directly from the project to select a different version. \n Application -> Domain -> Shared -> MediatR (>= 11.1.0) \n Application -> MediatR (>= 11.0.0)",
-      "libraryId": "MediatR",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    }
-  ]
+  "logs": []
 }

@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application.src.Interface;
+using Shared.src.Interface.Error;
 
-namespace Application.src.Error
+namespace Shared.src.Error
 {
     public class AppError : IAppError
     {

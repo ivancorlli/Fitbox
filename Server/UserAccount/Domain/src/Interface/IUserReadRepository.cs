@@ -13,5 +13,6 @@ namespace Domain.src.Interface
         internal Task<bool> IsEmailInUse(Email email);
         internal Task<bool> IsPhoneInUse(Phone phone);
         internal Task<bool> IsUsernameInUse(Username username);
+        public Task<User> GetUserById(Guid Id);
     }
 }
