@@ -1,5 +1,4 @@
-
-namespace Application.src.Features.Authentication.DTO.Input
+namespace Application.src.Features.Account.DTO.Input
 {
     public sealed record CreateAccountInput(
         string username,

@@ -61,7 +61,7 @@ namespace Domain.src.ValueObject
 
     internal class PasswordValidator : AbstractValidator<Password>
     {
-        public PasswordValidator()
+        internal PasswordValidator()
         {
             RuleFor(x=>x.Value)
                 .NotEmpty()
