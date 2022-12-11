@@ -48,7 +48,7 @@ namespace Domain.src.ValueObject
                 .Matches(Email.Reg)
                 .MinimumLength(Email.MinLength)
                 .MaximumLength(Email.MaxLength)
-                .WithErrorCode(ErrorTypes.ValidationError);
+                .WithErrorCode(ErrorTypes.Validation);
 
         }
     }

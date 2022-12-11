@@ -40,7 +40,7 @@ namespace Domain.src.ValueObject
         public BioValidator(){
             RuleFor(x=>x.Value)
                 .MaximumLength(Bio.MaxLength)
-                .WithErrorCode(ErrorTypes.ValidationError);
+                .WithErrorCode(ErrorTypes.Validation);
         }
 
     }

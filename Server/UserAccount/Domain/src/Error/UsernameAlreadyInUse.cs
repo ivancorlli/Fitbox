@@ -9,7 +9,7 @@ namespace Domain.src.Error
 {
     public class UsernameAlreadyInUse : DomainError
     {
-        public UsernameAlreadyInUse(string username) : base(ErrorTypes.ValidationError, $"{username} ya ha sido registrado")
+        public UsernameAlreadyInUse(string username) : base(ErrorTypes.Conflict, $"{username} ya ha sido registrado")
         {
         }
     }

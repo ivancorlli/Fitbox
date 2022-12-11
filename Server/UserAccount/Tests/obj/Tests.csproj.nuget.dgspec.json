@@ -85,6 +85,9 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
+              "/home/icorlli/Fitbox/Server/Shared/Shared.csproj": {
+                "projectPath": "/home/icorlli/Fitbox/Server/Shared/Shared.csproj"
+              },
               "/home/icorlli/Fitbox/Server/UserAccount/Domain/Domain.csproj": {
                 "projectPath": "/home/icorlli/Fitbox/Server/UserAccount/Domain/Domain.csproj"
               }

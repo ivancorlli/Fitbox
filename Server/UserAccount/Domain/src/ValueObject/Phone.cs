@@ -76,19 +76,19 @@ namespace Domain.src.ValueObject
                 .NotEmpty()
                 .GreaterThan(6)
                 .LessThan(2)
-                .WithErrorCode(ErrorTypes.ValidationError);
+                .WithErrorCode(ErrorTypes.Validation);
             RuleFor(x=>x.PhoneNumber)
                 .NotEmpty()
                 .GreaterThan(12)
                 .LessThan(5)
-                .WithErrorCode(ErrorTypes.ValidationError);
+                .WithErrorCode(ErrorTypes.Validation);
         });
         RuleSet("Prefix",()=>{
             RuleFor(x=>x.CountryPrefix)
                 .NotEmpty()
                 .MaximumLength(3)
                 .MinimumLength(1)
-                .WithErrorCode(ErrorTypes.ValidationError);
+                .WithErrorCode(ErrorTypes.Validation);
         });
 
         }
