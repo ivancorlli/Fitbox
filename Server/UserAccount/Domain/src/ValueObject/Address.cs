@@ -65,19 +65,19 @@ namespace Domain.src.ValueObject
                     .MinimumLength(Address.MinLength)
                     .MaximumLength(Address.MaxLength)
                     .Matches(Address.Reg)
-                    .WithErrorCode(ErrorTypes.ValidationError);
+                    .WithErrorCode(ErrorTypes.Validation);
             RuleFor(x=>x.City)
                     .NotEmpty()
                     .MinimumLength(Address.MinLength)
                     .MaximumLength(Address.MaxLength)
                     .Matches(Address.Reg)
-                    .WithErrorCode(ErrorTypes.ValidationError);
+                    .WithErrorCode(ErrorTypes.Validation);
             RuleFor(x=>x.State)
                     .NotEmpty()
                     .MinimumLength(Address.MinLength)
                     .MaximumLength(Address.StateMaxLength)
                     .Matches(Address.Reg)
-                    .WithErrorCode(ErrorTypes.ValidationError);
+                    .WithErrorCode(ErrorTypes.Validation);
         }
     }
 }

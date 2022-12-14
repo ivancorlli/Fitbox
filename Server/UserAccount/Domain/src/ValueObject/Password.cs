@@ -50,12 +50,9 @@ namespace Domain.src.ValueObject
         /// <param name="inputPassword"></param>
         /// <param name="hash"></param>
         /// <returns></returns>
-        public Result<bool> VerifyPassword(string inputPassword,string hash){
-            var verified = BCrypt.Net.BCrypt.Verify(inputPassword,hash);
-            if(!verified)
-                return Result.Fail<bool>(new IncorrectPassword());
-
-            return Result.Ok(verified);
+        public bool VerifyPassword(string inputPassword){
+            var verified = BCrypt.Net.BCrypt.Verify(inputPassword,Value);
+            return verified;
         }
     }
 

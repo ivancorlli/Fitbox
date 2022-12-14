@@ -45,7 +45,7 @@ namespace Domain.src.ValueObject
                 .Matches(Username.Reg)
                 .MaximumLength(Username.MaxLength)
                 .MinimumLength(Username.MinLegth)
-                .WithErrorCode(ErrorTypes.ValidationError);
+                .WithErrorCode(ErrorTypes.Validation);
         }
     }
 }

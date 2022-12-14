@@ -10,9 +10,10 @@ namespace Domain.src.Interface
 {
     public interface IUserReadRepository:IReadRepository<User>
     {
-        internal Task<bool> IsEmailInUse(Email email);
-        internal Task<bool> IsPhoneInUse(Phone phone);
-        internal Task<bool> IsUsernameInUse(Username username);
+        public Task<bool> IsEmailInUse(Email email);
+        public Task<bool> IsPhoneInUse(Phone phone);
+        public Task<bool> IsUsernameInUse(Username username);
         public Task<User> GetUserById(Guid Id);
+        public Task<User> FindByEmailOrUsername(string access);
     }
 }

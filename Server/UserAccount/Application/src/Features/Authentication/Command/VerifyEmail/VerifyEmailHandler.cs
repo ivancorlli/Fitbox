@@ -2,7 +2,7 @@ using Domain.src.Interface;
 using Shared.src.Error;
 using Shared.src.Interface.Command;
 
-namespace Application.src.Features.Account.Command.VerifyEmail
+namespace Application.src.Features.Authentication.Command.VerifyEmail
 {
     public class VerifyEmailHandler : IHandler<VerifyEmailCommand, Result>
     {

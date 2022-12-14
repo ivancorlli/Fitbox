@@ -45,7 +45,7 @@ namespace Domain.src.ValueObject
                 .Matches(ZipCode.Reg)
                 .MaximumLength(ZipCode.MaxLength)
                 .MinimumLength(ZipCode.MinLength)
-                .WithErrorCode(ErrorTypes.ValidationError);
+                .WithErrorCode(ErrorTypes.Validation);
         }
     }
 }

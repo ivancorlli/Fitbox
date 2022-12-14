@@ -12,7 +12,7 @@ namespace Shared.src.Utils
     {
         public static AppError GetError(IError domainError){
            AppError response = new AppError(500,"Se produjo un error interno al crear mensaje de error");
-           if(domainError.Type == ErrorTypes.ValidationError)
+           if(domainError.Type == ErrorTypes.Validation)
            {
                 response = new AppError(400,domainError.Message);
            }

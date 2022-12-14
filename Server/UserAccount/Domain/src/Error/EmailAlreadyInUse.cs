@@ -6,7 +6,7 @@ namespace Domain.src.Error
 {
     public class EmailAlreadyInUse : DomainError
     {
-        public EmailAlreadyInUse(string email) : base(ErrorTypes.ValidationError, $"{email} ya ha sido registrado")
+        public EmailAlreadyInUse(string email) : base(ErrorTypes.Validation, $"{email} ya ha sido registrado")
         {
         }
     }

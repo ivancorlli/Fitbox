@@ -52,13 +52,13 @@ namespace Domain.src.ValueObject
                 .Matches(PersonName.Reg)
                 .MaximumLength(PersonName.MaxLength)
                 .MinimumLength(PersonName.MinLength)
-                .WithErrorCode(ErrorTypes.ValidationError);
+                .WithErrorCode(ErrorTypes.Validation);
             RuleFor(x=>x.LastName)
                 .NotEmpty()
                 .Matches(PersonName.Reg)
                 .MaximumLength(PersonName.MaxLength)
                 .MinimumLength(PersonName.MinLength)
-                .WithErrorCode(ErrorTypes.ValidationError);
+                .WithErrorCode(ErrorTypes.Validation);
         }
     }
 }

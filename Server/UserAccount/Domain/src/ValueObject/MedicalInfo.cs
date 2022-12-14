@@ -80,7 +80,7 @@ namespace Domain.src.ValueObject
             RuleFor(x=>x.Disabilities)
                 .Matches(MedicalInfo.Reg)
                 .MaximumLength(MedicalInfo.MaxLength)
-                .WithErrorCode(ErrorTypes.ValidationError);
+                .WithErrorCode(ErrorTypes.Validation);
         }
     }
 }
