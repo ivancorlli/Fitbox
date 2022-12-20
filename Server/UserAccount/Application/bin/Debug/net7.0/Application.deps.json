@@ -9,8 +9,7 @@
       "Application/1.0.0": {
         "dependencies": {
           "Domain": "1.0.0",
-          "FluentResults": "3.15.0",
-          "MediatR": "11.0.0"
+          "Shared": "1.0.0"
         },
         "runtime": {
           "Application.dll": {}
@@ -24,26 +23,22 @@
           }
         }
       },
-      "FluentResults/3.15.0": {
-        "dependencies": {
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
-          "System.Threading.Tasks.Extensions": "4.5.4"
-        },
+      "FluentValidation/11.4.0": {
         "runtime": {
-          "lib/netstandard2.1/FluentResults.dll": {
-            "assemblyVersion": "3.15.0.0",
-            "fileVersion": "3.15.0.0"
+          "lib/net7.0/FluentValidation.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.4.0.0"
           }
         }
       },
-      "MediatR/11.0.0": {
+      "MediatR/11.1.0": {
         "dependencies": {
           "MediatR.Contracts": "1.0.1"
         },
         "runtime": {
           "lib/netstandard2.1/MediatR.dll": {
             "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.0.0.0"
+            "fileVersion": "11.1.0.0"
           }
         }
       },
@@ -55,22 +50,22 @@
           }
         }
       },
-      "Microsoft.Extensions.Logging.Abstractions/6.0.1": {
-        "runtime": {
-          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.322.12309"
-          }
-        }
-      },
-      "System.Threading.Tasks.Extensions/4.5.4": {},
       "Domain/1.0.0": {
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
-          "FluentResults": "3.15.0"
+          "FluentValidation": "11.4.0",
+          "Shared": "1.0.0"
         },
         "runtime": {
           "Domain.dll": {}
+        }
+      },
+      "Shared/1.0.0": {
+        "dependencies": {
+          "MediatR": "11.1.0"
+        },
+        "runtime": {
+          "Shared.dll": {}
         }
       }
     }
@@ -88,19 +83,19 @@
       "path": "bcrypt.net-next/4.0.3",
       "hashPath": "bcrypt.net-next.4.0.3.nupkg.sha512"
     },
-    "FluentResults/3.15.0": {
+    "FluentValidation/11.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Ap/7cQ+7cD5yEp7C8HnMf8F5D9J8EgZPEIo21+0B7VxipRb3aM8aeZ3Se0Tl1x8bfHOvEBdwQdgAwIoiPHJU4A==",
-      "path": "fluentresults/3.15.0",
-      "hashPath": "fluentresults.3.15.0.nupkg.sha512"
+      "sha512": "sha512-WZJyrNf4suiaI6avVG32W9kmBLC3+V5rDTcLeRJjeU4tDmTyDIOz1459DzCKppXs34YpZg9rCUzDY3M4XxG7Ug==",
+      "path": "fluentvalidation/11.4.0",
+      "hashPath": "fluentvalidation.11.4.0.nupkg.sha512"
     },
-    "MediatR/11.0.0": {
+    "MediatR/11.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-8klzVGZQiA2oxZRzQFBZbdPD/IQUm9RYtfiyTDKhxDQ99Gi93+GXt1ZJjH2D7Lh7ZFHCv5XdkwbmfHEQBCatPg==",
-      "path": "mediatr/11.0.0",
-      "hashPath": "mediatr.11.0.0.nupkg.sha512"
+      "sha512": "sha512-YIbtrLOyeCuIv8vIuHL/mMdls5xmgS36pIOJDxKZuu55nxA2MI2Z+E/Uk0z+F/LE11AGmpjplOM0NZ91m5LQBA==",
+      "path": "mediatr/11.1.0",
+      "hashPath": "mediatr.11.1.0.nupkg.sha512"
     },
     "MediatR.Contracts/1.0.1": {
       "type": "package",
@@ -109,21 +104,12 @@
       "path": "mediatr.contracts/1.0.1",
       "hashPath": "mediatr.contracts.1.0.1.nupkg.sha512"
     },
-    "Microsoft.Extensions.Logging.Abstractions/6.0.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-dzB2Cgg+JmrouhjkcQGzSFjjvpwlq353i8oBQO2GWNjCXSzhbtBRUf28HSauWe7eib3wYOdb3tItdjRwAdwCSg==",
-      "path": "microsoft.extensions.logging.abstractions/6.0.1",
-      "hashPath": "microsoft.extensions.logging.abstractions.6.0.1.nupkg.sha512"
-    },
-    "System.Threading.Tasks.Extensions/4.5.4": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-zteT+G8xuGu6mS+mzDzYXbzS7rd3K6Fjb9RiZlYlJPam2/hU7JCBZBVEcywNuR+oZ1ncTvc/cq0faRr3P01OVg==",
-      "path": "system.threading.tasks.extensions/4.5.4",
-      "hashPath": "system.threading.tasks.extensions.4.5.4.nupkg.sha512"
-    },
     "Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
