@@ -28,6 +28,7 @@
           }
         }
       },
+<<<<<<< HEAD
       "Google.Protobuf/3.19.4": {
         "type": "package",
         "compile": {
@@ -103,6 +104,8 @@
           }
         }
       },
+=======
+>>>>>>> 7e47d05 (cp LOCAL)
       "MediatR/11.1.0": {
         "type": "package",
         "dependencies": {
@@ -132,11 +135,19 @@
           }
         }
       },
+<<<<<<< HEAD
       "Microsoft.EntityFrameworkCore/7.0.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Abstractions": "7.0.1",
           "Microsoft.EntityFrameworkCore.Analyzers": "7.0.1",
+=======
+      "Microsoft.EntityFrameworkCore/7.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.0",
+          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.0",
+>>>>>>> 7e47d05 (cp LOCAL)
           "Microsoft.Extensions.Caching.Memory": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.Extensions.Logging": "7.0.0"
@@ -155,7 +166,11 @@
           "buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props": {}
         }
       },
+<<<<<<< HEAD
       "Microsoft.EntityFrameworkCore.Abstractions/7.0.1": {
+=======
+      "Microsoft.EntityFrameworkCore.Abstractions/7.0.0": {
+>>>>>>> 7e47d05 (cp LOCAL)
         "type": "package",
         "compile": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
@@ -168,7 +183,11 @@
           }
         }
       },
+<<<<<<< HEAD
       "Microsoft.EntityFrameworkCore.Analyzers/7.0.1": {
+=======
+      "Microsoft.EntityFrameworkCore.Analyzers/7.0.0": {
+>>>>>>> 7e47d05 (cp LOCAL)
         "type": "package",
         "compile": {
           "lib/netstandard2.0/_._": {}
@@ -177,6 +196,7 @@
           "lib/netstandard2.0/_._": {}
         }
       },
+<<<<<<< HEAD
       "Microsoft.EntityFrameworkCore.Design/7.0.1": {
         "type": "package",
         "dependencies": {
@@ -228,6 +248,8 @@
           "lib/net6.0/_._": {}
         }
       },
+=======
+>>>>>>> 7e47d05 (cp LOCAL)
       "Microsoft.Extensions.Caching.Abstractions/7.0.0": {
         "type": "package",
         "dependencies": {
@@ -270,6 +292,7 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+<<<<<<< HEAD
       "Microsoft.Extensions.Configuration.Abstractions/7.0.0": {
         "type": "package",
         "dependencies": {
@@ -289,6 +312,8 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+=======
+>>>>>>> 7e47d05 (cp LOCAL)
       "Microsoft.Extensions.DependencyInjection/7.0.0": {
         "type": "package",
         "dependencies": {
@@ -324,6 +349,7 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+<<<<<<< HEAD
       "Microsoft.Extensions.DependencyModel/7.0.0": {
         "type": "package",
         "dependencies": {
@@ -344,6 +370,8 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+=======
+>>>>>>> 7e47d05 (cp LOCAL)
       "Microsoft.Extensions.Logging/7.0.0": {
         "type": "package",
         "dependencies": {
@@ -418,6 +446,7 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+<<<<<<< HEAD
       "Microsoft.NETCore.Platforms/3.1.0": {
         "type": "package",
         "compile": {
@@ -761,6 +790,8 @@
           }
         }
       },
+=======
+>>>>>>> 7e47d05 (cp LOCAL)
       "Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -875,6 +906,7 @@
         "lib/netstandard2.1/FluentValidation.xml"
       ]
     },
+<<<<<<< HEAD
     "Google.Protobuf/3.19.4": {
       "sha512": "fd07/ykL4O4FhqrZIELm5lmiyOHfdPg9+o+hWr6tcfRdS7tHXnImg/2wtogLzlW2eEmr0J7j6ZrZvaWOLiJbxQ==",
       "type": "package",
@@ -975,6 +1007,8 @@
         "lib/netstandard2.0/K4os.Hash.xxHash.xml"
       ]
     },
+=======
+>>>>>>> 7e47d05 (cp LOCAL)
     "MediatR/11.1.0": {
       "sha512": "YIbtrLOyeCuIv8vIuHL/mMdls5xmgS36pIOJDxKZuu55nxA2MI2Z+E/Uk0z+F/LE11AGmpjplOM0NZ91m5LQBA==",
       "type": "package",
@@ -1005,10 +1039,17 @@
         "mediatr.contracts.nuspec"
       ]
     },
+<<<<<<< HEAD
     "Microsoft.EntityFrameworkCore/7.0.1": {
       "sha512": "uvzJkdmqbB50COlCiNaBjWc4cl3kHBO9P7glPk6wK8xyLrli4xeVip+pmMyT/kYc2shWm1YdxegxFqKeCvQXAA==",
       "type": "package",
       "path": "microsoft.entityframeworkcore/7.0.1",
+=======
+    "Microsoft.EntityFrameworkCore/7.0.0": {
+      "sha512": "9W+IfmAzMrp2ZpKZLhgTlWljSBM9Erldis1us61DAGi+L7Q6vilTbe1G2zDxtYO8F2H0I0Qnupdx5Cp4s2xoZw==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore/7.0.0",
+>>>>>>> 7e47d05 (cp LOCAL)
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1016,6 +1057,7 @@
         "buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props",
         "lib/net6.0/Microsoft.EntityFrameworkCore.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.xml",
+<<<<<<< HEAD
         "microsoft.entityframeworkcore.7.0.1.nupkg.sha512",
         "microsoft.entityframeworkcore.nuspec"
       ]
@@ -1024,12 +1066,23 @@
       "sha512": "pPaoi2RHAkrsJ2kcGZGBiJFUXSS1LC+qET6HCn4hXP+X/kvIriJLv8lx6ddI6gTluGvm/lDgPAA0zZDXYaKf3A==",
       "type": "package",
       "path": "microsoft.entityframeworkcore.abstractions/7.0.1",
+=======
+        "microsoft.entityframeworkcore.7.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.nuspec"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.Abstractions/7.0.0": {
+      "sha512": "Pfu3Zjj5+d2Gt27oE9dpGiF/VobBB+s5ogrfI9sBsXQE1SG49RqVz5+IyeNnzhyejFrPIQsPDRMchhcojy4Hbw==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.abstractions/7.0.0",
+>>>>>>> 7e47d05 (cp LOCAL)
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.xml",
+<<<<<<< HEAD
         "microsoft.entityframeworkcore.abstractions.7.0.1.nupkg.sha512",
         "microsoft.entityframeworkcore.abstractions.nuspec"
       ]
@@ -1038,12 +1091,23 @@
       "sha512": "4A4NFkPFoRMdry24Hjdb5/sOH3tU3hzFePTGnSg8P+VBrFp/EO8kcA4L0hBzwbXj2HGNL8I/quYyS5GVtb4EOg==",
       "type": "package",
       "path": "microsoft.entityframeworkcore.analyzers/7.0.1",
+=======
+        "microsoft.entityframeworkcore.abstractions.7.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.Analyzers/7.0.0": {
+      "sha512": "Qkd2H+jLe37o5ku+LjT6qf7kAHY75Yfn2bBDQgqr13DTOLYpEy1Mt93KPFjaZvIu/srEcbfGGMRL7urKm5zN8Q==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.analyzers/7.0.0",
+>>>>>>> 7e47d05 (cp LOCAL)
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll",
         "lib/netstandard2.0/_._",
+<<<<<<< HEAD
         "microsoft.entityframeworkcore.analyzers.7.0.1.nupkg.sha512",
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
@@ -1102,6 +1166,12 @@
         "tools/netcoreapp2.0/any/ef.runtimeconfig.json"
       ]
     },
+=======
+        "microsoft.entityframeworkcore.analyzers.7.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.analyzers.nuspec"
+      ]
+    },
+>>>>>>> 7e47d05 (cp LOCAL)
     "Microsoft.Extensions.Caching.Abstractions/7.0.0": {
       "sha512": "IeimUd0TNbhB4ded3AbgBLQv2SnsiVugDyGV1MvspQFVlA07nDC7Zul7kcwH5jWN3JiTcp/ySE83AIJo8yfKjg==",
       "type": "package",
@@ -1156,6 +1226,7 @@
         "useSharedDesignerContext.txt"
       ]
     },
+<<<<<<< HEAD
     "Microsoft.Extensions.Configuration.Abstractions/7.0.0": {
       "sha512": "f34u2eaqIjNO9YLHBz8rozVZ+TcFiFs0F3r7nUJd7FRkVSxk8u4OpoK226mi49MwexHOR2ibP9MFvRUaLilcQQ==",
       "type": "package",
@@ -1183,6 +1254,8 @@
         "useSharedDesignerContext.txt"
       ]
     },
+=======
+>>>>>>> 7e47d05 (cp LOCAL)
     "Microsoft.Extensions.DependencyInjection/7.0.0": {
       "sha512": "elNeOmkeX3eDVG6pYVeV82p29hr+UKDaBhrZyWvWLw/EVZSYEkZlQdkp0V39k/Xehs2Qa0mvoCvkVj3eQxNQ1Q==",
       "type": "package",
@@ -1241,6 +1314,7 @@
         "useSharedDesignerContext.txt"
       ]
     },
+<<<<<<< HEAD
     "Microsoft.Extensions.DependencyModel/7.0.0": {
       "sha512": "oONNYd71J3LzkWc4fUHl3SvMfiQMYUCo/mDHDEu76hYYxdhdrPYv6fvGv9nnKVyhE9P0h20AU8RZB5OOWQcAXg==",
       "type": "package",
@@ -1269,6 +1343,8 @@
         "useSharedDesignerContext.txt"
       ]
     },
+=======
+>>>>>>> 7e47d05 (cp LOCAL)
     "Microsoft.Extensions.Logging/7.0.0": {
       "sha512": "Nw2muoNrOG5U5qa2ZekXwudUn2BJcD41e65zwmDHb1fQegTX66UokLWZkJRpqSSHXDOWZ5V0iqhbxOEky91atA==",
       "type": "package",
@@ -1424,6 +1500,7 @@
         "useSharedDesignerContext.txt"
       ]
     },
+<<<<<<< HEAD
     "Microsoft.NETCore.Platforms/3.1.0": {
       "sha512": "z7aeg8oHln2CuNulfhiLYxCVMPEwBl3rzicjvIX+4sUuCwvXw5oXQEtbiU2c0z4qYL5L3Kmx0mMA/+t/SbY67w==",
       "type": "package",
@@ -2049,6 +2126,8 @@
         "version.txt"
       ]
     },
+=======
+>>>>>>> 7e47d05 (cp LOCAL)
     "Application/1.0.0": {
       "type": "project",
       "path": "../UserAccount/Application/Application.csproj",
@@ -2074,9 +2153,13 @@
     "net7.0": [
       "Application >= 1.0.0",
       "Domain >= 1.0.0",
+<<<<<<< HEAD
       "Infrastructure >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.1",
       "MySql.EntityFrameworkCore >= 6.0.7"
+=======
+      "Infrastructure >= 1.0.0"
+>>>>>>> 7e47d05 (cp LOCAL)
     ]
   },
   "packageFolders": {
