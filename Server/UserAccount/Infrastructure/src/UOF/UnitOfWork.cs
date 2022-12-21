@@ -4,7 +4,9 @@ namespace Infrastructure.src.UOF
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public IUserWriteRepository UserWriteRepository => throw new NotImplementedException();
+        public IAccountWriteRepository AccountWriteRepository => throw new NotImplementedException();
+
+        public IAccountReadRepository AccountReadRepository => throw new NotImplementedException();
 
         public void AuditableEntity()
         {

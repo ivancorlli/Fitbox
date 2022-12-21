@@ -4,6 +4,7 @@ namespace Domain.src.Interface
 {
     public interface IUnitOfWork:IBaseUnitOfWork
     {
-        IUserWriteRepository  UserWriteRepository {get;}
+        IAccountWriteRepository  AccountWriteRepository {get;}
+        IAccountReadRepository  AccountReadRepository {get;}
     }
 }
