@@ -29,7 +29,7 @@ namespace Application.src.Features.UserAccount.Command.CreateAccount
             if (Email.IsFailure)
                 return Result.Fail(Email.Error);
             // Creamos usuario
-            var newAccount = Account.Create(Username.Value, Email.Value, input.password);
+            var newAccount = Domain.src.Entity.Account.Create(Username.Value, Email.Value, input.password);
             if (newAccount.IsFailure)
                 return Result.Fail(newAccount.Error);
             // Guardamos usuario en base de datos
