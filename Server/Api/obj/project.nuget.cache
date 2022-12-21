@@ -1,15 +1,20 @@
 {
   "version": 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
   "dgSpecHash": "cX8a/eyntG8/eZd7/fUSPuI6b79Ywj6XPU7jUxObFGgPF1fayBioZpYKFaq1ixJw2pnKXA1k19xXfcaHqdUl9w==",
 =======
   "dgSpecHash": "u+oBJqS71OCDIMvbgqF64Qw85BhhwDZVeQvGsxaxYvmnhU7aRq4btx8vssIIdqV9D8+fUNzcT9DlZfZ7IbVAlw==",
 >>>>>>> 7e47d05 (cp LOCAL)
+=======
+  "dgSpecHash": "u+oBJqS71OCDIMvbgqF64Qw85BhhwDZVeQvGsxaxYvmnhU7aRq4btx8vssIIdqV9D8+fUNzcT9DlZfZ7IbVAlw==",
+>>>>>>> dev
   "success": true,
   "projectFilePath": "/home/icorlli/Fitbox/Server/Api/Api.csproj",
   "expectedPackageFiles": [
     "/home/icorlli/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/home/icorlli/.nuget/packages/fluentvalidation/11.4.0/fluentvalidation.11.4.0.nupkg.sha512",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "/home/icorlli/.nuget/packages/google.protobuf/3.19.4/google.protobuf.3.19.4.nupkg.sha512",
     "/home/icorlli/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
@@ -55,6 +60,8 @@
     "/home/icorlli/.nuget/packages/system.text.json/7.0.0/system.text.json.7.0.0.nupkg.sha512",
     "/home/icorlli/.nuget/packages/system.windows.extensions/4.7.0/system.windows.extensions.4.7.0.nupkg.sha512"
 =======
+=======
+>>>>>>> dev
     "/home/icorlli/.nuget/packages/mediatr/11.1.0/mediatr.11.1.0.nupkg.sha512",
     "/home/icorlli/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512",
     "/home/icorlli/.nuget/packages/microsoft.entityframeworkcore/7.0.0/microsoft.entityframeworkcore.7.0.0.nupkg.sha512",
@@ -68,7 +75,10 @@
     "/home/icorlli/.nuget/packages/microsoft.extensions.logging.abstractions/7.0.0/microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
     "/home/icorlli/.nuget/packages/microsoft.extensions.options/7.0.0/microsoft.extensions.options.7.0.0.nupkg.sha512",
     "/home/icorlli/.nuget/packages/microsoft.extensions.primitives/7.0.0/microsoft.extensions.primitives.7.0.0.nupkg.sha512"
+<<<<<<< HEAD
 >>>>>>> 7e47d05 (cp LOCAL)
+=======
+>>>>>>> dev
   ],
   "logs": []
 }

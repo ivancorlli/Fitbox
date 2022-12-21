@@ -24,5 +24,12 @@
     "/home/icorlli/.nuget/packages/mysqlconnector/2.2.0/mysqlconnector.2.2.0.nupkg.sha512",
     "/home/icorlli/.nuget/packages/pomelo.entityframeworkcore.mysql/7.0.0-alpha.1/pomelo.entityframeworkcore.mysql.7.0.0-alpha.1.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /home/icorlli/Fitbox/Server/UserAccount/Infrastructure/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
