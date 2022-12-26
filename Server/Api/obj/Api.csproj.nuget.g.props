@@ -12,21 +12,4 @@
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <SourceRoot Include="/home/icorlli/.nuget/packages/" />
   </ItemGroup>
-  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore/7.0.1/buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore/7.0.1/buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props')" />
-    <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore.design/7.0.1/build/net6.0/Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore.design/7.0.1/build/net6.0/Microsoft.EntityFrameworkCore.Design.props')" />
-  </ImportGroup>
-  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">/home/icorlli/.nuget/packages/microsoft.entityframeworkcore.tools/7.0.1</PkgMicrosoft_EntityFrameworkCore_Tools>
-  </PropertyGroup>
-=======
-    <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore/7.0.0/buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore/7.0.0/buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props')" />
-  </ImportGroup>
->>>>>>> 7e47d05 (cp LOCAL)
-=======
-    <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore/7.0.0/buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore/7.0.0/buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props')" />
-  </ImportGroup>
->>>>>>> dev
 </Project>

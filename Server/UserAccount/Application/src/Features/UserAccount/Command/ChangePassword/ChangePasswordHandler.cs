@@ -25,7 +25,7 @@ namespace Application.src.Features.UserAccount.Command.ChangePassword
 
             await _UnitOfWork.AccountWriteRepository.Update(user);
             await _UnitOfWork.SaveChangesAsync(cancellationToken);
-            return Result.Ok(user);
+            return Result.Ok();
         }
     }
 }

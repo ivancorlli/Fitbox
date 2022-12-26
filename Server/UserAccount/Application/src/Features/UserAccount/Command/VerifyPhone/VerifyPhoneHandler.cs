@@ -22,6 +22,6 @@ public class VerifyPhoneHandler : IHandler<VerifyPhoneCommand, Result>
         user.VerifyPhone();
         await _UnitOfWork.AccountWriteRepository.Update(user);
         await _UnitOfWork.SaveChangesAsync(cancellationToken);
-        return Result.Ok(user);
+        return Result.Ok();
     }
 }

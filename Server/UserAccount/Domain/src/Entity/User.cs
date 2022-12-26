@@ -11,31 +11,30 @@ namespace Domain.src.Entity
 
     public class User:AggregateRoot 
     {   
-        public Guid AccountId {get;}
+        public Guid AccountId {get;init;}
         public PersonName Name {get;private set;}
         public Gender Gender {get;private set;}
         public DateTime Birth {get;private set;}
-        public Address Address {get;private set;}
+        public Address? Address {get;private set;}
         public EmergencyContact? EmergencyContact {get;private set;}
         public Bio? Biography {get;private set;}
         public MedicalInfo? Medical {get;private set;}  
 
-        private User(Guid account,PersonName name, Gender gender, DateTime birth, Address address)
+        private User(Guid account,PersonName name, Gender gender, DateTime birth)
         {   
             AccountId = account;
             Name=name;
             Gender=gender;
             Birth=birth;
-            Address=address;
         }
 
-        public static Result<User> Create(Guid account,PersonName name, Gender gender, DateTime birth, Address address)
+        public static Result<User> Create(Guid account,PersonName name, Gender gender, DateTime birth)
         {   
         var isValid = ValidateBirth(birth);
            if(isValid.IsFailure)
                 return Result.Fail<User>(isValid.Error);
 
-            var newUser = new User(account,name,gender,birth,address);
+            var newUser = new User(account,name,gender,birth);
             return Result.Ok<User>(newUser);
         }
         
@@ -102,7 +101,7 @@ namespace Domain.src.Entity
         /// <param name="name"></param>
         /// <param name="relationShip"></param>
         /// <param name="phone"></param>
-        public void ChangeContact(PersonName name, RelationShip relationShip, Phone phone){
+        public void CreateContact(PersonName name, RelationShip relationShip, ContactPhone phone){
             EmergencyContact = new EmergencyContact(name,relationShip,phone);
             TimeStamps = TimeStamps.Updated();
         }

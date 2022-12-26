@@ -5,5 +5,5 @@ using System.Threading.Tasks;
 
 namespace Application.src.Features.UserAccount.DTO.Input
 {
-    public record ChangeUsernameDto(Guid id, string username);
+    public record ChangeUsernameInput(Guid id, string username);
 }

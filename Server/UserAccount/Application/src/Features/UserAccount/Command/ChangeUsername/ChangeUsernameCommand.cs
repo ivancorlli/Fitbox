@@ -8,5 +8,5 @@ using Shared.src.Interface.Command;
 
 namespace Application.src.Features.UserAccount.Command.ChangeUsername
 {
-    public sealed record ChangeUsernameCommand(ChangeUsernameDto input) :ICommand<Result>;
+    public sealed record ChangeUsernameCommand(ChangeUsernameInput input) :ICommand<Result>;
 }

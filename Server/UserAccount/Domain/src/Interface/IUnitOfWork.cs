@@ -6,5 +6,7 @@ namespace Domain.src.Interface
     {
         IAccountWriteRepository  AccountWriteRepository {get;}
         IAccountReadRepository  AccountReadRepository {get;}
+        IUserReadRepository UserReadRepository{get;}
+        IUserWriteRepository UserWriteRepository {get;}
     }
 }

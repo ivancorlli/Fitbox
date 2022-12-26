@@ -30,7 +30,7 @@ namespace Application.src.Features.UserAccount.Command.ChangePhone
             user.ChangePhone(phone.Value);
             await _UnitOfWork.AccountWriteRepository.Update(user);
             await _UnitOfWork.SaveChangesAsync(cancellationToken);
-            return Result.Ok(phone.Value);
+            return Result.Ok();
         }
     }
 }

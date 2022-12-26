@@ -26,7 +26,7 @@ namespace Application.src.Features.UserAccount.Command.ChangeEmail
             user.ChangeEmail(newEmail.Value);
             await _UnitOfWork.AccountWriteRepository.Update(user);
             await _UnitOfWork.SaveChangesAsync(cancellationToken);
-            return Result.Ok(user);
+            return Result.Ok();
         }
     }
 }

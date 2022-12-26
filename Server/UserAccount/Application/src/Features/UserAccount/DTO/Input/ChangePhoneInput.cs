@@ -5,6 +5,6 @@ using System.Threading.Tasks;
 
 namespace Application.src.Features.UserAccount.DTO.Input
 {
-    public sealed record ChangePhoneDto(Guid id, int area,long number, string? prefix);
+    public sealed record ChangePhoneInput(Guid id, int area,long number, string? prefix);
     
 }

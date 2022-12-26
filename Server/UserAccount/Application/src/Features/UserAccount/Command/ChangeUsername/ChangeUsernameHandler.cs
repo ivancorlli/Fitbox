@@ -30,7 +30,7 @@ namespace Application.src.Features.UserAccount.Command.ChangeUsername
             var user = userExist.Value;
             user.ChangeUsername(username.Value);
             await _UnitOfWork.SaveChangesAsync(cancellationToken);
-            return Result.Ok(username.Value);
+            return Result.Ok();
         }
     }
 }

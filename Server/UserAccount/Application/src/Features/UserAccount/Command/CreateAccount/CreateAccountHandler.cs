@@ -2,6 +2,7 @@ using Domain.src.Interface;
 using Shared.src.Interface.Command;
 using Domain.src.Entity;
 using Shared.src.Error;
+using AutoMapper;
 
 namespace Application.src.Features.UserAccount.Command.CreateAccount
 {
@@ -9,11 +10,13 @@ namespace Application.src.Features.UserAccount.Command.CreateAccount
     {
         private readonly IAccountManager _UserManager;
         private readonly IUnitOfWork _UnitOfWork;
+        private readonly IMapper _Mapper;
 
-        public CreateAccountHandler(IAccountManager userManager, IUnitOfWork unitOfWork)
+        public CreateAccountHandler(IAccountManager userManager, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _UserManager = userManager;
             _UnitOfWork = unitOfWork;
+            _Mapper = mapper;
         }
 
         public async Task<Result> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
@@ -29,13 +32,15 @@ namespace Application.src.Features.UserAccount.Command.CreateAccount
             if (Email.IsFailure)
                 return Result.Fail(Email.Error);
             // Creamos usuario
-            var newAccount = Domain.src.Entity.Account.Create(Username.Value, Email.Value, input.password);
+            var newAccount = Account.Create(Username.Value, Email.Value, input.password);
             if (newAccount.IsFailure)
                 return Result.Fail(newAccount.Error);
             // Guardamos usuario en base de datos
-            await _UnitOfWork.AccountWriteRepository.AddAccount(newAccount.Value);
-            await _UnitOfWork.SaveChangesAsync(cancellationToken);
-            return Result.Ok(newAccount.Value);
+            Task.WaitAll(
+            _UnitOfWork.AccountWriteRepository.AddAccount(newAccount.Value),
+            _UnitOfWork.SaveChangesAsync(cancellationToken)
+            );
+            return Result.Ok();
         }
     }
 }
