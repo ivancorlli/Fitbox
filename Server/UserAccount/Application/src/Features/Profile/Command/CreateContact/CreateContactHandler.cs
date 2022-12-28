@@ -25,7 +25,7 @@ public class CreateContactHandler : IHandler<CreateContactCommand, Result>
         var phone = ContactPhone.Create(input.areaCode,input.number);
         if(phone.IsFailure)
             return Result.Fail(phone.Error);
-        var userFound = await _UnitOfWork.UserReadRepository.GetUserById(input.Id);
+        var userFound = await _UnitOfWork.UserReadRepository.GetById(input.Id);
         var user = userFound.Value;
         user.CreateContact(name.Value,relationShip,phone.Value);
         Task.WaitAll(

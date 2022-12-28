@@ -8,6 +8,10 @@ namespace Infrastructure.src.UOF
 
         public IAccountReadRepository AccountReadRepository => throw new NotImplementedException();
 
+        public IUserReadRepository UserReadRepository => throw new NotImplementedException();
+
+        public IUserWriteRepository UserWriteRepository => throw new NotImplementedException();
+
         public void AuditableEntity()
         {
             throw new NotImplementedException();

@@ -9,8 +9,6 @@ namespace Domain.src.Interface
 {
     public interface IAccountWriteRepository:IWriteRepository<Account>
     {
-        public Task AddAccount(Account account);
-        public Task Update(Account account);
         
     }
 }

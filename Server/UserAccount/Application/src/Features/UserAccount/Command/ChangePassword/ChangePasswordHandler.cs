@@ -17,7 +17,7 @@ namespace Application.src.Features.UserAccount.Command.ChangePassword
         public async Task<Result> Handle(ChangePasswordCommand request, CancellationToken cancellationToken)
         {
             var input = request.Input;
-            var userExist= await _UnitOfWork.AccountReadRepository.GetUserById(input.Id);
+            var userExist= await _UnitOfWork.AccountReadRepository.GetById(input.Id);
             var user = userExist.Value;
             var passChanged = user.ChangePassword(input.Password);
             if(passChanged.IsFailure)

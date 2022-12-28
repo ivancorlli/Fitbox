@@ -9,8 +9,6 @@ namespace Domain.src.Interface
 {
     public interface IUserWriteRepository:IWriteRepository<User>
     {
-        public Task AddUser(User User);
-        public Task Update(User User);
         
     }
 }

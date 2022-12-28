@@ -49,7 +49,7 @@ namespace Domain.src.ValueObject
        /// <param name="number"></param>
        /// <param name="prefix"></param>
        /// <returns></returns>
-        internal static Result<ContactPhone> Create(int areaCode,long number,string prefix){
+        public static Result<ContactPhone> Create(int areaCode,long number,string prefix){
             ContactPhone phone = new(areaCode,number,prefix);
             PhoneContactValidator validator = new();
             var result = validator.Validate(phone,options=>options.IncludeAllRuleSets());

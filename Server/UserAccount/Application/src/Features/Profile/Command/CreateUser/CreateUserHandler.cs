@@ -25,7 +25,7 @@ public class CreateUserHandler : IHandler<CreateUserCommand, Result>
             return Result.Fail(name.Error);
         var gender = (Gender)Enum.Parse(typeof(Gender),input.gender);
         var newProfile = User.Create(input.AccountID,name.Value,gender,input.birth);
-        await _UnitOfWork.UserWriteRepository.AddUser(newProfile.Value);
+        await _UnitOfWork.UserWriteRepository.Add(newProfile.Value);
         await _UnitOfWork.SaveChangesAsync(cancellationToken);
         return Result.Ok();
     }

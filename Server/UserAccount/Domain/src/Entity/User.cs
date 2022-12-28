@@ -89,9 +89,18 @@ namespace Domain.src.Entity
         /// Cambia la direccion
         /// </summary>
         /// <param name="address"></param>
-        public void ChangeAddress(Address address)
+        public void CreateAddress(Address address)
         {
             Address = address;
+            TimeStamps = TimeStamps.Updated();
+        }
+
+        /// <summary>
+        /// Elimina la direccion
+        /// </summary>
+        public void DeleteAddress()
+        {
+            Address = null;
             TimeStamps = TimeStamps.Updated();
         }
         
@@ -109,7 +118,7 @@ namespace Domain.src.Entity
         // <summary>
         // Elimina el contacto de emergencia
         // </summary>
-        public void DeleteEmergencyContact(){
+        public void DeleteContact(){
            EmergencyContact = null;
            TimeStamps = TimeStamps.Updated();
         }

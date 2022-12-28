@@ -14,7 +14,6 @@ namespace Domain.src.Interface
         public Task<bool> IsEmailInUse(Email email);
         public Task<bool> IsPhoneInUse(Phone phone);
         public Task<bool> IsUsernameInUse(Username username);
-        public Task<Result<Account>> GetUserById(Guid Id);
         public Task<Result<Account>> FindByEmailOrUsername(string access);
     }
 }

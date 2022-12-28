@@ -37,7 +37,7 @@ namespace Application.src.Features.UserAccount.Command.CreateAccount
                 return Result.Fail(newAccount.Error);
             // Guardamos usuario en base de datos
             Task.WaitAll(
-            _UnitOfWork.AccountWriteRepository.AddAccount(newAccount.Value),
+            _UnitOfWork.AccountWriteRepository.Add(newAccount.Value),
             _UnitOfWork.SaveChangesAsync(cancellationToken)
             );
             return Result.Ok();

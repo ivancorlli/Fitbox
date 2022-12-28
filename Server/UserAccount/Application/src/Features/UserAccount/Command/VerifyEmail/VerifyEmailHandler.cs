@@ -20,7 +20,7 @@ public class VerifyEmailHandler : IHandler<VerifyEmailCommand, Result>
     public async Task<Result> Handle(VerifyEmailCommand request, CancellationToken cancellationToken)
     {
         var input = request.Input;
-        var userExist = await _UnitOfWork.AccountReadRepository.GetUserById(input.Id);
+        var userExist = await _UnitOfWork.AccountReadRepository.GetById(input.Id);
         var user = userExist.Value;
         user.VerifyEmail();
         await _UnitOfWork.AccountWriteRepository.Update(user);

@@ -26,7 +26,7 @@ namespace Application.src.Features.UserAccount.Command.ChangeUsername
             var username = await _UserManager.CreateUsername(input.username);
             if(username.IsFailure)
                 return Result.Fail(username.Error);
-            var userExist = await _UnitOfWork.AccountReadRepository.GetUserById(input.id);
+            var userExist = await _UnitOfWork.AccountReadRepository.GetById(input.id);
             var user = userExist.Value;
             user.ChangeUsername(username.Value);
             await _UnitOfWork.SaveChangesAsync(cancellationToken);

@@ -18,7 +18,7 @@ public class CreateMedicalInfoHandler:IHandler<CreateMedicalInfoCommand,Result>
     {
         var input = request.Input;
         var medicalRecord = MedicalInfo.Create(input.disabilities);
-        var userFound = await _UnitOfWork.UserReadRepository.GetUserById(input.Id);
+        var userFound = await _UnitOfWork.UserReadRepository.GetById(input.Id);
         var user = userFound.Value;
         user.CreateMedicalInfo(medicalRecord.Value);
         Task.WaitAll(

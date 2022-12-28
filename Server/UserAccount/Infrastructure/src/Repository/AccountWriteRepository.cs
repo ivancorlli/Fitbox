@@ -11,7 +11,18 @@ namespace Infrastructure.src.Repository
     {   
         _AccountContext = context;
     }
+
+        public Task Add(Account Entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task AddAccount(Account account)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Delete(Account Entity)
         {
             throw new NotImplementedException();
         }

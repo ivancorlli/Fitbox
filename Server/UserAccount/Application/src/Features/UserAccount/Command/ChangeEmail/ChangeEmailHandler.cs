@@ -21,7 +21,7 @@ namespace Application.src.Features.UserAccount.Command.ChangeEmail
             var newEmail = await _AccountManager.CreateEmail(input.Email);
             if(newEmail.IsFailure)
                 return Result.Fail(newEmail.Error);
-            var userExist = await _UnitOfWork.AccountReadRepository.GetUserById(input.Id);
+            var userExist = await _UnitOfWork.AccountReadRepository.GetById(input.Id);
             var user = userExist.Value;
             user.ChangeEmail(newEmail.Value);
             await _UnitOfWork.AccountWriteRepository.Update(user);

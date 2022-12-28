@@ -20,6 +20,11 @@ public class AccountReadRepository : IAccountReadRepository
         throw new NotImplementedException();
     }
 
+    public Task<Result<Account>> GetById(Guid Id)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<Result<Account>> GetUserById(Guid Id)
     {
         var userFound = await _AccountContext.Set<Account>().FindAsync(Id);

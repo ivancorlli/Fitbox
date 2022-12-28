@@ -17,7 +17,7 @@ public class VerifyPhoneHandler : IHandler<VerifyPhoneCommand, Result>
     public async Task<Result> Handle(VerifyPhoneCommand request, CancellationToken cancellationToken)
     {
         var input = request.Input;
-        var userExist = await _UnitOfWork.AccountReadRepository.GetUserById(input.Id);
+        var userExist = await _UnitOfWork.AccountReadRepository.GetById(input.Id);
         var user = userExist.Value;
         user.VerifyPhone();
         await _UnitOfWork.AccountWriteRepository.Update(user);

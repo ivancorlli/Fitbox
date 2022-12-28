@@ -11,6 +11,6 @@ namespace Domain.src.Interface
 {
     public interface IUserReadRepository:IReadRepository<User>
     {
-        public Task<Result<User>> GetUserById(Guid Id);
+
     }
 }
