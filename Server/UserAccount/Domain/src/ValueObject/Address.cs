@@ -10,17 +10,17 @@ namespace Domain.src.ValueObject
 {
     public class Address
     {
-
+        private Address(){}
         
         public static int MaxLength = 15;
         public static int MinLength = 3;
         public static int StateMaxLength => 25;
         public static  Regex Reg = new Regex("^[a-zA-Z ]+$");
 
-        public string Country {get;init;}
-        public string City {get;init;}
-        public string State {get;init;}
-        public ZipCode ZipCode {get;init;}
+        public string Country {get;init;} = default!;
+        public string City {get;init;} = default!;
+        public string State {get;init;} = default!;
+        public ZipCode ZipCode {get;init;} = default!;
 
         private Address(string country,string city,string state,ZipCode zipCode){
             Country = Capitalize.Create(country);

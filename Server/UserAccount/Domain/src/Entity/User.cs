@@ -11,8 +11,11 @@ namespace Domain.src.Entity
 
     public class User:AggregateRoot 
     {   
+        private User(){}
+
+
         public Guid AccountId {get;init;}
-        public PersonName Name {get;private set;}
+        public PersonName Name {get;private set;} = default!;
         public Gender Gender {get;private set;}
         public DateTime Birth {get;private set;}
         public Address? Address {get;private set;}

@@ -9,17 +9,18 @@ namespace Domain.src.ValueObject
 {
     public record ContactPhone
     {
-        public long PhoneNumber {get;init;}
-        public int AreaCode {get;init;}
+        private ContactPhone(){}
+        public long Number {get;init;} = default!;
+        public int AreaCode {get;init;} = default!;
         public string? CountryPrefix {get;init;}
 
         private ContactPhone(int areaCode,long number){
-            PhoneNumber = number;
+            Number = number;
             AreaCode = areaCode;
         }
 
         private ContactPhone(int areaCode,long number,string country){
-            PhoneNumber = number;
+            Number = number;
             AreaCode = areaCode;
             CountryPrefix = country.ToUpper();
         }
@@ -62,7 +63,7 @@ namespace Domain.src.ValueObject
         }
 
         public override string ToString(){
-            return $"{AreaCode} {PhoneNumber}";
+            return $"{AreaCode} {Number}";
         }
         
     }
@@ -77,7 +78,7 @@ namespace Domain.src.ValueObject
                 .GreaterThan(6)
                 .LessThan(2)
                 .WithErrorCode(ErrorTypes.Validation);
-            RuleFor(x=>x.PhoneNumber)
+            RuleFor(x=>x.Number)
                 .NotEmpty()
                 .GreaterThan(12)
                 .LessThan(5)

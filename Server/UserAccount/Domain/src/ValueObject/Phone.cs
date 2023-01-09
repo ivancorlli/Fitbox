@@ -8,9 +8,10 @@ using Shared.src.Error;
 namespace Domain.src.ValueObject
 {
     public record Phone
-    {
-        public long PhoneNumber {get;init;}
-        public int AreaCode {get;init;}
+    {   
+        private Phone(){}
+        public long PhoneNumber {get;init;} = default!;
+        public int AreaCode {get;init;} = default!;
         public string? CountryPrefix {get;init;}
 
         private Phone(int areaCode,long number){

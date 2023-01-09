@@ -7,15 +7,15 @@ using System.Text.RegularExpressions;
 
 namespace Domain.src.ValueObject
 {
-    public class PersonName
+    public record PersonName
     {   
-
+        private PersonName(){}
         public static int MaxLength = 15;
         public static int MinLength = 2;
         public static Regex Reg = new Regex("^[a-zA-Z]+$");
 
-        public string FirstName {get;}
-        public string LastName {get;}
+        public string FirstName {get;} = default!;
+        public string LastName {get;} = default!;
 
         private PersonName(string name,string surname){
             FirstName = Capitalize.Create(name);

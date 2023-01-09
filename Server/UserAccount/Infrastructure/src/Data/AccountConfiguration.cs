@@ -10,7 +10,6 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
     {
         // LLaves primarias
         builder.HasKey(x=>x.Id);
-        // LLaves secundarias
         // Unicos
         builder.HasIndex(u=>u.Username)
             .IsUnique()
@@ -21,7 +20,8 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
             .IsUnique();
         // Propiedades
         builder.Property(x=>x.Id)
-            .IsRequired();
+            .IsRequired()
+            .HasColumnType("varchar");
         builder.Property(x=>x.Username)
             .IsRequired();
         builder.Property(x=>x.Email)
@@ -30,7 +30,5 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
             .IsRequired();
         builder.Property(x=>x.Password)
             .IsRequired();
-
-        builder.Property(x=>x.Id);
     }
 }

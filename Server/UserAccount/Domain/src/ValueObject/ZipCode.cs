@@ -8,11 +8,12 @@ namespace Domain.src.ValueObject
 {
     public record ZipCode
     {
+        private ZipCode(){}
         public static int MinLength = 3;
         public static int MaxLength = 8; 
         public static Regex Reg = new Regex("^[a-zA-Z0-9- ]+$");
 
-        public string Value {get;init;}
+        public string Value {get;init;} = default!;
 
         private ZipCode(string zipCode){
             Value =zipCode;

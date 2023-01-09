@@ -8,7 +8,7 @@ namespace Domain.src.ValueObject
 {
     public record MedicalInfo
     {
-
+        private MedicalInfo(){}
 
         public static int MaxLength = 300;
         public static Regex Reg = new Regex("^[a-zA-Z0-9., ]+$");

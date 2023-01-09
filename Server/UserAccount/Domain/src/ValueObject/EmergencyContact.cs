@@ -6,9 +6,10 @@ namespace Domain.src.ValueObject
 {
     public record EmergencyContact
     {
-        public PersonName Name {get;init;}
-        public RelationShip RelationShip {get;init;}
-        public ContactPhone Phone {get;init;}
+        private EmergencyContact(){}
+        public PersonName Name {get;init;} = default!;
+        public RelationShip RelationShip {get;init;} = default!;
+        public ContactPhone Phone {get;init;} = default!;
 
         /// <summary>
         /// Crea un nuevo contacto
