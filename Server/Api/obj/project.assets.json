@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/icorlli/Fitbox/Server/Api/Api.csproj",
+      "projectUniqueName": "/home/icorlli/Desktop/Fitbox/Server/Api/Api.csproj",
       "projectName": "Api",
-      "projectPath": "/home/icorlli/Fitbox/Server/Api/Api.csproj",
+      "projectPath": "/home/icorlli/Desktop/Fitbox/Server/Api/Api.csproj",
       "packagesPath": "/home/icorlli/.nuget/packages/",
-      "outputPath": "/home/icorlli/Fitbox/Server/Api/obj/",
+      "outputPath": "/home/icorlli/Desktop/Fitbox/Server/Api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/icorlli/.nuget/NuGet/NuGet.Config"
@@ -62,7 +62,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/icorlli/.dotnet/sdk/7.0.100/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/icorlli/.dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
       }
     }
   }

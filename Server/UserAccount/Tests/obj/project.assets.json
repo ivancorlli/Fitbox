@@ -6327,11 +6327,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/icorlli/Fitbox/Server/UserAccount/Tests/Tests.csproj",
+      "projectUniqueName": "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Tests/Tests.csproj",
       "projectName": "Tests",
-      "projectPath": "/home/icorlli/Fitbox/Server/UserAccount/Tests/Tests.csproj",
+      "projectPath": "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Tests/Tests.csproj",
       "packagesPath": "/home/icorlli/.nuget/packages/",
-      "outputPath": "/home/icorlli/Fitbox/Server/UserAccount/Tests/obj/",
+      "outputPath": "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Tests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/icorlli/.nuget/NuGet/NuGet.Config"
@@ -6346,11 +6346,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "/home/icorlli/Fitbox/Server/UserAccount/Application/Application.csproj": {
-              "projectPath": "/home/icorlli/Fitbox/Server/UserAccount/Application/Application.csproj"
+            "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Application/Application.csproj": {
+              "projectPath": "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Application/Application.csproj"
             },
-            "/home/icorlli/Fitbox/Server/UserAccount/Domain/Domain.csproj": {
-              "projectPath": "/home/icorlli/Fitbox/Server/UserAccount/Domain/Domain.csproj"
+            "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Domain/Domain.csproj": {
+              "projectPath": "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Domain/Domain.csproj"
             }
           }
         }
@@ -6414,7 +6414,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/icorlli/.dotnet/sdk/7.0.100/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/icorlli/.dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
       }
     }
   }

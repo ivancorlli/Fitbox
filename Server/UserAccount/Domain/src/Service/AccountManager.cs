@@ -1,3 +1,4 @@
+using Domain.src.Entity;
 using Domain.src.Error;
 using Domain.src.Interface;
 using Domain.src.ValueObject;
@@ -13,15 +14,19 @@ namespace Domain.src.Service
             _AccountRepo = repo;
         }
 
-        public async Task<Result<Email>> CreateEmail(string email)
+        public async Task<Result<IAccount>> CreateAccount(Username username, Email email, Password password)
         {
-            var newEmail = Email.Create(email);
-            if(newEmail.IsFailure)
-                return Result.Fail<Email>(newEmail.Error);
-            var emailExists = await _AccountRepo.IsEmailInUse(newEmail.Value);
+            var emailExists = await _AccountRepo.IsEmailInUse(email);
             if(emailExists)
-                return Result.Fail<Email>(new EmailAlreadyInUse(newEmail.Value.Value));
-            return Result.Ok<Email>(newEmail.Value);   
+                return Result.Fail<IAccount>(new EmailAlreadyInUse(email.Value.ToString()));
+            var usernameExists = await _AccountRepo.IsUsernameInUse(username);
+            if(usernameExists)
+                return Result.Fail<IAccount>(new UsernameAlreadyInUse(username.Value.ToString()));
+            var newAccount = Account.Create(username,email,password.Value);
+            if(newAccount.IsFailure)
+                return Result.Fail<IAccount>(new ValidationError(newAccount.Error.Message));
+            
+            return Result.Ok<IAccount>(newAccount.Value);
         }
 
         public async Task<Result<Phone>> CreatePhone(int areaCode, long number, string? prefix)
@@ -37,17 +42,6 @@ namespace Domain.src.Service
                 return Result.Fail<Phone>(new PhoneAlreadyInUse(newPhone.Value.ToString()));
             return Result.Ok<Phone>(newPhone.Value);
 
-        }
-
-        public async Task<Result<Username>> CreateUsername(string username)
-        {
-            var newUsername = Username.Create(username);
-            if(newUsername.IsFailure)
-                return Result.Fail<Username>(newUsername.Error);
-            var usernameExists = await _AccountRepo.IsUsernameInUse(newUsername.Value);
-            if(usernameExists)
-                return Result.Fail<Username>(new UsernameAlreadyInUse(newUsername.Value.Value));
-            return Result.Ok<Username>(newUsername.Value);
         }
     }
 }

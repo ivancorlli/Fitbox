@@ -7,10 +7,15 @@ namespace Shared.src.Abstractions
     {
 
         public Guid Id {get;private init;}
-        public TimeStamps TimeStamps {get;protected set;} 
+        internal TimeStamps TimeStamps {get;private set;} 
         protected BaseEntity(){
             Id = Guid.NewGuid();
             TimeStamps = new TimeStamps();
         }
+
+        protected void EntityUpdated(){
+            TimeStamps = TimeStamps.Updated();
+        }
+
     }
 }

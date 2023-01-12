@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/qP1jPxYSr8iLOOTDSocHsnaDtLps1ST4V1yLiRi035UbneEQ0rOqbhxZYq62Ujm0n3NZTzxqN7FhPbMkbyPRg==",
+  "dgSpecHash": "m1W4Fm2FBzC7rGK0x8uW60U1AwNxMDTrj5/vgD9IOtiHt5sL1l0CoQ4dKeEenENWw90i+31xyk/clCwFn/5oBg==",
   "success": true,
-  "projectFilePath": "/home/icorlli/Fitbox/Server/UserAccount/Domain/Domain.csproj",
+  "projectFilePath": "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Domain/Domain.csproj",
   "expectedPackageFiles": [
     "/home/icorlli/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/home/icorlli/.nuget/packages/fluentvalidation/11.4.0/fluentvalidation.11.4.0.nupkg.sha512",

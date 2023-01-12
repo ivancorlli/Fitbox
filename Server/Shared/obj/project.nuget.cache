@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "r9Gc6Ljv+Yp2bSH17czlhIEBhvyWYqjwmoOJiKOc41vVyWr4NS5ApnhaeTa1h8Z2Qqq8oECRLzxo0N46OblfDg==",
+  "dgSpecHash": "mgI3+VtD99MYO3C98yJH4NfusrECiHIzbxyaN/jQ4ms02jOvjlo9kj34nOSULkL7khnpP+z74oVDDtG6RyWLWw==",
   "success": true,
-  "projectFilePath": "/home/icorlli/Fitbox/Server/Shared/Shared.csproj",
+  "projectFilePath": "/home/icorlli/Desktop/Fitbox/Server/Shared/Shared.csproj",
   "expectedPackageFiles": [
     "/home/icorlli/.nuget/packages/mediatr/11.1.0/mediatr.11.1.0.nupkg.sha512",
     "/home/icorlli/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512"

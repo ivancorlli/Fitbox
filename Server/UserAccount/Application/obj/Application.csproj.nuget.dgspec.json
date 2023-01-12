@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/icorlli/Fitbox/Server/UserAccount/Application/Application.csproj": {}
+    "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Application/Application.csproj": {}
   },
   "projects": {
-    "/home/icorlli/Fitbox/Server/Shared/Shared.csproj": {
+    "/home/icorlli/Desktop/Fitbox/Server/Shared/Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/icorlli/Fitbox/Server/Shared/Shared.csproj",
+        "projectUniqueName": "/home/icorlli/Desktop/Fitbox/Server/Shared/Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "/home/icorlli/Fitbox/Server/Shared/Shared.csproj",
+        "projectPath": "/home/icorlli/Desktop/Fitbox/Server/Shared/Shared.csproj",
         "packagesPath": "/home/icorlli/.nuget/packages/",
-        "outputPath": "/home/icorlli/Fitbox/Server/Shared/obj/",
+        "outputPath": "/home/icorlli/Desktop/Fitbox/Server/Shared/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/icorlli/.nuget/NuGet/NuGet.Config"
@@ -59,18 +59,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/icorlli/.dotnet/sdk/7.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/icorlli/.dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/icorlli/Fitbox/Server/UserAccount/Application/Application.csproj": {
+    "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Application/Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/icorlli/Fitbox/Server/UserAccount/Application/Application.csproj",
+        "projectUniqueName": "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Application/Application.csproj",
         "projectName": "Application",
-        "projectPath": "/home/icorlli/Fitbox/Server/UserAccount/Application/Application.csproj",
+        "projectPath": "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Application/Application.csproj",
         "packagesPath": "/home/icorlli/.nuget/packages/",
-        "outputPath": "/home/icorlli/Fitbox/Server/UserAccount/Application/obj/",
+        "outputPath": "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/icorlli/.nuget/NuGet/NuGet.Config"
@@ -85,11 +85,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/home/icorlli/Fitbox/Server/Shared/Shared.csproj": {
-                "projectPath": "/home/icorlli/Fitbox/Server/Shared/Shared.csproj"
+              "/home/icorlli/Desktop/Fitbox/Server/Shared/Shared.csproj": {
+                "projectPath": "/home/icorlli/Desktop/Fitbox/Server/Shared/Shared.csproj"
               },
-              "/home/icorlli/Fitbox/Server/UserAccount/Domain/Domain.csproj": {
-                "projectPath": "/home/icorlli/Fitbox/Server/UserAccount/Domain/Domain.csproj"
+              "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Domain/Domain.csproj": {
+                "projectPath": "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Domain/Domain.csproj"
               }
             }
           }
@@ -125,18 +125,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/icorlli/.dotnet/sdk/7.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/icorlli/.dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/icorlli/Fitbox/Server/UserAccount/Domain/Domain.csproj": {
+    "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/icorlli/Fitbox/Server/UserAccount/Domain/Domain.csproj",
+        "projectUniqueName": "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Domain/Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/home/icorlli/Fitbox/Server/UserAccount/Domain/Domain.csproj",
+        "projectPath": "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Domain/Domain.csproj",
         "packagesPath": "/home/icorlli/.nuget/packages/",
-        "outputPath": "/home/icorlli/Fitbox/Server/UserAccount/Domain/obj/",
+        "outputPath": "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/icorlli/.nuget/NuGet/NuGet.Config"
@@ -151,8 +151,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/home/icorlli/Fitbox/Server/Shared/Shared.csproj": {
-                "projectPath": "/home/icorlli/Fitbox/Server/Shared/Shared.csproj"
+              "/home/icorlli/Desktop/Fitbox/Server/Shared/Shared.csproj": {
+                "projectPath": "/home/icorlli/Desktop/Fitbox/Server/Shared/Shared.csproj"
               }
             }
           }
@@ -192,7 +192,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/icorlli/.dotnet/sdk/7.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/icorlli/.dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
         }
       }
     }

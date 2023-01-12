@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wriyua/2dskq69cHl7yM3ivN3DIFY88NKNrnlr3L6/bnmmyH5TN5jP+0nd4V3c8Xb+OqVuzGGaD+dwjhAx1IPw==",
+  "dgSpecHash": "E2A7YpVS4SgFAwStJ3cP4C1iPSo2v32olJqJAYx544liZ5zRVmhR+/F6GQszbckTKe7lqXMByKN5qFqJJ194Pg==",
   "success": true,
-  "projectFilePath": "/home/icorlli/Fitbox/Server/Api/Api.csproj",
+  "projectFilePath": "/home/icorlli/Desktop/Fitbox/Server/Api/Api.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

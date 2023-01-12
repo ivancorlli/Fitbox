@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cGcA4EPshYjuShz/JvREQnhodNhdqEFz67QkEYwCPhPSMM4nO+Dvgy+PcgGr5x+xWHNTij9fyMDNQgcKREjBig==",
+  "dgSpecHash": "+h8uOfYUO1u4GKFTM7s37jumR/9OY3X4a67cHyWXJH4pPtjkT+xflQ0NKfs5/rQsPoa1swONpxt/L8s5j+ADKQ==",
   "success": true,
-  "projectFilePath": "/home/icorlli/Fitbox/Server/UserAccount/Application/Application.csproj",
+  "projectFilePath": "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Application/Application.csproj",
   "expectedPackageFiles": [
     "/home/icorlli/.nuget/packages/automapper/12.0.0/automapper.12.0.0.nupkg.sha512",
     "/home/icorlli/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.0/automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
