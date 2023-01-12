@@ -15,5 +15,11 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="src\Controller\" />
+    <Folder Include="src\Extension\" />
+    <Folder Include="src\Startup\" />
+  </ItemGroup>
+
 
 </Project>
