@@ -4,12 +4,12 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace Infrastructure.src.Context;
 
-public class ContextFactory : IDesignTimeDbContextFactory<UserAccountDbContext>
+public class ContextFactory : IDesignTimeDbContextFactory<UserDbContext>
 {
     private readonly string Connection = "server=localhost;port=3306;user=icorlli;password=A1jc8D62;database=usercontext";
-    public UserAccountDbContext CreateDbContext(string[] args)
+    public UserDbContext CreateDbContext(string[] args)
     {
-        var config = new DbContextOptionsBuilder<UserAccountDbContext>();
+        var config = new DbContextOptionsBuilder<UserDbContext>();
         config.UseMySql(
             Connection,
             ServerVersion.Create(
@@ -22,6 +22,6 @@ public class ContextFactory : IDesignTimeDbContextFactory<UserAccountDbContext>
                             errorNumbersToAdd: null)
         );
         config.EnableDetailedErrors().EnableSensitiveDataLogging();
-        return new UserAccountDbContext(config.Options);
+        return new UserDbContext(config.Options);
     }
 }

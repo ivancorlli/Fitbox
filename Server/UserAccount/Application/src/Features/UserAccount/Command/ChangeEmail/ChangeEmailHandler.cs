@@ -1,4 +1,5 @@
 using Domain.src.Interface;
+using Domain.src.ValueObject;
 using Shared.src.Error;
 using Shared.src.Interface.Command;
 
@@ -18,13 +19,15 @@ namespace Application.src.Features.UserAccount.Command.ChangeEmail
         public async Task<Result> Handle(ChangeEmailCommand request, CancellationToken cancellationToken)
         {
             var input = request.Input;
-            var newEmail = await _AccountManager.CreateEmail(input.Email);
+            var newEmail = Email.Create(input.Email);
             if(newEmail.IsFailure)
                 return Result.Fail(newEmail.Error);
-            var userExist = await _UnitOfWork.AccountReadRepository.GetById(input.Id);
-            var user = userExist.Value;
-            user.ChangeEmail(newEmail.Value);
-            await _UnitOfWork.AccountWriteRepository.Update(user);
+            var accountExist = await _UnitOfWork.AccountReadRepository.GetById(input.Id);
+            var account = accountExist.Value;
+            var emailChanged = await _AccountManager.ChangeEmail(account, newEmail.Value);
+            if(emailChanged.IsFailure)
+                    return Result.Fail(emailChanged.Error);
+            _UnitOfWork.AccountWriteRepository.Update(account);
             await _UnitOfWork.SaveChangesAsync(cancellationToken);
             return Result.Ok();
         }

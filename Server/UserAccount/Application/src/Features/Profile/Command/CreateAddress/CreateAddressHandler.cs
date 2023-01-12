@@ -18,12 +18,17 @@ namespace Application.src.Features.Profile.Command.CreateAddress
         public async Task<Result> Handle(CreateAddressCommand request, CancellationToken cancellationToken)
         {
             var input = request.Input;
-            var profileFound = await _UnitOfWork.UserReadRepository.GetById(input.Id);
-            var profile = profileFound.Value;
+            var personFound = await _UnitOfWork.PersonReadRepository.GetById(input.Id);
+            var person = personFound.Value;
             var newZipCode = ZipCode.Create(input.zipCode);
+            if (newZipCode.IsFailure)
+                return Result.Fail(newZipCode.Error);
             var newAddress = Address.Create(input.coutry,input.city,input.state,newZipCode.Value);
-            profile.CreateAddress(newAddress.Value);
-            await _UnitOfWork.UserWriteRepository.Update(profile);
+            if (newAddress.IsFailure)
+                return Result.Fail(newAddress.Error);
+            person.CreateAddress(newAddress.Value);
+
+            _UnitOfWork.PersonWriteRepository.Update(person);
             await _UnitOfWork.SaveChangesAsync(cancellationToken);
 
             return Result.Ok();

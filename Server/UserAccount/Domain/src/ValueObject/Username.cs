@@ -23,7 +23,7 @@ namespace Domain.src.ValueObject
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        internal static Result<Username> Create(string username){
+        public static Result<Username> Create(string username){
             Username newUsername = new(username);
             UsernameValidator validator = new();
             var result = validator.Validate(newUsername); 

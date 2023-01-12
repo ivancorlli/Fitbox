@@ -1,3 +1,4 @@
+using Domain.src.Abstractions;
 using Domain.src.Entity;
 using Domain.src.Error;
 using Domain.src.Interface;
@@ -14,33 +15,35 @@ namespace Domain.src.Service
             _AccountRepo = repo;
         }
 
-        public async Task<Result<IAccount>> CreateAccount(Username username, Email email, Password password)
+        /// <summary>
+        /// Create new account with valid credentials
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public async Task<Result<BaseAccount>> CreateAccount(Username username, Email email, string password)
         {
             var emailExists = await _AccountRepo.IsEmailInUse(email);
             if(emailExists)
-                return Result.Fail<IAccount>(new EmailAlreadyInUse(email.Value.ToString()));
+                return Result.Fail<BaseAccount>(new EmailAlreadyInUse(email.Value.ToString()));
             var usernameExists = await _AccountRepo.IsUsernameInUse(username);
             if(usernameExists)
-                return Result.Fail<IAccount>(new UsernameAlreadyInUse(username.Value.ToString()));
-            var newAccount = Account.Create(username,email,password.Value);
+                return Result.Fail<BaseAccount>(new UsernameAlreadyInUse(username.Value.ToString()));
+            var newAccount = Account.Create(username,email,password);
             if(newAccount.IsFailure)
-                return Result.Fail<IAccount>(new ValidationError(newAccount.Error.Message));
+                return Result.Fail<BaseAccount>(new ValidationError(newAccount.Error.Message));
             
-            return Result.Ok<IAccount>(newAccount.Value);
+            return Result.Ok<BaseAccount>(newAccount.Value);
         }
 
-        public async Task<Result<Phone>> CreatePhone(int areaCode, long number, string? prefix)
+        public async Task<Result> ChangePhone(BaseAccount account, Phone phone)
         {
-            var newPhone = Phone.Create(areaCode,number);
-            if(!string.IsNullOrEmpty(prefix)){
-                newPhone = Phone.Create(areaCode,number,prefix);
-            }
-            if(newPhone.IsFailure)
-                return Result.Fail<Phone>(newPhone.Error);
-            var phoneExists = await _AccountRepo.IsPhoneInUse(newPhone.Value);
+            var phoneExists = await _AccountRepo.IsPhoneInUse(phone);
             if(phoneExists)
-                return Result.Fail<Phone>(new PhoneAlreadyInUse(newPhone.Value.ToString()));
-            return Result.Ok<Phone>(newPhone.Value);
+                return Result.Fail<Phone>(new PhoneAlreadyInUse(phone.ToString()));
+            account.ChangePhone(phone);
+            return Result.Ok();
 
         }
     }

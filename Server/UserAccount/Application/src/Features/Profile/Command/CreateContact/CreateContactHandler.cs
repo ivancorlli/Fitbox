@@ -25,13 +25,13 @@ public class CreateContactHandler : IHandler<CreateContactCommand, Result>
         var phone = ContactPhone.Create(input.areaCode,input.number);
         if(phone.IsFailure)
             return Result.Fail(phone.Error);
-        var userFound = await _UnitOfWork.UserReadRepository.GetById(input.Id);
-        var user = userFound.Value;
-        user.CreateContact(name.Value,relationShip,phone.Value);
-        Task.WaitAll(
-            _UnitOfWork.UserWriteRepository.Update(user),
-            _UnitOfWork.SaveChangesAsync(cancellationToken)
-        );
+        var personFound = await _UnitOfWork.PersonReadRepository.GetById(input.Id);
+        var person= personFound.Value;
+        person.CreateContact(name.Value,relationShip,phone.Value);
+
+        _UnitOfWork.PersonWriteRepository.Update(person);
+        await _UnitOfWork.SaveChangesAsync(cancellationToken);
+        
         return Result.Ok();
 
     }

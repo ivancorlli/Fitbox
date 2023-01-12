@@ -1,16 +1,25 @@
 using Domain.src.Interface;
+using Infrastructure.src.Context;
+using Infrastructure.src.Repository;
 
 namespace Infrastructure.src.UOF
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public IAccountWriteRepository AccountWriteRepository => throw new NotImplementedException();
+        private readonly UserDbContext _Context;
 
-        public IAccountReadRepository AccountReadRepository => throw new NotImplementedException();
+        public UnitOfWork(UserDbContext context)
+        {
+            _Context = context;
+        }
 
-        public IUserReadRepository UserReadRepository => throw new NotImplementedException();
+        public IAccountWriteRepository AccountWriteRepository => new AccountWriteRepository(_Context);
 
-        public IUserWriteRepository UserWriteRepository => throw new NotImplementedException();
+        public IAccountReadRepository AccountReadRepository => new AccountReadRepository(_Context);
+
+        public IPersonReadRepository PersonReadRepository => new PersonReadRepository(_Context);
+
+        public IPersonWriteRepository PersonWriteRepository => new PersonWriteRepository(_Context);
 
         public void AuditableEntity()
         {

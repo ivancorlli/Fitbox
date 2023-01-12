@@ -3,18 +3,19 @@ using Shared.src.Interface.Command;
 using Domain.src.Entity;
 using Shared.src.Error;
 using AutoMapper;
+using Domain.src.ValueObject;
 
 namespace Application.src.Features.UserAccount.Command.CreateAccount
 {
     public class CreateAccountHandler : IHandler<CreateAccountCommand, Result>
     {
-        private readonly IAccountManager _UserManager;
+        private readonly IAccountManager _AccountManager;
         private readonly IUnitOfWork _UnitOfWork;
         private readonly IMapper _Mapper;
 
         public CreateAccountHandler(IAccountManager userManager, IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _UserManager = userManager;
+            _AccountManager = userManager;
             _UnitOfWork = unitOfWork;
             _Mapper = mapper;
         }
@@ -24,22 +25,22 @@ namespace Application.src.Features.UserAccount.Command.CreateAccount
             var input = request.newAccount;
 
             // Creamos nombre de usuario            
-            var Username = await _UserManager.CreateUsername(input.username);
-            if (Username.IsFailure)
-                return Result.Fail(Username.Error);
+            var username = Username.Create(input.username);
+            if (username.IsFailure)
+                return Result.Fail(username.Error);
             // Creamos emaiil
-            var Email = await _UserManager.CreateEmail(input.email);
-            if (Email.IsFailure)
-                return Result.Fail(Email.Error);
+            var email = Email.Create(input.email);
+            if (email.IsFailure)
+                return Result.Fail(email.Error);
             // Creamos usuario
-            var newAccount = Account.Create(Username.Value, Email.Value, input.password);
+            var newAccount = await _AccountManager.CreateAccount(username.Value, email.Value, input.password);
             if (newAccount.IsFailure)
                 return Result.Fail(newAccount.Error);
+
             // Guardamos usuario en base de datos
-            Task.WaitAll(
-            _UnitOfWork.AccountWriteRepository.Add(newAccount.Value),
-            _UnitOfWork.SaveChangesAsync(cancellationToken)
-            );
+            _UnitOfWork.AccountWriteRepository.Add(newAccount.Value);
+            await _UnitOfWork.SaveChangesAsync(cancellationToken);
+           
             return Result.Ok();
         }
     }

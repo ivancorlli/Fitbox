@@ -21,7 +21,7 @@ public class UpdateContactHandler : IHandler<UpdateContactCommand, Result>
     {
         var input = request.Input;
         // Obtenemos perfil
-        var profileFound = await _UnitOfWork.UserReadRepository.GetById(input.Id);
+        var profileFound = await _UnitOfWork.PersonReadRepository.GetById(input.Id);
         var profile = profileFound.Value;
         var contact = profile.EmergencyContact;
 
@@ -61,7 +61,7 @@ public class UpdateContactHandler : IHandler<UpdateContactCommand, Result>
                 phone == null ? contact.Phone : phone 
             );
 
-            await _UnitOfWork.UserWriteRepository.Update(profile);
+            _UnitOfWork.PersonWriteRepository.Update(profile);
             await _UnitOfWork.SaveChangesAsync(cancellationToken);
             return Result.Ok();
         }else {

@@ -1,20 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "+h8uOfYUO1u4GKFTM7s37jumR/9OY3X4a67cHyWXJH4pPtjkT+xflQ0NKfs5/rQsPoa1swONpxt/L8s5j+ADKQ==",
+  "dgSpecHash": "A78b0pZDw1KmTCXOeMdacmGGBI74gIrlMy6ZA/udp+GfV6ysZHKoYPtIKDkRiWaahJdKeiprXPJ4A2o09KcE5Q==",
   "success": true,
-  "projectFilePath": "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Application/Application.csproj",
+  "projectFilePath": "C:\\Users\\PC\\Desktop\\Fitbox\\Server\\UserAccount\\Application\\Application.csproj",
   "expectedPackageFiles": [
-    "/home/icorlli/.nuget/packages/automapper/12.0.0/automapper.12.0.0.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.0/automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/fluentvalidation/11.4.0/fluentvalidation.11.4.0.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/mediatr/11.1.0/mediatr.11.1.0.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "C:\\Users\\PC\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\mediatr\\11.1.0\\mediatr.11.1.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

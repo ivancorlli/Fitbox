@@ -17,13 +17,13 @@ namespace Application.src.Features.UserAccount.Command.ChangePassword
         public async Task<Result> Handle(ChangePasswordCommand request, CancellationToken cancellationToken)
         {
             var input = request.Input;
-            var userExist= await _UnitOfWork.AccountReadRepository.GetById(input.Id);
-            var user = userExist.Value;
-            var passChanged = user.ChangePassword(input.Password);
+            var accountExist= await _UnitOfWork.AccountReadRepository.GetById(input.Id);
+            var account = accountExist.Value;
+            var passChanged = account.ChangePassword(input.Password);
             if(passChanged.IsFailure)
                 return Result.Fail(passChanged.Error);
 
-            await _UnitOfWork.AccountWriteRepository.Update(user);
+            _UnitOfWork.AccountWriteRepository.Update(account);
             await _UnitOfWork.SaveChangesAsync(cancellationToken);
             return Result.Ok();
         }

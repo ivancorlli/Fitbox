@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.src.Data;
 
-public class UserConfiguration : IEntityTypeConfiguration<User>
+public class PersonConfiguration : IEntityTypeConfiguration<Person>
 {
-    public void Configure(EntityTypeBuilder<User> builder)
+    public void Configure(EntityTypeBuilder<Person> builder)
     {
         builder.HasKey(x => x.Id);
         // Name

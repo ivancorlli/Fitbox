@@ -17,10 +17,10 @@ public class DeleteContactHandler : IHandler<DeleteContactCommand, Result>
     public async Task<Result> Handle(DeleteContactCommand request, CancellationToken cancellationToken)
     {
         var input = request.Input;
-        var profileFound = await _UnitOfWork.UserReadRepository.GetById(input.Id);
+        var profileFound = await _UnitOfWork.PersonReadRepository.GetById(input.Id);
         var profile = profileFound.Value;
         profile.DeleteContact();
-        await _UnitOfWork.UserWriteRepository.Update(profile);
+        _UnitOfWork.PersonWriteRepository.Update(profile);
         await _UnitOfWork.SaveChangesAsync(cancellationToken);
         return Result.Ok();
     }

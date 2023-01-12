@@ -18,7 +18,7 @@ public class UpdateMedicalInfoHandler : IHandler<UpdateMedicalInfoCommand, Resul
     public async Task<Result> Handle(UpdateMedicalInfoCommand request, CancellationToken cancellationToken)
     {
         var input = request.Input;
-        var profileFound = await _UnitOfWork.UserReadRepository.GetById(input.Id);
+        var profileFound = await _UnitOfWork.PersonReadRepository.GetById(input.Id);
         var profile = profileFound.Value;
         var medical = profile.Medical;
 
@@ -29,7 +29,7 @@ public class UpdateMedicalInfoHandler : IHandler<UpdateMedicalInfoCommand, Resul
             {
                 var newInfo = MedicalInfo.Create(input.disabilities);
                 profile.CreateMedicalInfo(newInfo.Value);
-                await _UnitOfWork.UserWriteRepository.Update(profile);
+                _UnitOfWork.PersonWriteRepository.Update(profile);
                 await _UnitOfWork.SaveChangesAsync(cancellationToken);
                
             }

@@ -12,8 +12,6 @@ namespace Domain.src.Entity
         {
         }
 
-        public bool PhoneVerified {get;private set;}
-        public Phone? Phone {get;private set;}
 
         internal static Result<Account> Create(Username username, Email email, string password)
         { 
@@ -27,32 +25,6 @@ namespace Domain.src.Entity
             newAccount.RaiseDomainEvent(new AccountCreated());
             return Result.Ok<Account>(newAccount);
         }
-
-        /// <summary>
-        /// Cambia el numero de telefono
-        /// </summary>
-        /// <param name="phone"></param>
-        public void ChangePhone(Phone phone){
-            Phone = phone;
-            UnverifyPhone();
-            EntityUpdated();
-        }
-
-        /// <summary>
-        /// Verifica el telefono
-        /// </summary>
-        public void VerifyPhone(){
-            PhoneVerified = true;
-            EntityUpdated();
-        }
-
-        /// <summary>
-        /// Desverifica el telefono
-        /// </summary>
-        private void  UnverifyPhone(){
-            PhoneVerified = false;
-            EntityUpdated();
-        }  
         
     }
 }

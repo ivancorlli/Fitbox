@@ -1,5 +1,6 @@
 
 using System.Runtime.CompilerServices;
+using Domain.src.Abstractions;
 using Domain.src.Entity;
 using Domain.src.ValueObject;
 using Shared.src.Error;

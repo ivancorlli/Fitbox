@@ -1,35 +1,30 @@
 using Domain.src.Entity;
 using Domain.src.Interface;
 using Infrastructure.src.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.src.Repository
 {
     public class AccountWriteRepository : IAccountWriteRepository
     {
-    private readonly UserAccountDbContext _AccountContext; 
-    public AccountWriteRepository(UserAccountDbContext context)
+    private readonly UserDbContext _AccountContext; 
+    public AccountWriteRepository(UserDbContext context)
     {   
         _AccountContext = context;
     }
-
-        public Task Add(Account Entity)
+        public void Add(Account Entity)
         {
-            throw new NotImplementedException();
+            var newAccount = _AccountContext.Account.Add(Entity);
         }
 
-        public Task AddAccount(Account account)
+        public void Delete(Account Entity)
         {
-            throw new NotImplementedException();
+            var accountDeleted = _AccountContext.Account.Remove(Entity);
         }
 
-        public Task Delete(Account Entity)
+        public void Update(Account entity)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task Update(Account account)
-        {
-            throw new NotImplementedException();
+            var accountUpdated = _AccountContext.Account.Update(entity);
         }
     }
 }

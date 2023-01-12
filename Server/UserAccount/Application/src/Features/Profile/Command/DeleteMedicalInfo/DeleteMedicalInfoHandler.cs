@@ -16,10 +16,10 @@ public class DeleteMedicalInfoHandler : IHandler<DeleteMedicalInfoCommand, Resul
     public async Task<Result> Handle(DeleteMedicalInfoCommand request, CancellationToken cancellationToken)
     {
         var input = request.Input;
-        var profileFound = await _UnitOfWork.UserReadRepository.GetById(input.Id);
+        var profileFound = await _UnitOfWork.PersonReadRepository.GetById(input.Id);
         var profile = profileFound.Value;
         profile.DeleteMedicalInfo();
-        await _UnitOfWork.UserWriteRepository.Update(profile);
+        _UnitOfWork.PersonWriteRepository.Update(profile);
         await _UnitOfWork.SaveChangesAsync(cancellationToken);
         return Result.Ok();
     }

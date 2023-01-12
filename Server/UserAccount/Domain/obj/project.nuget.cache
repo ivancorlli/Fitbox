@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "m1W4Fm2FBzC7rGK0x8uW60U1AwNxMDTrj5/vgD9IOtiHt5sL1l0CoQ4dKeEenENWw90i+31xyk/clCwFn/5oBg==",
+  "dgSpecHash": "ev9gdZYWaqmQC0C0GXd2xMgoQNWHZNYQvS9qs8bSV8UR59ZIEtL7XsWH4qz8zl/DpFW6mayLlRr81mFCAJDpNA==",
   "success": true,
-  "projectFilePath": "/home/icorlli/Desktop/Fitbox/Server/UserAccount/Domain/Domain.csproj",
+  "projectFilePath": "C:\\Users\\PC\\Desktop\\Fitbox\\Server\\UserAccount\\Domain\\Domain.csproj",
   "expectedPackageFiles": [
-    "/home/icorlli/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/fluentvalidation/11.4.0/fluentvalidation.11.4.0.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/mediatr/11.1.0/mediatr.11.1.0.nupkg.sha512",
-    "/home/icorlli/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512"
+    "C:\\Users\\PC\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\mediatr\\11.1.0\\mediatr.11.1.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512"
   ],
   "logs": []
 }

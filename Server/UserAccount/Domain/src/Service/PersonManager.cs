@@ -1,3 +1,4 @@
+using Domain.src.Abstractions;
 using Domain.src.Entity;
 using Domain.src.Enum;
 using Domain.src.Error;
@@ -16,15 +17,15 @@ public class PersonManager:IPersonManager
         _PersonRepo = personRepo;
     }
 
-    public async Task<Result<IPerson>> CreatePerson(Guid account, PersonName name, Gender gender, DateTime birth)
+    public async Task<Result<BasePerson>> CreatePerson(Guid account, PersonName name, Gender gender, DateTime birth)
     {
         var personExists = await _PersonRepo.GetById(account);
         if(personExists.IsSuccess)
-            return Result.Fail<IPerson>(new PersonExists(personExists.Value.Name.ToString()));
+            return Result.Fail<BasePerson>(new PersonExists(personExists.Value.Name.ToString()));
         var newPerson = Person.Create(account,name,gender,birth);
         if(newPerson.IsFailure)
-            return Result.Fail<IPerson>(new ValidationError(newPerson.Error.Message));
+            return Result.Fail<BasePerson>(new ValidationError(newPerson.Error.Message));
 
-            return Result.Ok<IPerson>(newPerson.Value);
+            return Result.Ok<BasePerson>(newPerson.Value);
     }
 }

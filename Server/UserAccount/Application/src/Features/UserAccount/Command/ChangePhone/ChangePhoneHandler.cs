@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.src.Interface;
+using Domain.src.ValueObject;
 using Shared.src.Error;
 using Shared.src.Interface.Command;
 
@@ -22,13 +23,16 @@ namespace Application.src.Features.UserAccount.Command.ChangePhone
         public async Task<Result> Handle(ChangePhoneCommand request, CancellationToken cancellationToken)
         {
             var input = request.input;
-            var phone = await _AccountManager.CreatePhone(input.area,input.number,input.prefix);
+            var phone = Phone.Create(input.area,input.number);
             if(phone.IsFailure)
                 return Result.Fail(phone.Error);
-            var userExist = await _UnitOfWork.AccountReadRepository.GetById(input.id);
-            var user = userExist.Value;
-            user.ChangePhone(phone.Value);
-            await _UnitOfWork.AccountWriteRepository.Update(user);
+            var accountExist = await _UnitOfWork.AccountReadRepository.GetById(input.id);
+            var account = accountExist.Value;
+            var phoneChanged = await _AccountManager.ChangePhone(account,phone.Value);
+            if(phoneChanged.IsFailure)
+                return Result.Fail(phoneChanged.Error);
+
+            _UnitOfWork.AccountWriteRepository.Update(account);
             await _UnitOfWork.SaveChangesAsync(cancellationToken);
             return Result.Ok();
         }

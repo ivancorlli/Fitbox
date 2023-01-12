@@ -31,7 +31,7 @@ namespace Domain.src.ValueObject
         /// <param name="areaCode"></param>
         /// <param name="number"></param>
         /// <returns></returns>
-        internal static Result<Phone> Create(int areaCode,long number){
+        public static Result<Phone> Create(int areaCode,long number){
             Phone phone = new(areaCode,number);
             PhoneValidator validator = new();
             var result = validator.Validate(phone,options=>options.IncludeRuleSets("Phone"));
@@ -50,7 +50,7 @@ namespace Domain.src.ValueObject
        /// <param name="number"></param>
        /// <param name="prefix"></param>
        /// <returns></returns>
-        internal static Result<Phone> Create(int areaCode,long number,string prefix){
+        public static Result<Phone> Create(int areaCode,long number,string prefix){
             Phone phone = new(areaCode,number,prefix);
             PhoneValidator validator = new();
             var result = validator.Validate(phone,options=>options.IncludeAllRuleSets());

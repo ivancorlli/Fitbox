@@ -17,10 +17,10 @@ public class VerifyPhoneHandler : IHandler<VerifyPhoneCommand, Result>
     public async Task<Result> Handle(VerifyPhoneCommand request, CancellationToken cancellationToken)
     {
         var input = request.Input;
-        var userExist = await _UnitOfWork.AccountReadRepository.GetById(input.Id);
-        var user = userExist.Value;
-        user.VerifyPhone();
-        await _UnitOfWork.AccountWriteRepository.Update(user);
+        var accountExists = await _UnitOfWork.AccountReadRepository.GetById(input.Id);
+        var account = accountExists.Value;
+        account.VerifyPhone();
+        _UnitOfWork.AccountWriteRepository.Update(account);
         await _UnitOfWork.SaveChangesAsync(cancellationToken);
         return Result.Ok();
     }

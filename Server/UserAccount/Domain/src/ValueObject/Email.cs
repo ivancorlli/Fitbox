@@ -25,7 +25,7 @@ namespace Domain.src.ValueObject
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        internal static Result<Email> Create(string email){
+        public static Result<Email> Create(string email){
             Email newEmail = new(email);
             EmailValidator validator = new();
             ValidationResult result = validator.Validate(newEmail);

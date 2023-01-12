@@ -4,4 +4,4 @@ using Shared.src.Interface.Command;
 
 namespace Application.src.Features.Profile.Command.CreateUser;
 
-public sealed record CreateUserCommand(CreateUserInput Input) : ICommand<Result>;
+public sealed record CreatePersonCommand(CreatePersonInput Input) : ICommand<Result>;

@@ -18,13 +18,14 @@ public class CreateMedicalInfoHandler:IHandler<CreateMedicalInfoCommand,Result>
     {
         var input = request.Input;
         var medicalRecord = MedicalInfo.Create(input.disabilities);
-        var userFound = await _UnitOfWork.UserReadRepository.GetById(input.Id);
+        if (medicalRecord.IsFailure)
+            return Result.Fail(medicalRecord.Error);
+        var userFound = await _UnitOfWork.PersonReadRepository.GetById(input.Id);
         var user = userFound.Value;
         user.CreateMedicalInfo(medicalRecord.Value);
-        Task.WaitAll(
-                 _UnitOfWork.UserWriteRepository.Update(user),
-                _UnitOfWork.SaveChangesAsync(cancellationToken)
-        );
+
+        _UnitOfWork.PersonWriteRepository.Update(user);
+        await _UnitOfWork.SaveChangesAsync(cancellationToken);
         return Result.Ok();
     }
 }

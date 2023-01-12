@@ -15,6 +15,8 @@ public abstract class BaseAccount : AggregateRoot, IAccount
     public Password Password { get; protected set; }
     public bool IsNew { get; protected set; }
     public bool EmailVerified { get; protected set; }
+    public bool PhoneVerified {get;private set;}
+    public Phone? Phone {get;private set;}
 
     protected BaseAccount(Username username, Email email, Password password)
     {
@@ -30,7 +32,7 @@ public abstract class BaseAccount : AggregateRoot, IAccount
         /// Cambia el nombre de usuario
         /// </summary>
         /// <param name="username"></param>
-        public void ChangeUsername(Username username){
+        internal void ChangeUsername(Username username){
             Username = username;
             EntityUpdated();
         }
@@ -39,7 +41,7 @@ public abstract class BaseAccount : AggregateRoot, IAccount
         /// Cambia el email
         /// </summary>
         /// <param name="email"></param>
-        public void ChangeEmail(Email email){
+        internal void ChangeEmail(Email email){
             Email = email;
             UnverifyEmail();
             EntityUpdated();
@@ -86,6 +88,32 @@ public abstract class BaseAccount : AggregateRoot, IAccount
             EmailVerified = false;
             EntityUpdated();
         }
+
+     /// <summary>
+        /// Cambia el numero de telefono
+        /// </summary>
+        /// <param name="phone"></param>
+        internal void ChangePhone(Phone phone){
+            Phone = phone;
+            UnverifyPhone();
+            EntityUpdated();
+        }
+
+        /// <summary>
+        /// Verifica el telefono
+        /// </summary>
+        public void VerifyPhone(){
+            PhoneVerified = true;
+            EntityUpdated();
+        }
+
+        /// <summary>
+        /// Desverifica el telefono
+        /// </summary>
+        private void  UnverifyPhone(){
+            PhoneVerified = false;
+            EntityUpdated();
+        }  
 
         // ============================ VALIDACIONES ================================================================ //
          protected static Result ValidPasswordData(Username username,Email email,string password){
