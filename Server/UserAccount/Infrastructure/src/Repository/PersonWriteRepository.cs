@@ -18,9 +18,9 @@ namespace Infrastructure.src.Repository
             _PersonContext = pContx;
         }
 
-        public void Add(Person Entity)
+        public async Task AddAsync(Person Entity)
         {
-            var personCreated = _PersonContext.Person.Add(Entity);
+            var personCreated = await _PersonContext.Person.AddAsync(Entity);
         }
 
         public void Delete(Person entity)

@@ -15,6 +15,7 @@ namespace Infrastructure.src.Context
 
          protected override void OnModelCreating(ModelBuilder modelBuilder)
          {
+            modelBuilder.ApplyConfiguration(new AccountConfiguration());
             modelBuilder.ApplyConfiguration(new PersonConfiguration());
          }
 

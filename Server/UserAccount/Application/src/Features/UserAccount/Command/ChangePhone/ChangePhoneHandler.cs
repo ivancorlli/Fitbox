@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.src.Errors;
 using Domain.src.Interface;
 using Domain.src.ValueObject;
 using Shared.src.Error;
@@ -26,13 +27,14 @@ namespace Application.src.Features.UserAccount.Command.ChangePhone
             var phone = Phone.Create(input.area,input.number);
             if(phone.IsFailure)
                 return Result.Fail(phone.Error);
-            var accountExist = await _UnitOfWork.AccountReadRepository.GetById(input.id);
-            var account = accountExist.Value;
-            var phoneChanged = await _AccountManager.ChangePhone(account,phone.Value);
+            var accountExist = await _UnitOfWork.AccountReadRepository.GetByIdAsync(input.id);
+            if(accountExist == null)
+                return Result.Fail(new AccountNotExists());
+            var phoneChanged = await _AccountManager.ChangePhone(accountExist,phone.Value);
             if(phoneChanged.IsFailure)
                 return Result.Fail(phoneChanged.Error);
 
-            _UnitOfWork.AccountWriteRepository.Update(account);
+            _UnitOfWork.AccountWriteRepository.Update(accountExist);
             await _UnitOfWork.SaveChangesAsync(cancellationToken);
             return Result.Ok();
         }

@@ -1,3 +1,4 @@
+using Application.src.Errors;
 using Domain.src.Enum;
 using Domain.src.Interface;
 using Domain.src.ValueObject;
@@ -25,11 +26,12 @@ public class CreateContactHandler : IHandler<CreateContactCommand, Result>
         var phone = ContactPhone.Create(input.areaCode,input.number);
         if(phone.IsFailure)
             return Result.Fail(phone.Error);
-        var personFound = await _UnitOfWork.PersonReadRepository.GetById(input.Id);
-        var person= personFound.Value;
-        person.CreateContact(name.Value,relationShip,phone.Value);
+        var personFound = await _UnitOfWork.PersonReadRepository.GetByIdAsync(input.Id);
+        if(personFound == null)
+            return Result.Fail(new PersonNotExists());
+        personFound.CreateContact(name.Value,relationShip,phone.Value);
 
-        _UnitOfWork.PersonWriteRepository.Update(person);
+        _UnitOfWork.PersonWriteRepository.Update(personFound);
         await _UnitOfWork.SaveChangesAsync(cancellationToken);
         
         return Result.Ok();

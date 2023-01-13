@@ -29,7 +29,7 @@ public class CreatePersonHandler : IHandler<CreatePersonCommand, Result>
         var newProfile = await _PersonManager.CreatePerson(input.AccountID,name.Value,gender,input.birth);
         if(newProfile.IsFailure)
             return Result.Fail(newProfile.Error);
-        _UnitOfWork.PersonWriteRepository.Add(newProfile.Value);
+        await _UnitOfWork.PersonWriteRepository.AddAsync(newProfile.Value);
         await _UnitOfWork.SaveChangesAsync(cancellationToken);
         return Result.Ok();
     }

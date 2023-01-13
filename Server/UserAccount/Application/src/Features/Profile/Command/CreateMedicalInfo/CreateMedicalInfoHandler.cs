@@ -1,3 +1,4 @@
+using Application.src.Errors;
 using Domain.src.Interface;
 using Domain.src.ValueObject;
 using Shared.src.Error;
@@ -20,11 +21,12 @@ public class CreateMedicalInfoHandler:IHandler<CreateMedicalInfoCommand,Result>
         var medicalRecord = MedicalInfo.Create(input.disabilities);
         if (medicalRecord.IsFailure)
             return Result.Fail(medicalRecord.Error);
-        var userFound = await _UnitOfWork.PersonReadRepository.GetById(input.Id);
-        var user = userFound.Value;
-        user.CreateMedicalInfo(medicalRecord.Value);
+        var personFound = await _UnitOfWork.PersonReadRepository.GetByIdAsync(input.Id);
+        if(personFound == null)
+            return Result.Fail(new PersonNotExists());
+        personFound.CreateMedicalInfo(medicalRecord.Value);
 
-        _UnitOfWork.PersonWriteRepository.Update(user);
+        _UnitOfWork.PersonWriteRepository.Update(personFound);
         await _UnitOfWork.SaveChangesAsync(cancellationToken);
         return Result.Ok();
     }

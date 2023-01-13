@@ -22,29 +22,47 @@ namespace Domain.src.Service
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public async Task<Result<BaseAccount>> CreateAccount(Username username, Email email, string password)
+        public async Task<Result<Account>> CreateAccount(Username username, Email email, string password)
         {
-            var emailExists = await _AccountRepo.IsEmailInUse(email);
+            var emailExists = await _AccountRepo.IsEmailInUseAsync(email);
             if(emailExists)
-                return Result.Fail<BaseAccount>(new EmailAlreadyInUse(email.Value.ToString()));
-            var usernameExists = await _AccountRepo.IsUsernameInUse(username);
+                return Result.Fail<Account>(new EmailAlreadyInUse(email.Value.ToString()));
+            var usernameExists = await _AccountRepo.IsUsernameInUseAsync(username);
             if(usernameExists)
-                return Result.Fail<BaseAccount>(new UsernameAlreadyInUse(username.Value.ToString()));
+                return Result.Fail<Account>(new UsernameAlreadyInUse(username.Value.ToString()));
             var newAccount = Account.Create(username,email,password);
             if(newAccount.IsFailure)
-                return Result.Fail<BaseAccount>(new ValidationError(newAccount.Error.Message));
+                return Result.Fail<Account>(new ValidationError(newAccount.Error.Message));
             
-            return Result.Ok<BaseAccount>(newAccount.Value);
+            return Result.Ok<Account>(newAccount.Value);
         }
 
         public async Task<Result> ChangePhone(BaseAccount account, Phone phone)
         {
-            var phoneExists = await _AccountRepo.IsPhoneInUse(phone);
+            var phoneExists = await _AccountRepo.IsPhoneInUseAsync(phone);
             if(phoneExists)
-                return Result.Fail<Phone>(new PhoneAlreadyInUse(phone.ToString()));
+                return Result.Fail(new PhoneAlreadyInUse(phone.ToString()));
             account.ChangePhone(phone);
             return Result.Ok();
 
+        }
+
+        public async Task<Result> ChangeEmail(BaseAccount account, Email email)
+        {
+            var emailExists = await _AccountRepo.IsEmailInUseAsync(email);
+            if(emailExists)
+                return Result.Fail(new EmailAlreadyInUse(email.Value.ToString()));
+            account.ChangeEmail(email);
+            return Result.Ok();
+        }
+
+        public async Task<Result> ChangeUsername(BaseAccount account, Username username)
+        {
+            var emailExists = await _AccountRepo.IsUsernameInUseAsync(username);
+            if(emailExists)
+                return Result.Fail(new EmailAlreadyInUse(username.Value.ToString()));
+            account.ChangeUsername(username);
+            return Result.Ok();
         }
     }
 }

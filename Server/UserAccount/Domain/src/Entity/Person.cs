@@ -11,6 +11,7 @@ namespace Domain.src.Entity
 
     public class Person:BasePerson
     {
+        private Person(){}
         private Person(Guid account, PersonName name, Gender gender, DateTime birth) : base(account, name, gender, birth)
         {
         }

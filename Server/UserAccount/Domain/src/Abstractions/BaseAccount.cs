@@ -9,10 +9,11 @@ namespace Domain.src.Abstractions;
 
 public abstract class BaseAccount : AggregateRoot, IAccount
 {
-    public Username Username { get; protected set; }
-    public Email Email { get; protected set; }
+    protected BaseAccount(){}
+    public Username Username { get; protected set; } = default!;
+    public Email Email { get; protected set; } = default!;
     public AccountStatus Status { get; protected set; }
-    public Password Password { get; protected set; }
+    public Password Password { get; protected set; } = default!;
     public bool IsNew { get; protected set; }
     public bool EmailVerified { get; protected set; }
     public bool PhoneVerified {get;private set;}

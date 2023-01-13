@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.src.Errors;
 using Domain.src.Interface;
 using Shared.src.Error;
 using Shared.src.Interface.Command;
@@ -20,10 +21,11 @@ public class VerifyEmailHandler : IHandler<VerifyEmailCommand, Result>
     public async Task<Result> Handle(VerifyEmailCommand request, CancellationToken cancellationToken)
     {
         var input = request.Input;
-        var accountExist = await _UnitOfWork.AccountReadRepository.GetById(input.Id);
-        var account = accountExist.Value;
-        account.VerifyEmail();
-        _UnitOfWork.AccountWriteRepository.Update(account);
+        var accountExist = await _UnitOfWork.AccountReadRepository.GetByIdAsync(input.Id);
+        if(accountExist == null)
+            return Result.Fail(new AccountNotExists());
+        accountExist.VerifyEmail();
+        _UnitOfWork.AccountWriteRepository.Update(accountExist);
         await _UnitOfWork.SaveChangesAsync(cancellationToken);
         return Result.Ok();
     }

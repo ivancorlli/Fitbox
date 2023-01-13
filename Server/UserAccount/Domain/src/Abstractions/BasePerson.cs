@@ -8,12 +8,13 @@ using Shared.src.Error;
 namespace Domain.src.Abstractions
 {
     public abstract class BasePerson : AggregateRoot, IPerson
-    {
-        public Guid AccountId { get; init; }
-        public PersonName Name { get; protected set;}
+    {   
+        protected BasePerson(){}
+        public Guid AccountId { get; init; } 
+        public PersonName Name { get; protected set;} = default!;
         public Gender Gender { get; protected set;}
-        public DateTime Birth { get; protected set;}
-        public Address? Address { get; protected set;}
+        public DateTime Birth { get; protected set;} 
+        public Address? Address { get; protected set;} 
 
         /// <summary>
         /// Create a base person

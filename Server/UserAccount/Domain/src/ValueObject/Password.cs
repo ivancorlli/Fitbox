@@ -11,8 +11,8 @@ namespace Domain.src.ValueObject
         public static int MinLenght = 7;
         public static int MaxLength = 25;     
 
-        public string Value {get;private set;}   
-
+        public string Value {get;private set;} = default!;   
+        private Password(){}
         private Password(string password){
             Value = password;
         }

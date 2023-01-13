@@ -10,3 +10,15 @@
 /home/icorlli/Fitbox/Server/Shared/obj/Debug/net7.0/refint/Shared.dll
 /home/icorlli/Fitbox/Server/Shared/obj/Debug/net7.0/Shared.pdb
 /home/icorlli/Fitbox/Server/Shared/obj/Debug/net7.0/ref/Shared.dll
+/home/icorlli/Desktop/Fitbox/Server/Shared/bin/Debug/net7.0/Shared.deps.json
+/home/icorlli/Desktop/Fitbox/Server/Shared/bin/Debug/net7.0/Shared.dll
+/home/icorlli/Desktop/Fitbox/Server/Shared/bin/Debug/net7.0/Shared.pdb
+/home/icorlli/Desktop/Fitbox/Server/Shared/obj/Debug/net7.0/Shared.csproj.AssemblyReference.cache
+/home/icorlli/Desktop/Fitbox/Server/Shared/obj/Debug/net7.0/Shared.GeneratedMSBuildEditorConfig.editorconfig
+/home/icorlli/Desktop/Fitbox/Server/Shared/obj/Debug/net7.0/Shared.AssemblyInfoInputs.cache
+/home/icorlli/Desktop/Fitbox/Server/Shared/obj/Debug/net7.0/Shared.AssemblyInfo.cs
+/home/icorlli/Desktop/Fitbox/Server/Shared/obj/Debug/net7.0/Shared.csproj.CoreCompileInputs.cache
+/home/icorlli/Desktop/Fitbox/Server/Shared/obj/Debug/net7.0/Shared.dll
+/home/icorlli/Desktop/Fitbox/Server/Shared/obj/Debug/net7.0/refint/Shared.dll
+/home/icorlli/Desktop/Fitbox/Server/Shared/obj/Debug/net7.0/Shared.pdb
+/home/icorlli/Desktop/Fitbox/Server/Shared/obj/Debug/net7.0/ref/Shared.dll

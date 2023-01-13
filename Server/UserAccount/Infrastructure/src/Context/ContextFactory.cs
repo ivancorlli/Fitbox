@@ -6,7 +6,7 @@ namespace Infrastructure.src.Context;
 
 public class ContextFactory : IDesignTimeDbContextFactory<UserDbContext>
 {
-    private readonly string Connection = "server=localhost;port=3306;user=icorlli;password=A1jc8D62;database=usercontext";
+    private readonly string Connection = "server=localhost;port=3306;user=fitboxserver;password=A1jc8D62;database=usercontext";
     public UserDbContext CreateDbContext(string[] args)
     {
         var config = new DbContextOptionsBuilder<UserDbContext>();

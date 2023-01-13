@@ -10,9 +10,9 @@ namespace Domain.src.Interface
 {
     public interface IAccountReadRepository:IReadRepository<Account>
     {
-        public bool IsEmailInUse(Email email);
-        public bool IsPhoneInUse(Phone phone);
-        public bool IsUsernameInUse(Username username);
-        public List<Account> FindByEmailOrUsername(string access);
+        public Task<bool> IsEmailInUseAsync(Email email);
+        public Task<bool> IsPhoneInUseAsync(Phone phone);
+        public Task<bool> IsUsernameInUseAsync(Username username);
+        public Task<List<Account>> FindByEmailOrUsernameAsync(string access);
     }
 }

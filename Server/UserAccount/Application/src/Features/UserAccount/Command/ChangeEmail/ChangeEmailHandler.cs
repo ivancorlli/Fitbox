@@ -1,3 +1,4 @@
+using Application.src.Errors;
 using Domain.src.Interface;
 using Domain.src.ValueObject;
 using Shared.src.Error;
@@ -22,12 +23,13 @@ namespace Application.src.Features.UserAccount.Command.ChangeEmail
             var newEmail = Email.Create(input.Email);
             if(newEmail.IsFailure)
                 return Result.Fail(newEmail.Error);
-            var accountExist = await _UnitOfWork.AccountReadRepository.GetById(input.Id);
-            var account = accountExist.Value;
-            var emailChanged = await _AccountManager.ChangeEmail(account, newEmail.Value);
+            var accountExist = await _UnitOfWork.AccountReadRepository.GetByIdAsync(input.Id);
+            if(accountExist == null)
+                return Result.Fail(new AccountNotExists());
+            var emailChanged = await _AccountManager.ChangeEmail(accountExist, newEmail.Value);
             if(emailChanged.IsFailure)
                     return Result.Fail(emailChanged.Error);
-            _UnitOfWork.AccountWriteRepository.Update(account);
+            _UnitOfWork.AccountWriteRepository.Update(accountExist);
             await _UnitOfWork.SaveChangesAsync(cancellationToken);
             return Result.Ok();
         }

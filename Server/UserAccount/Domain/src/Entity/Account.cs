@@ -8,6 +8,7 @@ namespace Domain.src.Entity
 {
     public class Account:BaseAccount
     {
+        private Account(){}
         private Account(Username username, Email email, Password password) : base(username, email, password)
         {
         }

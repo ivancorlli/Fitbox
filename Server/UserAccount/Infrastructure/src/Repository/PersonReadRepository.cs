@@ -10,9 +10,9 @@ public sealed class PersonReadRepository : IPersonReadRepository
     private readonly UserDbContext _PersonContext;
 
     public PersonReadRepository(UserDbContext personContext) => _PersonContext = personContext;
-    public Person? GetById(Guid Id)
+    public async Task<Person?> GetByIdAsync(Guid Id)
     {
-        var personFound = _PersonContext.Person.Find(Id);
+        var personFound = await _PersonContext.Person.FindAsync(Id);
         return personFound;
     }
 }

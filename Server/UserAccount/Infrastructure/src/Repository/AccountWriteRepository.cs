@@ -12,14 +12,14 @@ namespace Infrastructure.src.Repository
     {   
         _AccountContext = context;
     }
-        public void Add(Account Entity)
+        public async Task AddAsync(Account Entity)
         {
-            var newAccount = _AccountContext.Account.Add(Entity);
+            var newAccount =await _AccountContext.Account.AddAsync(Entity);
         }
 
-        public void Delete(Account Entity)
+        public  void Delete(Account Entity)
         {
-            var accountDeleted = _AccountContext.Account.Remove(Entity);
+            var accountDeleted =  _AccountContext.Set<Account>().Remove(Entity);
         }
 
         public void Update(Account entity)

@@ -12,7 +12,9 @@ namespace Domain.src.ValueObject
         public static int MaxLength = 15;
         public static int MinLegth = 4;
         public static Regex Reg = new Regex("^[a-zA-Z0-9._]+$");
-        public string Value {get;}
+        public string Value {get;} = default!;
+
+        private Username(){}
 
         private Username(string value){
             Value = value.ToLower();

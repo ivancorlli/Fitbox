@@ -21,9 +21,10 @@ public class UpdateContactHandler : IHandler<UpdateContactCommand, Result>
     {
         var input = request.Input;
         // Obtenemos perfil
-        var profileFound = await _UnitOfWork.PersonReadRepository.GetById(input.Id);
-        var profile = profileFound.Value;
-        var contact = profile.EmergencyContact;
+        var personFound = await _UnitOfWork.PersonReadRepository.GetByIdAsync(input.Id);
+        if(personFound == null)
+            return Result.Fail(new PersonNotExists());
+        var contact = personFound.EmergencyContact;
 
         if (contact != null)
         {
@@ -55,13 +56,13 @@ public class UpdateContactHandler : IHandler<UpdateContactCommand, Result>
             }
 
             // Actualizamos contacto
-            profile.CreateContact(
+            personFound.CreateContact(
                 name == null ? contact.Name : name,
                 relationship == null ? contact.RelationShip : relationship.Value,
                 phone == null ? contact.Phone : phone 
             );
 
-            _UnitOfWork.PersonWriteRepository.Update(profile);
+            _UnitOfWork.PersonWriteRepository.Update(personFound);
             await _UnitOfWork.SaveChangesAsync(cancellationToken);
             return Result.Ok();
         }else {

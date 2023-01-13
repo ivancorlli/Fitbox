@@ -14,28 +14,28 @@ public class AccountReadRepository : IAccountReadRepository
         _AccountContext = context;
     }
 
-    public List<Account> FindByEmailOrUsername(string access)
+    public async Task<List<Account>> FindByEmailOrUsernameAsync(string access)
     {
-        var accountFound = _AccountContext.Account
+        var accountFound = await _AccountContext.Account
                          .Where(ac => ac.Email.Value == access || ac.Username.Value == access)
-                         .ToList();
+                         .ToListAsync();
 
         return accountFound;
     }
 
-    public Account? GetById(Guid Id)
+    public async Task<Account?> GetByIdAsync(Guid Id)
     {
-        var accountFound = _AccountContext.Account.Find(Id);
+        var accountFound = await _AccountContext.Account.FindAsync(Id);
         return accountFound;
     }
 
 
-    public bool IsEmailInUse(Email email)
+    public async Task<bool> IsEmailInUseAsync(Email email)
     {
         var response = false;
-        var emailExists = _AccountContext.Account
+        var emailExists = await _AccountContext.Account
                          .Where(ac => ac.Email == email)
-                         .ToList();
+                         .ToListAsync();
         if(emailExists.Count > 0)
         {
             response = true;
@@ -47,12 +47,12 @@ public class AccountReadRepository : IAccountReadRepository
         return response;
     }
 
-    public bool IsPhoneInUse(Phone phone)
+    public async Task<bool> IsPhoneInUseAsync(Phone phone)
     {
         var response = false;
-        var emailExists = _AccountContext.Account
+        var emailExists = await _AccountContext.Account
                           .Where(ac => ac.Phone == phone)
-                          .ToList();
+                          .ToListAsync();
         if (emailExists.Count > 0)
         {
             response = true;
@@ -64,12 +64,12 @@ public class AccountReadRepository : IAccountReadRepository
         return response;
     }
 
-    public bool IsUsernameInUse(Username username)
+    public async Task<bool> IsUsernameInUseAsync(Username username)
     {
         var response = false;
-        var emailExists =_AccountContext.Account
+        var emailExists =   await _AccountContext.Account
                           .Where(ac => ac.Username == username)
-                          .ToList();
+                          .ToListAsync();
         if (emailExists.Count > 0)
         {
             response = true;

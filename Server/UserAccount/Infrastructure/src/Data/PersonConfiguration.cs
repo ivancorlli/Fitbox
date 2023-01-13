@@ -68,12 +68,13 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
                 .HasColumnType("varchar");
         });
         // TimeStamps
-        builder.OwnsOne(x => x.TimeStamps, nav => {
-            nav.Property(x => x.CreatedAt)
-                .HasColumnType("date");
-            nav.Property(x => x.UpdatedAt)
-                .HasColumnType("date");
-        });
+        // builder.OwnsOne(x => x.TimeStamps, nav => {
+        //     nav.Property(x => x.CreatedAt)
+        //         .HasColumnType("date");
+        //     nav.Property(x => x.UpdatedAt)
+        //         .HasColumnType("date");
+        // });
+        builder.Ignore(x => x.TimeStamps);
         
     }
 }

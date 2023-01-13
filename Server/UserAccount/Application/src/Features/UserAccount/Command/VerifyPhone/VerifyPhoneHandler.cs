@@ -1,4 +1,5 @@
 
+using Application.src.Errors;
 using Domain.src.Interface;
 using Shared.src.Error;
 using Shared.src.Interface.Command;
@@ -17,10 +18,11 @@ public class VerifyPhoneHandler : IHandler<VerifyPhoneCommand, Result>
     public async Task<Result> Handle(VerifyPhoneCommand request, CancellationToken cancellationToken)
     {
         var input = request.Input;
-        var accountExists = await _UnitOfWork.AccountReadRepository.GetById(input.Id);
-        var account = accountExists.Value;
-        account.VerifyPhone();
-        _UnitOfWork.AccountWriteRepository.Update(account);
+        var accountExist = await _UnitOfWork.AccountReadRepository.GetByIdAsync(input.Id);
+        if(accountExist == null)
+            return Result.Fail(new AccountNotExists());
+        accountExist.VerifyPhone();
+        _UnitOfWork.AccountWriteRepository.Update(accountExist);
         await _UnitOfWork.SaveChangesAsync(cancellationToken);
         return Result.Ok();
     }
