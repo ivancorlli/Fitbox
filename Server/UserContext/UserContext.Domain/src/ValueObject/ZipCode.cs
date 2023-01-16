@@ -1,22 +1,23 @@
 using System.Text.RegularExpressions;
-using Domain.src.Utils;
 using FluentValidation;
-using Shared.src.Constant;
-using Shared.src.Error;
+using SharedKernell.src.Constant;
+using SharedKernell.src.Result;
+using UserContext.Domain.src.Utils;
 
-namespace Domain.src.ValueObject
+namespace UserContext.Domain.src.ValueObject
 {
     public record ZipCode
     {
-        private ZipCode(){}
+        private ZipCode() { }
         public static int MinLength = 3;
-        public static int MaxLength = 8; 
+        public static int MaxLength = 8;
         public static Regex Reg = new Regex("^[a-zA-Z0-9- ]+$");
 
-        public string Value {get;init;} = default!;
+        public string Value { get; init; } = default!;
 
-        private ZipCode(string zipCode){
-            Value =zipCode;
+        private ZipCode(string zipCode)
+        {
+            Value = zipCode;
         }
 
         /// <summary>
@@ -24,24 +25,25 @@ namespace Domain.src.ValueObject
         /// </summary>
         /// <param name="zipCode"></param>
         /// <returns></returns>
-        public static Result<ZipCode> Create(string zipCode){
+        public static Result<ZipCode> Create(string zipCode)
+        {
             ZipCode zip = new(zipCode);
             ZipCodeValidator validator = new();
             var result = validator.Validate(zip);
-            if(!result.IsValid)
+            if (!result.IsValid)
             {
                 var errors = ConvertDomainError.Convert(result);
                 return Result.Fail<ZipCode>(errors[0]);
             }
-            return Result.Ok<ZipCode>(zip);
+            return Result.Ok(zip);
         }
-        
+
     }
     internal class ZipCodeValidator : AbstractValidator<ZipCode>
     {
         public ZipCodeValidator()
         {
-            RuleFor(x=>x.Value)
+            RuleFor(x => x.Value)
                 .NotEmpty()
                 .Matches(ZipCode.Reg)
                 .MaximumLength(ZipCode.MaxLength)

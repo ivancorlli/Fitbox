@@ -1,20 +1,20 @@
-using Domain.src.Enum;
 using Domain.src.Error;
-using Domain.src.Interface;
-using Domain.src.ValueObject;
-using Shared.src.Error;
 using SharedKernell.src.Entity;
+using SharedKernell.src.Result;
+using UserContext.Domain.src.Enum;
+using UserContext.Domain.src.Interface;
+using UserContext.Domain.src.ValueObject;
 
-namespace Domain.src.Abstractions
+namespace UserContext.Domain.src.Abstractions
 {
     public abstract class BasePerson : AggregateRoot, IPerson
-    {   
-        protected BasePerson(){}
-        public Guid AccountId { get; init; } 
-        public PersonName Name { get; protected set;} = default!;
-        public Gender Gender { get; protected set;}
-        public DateTime Birth { get; protected set;} 
-        public Address? Address { get; protected set;} 
+    {
+        protected BasePerson() { }
+        public Guid AccountId { get; init; }
+        public PersonName Name { get; protected set; } = default!;
+        public Gender Gender { get; protected set; }
+        public DateTime Birth { get; protected set; }
+        public Address? Address { get; protected set; }
 
         /// <summary>
         /// Create a base person

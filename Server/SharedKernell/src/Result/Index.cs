@@ -1,8 +1,8 @@
-using Shared.src.Interface.Error;
 using SharedKernell.src.Error;
+using SharedKernell.src.Interface.Error;
 using SharedKernell.src.Interface.Result;
 
-namespace Shared.src.Error;
+namespace SharedKernell.src.Result;
 
 public class Result : IResult
 {
@@ -24,20 +24,20 @@ public class Result : IResult
         Error = error;
     }
 
-    public static Result Ok()=> new(true,DomainError.None);
-    public static Result<T> Ok<T>(T value)=>new (value,true,DomainError.None);
-    public static  Result Fail(IError error)=> new(false,error);
+    public static Result Ok() => new(true, DomainError.None);
+    public static Result<T> Ok<T>(T value) => new(value, true, DomainError.None);
+    public static Result Fail(IError error) => new(false, error);
     public static Result<T> Fail<T>(IError error)
-    {   
-        return new Result<T>(default(T)!, false, error);
+    {
+        return new Result<T>(default!, false, error);
     }
 }
 
-public class Result<T>:Result
-{   
+public class Result<T> : Result
+{
     private readonly T _value;
     public T Value => IsSuccess ? _value : throw new InvalidOperationException("No puedes acceder al valor de resultado cuando es invalido");
-    internal Result(T value,bool isSuccess,IError error):base(isSuccess,error)
+    internal Result(T value, bool isSuccess, IError error) : base(isSuccess, error)
     {
         _value = value;
     }

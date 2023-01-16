@@ -1,9 +1,9 @@
 using Application.src.Errors;
-using Domain.src.Interface;
-using Shared.src.Error;
-using SharedKernell.src.Interface.Command;
+using SharedKernell.src.Interface.Mediator;
+using SharedKernell.src.Result;
+using UserContext.Domain.src.Interface;
 
-namespace Application.src.Features.UserAccount.Command.VerifyPhone;
+namespace UserContext.Application.src.Features.UserAccount.Command.VerifyPhone;
 
 public class VerifyPhoneHandler : IHandler<VerifyPhoneCommand, Result>
 {
@@ -18,7 +18,7 @@ public class VerifyPhoneHandler : IHandler<VerifyPhoneCommand, Result>
     {
         var input = request.Input;
         var accountExist = await _UnitOfWork.AccountReadRepository.GetByIdAsync(input.Id);
-        if(accountExist == null)
+        if (accountExist == null)
             return Result.Fail(new AccountNotExists());
         accountExist.VerifyPhone();
         _UnitOfWork.AccountWriteRepository.Update(accountExist);

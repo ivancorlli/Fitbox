@@ -1,13 +1,13 @@
-﻿using Domain.src.Entity;
-using Domain.src.Interface;
-using Infrastructure.src.Context;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UserContext.Domain.src.Entity;
+using UserContext.Domain.src.Repository;
+using UserContext.Infrastructure.src.Context;
 
-namespace Infrastructure.src.Repository
+namespace UserContext.Infrastructure.src.Repository
 {
     public sealed class PersonWriteRepository : IPersonWriteRepository
     {

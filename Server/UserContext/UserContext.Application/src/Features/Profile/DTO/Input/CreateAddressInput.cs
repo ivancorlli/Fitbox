@@ -1,4 +1,4 @@
-namespace Application.src.Features.Profile.DTO.Input;
+namespace UserContext.Application.src.Features.Profile.DTO.Input;
 
 public sealed record CreateAddressInput(
     Guid Id,
@@ -7,5 +7,5 @@ public sealed record CreateAddressInput(
     string state,
     string zipCode,
     string? prefix
-    
+
     );

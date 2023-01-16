@@ -1,13 +1,12 @@
+using SharedKernell.src.Result;
+using UserContext.Domain.src.Entity;
+using UserContext.Domain.src.Enum;
+using UserContext.Domain.src.ValueObject;
 
-using Domain.src.Entity;
-using Domain.src.Enum;
-using Domain.src.ValueObject;
-using Shared.src.Error;
-
-namespace Domain.src.Interface;
+namespace UserContext.Domain.src.Interface;
 
 public interface IPersonManager
 {
 
-    Task<Result<Person>> CreatePerson(Guid account, PersonName name, Gender gender, DateTime birth);    
+    Task<Result<Person>> CreatePerson(Guid account, PersonName name, Gender gender, DateTime birth);
 }

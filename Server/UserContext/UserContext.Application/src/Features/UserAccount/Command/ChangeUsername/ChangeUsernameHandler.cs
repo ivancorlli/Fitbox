@@ -1,17 +1,17 @@
 using Application.src.Errors;
-using Domain.src.Interface;
-using Domain.src.ValueObject;
-using Shared.src.Error;
-using SharedKernell.src.Interface.Command;
+using SharedKernell.src.Interface.Mediator;
+using SharedKernell.src.Result;
+using UserContext.Domain.src.Interface;
+using UserContext.Domain.src.ValueObject;
 
-namespace Application.src.Features.UserAccount.Command.ChangeUsername
+namespace UserContext.Application.src.Features.UserAccount.Command.ChangeUsername
 {
     public class ChangeUsernameHandler : IHandler<ChangeUsernameCommand, Result>
-    {   
+    {
         private readonly IAccountManager _AccountManager;
         private readonly IUnitOfWork _UnitOfWork;
 
-        public ChangeUsernameHandler(IAccountManager manager,IUnitOfWork unitOfWork)
+        public ChangeUsernameHandler(IAccountManager manager, IUnitOfWork unitOfWork)
         {
             _AccountManager = manager;
             _UnitOfWork = unitOfWork;
@@ -21,12 +21,12 @@ namespace Application.src.Features.UserAccount.Command.ChangeUsername
         {
             var input = request.input;
             var username = Username.Create(input.username);
-            if(username.IsFailure)
+            if (username.IsFailure)
                 return Result.Fail(username.Error);
             var accountExist = await _UnitOfWork.AccountReadRepository.GetByIdAsync(input.id);
-            if(accountExist == null)
+            if (accountExist == null)
                 return Result.Fail(new AccountNotExists());
-            var usernameChanged = await _AccountManager.ChangeUsername(accountExist,username.Value);
+            var usernameChanged = await _AccountManager.ChangeUsername(accountExist, username.Value);
             if (usernameChanged.IsFailure)
                 return Result.Fail(usernameChanged.Error);
             await _UnitOfWork.SaveChangesAsync(cancellationToken);

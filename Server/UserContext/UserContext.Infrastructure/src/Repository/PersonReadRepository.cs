@@ -1,9 +1,9 @@
-﻿using Domain.src.Entity;
-using Domain.src.Interface;
-using Infrastructure.src.Context;
-using Shared.src.Error;
+﻿using Shared.src.Error;
+using UserContext.Domain.src.Entity;
+using UserContext.Domain.src.Repository;
+using UserContext.Infrastructure.src.Context;
 
-namespace Infrastructure.src.Repository;
+namespace UserContext.Infrastructure.src.Repository;
 
 public sealed class PersonReadRepository : IPersonReadRepository
 {

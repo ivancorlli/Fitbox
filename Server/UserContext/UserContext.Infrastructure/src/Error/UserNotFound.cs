@@ -1,13 +1,13 @@
-using Shared.src.Constant;
-using Shared.src.Interface.Error;
+using SharedKernell.src.Constant;
+using SharedKernell.src.Interface.Error;
 
-namespace Infrastructure.src.Error
+namespace UserContext.Infrastructure.src.Error
 {
     public sealed record UserNotFound : IError
     {
-        public string Message  {get;init;}
-        public string Type {get;init;}
-        
+        public string Message { get; init; }
+        public string Type { get; init; }
+
         public UserNotFound()
         {
             Message = "No se encontro al usuario";

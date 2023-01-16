@@ -1,8 +1,7 @@
-
-using Shared.src.Constant;
+using SharedKernell.src.Constant;
 using SharedKernell.src.Error;
 
-namespace Domain.src.Error
+namespace UserContext.Domain.src.Error
 {
     public class PhoneAlreadyInUse : DomainError
     {

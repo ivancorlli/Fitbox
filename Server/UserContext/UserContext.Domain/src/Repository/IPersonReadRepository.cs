@@ -1,14 +1,14 @@
 
 
 using System.Runtime.CompilerServices;
-using Domain.src.Entity;
 using SharedKernell.src.Interface.Repository;
+using UserContext.Domain.src.Entity;
 
-[assembly:InternalsVisibleTo("Tests")]
-[assembly: InternalsVisibleTo("InternalsVisible.DynamicProxyGenAssembly2")] 
-namespace Domain.src.Interface
+[assembly: InternalsVisibleTo("Tests")]
+[assembly: InternalsVisibleTo("InternalsVisible.DynamicProxyGenAssembly2")]
+namespace UserContext.Domain.src.Repository
 {
-    public interface IPersonReadRepository:IReadRepository<Person>
+    public interface IPersonReadRepository : IReadRepository<Person>
     {
 
     }

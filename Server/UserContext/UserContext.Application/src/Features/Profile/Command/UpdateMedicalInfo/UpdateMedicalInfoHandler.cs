@@ -1,10 +1,10 @@
 using Application.src.Errors;
-using Domain.src.Interface;
-using Domain.src.ValueObject;
-using Shared.src.Error;
-using SharedKernell.src.Interface.Command;
+using SharedKernell.src.Interface.Mediator;
+using SharedKernell.src.Result;
+using UserContext.Domain.src.Interface;
+using UserContext.Domain.src.ValueObject;
 
-namespace Application.src.Features.Profile.Command.UpdateMedicalInfo;
+namespace UserContext.Application.src.Features.Profile.Command.UpdateMedicalInfo;
 
 public class UpdateMedicalInfoHandler : IHandler<UpdateMedicalInfoCommand, Result>
 {
@@ -19,23 +19,24 @@ public class UpdateMedicalInfoHandler : IHandler<UpdateMedicalInfoCommand, Resul
     {
         var input = request.Input;
         var personFound = await _UnitOfWork.PersonReadRepository.GetByIdAsync(input.Id);
-        if(personFound == null)
+        if (personFound == null)
             return Result.Fail(new PersonNotExists());
         var medical = personFound.Medical;
 
-        if(medical != null)
-        {   
+        if (medical != null)
+        {
 
-            if(input.disabilities != null)
+            if (input.disabilities != null)
             {
                 var newInfo = MedicalInfo.Create(input.disabilities);
                 personFound.CreateMedicalInfo(newInfo.Value);
                 _UnitOfWork.PersonWriteRepository.Update(personFound);
                 await _UnitOfWork.SaveChangesAsync(cancellationToken);
-               
+
             }
             return Result.Ok();
-        }else
+        }
+        else
         {
             return Result.Fail(new MedicalNotExists());
         }

@@ -1,13 +1,13 @@
 using System.Runtime.CompilerServices;
-using Domain.src.Entity;
-using Domain.src.ValueObject;
 using SharedKernell.src.Interface.Repository;
+using UserContext.Domain.src.Entity;
+using UserContext.Domain.src.ValueObject;
 
-[assembly:InternalsVisibleTo("Tests")]
-[assembly: InternalsVisibleTo("InternalsVisible.DynamicProxyGenAssembly2")] 
-namespace Domain.src.Interface
+[assembly: InternalsVisibleTo("Tests")]
+[assembly: InternalsVisibleTo("InternalsVisible.DynamicProxyGenAssembly2")]
+namespace UserContext.Domain.src.Repository
 {
-    public interface IAccountReadRepository:IReadRepository<Account>
+    public interface IAccountReadRepository : IReadRepository<Account>
     {
         public Task<bool> IsEmailInUseAsync(Email email);
         public Task<bool> IsPhoneInUseAsync(Phone phone);

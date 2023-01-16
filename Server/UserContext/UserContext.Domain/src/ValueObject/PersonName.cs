@@ -1,23 +1,24 @@
-using Domain.src.Utils;
 using FluentValidation;
-using Shared.src.Constant;
-using Shared.src.Error;
+using SharedKernell.src.Constant;
+using SharedKernell.src.Result;
 using System.Text.RegularExpressions;
+using UserContext.Domain.src.Utils;
 
 
-namespace Domain.src.ValueObject
+namespace UserContext.Domain.src.ValueObject
 {
     public record PersonName
-    {   
-        private PersonName(){}
+    {
+        private PersonName() { }
         public static int MaxLength = 15;
         public static int MinLength = 2;
         public static Regex Reg = new Regex("^[a-zA-Z]+$");
 
-        public string FirstName {get;} = default!;
-        public string LastName {get;} = default!;
+        public string FirstName { get; } = default!;
+        public string LastName { get; } = default!;
 
-        private PersonName(string name,string surname){
+        private PersonName(string name, string surname)
+        {
             FirstName = Capitalize.Create(name);
             LastName = Capitalize.Create(surname);
         }
@@ -28,32 +29,33 @@ namespace Domain.src.ValueObject
         /// <param name="name"></param>
         /// <param name="surname"></param>
         /// <returns></returns>
-        public static Result<PersonName> Create(string name, string surname){
-            PersonName fullName = new(name,surname);
+        public static Result<PersonName> Create(string name, string surname)
+        {
+            PersonName fullName = new(name, surname);
             PersonaNameValidator validator = new();
             var result = validator.Validate(fullName);
-            if(!result.IsValid)
+            if (!result.IsValid)
             {
                 var errors = ConvertDomainError.Convert(result);
                 return Result.Fail<PersonName>(errors[0]);
             }
-            return Result.Ok<PersonName>(fullName);
+            return Result.Ok(fullName);
         }
- 
-       
+
+
 
     }
     internal class PersonaNameValidator : AbstractValidator<PersonName>
     {
         public PersonaNameValidator()
         {
-            RuleFor(x=>x.FirstName)
+            RuleFor(x => x.FirstName)
                 .NotEmpty()
                 .Matches(PersonName.Reg)
                 .MaximumLength(PersonName.MaxLength)
                 .MinimumLength(PersonName.MinLength)
                 .WithErrorCode(ErrorTypes.Validation);
-            RuleFor(x=>x.LastName)
+            RuleFor(x => x.LastName)
                 .NotEmpty()
                 .Matches(PersonName.Reg)
                 .MaximumLength(PersonName.MaxLength)

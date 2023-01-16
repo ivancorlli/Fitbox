@@ -1,15 +1,15 @@
 using System.Runtime.CompilerServices;
-using Domain.src.Enum;
+using UserContext.Domain.src.Enum;
 
-[assembly:InternalsVisibleTo("Tests")]
-namespace Domain.src.ValueObject
+[assembly: InternalsVisibleTo("Tests")]
+namespace UserContext.Domain.src.ValueObject
 {
     public record EmergencyContact
     {
-        private EmergencyContact(){}
-        public PersonName Name {get;init;} = default!;
-        public RelationShip RelationShip {get;init;} = default!;
-        public ContactPhone Phone {get;init;} = default!;
+        private EmergencyContact() { }
+        public PersonName Name { get; init; } = default!;
+        public RelationShip RelationShip { get; init; } = default!;
+        public ContactPhone Phone { get; init; } = default!;
 
         /// <summary>
         /// Crea un nuevo contacto
@@ -17,7 +17,8 @@ namespace Domain.src.ValueObject
         /// <param name="name"></param>
         /// <param name="relationShip"></param>
         /// <param name="phone"></param>
-        internal EmergencyContact(PersonName name, RelationShip relationShip,ContactPhone phone){
+        internal EmergencyContact(PersonName name, RelationShip relationShip, ContactPhone phone)
+        {
             Name = name;
             RelationShip = relationShip;
             Phone = phone;

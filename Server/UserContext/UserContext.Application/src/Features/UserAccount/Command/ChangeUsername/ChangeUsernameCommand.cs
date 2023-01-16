@@ -1,8 +1,8 @@
-using Application.src.Features.UserAccount.DTO.Input;
-using Shared.src.Error;
-using SharedKernell.src.Interface.Command;
+using SharedKernell.src.Interface.Mediator;
+using SharedKernell.src.Result;
+using UserContext.Application.src.Features.UserAccount.DTO.Input;
 
-namespace Application.src.Features.UserAccount.Command.ChangeUsername
+namespace UserContext.Application.src.Features.UserAccount.Command.ChangeUsername
 {
-    public sealed record ChangeUsernameCommand(ChangeUsernameInput input) :ICommand<Result>;
+    public sealed record ChangeUsernameCommand(ChangeUsernameInput input) : ICommand<Result>;
 }

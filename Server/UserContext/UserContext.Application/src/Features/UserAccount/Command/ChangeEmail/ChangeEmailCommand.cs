@@ -1,9 +1,8 @@
+using SharedKernell.src.Interface.Mediator;
+using SharedKernell.src.Result;
+using UserContext.Application.src.Features.UserAccount.DTO.Input;
 
-using Application.src.Features.UserAccount.DTO.Input;
-using Shared.src.Error;
-using SharedKernell.src.Interface.Command;
-
-namespace Application.src.Features.UserAccount.Command.ChangeEmail
+namespace UserContext.Application.src.Features.UserAccount.Command.ChangeEmail
 {
-    public sealed record ChangeEmailCommand(ChangeEmailInput Input):ICommand<Result>;
+    public sealed record ChangeEmailCommand(ChangeEmailInput Input) : ICommand<Result>;
 }

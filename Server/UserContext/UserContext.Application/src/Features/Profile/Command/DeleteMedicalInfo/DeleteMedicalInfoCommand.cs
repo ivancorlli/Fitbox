@@ -1,8 +1,7 @@
+using SharedKernell.src.Interface.Mediator;
+using SharedKernell.src.Result;
+using UserContext.Application.src.Features.Profile.DTO.Input;
 
-using Application.src.Features.Profile.DTO.Input;
-using Shared.src.Error;
-using SharedKernell.src.Interface.Command;
+namespace UserContext.Application.src.Features.Profile.Command.DeleteMedicalInfo;
 
-namespace Application.src.Features.Profile.Command.DeleteMedicalInfo;
-
-public sealed record DeleteMedicalInfoCommand(DeleteMedicalinfoInput Input):ICommand<Result> ;
+public sealed record DeleteMedicalInfoCommand(DeleteMedicalinfoInput Input) : ICommand<Result>;

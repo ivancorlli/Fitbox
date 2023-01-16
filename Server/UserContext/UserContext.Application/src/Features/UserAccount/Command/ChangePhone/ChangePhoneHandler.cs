@@ -1,10 +1,10 @@
 using Application.src.Errors;
-using Domain.src.Interface;
-using Domain.src.ValueObject;
-using Shared.src.Error;
-using SharedKernell.src.Interface.Command;
+using SharedKernell.src.Interface.Mediator;
+using SharedKernell.src.Result;
+using UserContext.Domain.src.Interface;
+using UserContext.Domain.src.ValueObject;
 
-namespace Application.src.Features.UserAccount.Command.ChangePhone
+namespace UserContext.Application.src.Features.UserAccount.Command.ChangePhone
 {
     public class ChangePhoneHandler : IHandler<ChangePhoneCommand, Result>
     {
@@ -20,14 +20,14 @@ namespace Application.src.Features.UserAccount.Command.ChangePhone
         public async Task<Result> Handle(ChangePhoneCommand request, CancellationToken cancellationToken)
         {
             var input = request.input;
-            var phone = Phone.Create(input.area,input.number);
-            if(phone.IsFailure)
+            var phone = Phone.Create(input.area, input.number);
+            if (phone.IsFailure)
                 return Result.Fail(phone.Error);
             var accountExist = await _UnitOfWork.AccountReadRepository.GetByIdAsync(input.id);
-            if(accountExist == null)
+            if (accountExist == null)
                 return Result.Fail(new AccountNotExists());
-            var phoneChanged = await _AccountManager.ChangePhone(accountExist,phone.Value);
-            if(phoneChanged.IsFailure)
+            var phoneChanged = await _AccountManager.ChangePhone(accountExist, phone.Value);
+            if (phoneChanged.IsFailure)
                 return Result.Fail(phoneChanged.Error);
 
             _UnitOfWork.AccountWriteRepository.Update(accountExist);

@@ -1,7 +1,7 @@
-using Shared.src.Constant;
+using SharedKernell.src.Constant;
 using SharedKernell.src.Error;
 
-namespace Application.src.Errors;
+namespace UserContext.Application.src.Errors;
 
 public class PersonNotExists : DomainError
 {

@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
-namespace Infrastructure.src.Context;
+namespace UserContext.Infrastructure.src.Context;
 
 public class ContextFactory : IDesignTimeDbContextFactory<UserDbContext>
 {
@@ -13,7 +13,7 @@ public class ContextFactory : IDesignTimeDbContextFactory<UserDbContext>
         config.UseMySql(
             Connection,
             ServerVersion.Create(
-                    new Version(10,6,11),
+                    new Version(10, 6, 11),
                     ServerType.MariaDb
                 ),
                 opt => opt.EnableRetryOnFailure(

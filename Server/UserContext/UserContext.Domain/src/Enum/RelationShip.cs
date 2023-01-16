@@ -1,4 +1,4 @@
-namespace Domain.src.Enum
+namespace UserContext.Domain.src.Enum
 {
     public enum RelationShip
     {

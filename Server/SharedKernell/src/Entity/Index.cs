@@ -1,11 +1,10 @@
-
-using Shared.src.ValueObject;
 using SharedKernell.src.Interface.DomainEvent;
 using SharedKernell.src.Interface.Entity;
+using SharedKernell.src.ValueObject;
 
 namespace SharedKernell.src.Entity;
 
-    public abstract class BaseEntity :IBaseEntity
+public abstract class BaseEntity :IBaseEntity
     {
 
         public Guid Id {get;private init;}

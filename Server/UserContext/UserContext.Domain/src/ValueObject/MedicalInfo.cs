@@ -1,32 +1,35 @@
 using System.Text.RegularExpressions;
-using Domain.src.Utils;
 using FluentValidation;
-using Shared.src.Constant;
-using Shared.src.Error;
+using SharedKernell.src.Constant;
+using SharedKernell.src.Result;
+using UserContext.Domain.src.Utils;
 
-namespace Domain.src.ValueObject
+namespace UserContext.Domain.src.ValueObject
 {
     public record MedicalInfo
     {
-        private MedicalInfo(){}
+        private MedicalInfo() { }
 
         public static int MaxLength = 300;
         public static Regex Reg = new Regex("^[a-zA-Z0-9., ]+$");
 
-        public Uri? Aptitude {get; private set;}
-        public string? Disabilities {get;private set;}
+        public Uri? Aptitude { get; private set; }
+        public string? Disabilities { get; private set; }
 
-        private MedicalInfo(Uri aptitude){
+        private MedicalInfo(Uri aptitude)
+        {
             Aptitude = aptitude;
         }
 
-        private MedicalInfo(string disabilities){
-            Disabilities= disabilities;
+        private MedicalInfo(string disabilities)
+        {
+            Disabilities = disabilities;
         }
 
-        private MedicalInfo(Uri aptitude, string disabilities){
+        private MedicalInfo(Uri aptitude, string disabilities)
+        {
             Aptitude = aptitude;
-            Disabilities= disabilities;
+            Disabilities = disabilities;
         }
 
         /// <summary>
@@ -34,8 +37,9 @@ namespace Domain.src.ValueObject
         /// </summary>
         /// <param name="aptitude"></param>
         /// <returns></returns>
-        public static Result<MedicalInfo> Create(Uri aptitude){
-            return Result.Ok<MedicalInfo>(new MedicalInfo(aptitude));
+        public static Result<MedicalInfo> Create(Uri aptitude)
+        {
+            return Result.Ok(new MedicalInfo(aptitude));
         }
 
         /// <summary>
@@ -43,16 +47,17 @@ namespace Domain.src.ValueObject
         /// </summary>
         /// <param name="disabilities"></param>
         /// <returns></returns>
-        public static Result<MedicalInfo> Create(string disabilities){
+        public static Result<MedicalInfo> Create(string disabilities)
+        {
             MedicalInfo medical = new(disabilities);
             MedicalInfoValiator validator = new();
             var result = validator.Validate(medical);
-            if(!result.IsValid)
+            if (!result.IsValid)
             {
                 var errors = ConvertDomainError.Convert(result);
                 return Result.Fail<MedicalInfo>(errors[0]);
             }
-            return Result.Ok<MedicalInfo>(medical);
+            return Result.Ok(medical);
         }
 
         /// <summary>
@@ -61,23 +66,24 @@ namespace Domain.src.ValueObject
         /// <param name="aptirude"></param>
         /// <param name="disabilities"></param>
         /// <returns></returns>
-        public static Result<MedicalInfo> Create(Uri aptirude,string disabilities){
-            MedicalInfo medical = new(aptirude,disabilities);
+        public static Result<MedicalInfo> Create(Uri aptirude, string disabilities)
+        {
+            MedicalInfo medical = new(aptirude, disabilities);
             MedicalInfoValiator validator = new();
             var result = validator.Validate(medical);
-            if(!result.IsValid)
+            if (!result.IsValid)
             {
                 var errors = ConvertDomainError.Convert(result);
                 return Result.Fail<MedicalInfo>(errors[0]);
             }
-            return Result.Ok<MedicalInfo>(medical);
+            return Result.Ok(medical);
         }
     }
     internal class MedicalInfoValiator : AbstractValidator<MedicalInfo>
     {
         public MedicalInfoValiator()
         {
-            RuleFor(x=>x.Disabilities)
+            RuleFor(x => x.Disabilities)
                 .Matches(MedicalInfo.Reg)
                 .MaximumLength(MedicalInfo.MaxLength)
                 .WithErrorCode(ErrorTypes.Validation);

@@ -1,11 +1,10 @@
 using System.Buffers;
-
-using Domain.src.Entity;
-using Domain.src.ValueObject;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using UserContext.Domain.src.Entity;
+using UserContext.Domain.src.ValueObject;
 
-namespace Infrastructure.src.Data;
+namespace UserContext.Infrastructure.src.Data;
 
 public class PersonConfiguration : IEntityTypeConfiguration<Person>
 {
@@ -13,16 +12,18 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
     {
         builder.HasKey(x => x.Id);
         // Name
-        builder.OwnsOne(x => x.Name, nav =>{
-            nav.Property(x=>x.FirstName)
+        builder.OwnsOne(x => x.Name, nav =>
+        {
+            nav.Property(x => x.FirstName)
                 .HasColumnType("varchar")
                 .HasMaxLength(PersonName.MaxLength);
-            nav.Property(x=>x.LastName)
+            nav.Property(x => x.LastName)
                 .HasColumnType("varchar")
                 .HasMaxLength(PersonName.MaxLength);
         });
         // Address
-        builder.OwnsOne(x => x.Address, nav => {
+        builder.OwnsOne(x => x.Address, nav =>
+        {
             nav.Property(x => x.Country)
                 .HasMaxLength(Address.MaxLength)
                 .HasColumnType("varchar");
@@ -32,37 +33,42 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
             nav.Property(x => x.State)
                 .HasMaxLength(Address.MaxLength)
                 .HasColumnType("varchar");
-            nav.OwnsOne(x => x.ZipCode,n => {
-                    n.Property(x => x.Value)
-                        .HasMaxLength(ZipCode.MaxLength)
-                        .HasColumnType("varchar");
-                });
+            nav.OwnsOne(x => x.ZipCode, n =>
+            {
+                n.Property(x => x.Value)
+                    .HasMaxLength(ZipCode.MaxLength)
+                    .HasColumnType("varchar");
+            });
         }
         );
         // Contact
-        builder.OwnsOne(x => x.EmergencyContact,nav =>{
+        builder.OwnsOne(x => x.EmergencyContact, nav =>
+        {
             nav.OwnsOne(x => x.Name);
             nav.Property(x => x.RelationShip)
                 .HasColumnType("varchar");
             nav.OwnsOne(x => x.Name);
-            nav.OwnsOne(x => x.Phone,n=>{
-               // n.Property(x=>x.Number)
-                 //   .HasColumnType("bigint")
-                   // .HasMaxLength(12)
-                    //.IsRequired();
+            nav.OwnsOne(x => x.Phone, n =>
+            {
+                // n.Property(x=>x.Number)
+                //   .HasColumnType("bigint")
+                // .HasMaxLength(12)
+                //.IsRequired();
                 //n.Property(x => x.AreaCode)
-                  //  .HasColumnType("int")
-                   // .IsRequired();
+                //  .HasColumnType("int")
+                // .IsRequired();
             });
         });
         //Bio
-        builder.OwnsOne(x => x.Biography, nav => {
+        builder.OwnsOne(x => x.Biography, nav =>
+        {
             nav.Property(x => x.Value)
                 .HasColumnType("varchar");
         });
         // Meical
-        builder.OwnsOne(x => x.Medical, nav => {
-            nav.Property(x=>x.Aptitude)
+        builder.OwnsOne(x => x.Medical, nav =>
+        {
+            nav.Property(x => x.Aptitude)
                 .HasColumnType("varchar");
             nav.Property(x => x.Disabilities)
                 .HasColumnType("varchar");
@@ -75,6 +81,6 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
         //         .HasColumnType("date");
         // });
         builder.Ignore(x => x.TimeStamps);
-        
+
     }
 }

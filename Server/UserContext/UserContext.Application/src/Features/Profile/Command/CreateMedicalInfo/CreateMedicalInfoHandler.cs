@@ -1,12 +1,12 @@
 using Application.src.Errors;
-using Domain.src.Interface;
-using Domain.src.ValueObject;
-using Shared.src.Error;
-using SharedKernell.src.Interface.Command;
+using SharedKernell.src.Interface.Mediator;
+using SharedKernell.src.Result;
+using UserContext.Domain.src.Interface;
+using UserContext.Domain.src.ValueObject;
 
-namespace Application.src.Features.Profile.Command.CreateMedicalInfo;
+namespace UserContext.Application.src.Features.Profile.Command.CreateMedicalInfo;
 
-public class CreateMedicalInfoHandler:IHandler<CreateMedicalInfoCommand,Result>
+public class CreateMedicalInfoHandler : IHandler<CreateMedicalInfoCommand, Result>
 {
     private readonly IUnitOfWork _UnitOfWork;
 
@@ -22,7 +22,7 @@ public class CreateMedicalInfoHandler:IHandler<CreateMedicalInfoCommand,Result>
         if (medicalRecord.IsFailure)
             return Result.Fail(medicalRecord.Error);
         var personFound = await _UnitOfWork.PersonReadRepository.GetByIdAsync(input.Id);
-        if(personFound == null)
+        if (personFound == null)
             return Result.Fail(new PersonNotExists());
         personFound.CreateMedicalInfo(medicalRecord.Value);
 

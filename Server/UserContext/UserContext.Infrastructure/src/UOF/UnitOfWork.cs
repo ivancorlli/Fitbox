@@ -1,8 +1,9 @@
-using Domain.src.Interface;
-using Infrastructure.src.Context;
 using Infrastructure.src.Repository;
+using UserContext.Domain.src.Interface;
+using UserContext.Domain.src.Repository;
+using UserContext.Infrastructure.src.Context;
 
-namespace Infrastructure.src.UOF
+namespace UserContext.Infrastructure.src.UOF
 {
     public class UnitOfWork : IUnitOfWork
     {

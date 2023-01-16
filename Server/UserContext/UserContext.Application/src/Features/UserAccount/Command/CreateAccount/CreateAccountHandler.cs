@@ -1,9 +1,9 @@
-using Domain.src.Interface;
-using SharedKernell.src.Interface.Command;
-using Shared.src.Error;
-using Domain.src.ValueObject;
+using UserContext.Domain.src.Interface;
+using SharedKernell.src.Result;
+using UserContext.Domain.src.ValueObject;
+using SharedKernell.src.Interface.Mediator;
 
-namespace Application.src.Features.UserAccount.Command.CreateAccount
+namespace UserContext.Application.src.Features.UserAccount.Command.CreateAccount
 {
     public class CreateAccountHandler : IHandler<CreateAccountCommand, Result>
     {
@@ -36,7 +36,7 @@ namespace Application.src.Features.UserAccount.Command.CreateAccount
             // Guardamos usuario en base de datos
             await _UnitOfWork.AccountWriteRepository.AddAsync(newAccount.Value);
             await _UnitOfWork.SaveChangesAsync(cancellationToken);
-           
+
             return Result.Ok();
         }
     }

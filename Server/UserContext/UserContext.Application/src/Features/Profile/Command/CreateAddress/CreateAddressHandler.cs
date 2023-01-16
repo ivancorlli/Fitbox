@@ -1,11 +1,10 @@
-
 using Application.src.Errors;
-using Domain.src.Interface;
-using Domain.src.ValueObject;
-using Shared.src.Error;
-using SharedKernell.src.Interface.Command;
+using SharedKernell.src.Interface.Mediator;
+using SharedKernell.src.Result;
+using UserContext.Domain.src.Interface;
+using UserContext.Domain.src.ValueObject;
 
-namespace Application.src.Features.Profile.Command.CreateAddress
+namespace UserContext.Application.src.Features.Profile.Command.CreateAddress
 {
     public class CreateAddressHandler : IHandler<CreateAddressCommand, Result>
     {
@@ -20,12 +19,12 @@ namespace Application.src.Features.Profile.Command.CreateAddress
         {
             var input = request.Input;
             var personFound = await _UnitOfWork.PersonReadRepository.GetByIdAsync(input.Id);
-            if(personFound == null)
+            if (personFound == null)
                 return Result.Fail(new PersonNotExists());
             var newZipCode = ZipCode.Create(input.zipCode);
             if (newZipCode.IsFailure)
                 return Result.Fail(newZipCode.Error);
-            var newAddress = Address.Create(input.coutry,input.city,input.state,newZipCode.Value);
+            var newAddress = Address.Create(input.coutry, input.city, input.state, newZipCode.Value);
             if (newAddress.IsFailure)
                 return Result.Fail(newAddress.Error);
             personFound.CreateAddress(newAddress.Value);

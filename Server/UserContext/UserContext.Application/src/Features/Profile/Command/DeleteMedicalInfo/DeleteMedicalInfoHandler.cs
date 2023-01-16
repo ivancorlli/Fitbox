@@ -1,9 +1,9 @@
 using Application.src.Errors;
-using Domain.src.Interface;
-using Shared.src.Error;
-using SharedKernell.src.Interface.Command;
+using SharedKernell.src.Interface.Mediator;
+using SharedKernell.src.Result;
+using UserContext.Domain.src.Interface;
 
-namespace Application.src.Features.Profile.Command.DeleteMedicalInfo;
+namespace UserContext.Application.src.Features.Profile.Command.DeleteMedicalInfo;
 
 public class DeleteMedicalInfoHandler : IHandler<DeleteMedicalInfoCommand, Result>
 {
@@ -18,7 +18,7 @@ public class DeleteMedicalInfoHandler : IHandler<DeleteMedicalInfoCommand, Resul
     {
         var input = request.Input;
         var personFound = await _UnitOfWork.PersonReadRepository.GetByIdAsync(input.Id);
-        if(personFound == null)
+        if (personFound == null)
             return Result.Fail(new PersonNotExists());
         personFound.DeleteMedicalInfo();
         _UnitOfWork.PersonWriteRepository.Update(personFound);

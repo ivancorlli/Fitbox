@@ -1,12 +1,13 @@
 using SharedKernell.src.Interface.Repository;
+using UserContext.Domain.src.Repository;
 
-namespace Domain.src.Interface
+namespace UserContext.Domain.src.Interface
 {
-    public interface IUnitOfWork:IBaseUnitOfWork
+    public interface IUnitOfWork : IBaseUnitOfWork
     {
-        IAccountWriteRepository  AccountWriteRepository {get;}
-        IAccountReadRepository  AccountReadRepository {get;}
-        IPersonReadRepository PersonReadRepository{get;}
-        IPersonWriteRepository PersonWriteRepository {get;}
+        IAccountWriteRepository AccountWriteRepository { get; }
+        IAccountReadRepository AccountReadRepository { get; }
+        IPersonReadRepository PersonReadRepository { get; }
+        IPersonWriteRepository PersonWriteRepository { get; }
     }
 }

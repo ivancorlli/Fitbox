@@ -1,7 +1,7 @@
 using FluentValidation.Results;
 using SharedKernell.src.Error;
 
-namespace Domain.src.Utils
+namespace UserContext.Domain.src.Utils
 {
     public class ConvertDomainError
     {
@@ -10,7 +10,7 @@ namespace Domain.src.Utils
             List<DomainError> errors = new();
             foreach (var error in result.Errors)
             {
-                var newDomainError =  new DomainError(error.ErrorCode,error.ErrorMessage);
+                var newDomainError = new DomainError(error.ErrorCode, error.ErrorMessage);
                 errors.Add(newDomainError);
             }
 

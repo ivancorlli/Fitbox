@@ -1,9 +1,9 @@
 using Application.src.Errors;
-using Domain.src.Interface;
-using Shared.src.Error;
-using SharedKernell.src.Interface.Command;
+using SharedKernell.src.Interface.Mediator;
+using SharedKernell.src.Result;
+using UserContext.Domain.src.Interface;
 
-namespace Application.src.Features.UserAccount.Command.VerifyEmail;
+namespace UserContext.Application.src.Features.UserAccount.Command.VerifyEmail;
 
 public class VerifyEmailHandler : IHandler<VerifyEmailCommand, Result>
 {
@@ -18,7 +18,7 @@ public class VerifyEmailHandler : IHandler<VerifyEmailCommand, Result>
     {
         var input = request.Input;
         var accountExist = await _UnitOfWork.AccountReadRepository.GetByIdAsync(input.Id);
-        if(accountExist == null)
+        if (accountExist == null)
             return Result.Fail(new AccountNotExists());
         accountExist.VerifyEmail();
         _UnitOfWork.AccountWriteRepository.Update(accountExist);

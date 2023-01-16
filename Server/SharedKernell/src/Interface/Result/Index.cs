@@ -1,4 +1,4 @@
-using Shared.src.Interface.Error;
+using SharedKernell.src.Interface.Error;
 
 namespace SharedKernell.src.Interface.Result;
 

@@ -1,16 +1,16 @@
-using Domain.src.Entity;
-using Domain.src.Interface;
-using Domain.src.ValueObject;
-using Infrastructure.src.Context;
 using Microsoft.EntityFrameworkCore;
+using UserContext.Domain.src.Entity;
+using UserContext.Domain.src.Repository;
+using UserContext.Domain.src.ValueObject;
+using UserContext.Infrastructure.src.Context;
 
-namespace Infrastructure.src.Repository;
+namespace UserContext.Infrastructure.src.Repository;
 
 public class AccountReadRepository : IAccountReadRepository
 {
-    private readonly UserDbContext _AccountContext; 
+    private readonly UserDbContext _AccountContext;
     public AccountReadRepository(UserDbContext context)
-    {   
+    {
         _AccountContext = context;
     }
 
@@ -36,7 +36,7 @@ public class AccountReadRepository : IAccountReadRepository
         var emailExists = await _AccountContext.Account
                          .Where(ac => ac.Email == email)
                          .ToListAsync();
-        if(emailExists.Count > 0)
+        if (emailExists.Count > 0)
         {
             response = true;
         }
@@ -67,7 +67,7 @@ public class AccountReadRepository : IAccountReadRepository
     public async Task<bool> IsUsernameInUseAsync(Username username)
     {
         var response = false;
-        var emailExists =   await _AccountContext.Account
+        var emailExists = await _AccountContext.Account
                           .Where(ac => ac.Username == username)
                           .ToListAsync();
         if (emailExists.Count > 0)

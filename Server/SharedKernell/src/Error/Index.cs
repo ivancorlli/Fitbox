@@ -1,9 +1,9 @@
-using Shared.src.Constant;
-using Shared.src.Interface.Error;
+using SharedKernell.src.Constant;
+using SharedKernell.src.Interface.Error;
 
 namespace SharedKernell.src.Error;
 
-    public class AppError : IAppError
+public class AppError : IAppError
     {
         public int Code { get; init; }
         public string Message { get; init; }

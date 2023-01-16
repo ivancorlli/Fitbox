@@ -1,30 +1,31 @@
-
 using Domain.src.Error;
-using Domain.src.Utils;
 using FluentValidation;
-using Shared.src.Error;
+using SharedKernell.src.Result;
+using UserContext.Domain.src.Utils;
 
-namespace Domain.src.ValueObject
+namespace UserContext.Domain.src.ValueObject
 {
     public record Password
     {
         public static int MinLenght = 7;
-        public static int MaxLength = 25;     
+        public static int MaxLength = 25;
 
-        public string Value {get;private set;} = default!;   
-        private Password(){}
-        private Password(string password){
+        public string Value { get; private set; } = default!;
+        private Password() { }
+        private Password(string password)
+        {
             Value = password;
         }
 
-         /// <summary>
+        /// <summary>
         /// Encirpta la contraseña
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-        private Password EncryptPassword(){
+        private Password EncryptPassword()
+        {
             var salt = BCrypt.Net.BCrypt.GenerateSalt(10);
-            var passEncrypted = BCrypt.Net.BCrypt.HashPassword(Value,salt);
+            var passEncrypted = BCrypt.Net.BCrypt.HashPassword(Value, salt);
             return new Password(passEncrypted);
         }
 
@@ -33,16 +34,17 @@ namespace Domain.src.ValueObject
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-        internal static Result<Password> Create(string password){
+        internal static Result<Password> Create(string password)
+        {
             Password newPassword = new(password);
             PasswordValidator validator = new();
             var result = validator.Validate(newPassword);
-            if(!result.IsValid)
+            if (!result.IsValid)
             {
                 var errors = ConvertDomainError.Convert(result);
                 return Result.Fail<Password>(errors[0]);
             }
-            return Result.Ok<Password>(newPassword.EncryptPassword());
+            return Result.Ok(newPassword.EncryptPassword());
         }
         /// <summary>
         /// Verifica la contrasenia ingresada
@@ -50,8 +52,9 @@ namespace Domain.src.ValueObject
         /// <param name="inputPassword"></param>
         /// <param name="hash"></param>
         /// <returns></returns>
-        public bool VerifyPassword(string inputPassword){
-            var verified = BCrypt.Net.BCrypt.Verify(inputPassword,Value);
+        public bool VerifyPassword(string inputPassword)
+        {
+            var verified = BCrypt.Net.BCrypt.Verify(inputPassword, Value);
             return verified;
         }
     }
@@ -60,7 +63,7 @@ namespace Domain.src.ValueObject
     {
         internal PasswordValidator()
         {
-            RuleFor(x=>x.Value)
+            RuleFor(x => x.Value)
                 .NotEmpty()
                 .Must(value => !value.StartsWith("1234"))
                 .Must(value => !value.StartsWith("qwer"))
