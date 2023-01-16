@@ -3,7 +3,7 @@ using Application.src.Features.UserAccount.Command.CreateAccount;
 using Application.src.Features.UserAccount.DTO.Input;
 using MediatR;
 
-namespace UserContext.App.src.Controller;
+namespace UserContext.Presentation.src.Controller;
 
 public static class CreateAccount
 {

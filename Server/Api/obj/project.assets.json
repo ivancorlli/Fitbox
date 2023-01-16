@@ -345,22 +345,6 @@
           "bin/placeholder/SharedKernell.dll": {}
         }
       },
-      "UserContext.App/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "MediatR.Extensions.Microsoft.DependencyInjection": "11.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
-          "UserContext.Application": "1.0.0",
-          "UserContext.Infrastructure": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/UserContext.App.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/UserContext.App.dll": {}
-        }
-      },
       "UserContext.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -402,6 +386,22 @@
         },
         "runtime": {
           "bin/placeholder/UserContext.Infrastructure.dll": {}
+        }
+      },
+      "UserContext.Presentation/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "MediatR.Extensions.Microsoft.DependencyInjection": "11.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
+          "UserContext.Application": "1.0.0",
+          "UserContext.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/UserContext.Presentation.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserContext.Presentation.dll": {}
         }
       }
     }
@@ -903,11 +903,6 @@
       "path": "../SharedKernell/SharedKernell.csproj",
       "msbuildProject": "../SharedKernell/SharedKernell.csproj"
     },
-    "UserContext.App/1.0.0": {
-      "type": "project",
-      "path": "../UserContext.App/UserContext.App.csproj",
-      "msbuildProject": "../UserContext.App/UserContext.App.csproj"
-    },
     "UserContext.Application/1.0.0": {
       "type": "project",
       "path": "../UserContext/UserContext.Application/UserContext.Application.csproj",
@@ -922,11 +917,16 @@
       "type": "project",
       "path": "../UserContext/UserContext.Infrastructure/UserContext.Infrastructure.csproj",
       "msbuildProject": "../UserContext/UserContext.Infrastructure/UserContext.Infrastructure.csproj"
+    },
+    "UserContext.Presentation/1.0.0": {
+      "type": "project",
+      "path": "../UserContext.App/UserContext.Presentation.csproj",
+      "msbuildProject": "../UserContext.App/UserContext.Presentation.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "UserContext.App >= 1.0.0"
+      "UserContext.Presentation >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -962,8 +962,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\PC\\Desktop\\Fitbox\\Server\\UserContext.App\\UserContext.App.csproj": {
-              "projectPath": "C:\\Users\\PC\\Desktop\\Fitbox\\Server\\UserContext.App\\UserContext.App.csproj"
+            "C:\\Users\\PC\\Desktop\\Fitbox\\Server\\UserContext.App\\UserContext.Presentation.csproj": {
+              "projectPath": "C:\\Users\\PC\\Desktop\\Fitbox\\Server\\UserContext.App\\UserContext.Presentation.csproj"
             }
           }
         }

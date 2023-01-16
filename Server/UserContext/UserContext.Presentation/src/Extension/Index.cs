@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace UserContext.App.src.Extension;
+namespace UserContext.Presentation.src.Extension;
 
 internal static class Index
 {
@@ -21,29 +21,29 @@ internal static class Index
         services.AddMediatR(typeof(Index).Assembly);
         return services;
     }
-    internal static IServiceCollection ConfigureRepository(this IServiceCollection services) 
+    internal static IServiceCollection ConfigureRepository(this IServiceCollection services)
     {
-        services.AddScoped<IAccountReadRepository,AccountReadRepository>();
-        services.AddScoped<IAccountWriteRepository,AccountWriteRepository>();
-        services.AddScoped<IPersonReadRepository,PersonReadRepository>();
-        services.AddScoped<IPersonWriteRepository,PersonWriteRepository>();
-        return services;    
+        services.AddScoped<IAccountReadRepository, AccountReadRepository>();
+        services.AddScoped<IAccountWriteRepository, AccountWriteRepository>();
+        services.AddScoped<IPersonReadRepository, PersonReadRepository>();
+        services.AddScoped<IPersonWriteRepository, PersonWriteRepository>();
+        return services;
     }
 
-    internal static IServiceCollection ConfigureManager(this IServiceCollection services) 
+    internal static IServiceCollection ConfigureManager(this IServiceCollection services)
     {
-        services.AddScoped<IAccountManager,AccountManager>();
+        services.AddScoped<IAccountManager, AccountManager>();
         services.AddScoped<IPersonManager, PersonManager>();
         return services;
     }
 
-    internal static IServiceCollection ConfigureUnitOfWork(this IServiceCollection services) 
+    internal static IServiceCollection ConfigureUnitOfWork(this IServiceCollection services)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         return services;
     }
 
-    internal static IServiceCollection ConfigureDb(this IServiceCollection services) 
+    internal static IServiceCollection ConfigureDb(this IServiceCollection services)
     {
         var Connection = "server=localhost;port=3306;user=fitboxserver;password=A1jc8D62;database=usercontext";
         services.AddDbContext<UserDbContext>(
@@ -57,7 +57,7 @@ internal static class Index
                             maxRetryCount: 4,
                             maxRetryDelay: TimeSpan.FromMilliseconds(2000),
                             errorNumbersToAdd: null)
-                
+
 
             ));
         return services;

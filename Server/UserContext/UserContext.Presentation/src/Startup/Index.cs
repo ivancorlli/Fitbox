@@ -1,8 +1,8 @@
 ﻿
 using Microsoft.Extensions.DependencyInjection;
-using UserContext.App.src.Extension;
+using UserContext.Presentation.src.Extension;
 
-namespace UserContext.App.src.Startup;
+namespace UserContext.Presentation.src.Startup;
 
 public static class Index
 {
