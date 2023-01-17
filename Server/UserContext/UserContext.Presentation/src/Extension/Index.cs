@@ -46,20 +46,16 @@ internal static class Index
     internal static IServiceCollection ConfigureDb(this IServiceCollection services)
     {
         var Connection = "server=localhost;port=3306;user=fitboxserver;password=A1jc8D62;database=usercontext";
+        var serverVersion = new MySqlServerVersion(new Version(10, 6, 11));
         services.AddDbContext<UserDbContext>(
             opts => opts.UseMySql(
             Connection,
-            ServerVersion.Create(
-                    new Version(10, 6, 11),
-                    ServerType.MariaDb
-                ),
+            serverVersion,
                 opt => opt.EnableRetryOnFailure(
                             maxRetryCount: 4,
                             maxRetryDelay: TimeSpan.FromMilliseconds(2000),
-                            errorNumbersToAdd: null)
-
-
-            ));
+                            errorNumbersToAdd: null
+            )).EnableSensitiveDataLogging().EnableDetailedErrors() );
         return services;
     }
 }
