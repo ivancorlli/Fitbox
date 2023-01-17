@@ -1,6 +1,6 @@
-using Application.src.Errors;
 using SharedKernell.src.Interface.Mediator;
 using SharedKernell.src.Result;
+using UserContext.Application.src.Errors;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.ValueObject;
 

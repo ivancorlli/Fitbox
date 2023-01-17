@@ -1,7 +1,7 @@
-using Domain.src.Error;
 using SharedKernell.src.Result;
 using UserContext.Domain.src.Abstractions;
 using UserContext.Domain.src.Entity;
+using UserContext.Domain.src.Error;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.Repository;
 using UserContext.Domain.src.ValueObject;

@@ -1,7 +1,6 @@
-﻿
-using Application.src.Features.UserAccount.Command.CreateAccount;
-using Application.src.Features.UserAccount.DTO.Input;
-using MediatR;
+﻿using MediatR;
+using UserContext.Application.src.Features.UserAccount.Command.CreateAccount;
+using UserContext.Application.src.Features.UserAccount.DTO.Input;
 
 namespace UserContext.Presentation.src.Controller;
 

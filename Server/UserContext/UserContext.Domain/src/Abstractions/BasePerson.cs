@@ -1,7 +1,7 @@
-using Domain.src.Error;
 using SharedKernell.src.Entity;
 using SharedKernell.src.Result;
 using UserContext.Domain.src.Enum;
+using UserContext.Domain.src.Error;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.ValueObject;
 

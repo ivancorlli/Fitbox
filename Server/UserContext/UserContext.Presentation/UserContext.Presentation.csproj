@@ -12,8 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UserContext\UserContext.Application\UserContext.Application.csproj" />
-    <ProjectReference Include="..\UserContext\UserContext.Infrastructure\UserContext.Infrastructure.csproj" />
+    <ProjectReference Include="..\UserContext.Application\UserContext.Application.csproj" />
+    <ProjectReference Include="..\UserContext.Infrastructure\UserContext.Infrastructure.csproj" />
+    <ProjectReference Include="..\UserContext.Domain\UserContext.Domain.csproj" />
   </ItemGroup>
 
 </Project>

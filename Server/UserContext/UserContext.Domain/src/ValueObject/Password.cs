@@ -1,4 +1,3 @@
-using Domain.src.Error;
 using FluentValidation;
 using SharedKernell.src.Result;
 using UserContext.Domain.src.Utils;

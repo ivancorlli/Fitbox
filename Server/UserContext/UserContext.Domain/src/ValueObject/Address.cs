@@ -1,6 +1,4 @@
-using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
-using Domain.src.Error;
 using FluentValidation;
 using SharedKernell.src.Constant;
 using SharedKernell.src.Result;

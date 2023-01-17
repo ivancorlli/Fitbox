@@ -1,4 +1,3 @@
-using System.Buffers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using UserContext.Domain.src.Entity;
@@ -44,43 +43,50 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
         // Contact
         builder.OwnsOne(x => x.EmergencyContact, nav =>
         {
-            nav.OwnsOne(x => x.Name);
-            nav.Property(x => x.RelationShip)
-                .HasColumnType("varchar");
-            nav.OwnsOne(x => x.Name);
+            //Name
+            nav.OwnsOne(x => x.Name, n => {
+                n.Property(x=>x.FirstName)
+                .HasColumnType("varchar")
+                .HasMaxLength(PersonName.MaxLength);
+                n.Property(x=>x.LastName)
+                .HasColumnType("varchar")
+                .HasMaxLength(PersonName.MaxLength);
+            });
+            // Relation
+            nav.Property(x => x.RelationShip);
+            // Number
             nav.OwnsOne(x => x.Phone, n =>
             {
-                // n.Property(x=>x.Number)
-                //   .HasColumnType("bigint")
-                // .HasMaxLength(12)
-                //.IsRequired();
-                //n.Property(x => x.AreaCode)
-                //  .HasColumnType("int")
-                // .IsRequired();
+                n.Property(x=>x.Number)
+                  .HasColumnType("bigint");
+                n.Property(x => x.AreaCode)
+                 .HasColumnType("int");
             });
         });
         //Bio
         builder.OwnsOne(x => x.Biography, nav =>
         {
             nav.Property(x => x.Value)
-                .HasColumnType("varchar");
+                .HasColumnType("varchar")
+                .HasMaxLength(Bio.MaxLength);
         });
-        // Meical
+        // Medical
         builder.OwnsOne(x => x.Medical, nav =>
         {
             nav.Property(x => x.Aptitude)
-                .HasColumnType("varchar");
+                .HasColumnType("varchar")
+                .HasMaxLength(50);
             nav.Property(x => x.Disabilities)
-                .HasColumnType("varchar");
+                .HasColumnType("varchar")
+                .HasMaxLength(MedicalInfo.MaxLength);
         });
-        // TimeStamps
-        // builder.OwnsOne(x => x.TimeStamps, nav => {
-        //     nav.Property(x => x.CreatedAt)
-        //         .HasColumnType("date");
-        //     nav.Property(x => x.UpdatedAt)
-        //         .HasColumnType("date");
-        // });
-        builder.Ignore(x => x.TimeStamps);
+        //TimeStamps
+        builder.OwnsOne(x => x.TimeStamps, nav => {
+            nav.Property(x => x.CreatedAt)
+                .HasColumnType("date");
+            nav.Property(x => x.UpdatedAt)
+                .HasColumnType("date");
+        });
 
     }
 }

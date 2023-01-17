@@ -1,15 +1,15 @@
 ﻿
-using Application.src.Features.Profile.Command.CreateAddress;
-using Domain.src.Interface;
-using Domain.src.Service;
-using Infrastructure.src.Context;
-using Infrastructure.src.Repository;
-using Infrastructure.src.UOF;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using UserContext.Application.src.Features.Profile.Command.CreateAddress;
+using UserContext.Domain.src.Interface;
+using UserContext.Domain.src.Repository;
+using UserContext.Domain.src.Service;
+using UserContext.Infrastructure.src.Context;
+using UserContext.Infrastructure.src.Repository;
+using UserContext.Infrastructure.src.UOF;
 
 namespace UserContext.Presentation.src.Extension;
 

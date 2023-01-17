@@ -1,7 +1,7 @@
-using System.Buffers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using UserContext.Domain.src.Entity;
+using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Infrastructure.src.Data;
 
@@ -20,7 +20,8 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
         {
             nav.Property(x => x.Value)
             .IsRequired()
-            .HasColumnType("varchar");
+            .HasColumnType("varchar")
+            .HasMaxLength(Email.MaxLength);
             nav.HasIndex(x => x.Value)
             .IsUnique();
         });
@@ -29,7 +30,8 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
         {
             nav.Property(x => x.Value)
             .IsRequired()
-            .HasColumnType("varchar");
+            .HasColumnType("varchar")
+            .HasMaxLength(Username.MaxLength);
             nav.HasIndex(u => u.Value)
             .IsUnique()
             .IsDescending();
@@ -39,14 +41,16 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
         {
             nav.Property(x => x.Value)
             .IsRequired()
-            .HasColumnType("varchar");
+            .HasColumnType("varchar")
+            .HasMaxLength(80);
         });
         // Phone
         builder.OwnsOne(x => x.Phone, nav =>
         {
-            // nav.Property(x=>x.AreaCode)
-            // .IsRequired()
-            // .HasColumnType("varchar");
+            nav.Property(x=>x.AreaCode)
+            .HasColumnType("smallint");
+            nav.Property(x=>x.PhoneNumber)
+            .HasColumnType("bigint");
             nav.HasIndex(p => p.PhoneNumber)
             .IsUnique();
         });
@@ -58,6 +62,5 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
             nav.Property(x => x.UpdatedAt)
                 .HasColumnType("date");
         });
-        //builder.Ignore(x => x.TimeStamps);
     }
 }

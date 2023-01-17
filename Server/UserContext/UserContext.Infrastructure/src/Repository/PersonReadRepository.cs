@@ -1,5 +1,4 @@
-﻿using Shared.src.Error;
-using UserContext.Domain.src.Entity;
+﻿using UserContext.Domain.src.Entity;
 using UserContext.Domain.src.Repository;
 using UserContext.Infrastructure.src.Context;
 

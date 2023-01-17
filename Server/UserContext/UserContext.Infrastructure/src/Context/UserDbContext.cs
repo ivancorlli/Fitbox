@@ -1,6 +1,6 @@
-using Infrastructure.src.Data;
 using Microsoft.EntityFrameworkCore;
 using UserContext.Domain.src.Entity;
+using UserContext.Infrastructure.src.Data;
 
 namespace UserContext.Infrastructure.src.Context
 {
