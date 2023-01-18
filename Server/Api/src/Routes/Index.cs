@@ -2,9 +2,9 @@
 
 namespace Api.src.Routes;
 
-public static class Index
+internal static class Index
 {
-    public static IEndpointRouteBuilder ConfigureApiV1Router(this IEndpointRouteBuilder router)
+    internal static IEndpointRouteBuilder ConfigureApiV1Router(this IEndpointRouteBuilder router)
     {
         router.MapGroup("/v1")
               .ConfigureUserContextRouter();

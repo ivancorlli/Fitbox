@@ -5,7 +5,7 @@ using UserContext.Application.src.Features.UserAccount.DTO.Input;
 
 namespace UserContext.Presentation.src.Controller.Account;
 
-public static class UpdatePassword
+public static class ChangePassword
 {
     public static async Task<Result> PatchAsync(ISender sender, ChangePasswordInput input)
     {

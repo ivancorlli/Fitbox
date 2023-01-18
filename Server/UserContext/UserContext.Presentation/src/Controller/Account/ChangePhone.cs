@@ -5,7 +5,7 @@ using UserContext.Application.src.Features.UserAccount.DTO.Input;
 
 namespace UserContext.Presentation.src.Controller.Account;
 
-public static class UpdatePhone
+public static class ChangePhone
 {
     public static async Task<Result> PatchAsync(ISender sender, ChangePhoneInput input)
     {
