@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using UserContext.Application.src.Features.Profile.Command.CreateAddress;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.Repository;
@@ -10,6 +9,9 @@ using UserContext.Domain.src.Service;
 using UserContext.Infrastructure.src.Context;
 using UserContext.Infrastructure.src.Repository;
 using UserContext.Infrastructure.src.UOF;
+using UserContext.Presentation.src.Controller.Account;
+using UserContext.Presentation.src.Controller.Profile;
+using UserContext.Presentation.src.Interface;
 
 namespace UserContext.Presentation.src.Extension;
 
@@ -18,6 +20,7 @@ internal static class Index
     internal static IServiceCollection ConfigureMediatR(this IServiceCollection services)
     {
         services.AddMediatR(typeof(CreateAddressHandler).Assembly);
+        services.AddMediatR(typeof(AccountController).Assembly);
         services.AddMediatR(typeof(Index).Assembly);
         return services;
     }
@@ -56,6 +59,13 @@ internal static class Index
                             maxRetryDelay: TimeSpan.FromMilliseconds(2000),
                             errorNumbersToAdd: null
             )).EnableSensitiveDataLogging().EnableDetailedErrors() );
+        return services;
+    }
+
+    internal static IServiceCollection ConfigureControllers(this IServiceCollection services)
+    {
+        services.AddScoped<IAccountController,AccountController>();
+        services.AddScoped<IProfileController,ProfileController>();
         return services;
     }
 }

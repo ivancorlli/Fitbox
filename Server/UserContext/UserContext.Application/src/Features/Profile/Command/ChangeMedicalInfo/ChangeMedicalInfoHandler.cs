@@ -4,18 +4,18 @@ using SharedKernell.src.Result;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.ValueObject;
 
-namespace UserContext.Application.src.Features.Profile.Command.UpdateMedicalInfo;
+namespace UserContext.Application.src.Features.Profile.Command.ChangeMedicalInfo;
 
-public class UpdateMedicalInfoHandler : IHandler<UpdateMedicalInfoCommand, Result>
+public class ChangeMedicalInfoHandler : IHandler<ChangeMedicalInfoCommand, Result>
 {
     private readonly IUnitOfWork _UnitOfWork;
 
-    public UpdateMedicalInfoHandler(IUnitOfWork unitOfWork)
+    public ChangeMedicalInfoHandler(IUnitOfWork unitOfWork)
     {
         _UnitOfWork = unitOfWork;
     }
 
-    public async Task<Result> Handle(UpdateMedicalInfoCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(ChangeMedicalInfoCommand request, CancellationToken cancellationToken)
     {
         var input = request.Input;
         var personFound = await _UnitOfWork.PersonReadRepository.GetByIdAsync(input.Id);

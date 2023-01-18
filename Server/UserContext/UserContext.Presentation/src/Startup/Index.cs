@@ -12,7 +12,8 @@ public static class Index
                 .ConfigureRepository()
                 .ConfigureUnitOfWork()
                 .ConfigureManager()
-                .ConfigureMediatR();
+                .ConfigureMediatR()
+                .ConfigureControllers();
         return services;
     }
 }

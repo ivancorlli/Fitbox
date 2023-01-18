@@ -1,14 +1,23 @@
-﻿using Api.src.Routes.UserContext;
+﻿using Api.src.Routes.UserContext.Account;
+using Api.src.Routes.UserContext.Profile;
 
 namespace Api.src.Routes;
 
-internal static class Index
+public static class Index
 {
-    internal static IEndpointRouteBuilder ConfigureApiV1Router(this IEndpointRouteBuilder router)
+    public static IEndpointRouteBuilder ConfigureApiV1Router(this IEndpointRouteBuilder router)
     {
         router.MapGroup("/v1")
               .ConfigureUserContextRouter();
         return router;
     }
 
+    
+    internal static RouteGroupBuilder ConfigureUserContextRouter(this RouteGroupBuilder router)
+    {
+        router.MapGroup("/user")
+            .ConfigureAccountRouter()
+            .ConfigureProfileRouter();
+        return router;
+    }
 }

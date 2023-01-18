@@ -5,18 +5,18 @@ using UserContext.Domain.src.Enum;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.ValueObject;
 
-namespace UserContext.Application.src.Features.Profile.Command.UpdateContact;
+namespace UserContext.Application.src.Features.Profile.Command.ChangeContact;
 
-public class UpdateContactHandler : IHandler<UpdateContactCommand, Result>
+public class ChangeContactHandler : IHandler<ChangeContactCommand, Result>
 {
     private readonly IUnitOfWork _UnitOfWork;
 
-    public UpdateContactHandler(IUnitOfWork unitOfWork)
+    public ChangeContactHandler(IUnitOfWork unitOfWork)
     {
         _UnitOfWork = unitOfWork;
     }
 
-    public async Task<Result> Handle(UpdateContactCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(ChangeContactCommand request, CancellationToken cancellationToken)
     {
         var input = request.Input;
         // Obtenemos perfil

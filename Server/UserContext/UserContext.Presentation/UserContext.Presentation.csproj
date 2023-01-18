@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.2.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
   </ItemGroup>
 
@@ -15,10 +16,6 @@
     <ProjectReference Include="..\UserContext.Application\UserContext.Application.csproj" />
     <ProjectReference Include="..\UserContext.Infrastructure\UserContext.Infrastructure.csproj" />
     <ProjectReference Include="..\UserContext.Domain\UserContext.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="src\Controller\Profile\" />
   </ItemGroup>
 
 </Project>
