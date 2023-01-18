@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SharedKernell.src.Controller;
 using SharedKernell.src.Result;
 using UserContext.Application.src.Features.Profile.Command.ChangeContact;
 using UserContext.Application.src.Features.Profile.Command.ChangeMedicalInfo;
@@ -14,72 +15,72 @@ using UserContext.Presentation.src.Interface;
 
 namespace UserContext.Presentation.src.Controller.Profile;
 
-internal class ProfileController : IProfileController
+internal class ProfileController :BaseController ,IProfileController
 {
-
-    private readonly ISender _Sender;
-    public ProfileController(ISender sender) => _Sender = sender;
+    public ProfileController(IMediator mediator) : base(mediator)
+    {
+    }
 
     public async Task<Result> ChangeContact(ChangeContactInput input)
     {
         var command = new ChangeContactCommand(input);
-        var result = await _Sender.Send(command);
+        var result = await _Mediator.Send(command);
         return result;
     }
 
     public async Task<Result> ChangeMedicalInfo(ChangeMedicalInfoInput input)
     {
         var command = new ChangeMedicalInfoCommand(input);
-        var result = await _Sender.Send(command);
+        var result = await _Mediator.Send(command);
         return result;
     }
 
     public async Task<Result> ChangePerson(ChangePersonInput input)
     {
         var command = new ChangePersonCommand(input);
-        var result = await _Sender.Send(command);
+        var result = await _Mediator.Send(command);
         return result;
     }
 
     public async Task<Result> CreateAddress(CreateAddressInput input)
     {
         var command = new CreateAddressCommand(input);
-        var result = await _Sender.Send(command);
+        var result = await _Mediator.Send(command);
         return result;
     }
 
     public async Task<Result> CreateContact(CreateContactInput input)
     {
         var command = new CreateContactCommand(input);
-        var result = await _Sender.Send(command);
+        var result = await _Mediator.Send(command);
         return result;
     }
 
     public async Task<Result> CreateMedicalInfo(CreateMedicalInfoInput input)
     {
         var command = new CreateMedicalInfoCommand(input);
-        var result = await _Sender.Send(command);
+        var result = await _Mediator.Send(command);
         return result; 
     }
 
     public async Task<Result> CreatePerson(CreatePersonInput input)
     {
         var command = new CreatePersonCommand(input);
-        var result = await _Sender.Send(command);
+        var result = await _Mediator.Send(command);
         return result;
     }
 
     public async Task<Result> DeleteContact(DeleteContactInput input)
     {
         var command = new DeleteContactCommand(input);
-        var result = await _Sender.Send(command);
+        var result = await _Mediator.Send(command);
         return result;
     }
 
     public async Task<Result> DeleteMedicalInfo(DeleteMedicalinfoInput input)
     {
         var command = new DeleteMedicalInfoCommand(input);
-        var result = await _Sender.Send(command);
+        var result = await _Mediator.Send(command);
         return result;
     }
 }

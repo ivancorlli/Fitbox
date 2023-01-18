@@ -1,5 +1,4 @@
-﻿
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using UserContext.Application.src.Features.Profile.Command.CreateAddress;
@@ -20,7 +19,6 @@ internal static class Index
     internal static IServiceCollection ConfigureMediatR(this IServiceCollection services)
     {
         services.AddMediatR(typeof(CreateAddressHandler).Assembly);
-        services.AddMediatR(typeof(AccountController).Assembly);
         services.AddMediatR(typeof(Index).Assembly);
         return services;
     }
