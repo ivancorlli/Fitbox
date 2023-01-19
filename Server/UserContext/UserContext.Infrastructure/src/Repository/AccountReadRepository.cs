@@ -34,7 +34,7 @@ public class AccountReadRepository : IAccountReadRepository
     {
         var response = false;
         var emailExists = await _AccountContext.Account
-                         .Where(ac => ac.Email == email)
+                         .Where(ac => ac.Email.Value == email.Value)
                          .ToListAsync();
         if (emailExists.Count > 0)
         {
@@ -68,7 +68,7 @@ public class AccountReadRepository : IAccountReadRepository
     {
         var response = false;
         var emailExists = await _AccountContext.Account
-                          .Where(ac => ac.Username == username)
+                          .Where(ac => ac.Username.Value ==username.Value)
                           .ToListAsync();
         if (emailExists.Count > 0)
         {

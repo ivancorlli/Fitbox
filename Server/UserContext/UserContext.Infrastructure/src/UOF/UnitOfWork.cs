@@ -29,7 +29,7 @@ namespace UserContext.Infrastructure.src.UOF
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _Context.Dispose();
         }
 
         public void OutboxMessage()
@@ -37,9 +37,9 @@ namespace UserContext.Infrastructure.src.UOF
             throw new NotImplementedException();
         }
 
-        public Task SaveChangesAsync(CancellationToken cancellationToken)
+        public async Task SaveChangesAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await _Context.SaveChangesAsync(cancellationToken);
         }
     }
 }

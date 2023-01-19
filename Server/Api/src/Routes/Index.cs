@@ -1,5 +1,4 @@
-﻿using Api.src.Routes.UserContext.Account;
-using Api.src.Routes.UserContext.Profile;
+﻿using Api.src.Routes.UserContext;
 
 namespace Api.src.Routes;
 
