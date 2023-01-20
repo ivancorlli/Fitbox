@@ -1,4 +1,3 @@
-using UserContext.Application.src.Errors;
 using SharedKernell.src.Interface.Mediator;
 using SharedKernell.src.Result;
 using UserContext.Domain.src.Enum;

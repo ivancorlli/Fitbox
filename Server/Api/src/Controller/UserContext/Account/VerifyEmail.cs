@@ -6,7 +6,7 @@ public static class VerifyEmail
 {
     public static RouteGroupBuilder VerifyEmailRoute(this RouteGroupBuilder builder)
     {
-        builder.MapPatch("/",);
+        builder.MapPatch("/",VerifyEmailController);
         return builder;
     }
 

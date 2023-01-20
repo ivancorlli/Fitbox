@@ -1,5 +1,5 @@
 ﻿using SharedKernell.src.Result;
-using UserContext.Application.src.Features.UserAccount.DTO.Input;
+using UserContext.Application.src.Features.Account.DTO.Input;
 
 namespace UserContext.Presentation.src.Interface;
 

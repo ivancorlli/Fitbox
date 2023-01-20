@@ -2,14 +2,14 @@
 using MediatR;
 using SharedKernell.src.Controller;
 using SharedKernell.src.Result;
-using UserContext.Application.src.Features.UserAccount.Command.ChangeEmail;
-using UserContext.Application.src.Features.UserAccount.Command.ChangePassword;
-using UserContext.Application.src.Features.UserAccount.Command.ChangePhone;
-using UserContext.Application.src.Features.UserAccount.Command.ChangeUsername;
-using UserContext.Application.src.Features.UserAccount.Command.CreateAccount;
-using UserContext.Application.src.Features.UserAccount.Command.VerifyEmail;
-using UserContext.Application.src.Features.UserAccount.Command.VerifyPhone;
-using UserContext.Application.src.Features.UserAccount.DTO.Input;
+using UserContext.Application.src.Features.Account.DTO.Input;
+using UserContext.Application.src.Features.Account.Command.ChangeEmail;
+using UserContext.Application.src.Features.Account.Command.ChangePassword;
+using UserContext.Application.src.Features.Account.Command.ChangePhone;
+using UserContext.Application.src.Features.Account.Command.ChangeUsername;
+using UserContext.Application.src.Features.Account.Command.CreateAccount;
+using UserContext.Application.src.Features.Account.Command.VerifyEmail;
+using UserContext.Application.src.Features.Account.Command.VerifyPhone;
 using UserContext.Presentation.src.Interface;
 
 namespace UserContext.Presentation.src.Controller.Account;

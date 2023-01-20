@@ -7,7 +7,12 @@ public static class ProfileRouter
     public static RouteGroupBuilder ConfigureProfileRouter(this RouteGroupBuilder router)
     {
         router.MapGroup("/profile")
-            .CreatePersonRoute();
+            .CreatePersonRoute()
+            .CreateAddressRoute()
+            .CreateContactRoute()
+            .CreateMedicalInfoRoute()
+            .DeleteContactRoute()
+            .DeleteMedicalInfoRoute();
         return router;
     }
 
