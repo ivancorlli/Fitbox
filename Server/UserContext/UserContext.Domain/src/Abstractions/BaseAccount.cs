@@ -1,5 +1,6 @@
 using SharedKernell.src.Entity;
 using SharedKernell.src.Result;
+using UserContext.Domain.src.Entity;
 using UserContext.Domain.src.Enum;
 using UserContext.Domain.src.Error;
 using UserContext.Domain.src.Interface;
@@ -18,6 +19,7 @@ public abstract class BaseAccount : AggregateRoot, IAccount
     public bool EmailVerified { get; protected set; }
     public bool PhoneVerified { get; private set; }
     public Phone? Phone { get; private set; }
+    public Person? Profile { get; protected set; }
 
     protected BaseAccount(Username username, Email email, Password password)
     {
@@ -36,7 +38,7 @@ public abstract class BaseAccount : AggregateRoot, IAccount
     internal void ChangeUsername(Username username)
     {
         Username = username;
-        EntityUpdated();
+        this.EntityUpdated();
     }
 
     /// <summary>
@@ -47,7 +49,7 @@ public abstract class BaseAccount : AggregateRoot, IAccount
     {
         Email = email;
         UnverifyEmail();
-        EntityUpdated();
+        this.EntityUpdated();
     }
 
     /// <summary>
@@ -64,7 +66,7 @@ public abstract class BaseAccount : AggregateRoot, IAccount
         if (newPass.IsFailure)
             return Result.Fail(new ValidationError(newPass.Error.Message));
         Password = newPass.Value;
-        EntityUpdated();
+        this.EntityUpdated();
         return Result.Ok();
     }
 
@@ -75,7 +77,7 @@ public abstract class BaseAccount : AggregateRoot, IAccount
     public void IsNotNew()
     {
         IsNew = false;
-        EntityUpdated();
+        this.EntityUpdated();
     }
 
     /// <summary>
@@ -84,7 +86,7 @@ public abstract class BaseAccount : AggregateRoot, IAccount
     public void VerifyEmail()
     {
         EmailVerified = true;
-        EntityUpdated();
+        this.EntityUpdated();
     }
 
     /// <summary>
@@ -93,7 +95,7 @@ public abstract class BaseAccount : AggregateRoot, IAccount
     private void UnverifyEmail()
     {
         EmailVerified = false;
-        EntityUpdated();
+        this.EntityUpdated();
     }
 
     /// <summary>
@@ -104,7 +106,7 @@ public abstract class BaseAccount : AggregateRoot, IAccount
     {
         Phone = phone;
         UnverifyPhone();
-        EntityUpdated();
+        this.EntityUpdated();
     }
 
     /// <summary>
@@ -113,7 +115,7 @@ public abstract class BaseAccount : AggregateRoot, IAccount
     public void VerifyPhone()
     {
         PhoneVerified = true;
-        EntityUpdated();
+        this.EntityUpdated();
     }
 
     /// <summary>
@@ -122,7 +124,29 @@ public abstract class BaseAccount : AggregateRoot, IAccount
     private void UnverifyPhone()
     {
         PhoneVerified = false;
-        EntityUpdated();
+        this.EntityUpdated();
+    }
+
+    /// <summary>
+    /// Crea un nuevo perfil
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="gender"></param>
+    /// <param name="birth"></param>
+    /// <returns></returns>
+    public Result AddProfile(PersonName name, Gender gender, DateTime birth)
+    {
+        if (Profile != null)
+        {
+            var newPerson = Person.Create(name,gender,birth);
+            if(newPerson.IsFailure) return Result.Fail(newPerson.Error);
+            Profile = newPerson.Value;
+            this.EntityUpdated();
+            return Result.Ok();
+        }else
+        {
+            return Result.Fail(new ProfileExists(Username.Value));
+        }
     }
 
     // ============================ VALIDACIONES ================================================================ //

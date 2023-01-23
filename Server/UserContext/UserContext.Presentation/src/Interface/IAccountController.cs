@@ -12,4 +12,8 @@ public interface IAccountController
     Task<Result> ChangePassword(ChangePasswordInput input);
     Task<Result> VerifyEmail(VerifyEmailInput input);
     Task<Result> VerifyPhone(VerifyPhoneInput input);
+    Task<Result> ChangeProfile(ChangeProfileInput input);
+    Task<Result> ChangeAddress(ChangeAddressInput input);
+    Task<Result> ChangeContact(ChangeContactInput input);
+    Task<Result> ChangeMedicalInfo(ChangeMedicalInfoInput input);
 }

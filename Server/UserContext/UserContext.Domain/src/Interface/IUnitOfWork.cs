@@ -7,7 +7,5 @@ namespace UserContext.Domain.src.Interface
     {
         IAccountWriteRepository AccountWriteRepository { get; }
         IAccountReadRepository AccountReadRepository { get; }
-        IPersonReadRepository PersonReadRepository { get; }
-        IPersonWriteRepository PersonWriteRepository { get; }
     }
 }

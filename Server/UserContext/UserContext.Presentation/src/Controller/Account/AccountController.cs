@@ -11,6 +11,10 @@ using UserContext.Application.src.Features.Account.Command.CreateAccount;
 using UserContext.Application.src.Features.Account.Command.VerifyEmail;
 using UserContext.Application.src.Features.Account.Command.VerifyPhone;
 using UserContext.Presentation.src.Interface;
+using UserContext.Application.src.Features.Account.Command.ChangeMedicalInfo;
+using UserContext.Application.src.Features.Account.Command.CreateContact;
+using UserContext.Application.src.Features.Account.Command.CreatePerson;
+using UserContext.Application.src.Features.Account.Command.CreateAddress;
 
 namespace UserContext.Presentation.src.Controller.Account;
 
@@ -65,6 +69,33 @@ internal class AccountController:BaseController,IAccountController
     public async Task<Result> VerifyPhone(VerifyPhoneInput input)
     {
         var command = new VerifyPhoneCommand(input);
+        var result = await _Mediator.Send(command);
+        return result;
+    }
+    public async Task<Result> ChangeContact(ChangeContactInput input)
+    {
+        var command = new ChangeContactCommand(input);
+        var result = await _Mediator.Send(command);
+        return result;
+    }
+
+    public async Task<Result> ChangeMedicalInfo(ChangeMedicalInfoInput input)
+    {
+        var command = new ChangeMedicalInfoCommand(input);
+        var result = await _Mediator.Send(command);
+        return result;
+    }
+
+    public async Task<Result> ChangeProfile(ChangeProfileInput input)
+    {
+        var command = new ChangeProfileCommand(input);
+        var result = await _Mediator.Send(command);
+        return result;
+    }
+
+    public async Task<Result> ChangeAddress(ChangeAddressInput input)
+    {
+        var command = new ChangeAddressCommand(input);
         var result = await _Mediator.Send(command);
         return result;
     }

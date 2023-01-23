@@ -6,7 +6,6 @@ namespace UserContext.Domain.src.Interface;
 
 public interface IPerson
 {
-    public Guid AccountId { get; init; }
     public PersonName Name { get; }
     public Gender Gender { get; }
     public DateTime Birth { get; }

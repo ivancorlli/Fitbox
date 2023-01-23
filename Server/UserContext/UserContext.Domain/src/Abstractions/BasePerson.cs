@@ -7,10 +7,9 @@ using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Domain.src.Abstractions
 {
-    public abstract class BasePerson : AggregateRoot, IPerson
+    public abstract class BasePerson : BaseEntity, IPerson
     {
         protected BasePerson() { }
-        public Guid AccountId { get; init; }
         public PersonName Name { get; protected set; } = default!;
         public Gender Gender { get; protected set; }
         public DateTime Birth { get; protected set; }
@@ -23,9 +22,8 @@ namespace UserContext.Domain.src.Abstractions
         /// <param name="name"></param>
         /// <param name="gender"></param>
         /// <param name="birth"></param>
-        protected BasePerson(Guid account, PersonName name, Gender gender, DateTime birth)
+        protected BasePerson(PersonName name, Gender gender, DateTime birth)
         {
-            AccountId = account;
             Name = name;
             Gender = gender;
             Birth = birth;

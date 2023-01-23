@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using UserContext.Application.src.Features.Profile.Command.CreateAddress;
+using UserContext.Application.src.Features.Account.Command.CreateAddress;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.Repository;
 using UserContext.Domain.src.Service;
@@ -9,7 +9,6 @@ using UserContext.Infrastructure.src.Context;
 using UserContext.Infrastructure.src.Repository;
 using UserContext.Infrastructure.src.UOF;
 using UserContext.Presentation.src.Controller.Account;
-using UserContext.Presentation.src.Controller.Profile;
 using UserContext.Presentation.src.Interface;
 
 namespace UserContext.Presentation.src.Extension;
@@ -18,7 +17,7 @@ internal static class Index
 {
     internal static IServiceCollection ConfigureMediatR(this IServiceCollection services)
     {
-        services.AddMediatR(typeof(CreateAddressHandler).Assembly);
+        services.AddMediatR(typeof(ChangeAddressHandler).Assembly);
         services.AddMediatR(typeof(Index).Assembly);
         return services;
     }
@@ -26,15 +25,12 @@ internal static class Index
     {
         services.AddScoped<IAccountReadRepository, AccountReadRepository>();
         services.AddScoped<IAccountWriteRepository, AccountWriteRepository>();
-        services.AddScoped<IPersonReadRepository, PersonReadRepository>();
-        services.AddScoped<IPersonWriteRepository, PersonWriteRepository>();
         return services;
     }
 
     internal static IServiceCollection ConfigureManager(this IServiceCollection services)
     {
         services.AddScoped<IAccountManager, AccountManager>();
-        services.AddScoped<IPersonManager, PersonManager>();
         return services;
     }
 
@@ -63,7 +59,6 @@ internal static class Index
     internal static IServiceCollection ConfigureControllers(this IServiceCollection services)
     {
         services.AddScoped<IAccountController,AccountController>();
-        services.AddScoped<IProfileController,ProfileController>();
         return services;
     }
 }

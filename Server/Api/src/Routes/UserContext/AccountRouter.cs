@@ -13,7 +13,11 @@ public static class AccountRouter
             .ChangePhoneRoute()
             .ChangePasswordRoute()
             .VerifyEmailRoute()
-            .VerifyPhoneRoute();
+            .VerifyPhoneRoute()
+            .ChangeProfileRoute()
+            .ChangeAddressRoute()
+            .ChangeMedicalInfoRoute()
+            .ChangeContactRoute();
         return router;
     }
 

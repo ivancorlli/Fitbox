@@ -11,7 +11,7 @@ namespace UserContext.Domain.src.Entity
     public class Person : BasePerson
     {
         private Person() { }
-        private Person(Guid account, PersonName name, Gender gender, DateTime birth) : base(account, name, gender, birth)
+        private Person(PersonName name, Gender gender, DateTime birth) : base(name, gender, birth)
         {
         }
         public EmergencyContact? EmergencyContact { get; private set; }
@@ -19,13 +19,13 @@ namespace UserContext.Domain.src.Entity
         public MedicalInfo? Medical { get; private set; }
 
 
-        internal static Result<Person> Create(Guid account, PersonName name, Gender gender, DateTime birth)
+        internal static Result<Person> Create( PersonName name, Gender gender, DateTime birth)
         {
             var isValid = ValidateBirth(birth);
             if (isValid.IsFailure)
                 return Result.Fail<Person>(isValid.Error);
 
-            var newUser = new Person(account, name, gender, birth);
+            var newUser = new Person(name, gender, birth);
             return Result.Ok(newUser);
         }
 

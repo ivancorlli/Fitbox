@@ -1,3 +1,4 @@
+using UserContext.Domain.src.Entity;
 using UserContext.Domain.src.Enum;
 using UserContext.Domain.src.ValueObject;
 
@@ -11,5 +12,6 @@ public interface IAccount
     public Password Password { get; }
     public bool IsNew { get; }
     public bool EmailVerified { get; }
+    public Person? Profile { get; }
 
 }

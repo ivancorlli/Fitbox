@@ -1,3 +1,4 @@
+using SharedKernell.src.Interface.Entity;
 using SharedKernell.src.Result;
 using UserContext.Domain.src.Abstractions;
 using UserContext.Domain.src.Error;

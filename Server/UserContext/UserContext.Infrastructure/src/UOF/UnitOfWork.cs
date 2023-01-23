@@ -8,19 +8,19 @@ namespace UserContext.Infrastructure.src.UOF
     public class UnitOfWork : IUnitOfWork
     {
         private readonly UserDbContext _Context;
+        private readonly IAccountReadRepository _AccountReadRepository;
+        private readonly IAccountWriteRepository _AccountWriteRepository;
 
-        public UnitOfWork(UserDbContext context)
+        public UnitOfWork(UserDbContext context,IAccountReadRepository readRepo, IAccountWriteRepository writeRepo)
         {
             _Context = context;
+            _AccountReadRepository = readRepo;
+            _AccountWriteRepository = writeRepo;
         }
 
-        public IAccountWriteRepository AccountWriteRepository => new AccountWriteRepository(_Context);
+        public IAccountWriteRepository AccountWriteRepository => _AccountWriteRepository;
 
-        public IAccountReadRepository AccountReadRepository => new AccountReadRepository(_Context);
-
-        public IPersonReadRepository PersonReadRepository => new PersonReadRepository(_Context);
-
-        public IPersonWriteRepository PersonWriteRepository => new PersonWriteRepository(_Context);
+        public IAccountReadRepository AccountReadRepository => _AccountReadRepository;
 
         public void AuditableEntity()
         {
