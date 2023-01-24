@@ -3,12 +3,12 @@ using SharedKernell.src.Result;
 using UserContext.Domain.src.Entity;
 using UserContext.Domain.src.Enum;
 using UserContext.Domain.src.Error;
-using UserContext.Domain.src.Interface;
+using UserContext.Domain.src.Interface.Entity;
 using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Domain.src.Abstractions;
 
-public abstract class BaseAccount : AggregateRoot, IAccount
+public abstract class BaseAccount : AggregateRoot, IBaseAccount
 {
     protected BaseAccount() { }
     public Username Username { get; protected set; } = default!;

@@ -2,18 +2,21 @@ using SharedKernell.src.Entity;
 using SharedKernell.src.Result;
 using UserContext.Domain.src.Enum;
 using UserContext.Domain.src.Error;
-using UserContext.Domain.src.Interface;
+using UserContext.Domain.src.Interface.Entity;
 using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Domain.src.Abstractions
 {
-    public abstract class BasePerson : BaseEntity, IPerson
+    public abstract class BasePerson : BaseEntity, IBasePerson
     {
         protected BasePerson() { }
         public PersonName Name { get; protected set; } = default!;
         public Gender Gender { get; protected set; }
         public DateTime Birth { get; protected set; }
         public Address? Address { get; protected set; }
+        public EmergencyContact? EmergencyContact { get; private set; }
+        public Bio? Bio { get; private set; }
+        public MedicalInfo? Medical { get; private set; }
 
         /// <summary>
         /// Create a base person
@@ -87,6 +90,56 @@ namespace UserContext.Domain.src.Abstractions
         public void DeleteAddress()
         {
             Address = null;
+            EntityUpdated();
+        }
+
+        /// <summary>
+        /// Cambia la biografia
+        /// </summary>
+        /// <param name="bio"></param>
+        public void ChangeBio(Bio bio)
+        {
+            Bio = bio;
+            EntityUpdated();
+        }
+
+        /// <summary>
+        /// Crea un contacto de emergencia
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="relationShip"></param>
+        /// <param name="phone"></param>
+        public void CreateContact(PersonName name, RelationShip relationShip, ContactPhone phone)
+        {
+            EmergencyContact = new EmergencyContact(name, relationShip, phone);
+            EntityUpdated();
+        }
+
+        // <summary>
+        // Elimina el contacto de emergencia
+        // </summary>
+        public void DeleteContact()
+        {
+            EmergencyContact = null;
+            EntityUpdated();
+        }
+
+        /// <summary>
+        /// Crea un registro de informacion medica
+        /// </summary>
+        /// <param name="medical"></param>
+        public void CreateMedicalInfo(MedicalInfo medical)
+        {
+            Medical = medical;
+            EntityUpdated();
+        }
+
+        /// <summary>
+        /// Elimina la informacion medica
+        /// </summary>
+        public void DeleteMedicalInfo()
+        {
+            Medical = null;
             EntityUpdated();
         }
         // ================================================================================================================ //      

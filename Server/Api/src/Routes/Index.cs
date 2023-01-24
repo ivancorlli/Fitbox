@@ -15,8 +15,7 @@ public static class Index
     internal static RouteGroupBuilder ConfigureUserContextRouter(this RouteGroupBuilder router)
     {
         router.MapGroup("/user")
-            .ConfigureAccountRouter()
-            .ConfigureProfileRouter();
+            .ConfigureAccountRouter();
         return router;
     }
 }
