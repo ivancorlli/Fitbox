@@ -4,7 +4,7 @@ using UserContext.Application.src.Errors;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.ValueObject;
 
-namespace UserContext.Application.src.Features.Account.Command.CreateAddress
+namespace UserContext.Application.src.Features.Account.Command.ChangeAddress
 {
     public class ChangeAddressHandler : IHandler<ChangeAddressCommand, Result>
     {
@@ -27,7 +27,7 @@ namespace UserContext.Application.src.Features.Account.Command.CreateAddress
             var newAddress = Address.Create(input.coutry, input.city, input.state, newZipCode.Value);
             if (newAddress.IsFailure)
                 return Result.Fail(newAddress.Error);
-            if(account.Profile == null)
+            if (account.Profile == null)
                 return Result.Fail(new ProfileNotExists());
             account.Profile.CreateAddress(newAddress.Value);
 

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using UserContext.Domain.src.Entity;
+using UserContext.Domain.src.Entity.Account;
 using UserContext.Infrastructure.src.Data;
 
 namespace UserContext.Infrastructure.src.Context
@@ -10,7 +11,7 @@ namespace UserContext.Infrastructure.src.Context
         {
         }
 
-        public DbSet<Account> Account => Set<Account>();
+        public DbSet<PersonAccount> Account => Set<PersonAccount>();
         public DbSet<Person> Person => Set<Person>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

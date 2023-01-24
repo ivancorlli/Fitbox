@@ -5,7 +5,7 @@ using UserContext.Domain.src.Enum;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.ValueObject;
 
-namespace UserContext.Application.src.Features.Account.Command.CreateContact;
+namespace UserContext.Application.src.Features.Account.Command.ChangeContact;
 
 public class ChangeContactHandler : IHandler<ChangeContactCommand, Result>
 {

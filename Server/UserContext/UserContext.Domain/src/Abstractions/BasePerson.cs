@@ -14,9 +14,9 @@ namespace UserContext.Domain.src.Abstractions
         public Gender Gender { get; protected set; }
         public DateTime Birth { get; protected set; }
         public Address? Address { get; protected set; }
-        public EmergencyContact? EmergencyContact { get; private set; }
-        public Bio? Bio { get; private set; }
-        public MedicalInfo? Medical { get; private set; }
+        public EmergencyContact? EmergencyContact { get; protected set; }
+        public Bio? Bio { get; protected set; }
+        public MedicalInfo? Medical { get; protected set; }
 
         /// <summary>
         /// Create a base person

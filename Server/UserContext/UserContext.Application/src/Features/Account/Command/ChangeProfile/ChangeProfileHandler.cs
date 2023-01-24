@@ -1,7 +1,6 @@
 using SharedKernell.src.Interface.Mediator;
 using SharedKernell.src.Result;
 using UserContext.Application.src.Errors;
-using UserContext.Application.src.Features.Account.Command.CreatePerson;
 using UserContext.Domain.src.Enum;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.ValueObject;

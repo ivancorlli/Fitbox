@@ -1,13 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using UserContext.Domain.src.Entity;
+using UserContext.Domain.src.Entity.Account;
 using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Infrastructure.src.Data;
 
-public class AccountConfiguration : IEntityTypeConfiguration<Account>
+public class AccountConfiguration : IEntityTypeConfiguration<PersonAccount>
 {
-    public void Configure(EntityTypeBuilder<Account> builder)
+    public void Configure(EntityTypeBuilder<PersonAccount> builder)
     {
         // LLaves primarias
         builder.HasKey(x => x.Id);

@@ -64,7 +64,7 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
             });
         });
         //Bio
-        builder.OwnsOne(x => x.Biography, nav =>
+        builder.OwnsOne(x => x.Bio, nav =>
         {
             nav.Property(x => x.Value)
                 .HasColumnType("varchar")

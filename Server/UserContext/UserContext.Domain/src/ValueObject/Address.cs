@@ -10,15 +10,20 @@ namespace UserContext.Domain.src.ValueObject
     {
         private Address() { }
 
-        public static int MaxLength = 15;
-        public static int MinLength = 3;
-        public static int StateMaxLength => 25;
-        public static Regex Reg = new Regex("^[a-zA-Z ]+$");
+        public const int MaxLength = 15;
+        public const int MinLength = 3;
+        public const int StateMaxLength = 25;
+#pragma warning disable 
+        public static readonly Regex Reg = new("^[a-zA-Z ]+$");
+#pragma warning restore
 
         public string Country { get; init; } = default!;
         public string City { get; init; } = default!;
         public string State { get; init; } = default!;
         public ZipCode ZipCode { get; init; } = default!;
+        public string? Street { get; private set; }
+        public int? StreetNumber { get; private set; }
+
 
         private Address(string country, string city, string state, ZipCode zipCode)
         {
@@ -26,6 +31,16 @@ namespace UserContext.Domain.src.ValueObject
             City = Capitalize.Create(city);
             State = Capitalize.Create(state);
             ZipCode = zipCode;
+        }
+
+        private Address(string country, string city, string state, ZipCode zipCode,string street, int streetNumber)
+        {
+            Country = Capitalize.Create(country);
+            City = Capitalize.Create(city);
+            State = Capitalize.Create(state);
+            ZipCode = zipCode;
+            Street = Capitalize.Create(street);
+            StreetNumber = streetNumber;
         }
 
         /// <summary>
@@ -40,7 +55,7 @@ namespace UserContext.Domain.src.ValueObject
         {
             Address address = new Address(
                 country,
-                country,
+                city,
                 state,
                 zipCode
                 );
@@ -54,7 +69,37 @@ namespace UserContext.Domain.src.ValueObject
             return Result.Ok(address);
         }
 
+        /// <summary>
+        /// Crea una direccion especifica
+        /// </summary>
+        /// <param name="country"></param>
+        /// <param name="city"></param>
+        /// <param name="state"></param>
+        /// <param name="zipCode"></param>
+        /// <param name="street"></param>
+        /// <param name="streetNum"></param>
+        /// <returns></returns>
+        public static Result<Address> Create(string country, string city, string state, ZipCode zipCode, string street,int streetNum)
+        {
+            Address address = new Address(
+                    country,
+                    city,
+                    state,
+                    zipCode,
+                    street,
+                    streetNum
+                    );
+            AddressValidator validator = new AddressValidator();
+            var result = validator.Validate(address);
+            if (!result.IsValid)
+            {
+                var errors = ConvertDomainError.Convert(result);
+                return Result.Fail<Address>(errors[0]);
+            }
+            return Result.Ok(address);
+        }
     }
+
 
     internal sealed class AddressValidator : AbstractValidator<Address>
     {

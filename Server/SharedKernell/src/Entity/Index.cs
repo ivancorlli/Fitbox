@@ -4,7 +4,7 @@ using SharedKernell.src.ValueObject;
 
 namespace SharedKernell.src.Entity;
 
-public abstract class BaseEntity :IBaseEntity
+    public abstract class BaseEntity :IBaseEntity
     {
 
         public Guid Id {get;private init;}

@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using UserContext.Application.src.Features.Account.Command.CreateAddress;
+using UserContext.Application.src.Features.Account.Command.ChangeAddress;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.Repository;
 using UserContext.Domain.src.Service;

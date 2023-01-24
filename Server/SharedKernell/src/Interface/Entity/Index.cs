@@ -5,7 +5,7 @@ public interface IBaseEntity
 
 }
 
-public interface IAggregateRoot 
+public interface IAggregateRoot
 {
         
 }

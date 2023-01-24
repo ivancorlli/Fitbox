@@ -1,6 +1,6 @@
 using SharedKernell.src.Result;
 using UserContext.Domain.src.Abstractions;
-using UserContext.Domain.src.Entity;
+using UserContext.Domain.src.Entity.Account;
 using UserContext.Domain.src.Error;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.Repository;
@@ -24,17 +24,17 @@ namespace UserContext.Domain.src.Service
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public async Task<Result<Account>> CreateAccount(Username username, Email email, string password)
+        public async Task<Result<PersonAccount>> CreateAccount(Username username, Email email, string password)
         {
             var emailExists = await _AccountRepo.IsEmailInUseAsync(email);
             if (emailExists)
-                return Result.Fail<Account>(new EmailAlreadyInUse(email.Value.ToString()));
+                return Result.Fail<PersonAccount>(new EmailAlreadyInUse(email.Value.ToString()));
             var usernameExists = await _AccountRepo.IsUsernameInUseAsync(username);
             if (usernameExists)
-                return Result.Fail<Account>(new UsernameAlreadyInUse(username.Value.ToString()));
-            var newAccount = Account.Create(username, email, password);
+                return Result.Fail<PersonAccount>(new UsernameAlreadyInUse(username.Value.ToString()));
+            var newAccount = PersonAccount.Create(username, email, password);
             if (newAccount.IsFailure)
-                return Result.Fail<Account>(new ValidationError(newAccount.Error.Message));
+                return Result.Fail<PersonAccount>(new ValidationError(newAccount.Error.Message));
 
             return Result.Ok(newAccount.Value);
         }

@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using UserContext.Domain.src.Entity;
+using UserContext.Domain.src.Entity.Account;
 using UserContext.Domain.src.Repository;
 using UserContext.Domain.src.ValueObject;
 using UserContext.Infrastructure.src.Context;
@@ -14,7 +14,7 @@ public class AccountReadRepository : IAccountReadRepository
         _AccountContext = context;
     }
 
-    public async Task<List<Account>> FindByEmailOrUsernameAsync(string access)
+    public async Task<List<PersonAccount>> FindByEmailOrUsernameAsync(string access)
     {
         var accountFound = await _AccountContext.Account
                          .Where(ac => ac.Email.Value == access || ac.Username.Value == access)
@@ -23,7 +23,7 @@ public class AccountReadRepository : IAccountReadRepository
         return accountFound;
     }
 
-    public async Task<Account?> GetByIdAsync(Guid Id)
+    public async Task<PersonAccount?> GetByIdAsync(Guid Id)
     {
         var accountFound = await _AccountContext.Account.FindAsync(Id);
         return accountFound;
@@ -80,4 +80,5 @@ public class AccountReadRepository : IAccountReadRepository
         }
         return response;
     }
+
 }

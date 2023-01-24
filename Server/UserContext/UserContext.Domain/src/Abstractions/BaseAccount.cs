@@ -8,7 +8,7 @@ using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Domain.src.Abstractions;
 
-public abstract class BaseAccount : AggregateRoot, IBaseAccount
+public abstract class BaseAccount : AggregateRoot, IBaseAccount 
 {
     protected BaseAccount() { }
     public Username Username { get; protected set; } = default!;
@@ -17,9 +17,9 @@ public abstract class BaseAccount : AggregateRoot, IBaseAccount
     public Password Password { get; protected set; } = default!;
     public bool IsNew { get; protected set; }
     public bool EmailVerified { get; protected set; }
-    public bool PhoneVerified { get; private set; }
-    public Phone? Phone { get; private set; }
-    public Person? Profile { get; protected set; }
+    public bool PhoneVerified { get; protected set; }
+    public Phone? Phone { get; protected set; }
+    public AccountType? AccountType {get; protected set; }
 
     protected BaseAccount(Username username, Email email, Password password)
     {
@@ -126,29 +126,6 @@ public abstract class BaseAccount : AggregateRoot, IBaseAccount
         PhoneVerified = false;
         this.EntityUpdated();
     }
-
-    /// <summary>
-    /// Crea un nuevo perfil
-    /// </summary>
-    /// <param name="name"></param>
-    /// <param name="gender"></param>
-    /// <param name="birth"></param>
-    /// <returns></returns>
-    public Result AddProfile(PersonName name, Gender gender, DateTime birth)
-    {
-        if (Profile != null)
-        {
-            var newPerson = Person.Create(name,gender,birth);
-            if(newPerson.IsFailure) return Result.Fail(newPerson.Error);
-            Profile = newPerson.Value;
-            this.EntityUpdated();
-            return Result.Ok();
-        }else
-        {
-            return Result.Fail(new ProfileExists(Username.Value));
-        }
-    }
-
     // ============================ VALIDACIONES ================================================================ //
     protected static Result ValidPasswordData(Username username, Email email, string password)
     {

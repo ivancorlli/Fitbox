@@ -1,4 +1,3 @@
-using UserContext.Domain.src.Entity;
 using UserContext.Domain.src.Enum;
 using UserContext.Domain.src.ValueObject;
 
@@ -8,10 +7,12 @@ public interface IBaseAccount
 {
     public Username Username { get; }
     public Email Email { get; }
-    public AccountStatus Status { get; }
     public Password Password { get; }
+    public AccountStatus Status { get;}
+    public AccountType? AccountType { get;}
     public bool IsNew { get; }
     public bool EmailVerified { get; }
-    public Person? Profile { get; }
+    public bool PhoneVerified { get; }
+    public Phone? Phone { get; }
 
 }
