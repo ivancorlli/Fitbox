@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using UserContext.Application.src.Features.Account.Command.ChangeAddress;
+using UserContext.Domain.src.Entity.Account;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.Repository;
 using UserContext.Domain.src.Service;
@@ -23,14 +24,14 @@ internal static class Index
     }
     internal static IServiceCollection ConfigureRepository(this IServiceCollection services)
     {
-        services.AddScoped<IAccountReadRepository, AccountReadRepository>();
-        services.AddScoped<IAccountWriteRepository, AccountWriteRepository>();
+        services.AddScoped<IAccountReadRepository<Person>, PersonReadRepository>();
+        services.AddScoped<IAccountWriteRepository<Person>, PersonWriteRepository>();
         return services;
     }
 
     internal static IServiceCollection ConfigureManager(this IServiceCollection services)
     {
-        services.AddScoped<IAccountManager, AccountManager>();
+        services.AddScoped<IAccountManager<Person>, PersonManager>();
         return services;
     }
 

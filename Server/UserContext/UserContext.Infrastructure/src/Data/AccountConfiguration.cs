@@ -5,9 +5,9 @@ using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Infrastructure.src.Data;
 
-public class AccountConfiguration : IEntityTypeConfiguration<PersonAccount>
+public class AccountConfiguration : IEntityTypeConfiguration<Person>
 {
-    public void Configure(EntityTypeBuilder<PersonAccount> builder)
+    public void Configure(EntityTypeBuilder<Person> builder)
     {
         // LLaves primarias
         builder.HasKey(x => x.Id);

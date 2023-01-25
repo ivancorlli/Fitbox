@@ -1,16 +1,15 @@
 using SharedKernell.src.Result;
 using UserContext.Domain.src.Abstractions;
-using UserContext.Domain.src.Entity.Account;
 using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Domain.src.Interface
 {
-    public interface IAccountManager
+    public interface IAccountManager<T> where T : IAccount
     {
-        Task<Result<PersonAccount>> CreateAccount(Username username, Email email, string password);
-        Task<Result> ChangePhone(BaseAccount account, Phone phone);
-        Task<Result> ChangeEmail(BaseAccount account, Email email);
-        Task<Result> ChangeUsername(BaseAccount account, Username username);
+        Task<Result<T>> CreateAccount(Username username, Email email, string password);
+        Task<Result> ChangePhone(T account, Phone phone);
+        Task<Result> ChangeEmail(T account, Email email);
+        Task<Result> ChangeUsername(T account, Username username);
 
     }
 }

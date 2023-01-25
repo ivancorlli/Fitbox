@@ -2,42 +2,42 @@ using UserContext.Domain.src.Interface;
 using SharedKernell.src.Result;
 using UserContext.Domain.src.ValueObject;
 using SharedKernell.src.Interface.Mediator;
+using UserContext.Domain.src.Entity.Account;
 
-namespace UserContext.Application.src.Features.Account.Command.CreateAccount
+namespace UserContext.Application.src.Features.Account.Command.CreateAccount;
+
+public class CreateAccountHandler : IHandler<CreateAccountCommand, Result>
 {
-    public class CreateAccountHandler : IHandler<CreateAccountCommand, Result>
+    private readonly IAccountManager<Person> _AccountManager;
+    private readonly IUnitOfWork _UnitOfWork;
+
+    public CreateAccountHandler(IAccountManager<Person> userManager, IUnitOfWork unitOfWork)
     {
-        private readonly IAccountManager _AccountManager;
-        private readonly IUnitOfWork _UnitOfWork;
+        _AccountManager = userManager;
+        _UnitOfWork = unitOfWork;
+    }
 
-        public CreateAccountHandler(IAccountManager userManager, IUnitOfWork unitOfWork)
-        {
-            _AccountManager = userManager;
-            _UnitOfWork = unitOfWork;
-        }
+    public async Task<Result> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
+    {
+        var input = request.newAccount;
 
-        public async Task<Result> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
-        {
-            var input = request.newAccount;
+        // Creamos nombre de usuario            
+        var username = Username.Create(input.username);
+        if (username.IsFailure)
+            return Result.Fail(username.Error);
+        // Creamos emaiil
+        var email = Email.Create(input.email);
+        if (email.IsFailure)
+            return Result.Fail(email.Error);
+        // Creamos usuario
+        var newAccount = await _AccountManager.CreateAccount(username.Value, email.Value, input.password);
+        if (newAccount.IsFailure)
+            return Result.Fail(newAccount.Error);
 
-            // Creamos nombre de usuario            
-            var username = Username.Create(input.username);
-            if (username.IsFailure)
-                return Result.Fail(username.Error);
-            // Creamos emaiil
-            var email = Email.Create(input.email);
-            if (email.IsFailure)
-                return Result.Fail(email.Error);
-            // Creamos usuario
-            var newAccount = await _AccountManager.CreateAccount(username.Value, email.Value, input.password);
-            if (newAccount.IsFailure)
-                return Result.Fail(newAccount.Error);
+        // Guardamos usuario en base de datos
+        await _UnitOfWork.AccountWriteRepository.AddAsync(newAccount.Value);
+        await _UnitOfWork.SaveChangesAsync(cancellationToken);
 
-            // Guardamos usuario en base de datos
-            await _UnitOfWork.AccountWriteRepository.AddAsync(newAccount.Value);
-            await _UnitOfWork.SaveChangesAsync(cancellationToken);
-
-            return Result.Ok();
-        }
+        return Result.Ok();
     }
 }

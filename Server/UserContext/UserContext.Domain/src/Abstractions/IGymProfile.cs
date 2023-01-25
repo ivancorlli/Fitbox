@@ -4,16 +4,16 @@ using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Domain.src.Abstractions;
 
-public abstract class BaseGym : BaseEntity, IBaseGym
+public abstract class IGymProfile : BaseEntity, IBaseGym
 {
-    protected BaseGym() { }
+    protected IGymProfile() { }
     public GymName Name { get; protected set; }
     public Address Address {get; protected set; }
     public List<OperatingTime> Hours {get; protected set; }
     public List<Guid>? Trainings {get; protected set; }
     public Bio? Bio {get; protected set; }
 
-    protected BaseGym(GymName name, Address address, List<OperatingTime> hours)
+    protected IGymProfile(GymName name, Address address, List<OperatingTime> hours)
     {
         Name = name;
         Address = address;

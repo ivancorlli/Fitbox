@@ -1,6 +1,5 @@
 using SharedKernell.src.Result;
 using UserContext.Domain.src.Abstractions;
-using UserContext.Domain.src.Entity.Account;
 using UserContext.Domain.src.Error;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.Repository;
@@ -8,38 +7,25 @@ using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Domain.src.Service
 {
-    public sealed class AccountManager : IAccountManager
+    public abstract class AccountManager<T> :IAccountManager<T> where T : IAccount 
     {
-        private readonly IAccountReadRepository _AccountRepo;
+        protected readonly IAccountReadRepository<T> _AccountRepo;
 
-        public AccountManager(IAccountReadRepository repo)
+        public AccountManager(IAccountReadRepository<T> repo)
         {
             _AccountRepo = repo;
         }
 
+
+        public abstract Task<Result<T>> CreateAccount(Username username, Email email, string password);
+
         /// <summary>
-        /// Create new account with valid credentials
+        /// Cambia el telefono, verifica que no existan duplicados
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
+        /// <param name="account"></param>
+        /// <param name="phone"></param>
         /// <returns></returns>
-        public async Task<Result<PersonAccount>> CreateAccount(Username username, Email email, string password)
-        {
-            var emailExists = await _AccountRepo.IsEmailInUseAsync(email);
-            if (emailExists)
-                return Result.Fail<PersonAccount>(new EmailAlreadyInUse(email.Value.ToString()));
-            var usernameExists = await _AccountRepo.IsUsernameInUseAsync(username);
-            if (usernameExists)
-                return Result.Fail<PersonAccount>(new UsernameAlreadyInUse(username.Value.ToString()));
-            var newAccount = PersonAccount.Create(username, email, password);
-            if (newAccount.IsFailure)
-                return Result.Fail<PersonAccount>(new ValidationError(newAccount.Error.Message));
-
-            return Result.Ok(newAccount.Value);
-        }
-
-        public async Task<Result> ChangePhone(BaseAccount account, Phone phone)
+        public async Task<Result> ChangePhone(T account, Phone phone)
         {
             var phoneExists = await _AccountRepo.IsPhoneInUseAsync(phone);
             if (phoneExists)
@@ -49,7 +35,13 @@ namespace UserContext.Domain.src.Service
 
         }
 
-        public async Task<Result> ChangeEmail(BaseAccount account, Email email)
+        /// <summary>
+        /// Cambia el email, verifica que no existan duplicados
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public async Task<Result> ChangeEmail(T account, Email email)
         {
             var emailExists = await _AccountRepo.IsEmailInUseAsync(email);
             if (emailExists)
@@ -58,7 +50,13 @@ namespace UserContext.Domain.src.Service
             return Result.Ok();
         }
 
-        public async Task<Result> ChangeUsername(BaseAccount account, Username username)
+        /// <summary>
+        /// Cambia el nombre de usuario, verifica que no existan duplicados
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public async Task<Result> ChangeUsername(T account, Username username)
         {
             var emailExists = await _AccountRepo.IsUsernameInUseAsync(username);
             if (emailExists)

@@ -12,12 +12,4 @@ public interface IBasePerson
     public EmergencyContact? EmergencyContact { get; }
     public Bio? Bio { get; }
     public MedicalInfo? Medical { get;}
-    public void ChangeName(PersonName name);
-    public void ChangeGender(Gender gender);
-    public Result ChangeBirth(DateTime birth);
-    public void ChangeBio(Bio bio);
-    public void CreateContact(PersonName name, RelationShip relationShip, ContactPhone phone);
-    public void DeleteContact();
-    public void CreateMedicalInfo(MedicalInfo medical);
-    public void DeleteMedicalInfo();
 }

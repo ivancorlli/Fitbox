@@ -7,12 +7,13 @@ using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Domain.src.Entity.Account
 {
-    public class PersonAccount : BaseAccount
+    public class Person : IAccount
     {
-        private PersonAccount() { }
-        public Person? Profile { get; private set;}
-        private PersonAccount(Username username, Email email, Password password) : base(username, email, password)
+        private Person() { }
+        public PersonProfile? Profile { get; private set;}
+        private Person(Username username, Email email, Password password) : base(username, email, password)
         {
+            AccountType = AccountType.Personal;
         }
 
 
@@ -23,15 +24,15 @@ namespace UserContext.Domain.src.Entity.Account
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        internal static Result<PersonAccount> Create(Username username, Email email, string password)
+        internal static Result<Person> Create(Username username, Email email, string password)
         {
             var validPass = ValidPasswordData(username, email, password);
             if (validPass.IsFailure)
-                return Result.Fail<PersonAccount>(new ValidationError(validPass.Error.Message));
+                return Result.Fail<Person>(new ValidationError(validPass.Error.Message));
             var newPass = Password.Create(password);
             if (newPass.IsFailure)
-                return Result.Fail<PersonAccount>(new ValidationError(newPass.Error.Message));
-            var newAccount = new PersonAccount(username, email, newPass.Value);
+                return Result.Fail<Person>(new ValidationError(newPass.Error.Message));
+            var newAccount = new Person(username, email, newPass.Value);
             newAccount.RaiseDomainEvent(new AccountCreated());
             return Result.Ok(newAccount);
         }
@@ -47,7 +48,7 @@ namespace UserContext.Domain.src.Entity.Account
         {
             if (Profile != null)
             {
-                var newPerson = Person.Create(name, gender, birth);
+                var newPerson = PersonProfile.Create(name, gender, birth);
                 if (newPerson.IsFailure) return Result.Fail(newPerson.Error);
                 Profile = newPerson.Value;
                 EntityUpdated();

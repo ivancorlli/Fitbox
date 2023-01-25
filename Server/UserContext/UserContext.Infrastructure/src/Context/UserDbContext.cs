@@ -11,8 +11,8 @@ namespace UserContext.Infrastructure.src.Context
         {
         }
 
-        public DbSet<PersonAccount> Account => Set<PersonAccount>();
-        public DbSet<Person> Person => Set<Person>();
+        public DbSet<Person> Account => Set<Person>();
+        public DbSet<PersonProfile> Person => Set<PersonProfile>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

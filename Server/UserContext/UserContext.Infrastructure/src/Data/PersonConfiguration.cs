@@ -5,9 +5,9 @@ using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Infrastructure.src.Data;
 
-public class PersonConfiguration : IEntityTypeConfiguration<Person>
+public class PersonConfiguration : IEntityTypeConfiguration<PersonProfile>
 {
-    public void Configure(EntityTypeBuilder<Person> builder)
+    public void Configure(EntityTypeBuilder<PersonProfile> builder)
     {
         builder.HasKey(x => x.Id);
         // Name
