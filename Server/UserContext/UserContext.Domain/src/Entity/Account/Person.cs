@@ -2,20 +2,17 @@ using SharedKernell.src.Result;
 using UserContext.Domain.src.Abstractions;
 using UserContext.Domain.src.Enum;
 using UserContext.Domain.src.Error;
-using UserContext.Domain.src.Event;
 using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Domain.src.Entity.Account
 {
     public class Person : IAccount
-    {
-        private Person() { }
+    { 
         public PersonProfile? Profile { get; private set;}
-        private Person(Username username, Email email, Password password) : base(username, email, password)
+        public Person(Username username, Email email, Password password) : base(username,email,password)
         {
             AccountType = AccountType.Personal;
         }
-
 
         /// <summary>
         /// Crea una cuenta para personas
@@ -32,8 +29,7 @@ namespace UserContext.Domain.src.Entity.Account
             var newPass = Password.Create(password);
             if (newPass.IsFailure)
                 return Result.Fail<Person>(new ValidationError(newPass.Error.Message));
-            var newAccount = new Person(username, email, newPass.Value);
-            newAccount.RaiseDomainEvent(new AccountCreated());
+            Person newAccount = new (username, email, newPass.Value);
             return Result.Ok(newAccount);
         }
 

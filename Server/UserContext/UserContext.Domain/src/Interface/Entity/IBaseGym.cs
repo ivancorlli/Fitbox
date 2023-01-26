@@ -6,7 +6,5 @@ internal interface IBaseGym
 {
     public GymName Name { get; }
     public Address Address { get; }
-    public List<OperatingTime> Hours { get; }
-    public List<Guid>? Trainings { get; }
     public Bio? Bio { get; }
 }

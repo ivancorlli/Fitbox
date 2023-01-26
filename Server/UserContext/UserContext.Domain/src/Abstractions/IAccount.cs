@@ -1,5 +1,6 @@
 using SharedKernell.src.Entity;
 using SharedKernell.src.Result;
+using UserContext.Domain.src.Entity.Account;
 using UserContext.Domain.src.Enum;
 using UserContext.Domain.src.Error;
 using UserContext.Domain.src.Interface.Entity;
@@ -7,9 +8,8 @@ using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Domain.src.Abstractions;
 
-public abstract class IAccount : AggregateRoot, IBaseAccount 
+public abstract class IAccount :AggregateRoot, IBaseAccount
 {
-    protected IAccount() { }
     public Username Username { get; protected set; } = default!;
     public Email Email { get; protected set; } = default!;
     public AccountStatus Status { get; protected set; }
@@ -17,24 +17,25 @@ public abstract class IAccount : AggregateRoot, IBaseAccount
     public bool IsNew { get; protected set; }
     public bool EmailVerified { get; protected set; }
     public bool PhoneVerified { get; protected set; }
-    public AccountType AccountType {get; protected set; }
+    public AccountType AccountType { get; protected set; }
     public Phone? Phone { get; protected set; }
 
-    protected  IAccount(Username username, Email email, Password password)
+    protected IAccount(Username username, Email email,Password password)
     {
         Username = username;
         Email = email;
-        Password = password;
         Status = AccountStatus.Active;
+        Password = password;
         IsNew = true;
         EmailVerified = false;
     }
+
 
     /// <summary>
     /// Cambia el nombre de usuario
     /// </summary>
     /// <param name="username"></param>
-    internal virtual void ChangeUsername(Username username)
+    internal void ChangeUsername(Username username)
     {
         Username = username;
         this.EntityUpdated();
@@ -44,7 +45,7 @@ public abstract class IAccount : AggregateRoot, IBaseAccount
     /// Cambia el email
     /// </summary>
     /// <param name="email"></param>
-    internal virtual void ChangeEmail(Email email)
+    internal void ChangeEmail(Email email)
     {
         Email = email;
         UnverifyEmail();
@@ -56,7 +57,7 @@ public abstract class IAccount : AggregateRoot, IBaseAccount
     /// </summary>
     /// <param name="password"></param>
     /// <returns></returns>
-    public virtual Result ChangePassword(string password)
+    public Result ChangePassword(string password)
     {
         var validPass = ValidPasswordData(Username, Email, password);
         if (validPass.IsFailure)

@@ -8,6 +8,6 @@ namespace UserContext.Domain.src.Repository
 {
     public interface IAccountWriteRepository<T> : IWriteRepository<T> where T : IAccount
     {
-
+        Task AddAsync(IAccount account);
     }
 }

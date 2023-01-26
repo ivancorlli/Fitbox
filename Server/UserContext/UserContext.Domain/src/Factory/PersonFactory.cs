@@ -7,12 +7,13 @@ namespace UserContext.Domain.src.Factory;
 
 public class PersonFactory:IAccountFactory
 {
-    public override Result<Person> CreateAccount(Username username,Email email,string password, Guid? creator)
+    public override Result<IAccount> CreateAccount(Username username,Email email,string password)
     {
-        var newP =Person.Create(username,email,password);
-        if (newP.IsFailure)
-            return Result.Fail<Person>(newP.Error);
-        return Result.Ok(newP.Value);
+        var newPerson = Person.Create(username, email, password);
+        if (newPerson.IsFailure)
+            return Result.Fail<IAccount>(newPerson.Error);
+        IAccount result = newPerson.Value;
+        return Result.Ok(result);
     }
 
 }

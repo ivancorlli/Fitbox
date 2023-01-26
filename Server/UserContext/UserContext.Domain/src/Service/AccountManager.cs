@@ -17,7 +17,7 @@ namespace UserContext.Domain.src.Service
         }
 
 
-        public abstract Task<Result<T>> CreateAccount(Username username, Email email, string password);
+        public abstract Task<Result<IAccount>> CreateAccount(Username username, Email email, string password);
 
         /// <summary>
         /// Cambia el telefono, verifica que no existan duplicados
@@ -64,5 +64,6 @@ namespace UserContext.Domain.src.Service
             account.ChangeUsername(username);
             return Result.Ok();
         }
+
     }
 }

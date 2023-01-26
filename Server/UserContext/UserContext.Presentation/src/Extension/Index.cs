@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using UserContext.Application.src.Features.Account.Command.ChangeAddress;
+using UserContext.Application.src.Features.Person.Command.ChangeAddress;
 using UserContext.Domain.src.Entity.Account;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.Repository;
@@ -9,7 +9,7 @@ using UserContext.Domain.src.Service;
 using UserContext.Infrastructure.src.Context;
 using UserContext.Infrastructure.src.Repository;
 using UserContext.Infrastructure.src.UOF;
-using UserContext.Presentation.src.Controller.Account;
+using UserContext.Presentation.src.Controller.Person;
 using UserContext.Presentation.src.Interface;
 
 namespace UserContext.Presentation.src.Extension;
@@ -32,6 +32,7 @@ internal static class Index
     internal static IServiceCollection ConfigureManager(this IServiceCollection services)
     {
         services.AddScoped<IAccountManager<Person>, PersonManager>();
+        services.AddScoped<IAccountManager<Gym>, GymManager>();
         return services;
     }
 
@@ -59,7 +60,7 @@ internal static class Index
 
     internal static IServiceCollection ConfigureControllers(this IServiceCollection services)
     {
-        services.AddScoped<IAccountController,AccountController>();
+        services.AddScoped<IPersonController,PersonController>();
         return services;
     }
 }

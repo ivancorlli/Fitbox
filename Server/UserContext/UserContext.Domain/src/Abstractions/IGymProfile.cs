@@ -8,31 +8,13 @@ public abstract class IGymProfile : BaseEntity, IBaseGym
 {
     protected IGymProfile() { }
     public GymName Name { get; protected set; }
-    public Address Address {get; protected set; }
-    public List<OperatingTime> Hours {get; protected set; }
-    public List<Guid>? Trainings {get; protected set; }
+    public Address Address { get; protected set; }
     public Bio? Bio {get; protected set; }
 
-    protected IGymProfile(GymName name, Address address, List<OperatingTime> hours)
+    protected IGymProfile(GymName name, Address address)
     {
         Name = name;
         Address = address;
-        Hours = hours;
-    }
-
-    public void AddTrainings(List<Guid> trainingsids)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void AddTrainning(Guid trainingId)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void AdjustHours(OperatingTime time)
-    {
-        throw new NotImplementedException();
     }
 
     public void ChangeAddres(Address address)

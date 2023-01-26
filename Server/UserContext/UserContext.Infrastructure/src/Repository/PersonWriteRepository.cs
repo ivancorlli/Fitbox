@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+using UserContext.Domain.src.Abstractions;
 using UserContext.Domain.src.Entity.Account;
 using UserContext.Domain.src.Repository;
 using UserContext.Infrastructure.src.Context;
@@ -12,19 +12,24 @@ namespace UserContext.Infrastructure.src.Repository
         {
             _AccountContext = context;
         }
+        public async Task AddAsync(IAccount Entity)
+        {
+            await _AccountContext.Set<IAccount>().AddAsync(Entity);
+        }
+
         public async Task AddAsync(Person Entity)
         {
-            var newAccount = await _AccountContext.Account.AddAsync(Entity);
+            await _AccountContext.Account.AddAsync(Entity);
         }
 
         public void Delete(Person Entity)
         {
-            var accountDeleted = _AccountContext.Set<Person>().Remove(Entity);
+            _AccountContext.Set<Person>().Remove(Entity);
         }
 
         public void Update(Person entity)
         {
-            var accountUpdated = _AccountContext.Account.Update(entity);
+            _AccountContext.Account.Update(entity);
         }
     }
 }

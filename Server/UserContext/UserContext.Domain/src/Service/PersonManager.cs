@@ -14,19 +14,19 @@ public class PersonManager : AccountManager<Person>
     {
     }
 
-    public override async Task<Result<Person>> CreateAccount(Username username, Email email, string password)
+    public override async Task<Result<IAccount>> CreateAccount(Username username, Email email, string password)
     {
         var emailExists = await _AccountRepo.IsEmailInUseAsync(email);
         if (emailExists)
-            return Result.Fail<Person>(new EmailAlreadyInUse(email.Value.ToString()));
+            return Result.Fail<IAccount>(new EmailAlreadyInUse(email.Value.ToString()));
         var usernameExists = await _AccountRepo.IsUsernameInUseAsync(username);
         if (usernameExists)
-            return Result.Fail<Person>(new UsernameAlreadyInUse(username.Value.ToString()));
+            return Result.Fail<IAccount>(new UsernameAlreadyInUse(username.Value.ToString()));
         var accountFactory = new PersonFactory();
-        var newAccount = accountFactory.CreateAccount(username, email, password,null);
+        var newAccount = accountFactory.CreateAccount(username, email, password);
         if (newAccount.IsFailure)
-            return Result.Fail<Person>(new ValidationError(newAccount.Error.Message));
-
-        return Result.Ok<Person>(newAccount.Value);
+            return Result.Fail<IAccount>(new ValidationError(newAccount.Error.Message));
+        IAccount result = newAccount.Value;
+        return Result.Ok(result);
     }
 }
