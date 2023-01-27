@@ -5,7 +5,7 @@ using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.ValueObject;
 using UserContext.Domain.src.Entity.Account;
 
-namespace UserContext.Application.src.Features.Person.Command.ChangeEmail
+namespace UserContext.Application.src.Features.PersonAccount.Command.ChangeEmail
 {
     public sealed class ChangeEmailHandler : IHandler<ChangeEmailCommand, Result>
     {

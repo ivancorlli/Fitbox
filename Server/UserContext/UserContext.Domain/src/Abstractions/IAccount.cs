@@ -1,6 +1,5 @@
 using SharedKernell.src.Entity;
 using SharedKernell.src.Result;
-using UserContext.Domain.src.Entity.Account;
 using UserContext.Domain.src.Enum;
 using UserContext.Domain.src.Error;
 using UserContext.Domain.src.Interface.Entity;
@@ -20,6 +19,7 @@ public abstract class IAccount :AggregateRoot, IBaseAccount
     public AccountType AccountType { get; protected set; }
     public Phone? Phone { get; protected set; }
 
+    protected IAccount() { }
     protected IAccount(Username username, Email email,Password password)
     {
         Username = username;

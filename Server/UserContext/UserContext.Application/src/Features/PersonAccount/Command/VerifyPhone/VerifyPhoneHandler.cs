@@ -3,7 +3,7 @@ using SharedKernell.src.Interface.Mediator;
 using SharedKernell.src.Result;
 using UserContext.Domain.src.Interface;
 
-namespace UserContext.Application.src.Features.Person.Command.VerifyPhone;
+namespace UserContext.Application.src.Features.PersonAccount.Command.VerifyPhone;
 
 public class VerifyPhoneHandler : IHandler<VerifyPhoneCommand, Result>
 {

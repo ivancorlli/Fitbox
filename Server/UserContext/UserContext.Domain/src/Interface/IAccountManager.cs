@@ -6,7 +6,7 @@ namespace UserContext.Domain.src.Interface
 {
     public interface IAccountManager<T> where T : IAccount
     {
-        Task<Result<IAccount>> CreateAccount(Username username, Email email, string password,Guid? creator);
+        abstract Task<Result<IAccount>> CreateAccount(Username username, Email email, string password);
         Task<Result> ChangePhone(T account, Phone phone);
         Task<Result> ChangeEmail(T account, Email email);
         Task<Result> ChangeUsername(T account, Username username);

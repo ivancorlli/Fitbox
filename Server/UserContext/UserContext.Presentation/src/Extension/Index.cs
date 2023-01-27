@@ -1,7 +1,8 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using UserContext.Application.src.Features.Person.Command.ChangeAddress;
+using UserContext.Application.src.Features.PersonAccount.Command.ChangeAddress;
+using UserContext.Domain.src.Abstractions;
 using UserContext.Domain.src.Entity.Account;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.Repository;
@@ -32,7 +33,7 @@ internal static class Index
     internal static IServiceCollection ConfigureManager(this IServiceCollection services)
     {
         services.AddScoped<IAccountManager<Person>, PersonManager>();
-        services.AddScoped<IAccountManager<Gym>, GymManager>();
+        //services.AddScoped<IAccountManager<Gym>, GymManager>();
         return services;
     }
 

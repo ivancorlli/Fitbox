@@ -7,7 +7,8 @@ using UserContext.Domain.src.ValueObject;
 namespace UserContext.Domain.src.Entity.Account
 {
     public class Person : IAccount
-    { 
+    {
+        private Person() { }
         public PersonProfile? Profile { get; private set;}
         public Person(Username username, Email email, Password password) : base(username,email,password)
         {
@@ -44,7 +45,7 @@ namespace UserContext.Domain.src.Entity.Account
         {
             if (Profile != null)
             {
-                var newPerson = PersonProfile.Create(name, gender, birth);
+                var newPerson = PersonProfile.Create(name, gender, birth,this);
                 if (newPerson.IsFailure) return Result.Fail(newPerson.Error);
                 Profile = newPerson.Value;
                 EntityUpdated();

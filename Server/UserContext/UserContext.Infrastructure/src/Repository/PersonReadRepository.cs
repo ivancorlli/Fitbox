@@ -16,7 +16,7 @@ public class PersonReadRepository : IAccountReadRepository<Person>
 
     public async Task<List<Person>> FindByEmailOrUsernameAsync(string access)
     {
-        var accountFound = await _AccountContext.Account
+        var accountFound = await _AccountContext.Person
                          .Where(ac => ac.Email.Value == access || ac.Username.Value == access)
                          .ToListAsync();
 
@@ -25,7 +25,7 @@ public class PersonReadRepository : IAccountReadRepository<Person>
 
     public async Task<Person?> GetByIdAsync(Guid Id)
     {
-        var accountFound = await _AccountContext.Account.FindAsync(Id);
+        var accountFound = await _AccountContext.Person.FindAsync(Id);
         return accountFound;
     }
 
@@ -33,7 +33,7 @@ public class PersonReadRepository : IAccountReadRepository<Person>
     public async Task<bool> IsEmailInUseAsync(Email email)
     {
         var response = false;
-        var emailExists = await _AccountContext.Account
+        var emailExists = await _AccountContext.Person
                          .Where(ac => ac.Email.Value == email.Value)
                          .ToListAsync();
         if (emailExists.Count > 0)
@@ -50,7 +50,7 @@ public class PersonReadRepository : IAccountReadRepository<Person>
     public async Task<bool> IsPhoneInUseAsync(Phone phone)
     {
         var response = false;
-        var emailExists = await _AccountContext.Account
+        var emailExists = await _AccountContext.Person
                           .Where(ac => ac.Phone == phone)
                           .ToListAsync();
         if (emailExists.Count > 0)
@@ -67,7 +67,7 @@ public class PersonReadRepository : IAccountReadRepository<Person>
     public async Task<bool> IsUsernameInUseAsync(Username username)
     {
         var response = false;
-        var emailExists = await _AccountContext.Account
+        var emailExists = await _AccountContext.Person
                           .Where(ac => ac.Username.Value ==username.Value)
                           .ToListAsync();
         if (emailExists.Count > 0)

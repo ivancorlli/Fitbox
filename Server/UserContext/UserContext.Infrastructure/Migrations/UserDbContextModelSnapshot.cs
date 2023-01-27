@@ -19,33 +19,43 @@ namespace UserContext.Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "7.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("UserContext.Domain.src.Entity.Account", b =>
+            modelBuilder.Entity("UserContext.Domain.src.Abstractions.IAccount", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<bool>("EmailVerified")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<int>("AccountType")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("IsNew")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<sbyte>("EmailVerified")
+                        .HasColumnType("tinyint");
 
-                    b.Property<bool>("PhoneVerified")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<sbyte>("IsNew")
+                        .HasColumnType("tinyint");
+
+                    b.Property<sbyte>("PhoneVerified")
+                        .HasColumnType("tinyint");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserType")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Account");
+                    b.ToTable("Account", (string)null);
+
+                    b.HasDiscriminator<string>("UserType").HasValue("IAccount");
+
+                    b.UseTphMappingStrategy();
                 });
 
-            modelBuilder.Entity("UserContext.Domain.src.Entity.Person", b =>
+            modelBuilder.Entity("UserContext.Domain.src.Entity.PersonProfile", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("AccountId")
@@ -59,136 +69,25 @@ namespace UserContext.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Person");
+                    b.ToTable("PersonProfile");
                 });
 
-            modelBuilder.Entity("UserContext.Domain.src.Entity.Account", b =>
+            modelBuilder.Entity("UserContext.Domain.src.Entity.Account.Person", b =>
                 {
-                    b.OwnsOne("SharedKernell.src.ValueObject.TimeStamps", "TimeStamps", b1 =>
-                        {
-                            b1.Property<Guid>("AccountId")
-                                .HasColumnType("char(36)");
+                    b.HasBaseType("UserContext.Domain.src.Abstractions.IAccount");
 
-                            b1.Property<DateTime>("CreatedAt")
-                                .HasColumnType("date");
-
-                            b1.Property<DateTime>("UpdatedAt")
-                                .HasColumnType("date");
-
-                            b1.HasKey("AccountId");
-
-                            b1.ToTable("Account");
-
-                            b1.WithOwner()
-                                .HasForeignKey("AccountId");
-                        });
-
-                    b.OwnsOne("UserContext.Domain.src.ValueObject.Email", "Email", b1 =>
-                        {
-                            b1.Property<Guid>("AccountId")
-                                .HasColumnType("char(36)");
-
-                            b1.Property<string>("Value")
-                                .IsRequired()
-                                .HasMaxLength(30)
-                                .HasColumnType("varchar");
-
-                            b1.HasKey("AccountId");
-
-                            b1.HasIndex("Value")
-                                .IsUnique();
-
-                            b1.ToTable("Account");
-
-                            b1.WithOwner()
-                                .HasForeignKey("AccountId");
-                        });
-
-                    b.OwnsOne("UserContext.Domain.src.ValueObject.Password", "Password", b1 =>
-                        {
-                            b1.Property<Guid>("AccountId")
-                                .HasColumnType("char(36)");
-
-                            b1.Property<string>("Value")
-                                .IsRequired()
-                                .HasMaxLength(80)
-                                .HasColumnType("varchar");
-
-                            b1.HasKey("AccountId");
-
-                            b1.ToTable("Account");
-
-                            b1.WithOwner()
-                                .HasForeignKey("AccountId");
-                        });
-
-                    b.OwnsOne("UserContext.Domain.src.ValueObject.Phone", "Phone", b1 =>
-                        {
-                            b1.Property<Guid>("AccountId")
-                                .HasColumnType("char(36)");
-
-                            b1.Property<short>("AreaCode")
-                                .HasColumnType("smallint");
-
-                            b1.Property<string>("CountryPrefix")
-                                .HasColumnType("longtext");
-
-                            b1.Property<long>("PhoneNumber")
-                                .HasColumnType("bigint");
-
-                            b1.HasKey("AccountId");
-
-                            b1.HasIndex("PhoneNumber")
-                                .IsUnique();
-
-                            b1.ToTable("Account");
-
-                            b1.WithOwner()
-                                .HasForeignKey("AccountId");
-                        });
-
-                    b.OwnsOne("UserContext.Domain.src.ValueObject.Username", "Username", b1 =>
-                        {
-                            b1.Property<Guid>("AccountId")
-                                .HasColumnType("char(36)");
-
-                            b1.Property<string>("Value")
-                                .IsRequired()
-                                .HasMaxLength(15)
-                                .HasColumnType("varchar");
-
-                            b1.HasKey("AccountId");
-
-                            b1.HasIndex("Value")
-                                .IsUnique()
-                                .IsDescending();
-
-                            b1.ToTable("Account");
-
-                            b1.WithOwner()
-                                .HasForeignKey("AccountId");
-                        });
-
-                    b.Navigation("Email")
-                        .IsRequired();
-
-                    b.Navigation("Password")
-                        .IsRequired();
-
-                    b.Navigation("Phone");
-
-                    b.Navigation("TimeStamps")
-                        .IsRequired();
-
-                    b.Navigation("Username")
-                        .IsRequired();
+                    b.HasDiscriminator().HasValue("Person");
                 });
 
-            modelBuilder.Entity("UserContext.Domain.src.Entity.Person", b =>
+            modelBuilder.Entity("UserContext.Domain.src.Entity.PersonProfile", b =>
                 {
+                    b.HasOne("UserContext.Domain.src.Entity.Account.Person", "Account")
+                        .WithOne("Profile")
+                        .HasForeignKey("UserContext.Domain.src.Entity.PersonProfile", "Id");
+
                     b.OwnsOne("UserContext.Domain.src.ValueObject.PersonName", "Name", b1 =>
                         {
-                            b1.Property<Guid>("PersonId")
+                            b1.Property<Guid>("PersonProfileId")
                                 .HasColumnType("char(36)");
 
                             b1.Property<string>("FirstName")
@@ -201,17 +100,17 @@ namespace UserContext.Infrastructure.Migrations
                                 .HasMaxLength(15)
                                 .HasColumnType("varchar");
 
-                            b1.HasKey("PersonId");
+                            b1.HasKey("PersonProfileId");
 
-                            b1.ToTable("Person");
+                            b1.ToTable("PersonProfile");
 
                             b1.WithOwner()
-                                .HasForeignKey("PersonId");
+                                .HasForeignKey("PersonProfileId");
                         });
 
                     b.OwnsOne("SharedKernell.src.ValueObject.TimeStamps", "TimeStamps", b1 =>
                         {
-                            b1.Property<Guid>("PersonId")
+                            b1.Property<Guid>("PersonProfileId")
                                 .HasColumnType("char(36)");
 
                             b1.Property<DateTime>("CreatedAt")
@@ -220,17 +119,17 @@ namespace UserContext.Infrastructure.Migrations
                             b1.Property<DateTime>("UpdatedAt")
                                 .HasColumnType("date");
 
-                            b1.HasKey("PersonId");
+                            b1.HasKey("PersonProfileId");
 
-                            b1.ToTable("Person");
+                            b1.ToTable("PersonProfile");
 
                             b1.WithOwner()
-                                .HasForeignKey("PersonId");
+                                .HasForeignKey("PersonProfileId");
                         });
 
                     b.OwnsOne("UserContext.Domain.src.ValueObject.Address", "Address", b1 =>
                         {
-                            b1.Property<Guid>("PersonId")
+                            b1.Property<Guid>("PersonProfileId")
                                 .HasColumnType("char(36)");
 
                             b1.Property<string>("City")
@@ -248,16 +147,22 @@ namespace UserContext.Infrastructure.Migrations
                                 .HasMaxLength(15)
                                 .HasColumnType("varchar");
 
-                            b1.HasKey("PersonId");
+                            b1.Property<string>("Street")
+                                .HasColumnType("longtext");
 
-                            b1.ToTable("Person");
+                            b1.Property<int?>("StreetNumber")
+                                .HasColumnType("int");
+
+                            b1.HasKey("PersonProfileId");
+
+                            b1.ToTable("PersonProfile");
 
                             b1.WithOwner()
-                                .HasForeignKey("PersonId");
+                                .HasForeignKey("PersonProfileId");
 
                             b1.OwnsOne("UserContext.Domain.src.ValueObject.ZipCode", "ZipCode", b2 =>
                                 {
-                                    b2.Property<Guid>("AddressPersonId")
+                                    b2.Property<Guid>("AddressPersonProfileId")
                                         .HasColumnType("char(36)");
 
                                     b2.Property<string>("Value")
@@ -265,21 +170,21 @@ namespace UserContext.Infrastructure.Migrations
                                         .HasMaxLength(8)
                                         .HasColumnType("varchar");
 
-                                    b2.HasKey("AddressPersonId");
+                                    b2.HasKey("AddressPersonProfileId");
 
-                                    b2.ToTable("Person");
+                                    b2.ToTable("PersonProfile");
 
                                     b2.WithOwner()
-                                        .HasForeignKey("AddressPersonId");
+                                        .HasForeignKey("AddressPersonProfileId");
                                 });
 
                             b1.Navigation("ZipCode")
                                 .IsRequired();
                         });
 
-                    b.OwnsOne("UserContext.Domain.src.ValueObject.Bio", "Biography", b1 =>
+                    b.OwnsOne("UserContext.Domain.src.ValueObject.Bio", "Bio", b1 =>
                         {
-                            b1.Property<Guid>("PersonId")
+                            b1.Property<Guid>("PersonProfileId")
                                 .HasColumnType("char(36)");
 
                             b1.Property<string>("Value")
@@ -287,32 +192,32 @@ namespace UserContext.Infrastructure.Migrations
                                 .HasMaxLength(300)
                                 .HasColumnType("varchar");
 
-                            b1.HasKey("PersonId");
+                            b1.HasKey("PersonProfileId");
 
-                            b1.ToTable("Person");
+                            b1.ToTable("PersonProfile");
 
                             b1.WithOwner()
-                                .HasForeignKey("PersonId");
+                                .HasForeignKey("PersonProfileId");
                         });
 
                     b.OwnsOne("UserContext.Domain.src.ValueObject.EmergencyContact", "EmergencyContact", b1 =>
                         {
-                            b1.Property<Guid>("PersonId")
+                            b1.Property<Guid>("PersonProfileId")
                                 .HasColumnType("char(36)");
 
                             b1.Property<int>("RelationShip")
                                 .HasColumnType("int");
 
-                            b1.HasKey("PersonId");
+                            b1.HasKey("PersonProfileId");
 
-                            b1.ToTable("Person");
+                            b1.ToTable("PersonProfile");
 
                             b1.WithOwner()
-                                .HasForeignKey("PersonId");
+                                .HasForeignKey("PersonProfileId");
 
                             b1.OwnsOne("UserContext.Domain.src.ValueObject.ContactPhone", "Phone", b2 =>
                                 {
-                                    b2.Property<Guid>("EmergencyContactPersonId")
+                                    b2.Property<Guid>("EmergencyContactPersonProfileId")
                                         .HasColumnType("char(36)");
 
                                     b2.Property<int>("AreaCode")
@@ -324,17 +229,17 @@ namespace UserContext.Infrastructure.Migrations
                                     b2.Property<long>("Number")
                                         .HasColumnType("bigint");
 
-                                    b2.HasKey("EmergencyContactPersonId");
+                                    b2.HasKey("EmergencyContactPersonProfileId");
 
-                                    b2.ToTable("Person");
+                                    b2.ToTable("PersonProfile");
 
                                     b2.WithOwner()
-                                        .HasForeignKey("EmergencyContactPersonId");
+                                        .HasForeignKey("EmergencyContactPersonProfileId");
                                 });
 
                             b1.OwnsOne("UserContext.Domain.src.ValueObject.PersonName", "Name", b2 =>
                                 {
-                                    b2.Property<Guid>("EmergencyContactPersonId")
+                                    b2.Property<Guid>("EmergencyContactPersonProfileId")
                                         .HasColumnType("char(36)");
 
                                     b2.Property<string>("FirstName")
@@ -347,12 +252,12 @@ namespace UserContext.Infrastructure.Migrations
                                         .HasMaxLength(15)
                                         .HasColumnType("varchar");
 
-                                    b2.HasKey("EmergencyContactPersonId");
+                                    b2.HasKey("EmergencyContactPersonProfileId");
 
-                                    b2.ToTable("Person");
+                                    b2.ToTable("PersonProfile");
 
                                     b2.WithOwner()
-                                        .HasForeignKey("EmergencyContactPersonId");
+                                        .HasForeignKey("EmergencyContactPersonProfileId");
                                 });
 
                             b1.Navigation("Name")
@@ -364,7 +269,7 @@ namespace UserContext.Infrastructure.Migrations
 
                     b.OwnsOne("UserContext.Domain.src.ValueObject.MedicalInfo", "Medical", b1 =>
                         {
-                            b1.Property<Guid>("PersonId")
+                            b1.Property<Guid>("PersonProfileId")
                                 .HasColumnType("char(36)");
 
                             b1.Property<string>("Aptitude")
@@ -375,17 +280,19 @@ namespace UserContext.Infrastructure.Migrations
                                 .HasMaxLength(300)
                                 .HasColumnType("varchar");
 
-                            b1.HasKey("PersonId");
+                            b1.HasKey("PersonProfileId");
 
-                            b1.ToTable("Person");
+                            b1.ToTable("PersonProfile");
 
                             b1.WithOwner()
-                                .HasForeignKey("PersonId");
+                                .HasForeignKey("PersonProfileId");
                         });
+
+                    b.Navigation("Account");
 
                     b.Navigation("Address");
 
-                    b.Navigation("Biography");
+                    b.Navigation("Bio");
 
                     b.Navigation("EmergencyContact");
 
@@ -396,6 +303,133 @@ namespace UserContext.Infrastructure.Migrations
 
                     b.Navigation("TimeStamps")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("UserContext.Domain.src.Entity.Account.Person", b =>
+                {
+                    b.OwnsOne("SharedKernell.src.ValueObject.TimeStamps", "TimeStamps", b1 =>
+                        {
+                            b1.Property<Guid>("PersonId")
+                                .HasColumnType("char(36)");
+
+                            b1.Property<DateTime>("CreatedAt")
+                                .HasColumnType("date");
+
+                            b1.Property<DateTime>("UpdatedAt")
+                                .HasColumnType("date");
+
+                            b1.HasKey("PersonId");
+
+                            b1.ToTable("Account");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PersonId");
+                        });
+
+                    b.OwnsOne("UserContext.Domain.src.ValueObject.Email", "Email", b1 =>
+                        {
+                            b1.Property<Guid>("PersonId")
+                                .HasColumnType("char(36)");
+
+                            b1.Property<string>("Value")
+                                .IsRequired()
+                                .HasMaxLength(30)
+                                .HasColumnType("varchar");
+
+                            b1.HasKey("PersonId");
+
+                            b1.HasIndex("Value")
+                                .IsUnique();
+
+                            b1.ToTable("Account");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PersonId");
+                        });
+
+                    b.OwnsOne("UserContext.Domain.src.ValueObject.Password", "Password", b1 =>
+                        {
+                            b1.Property<Guid>("PersonId")
+                                .HasColumnType("char(36)");
+
+                            b1.Property<string>("Value")
+                                .IsRequired()
+                                .HasMaxLength(80)
+                                .HasColumnType("varchar");
+
+                            b1.HasKey("PersonId");
+
+                            b1.ToTable("Account");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PersonId");
+                        });
+
+                    b.OwnsOne("UserContext.Domain.src.ValueObject.Phone", "Phone", b1 =>
+                        {
+                            b1.Property<Guid>("PersonId")
+                                .HasColumnType("char(36)");
+
+                            b1.Property<short>("AreaCode")
+                                .HasColumnType("smallint");
+
+                            b1.Property<string>("CountryPrefix")
+                                .HasColumnType("longtext");
+
+                            b1.Property<long>("PhoneNumber")
+                                .HasColumnType("bigint");
+
+                            b1.HasKey("PersonId");
+
+                            b1.HasIndex("PhoneNumber")
+                                .IsUnique();
+
+                            b1.ToTable("Account");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PersonId");
+                        });
+
+                    b.OwnsOne("UserContext.Domain.src.ValueObject.Username", "Username", b1 =>
+                        {
+                            b1.Property<Guid>("PersonId")
+                                .HasColumnType("char(36)");
+
+                            b1.Property<string>("Value")
+                                .IsRequired()
+                                .HasMaxLength(15)
+                                .HasColumnType("varchar");
+
+                            b1.HasKey("PersonId");
+
+                            b1.HasIndex("Value")
+                                .IsUnique()
+                                .IsDescending();
+
+                            b1.ToTable("Account");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PersonId");
+                        });
+
+                    b.Navigation("Email")
+                        .IsRequired();
+
+                    b.Navigation("Password")
+                        .IsRequired();
+
+                    b.Navigation("Phone");
+
+                    b.Navigation("TimeStamps")
+                        .IsRequired();
+
+                    b.Navigation("Username")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("UserContext.Domain.src.Entity.Account.Person", b =>
+                {
+                    b.Navigation("Profile");
                 });
 #pragma warning restore 612, 618
         }

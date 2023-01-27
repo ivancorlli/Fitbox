@@ -19,7 +19,7 @@ namespace UserContext.Infrastructure.src.Repository
 
         public async Task AddAsync(Person Entity)
         {
-            await _AccountContext.Account.AddAsync(Entity);
+            await _AccountContext.Person.AddAsync(Entity);
         }
 
         public void Delete(Person Entity)
@@ -29,7 +29,7 @@ namespace UserContext.Infrastructure.src.Repository
 
         public void Update(Person entity)
         {
-            _AccountContext.Account.Update(entity);
+            _AccountContext.Person.Update(entity);
         }
     }
 }

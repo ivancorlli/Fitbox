@@ -5,7 +5,7 @@ using UserContext.Domain.src.Enum;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.ValueObject;
 
-namespace UserContext.Application.src.Features.Person.Command.ChangeProfile;
+namespace UserContext.Application.src.Features.PersonAccount.Command.ChangeProfile;
 
 public class ChangeProfileHandler : IHandler<ChangeProfileCommand, Result>
 {

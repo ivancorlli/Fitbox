@@ -4,7 +4,7 @@ using UserContext.Application.src.Errors;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.ValueObject;
 
-namespace UserContext.Application.src.Features.Person.Command.ChangeAddress
+namespace UserContext.Application.src.Features.PersonAccount.Command.ChangeAddress
 {
     public class ChangeAddressHandler : IHandler<ChangeAddressCommand, Result>
     {

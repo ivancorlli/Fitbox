@@ -1,4 +1,4 @@
-namespace UserContext.Application.src.Features.Person.DTO.Output;
+namespace UserContext.Application.src.Features.PersonAccount.DTO.Output;
 
 public class NewAccountDto
 {

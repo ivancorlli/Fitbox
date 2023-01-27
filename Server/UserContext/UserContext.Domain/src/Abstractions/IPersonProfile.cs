@@ -1,5 +1,6 @@
 using SharedKernell.src.Entity;
 using SharedKernell.src.Result;
+using UserContext.Domain.src.Entity.Account;
 using UserContext.Domain.src.Enum;
 using UserContext.Domain.src.Error;
 using UserContext.Domain.src.Interface.Entity;
@@ -13,6 +14,8 @@ namespace UserContext.Domain.src.Abstractions
         public PersonName Name { get; protected set; } = default!;
         public Gender Gender { get; protected set; }
         public DateTime Birth { get; protected set; }
+        public  Person Account { get; init; } = default!;
+        public Guid AccountId { get; init; } = default;
         public Address? Address { get; protected set; }
         public EmergencyContact? EmergencyContact { get; protected set; }
         public Bio? Bio { get; protected set; }
@@ -25,11 +28,13 @@ namespace UserContext.Domain.src.Abstractions
         /// <param name="name"></param>
         /// <param name="gender"></param>
         /// <param name="birth"></param>
-        protected IPersonProfile(PersonName name, Gender gender, DateTime birth)
+        protected IPersonProfile(PersonName name, Gender gender, DateTime birth, Person account)
         {
             Name = name;
             Gender = gender;
             Birth = birth;
+            Account = account;
+            AccountId = account.Id;
         }
         //
 

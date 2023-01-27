@@ -6,16 +6,16 @@ public static class Index
 {
     public static IEndpointRouteBuilder ConfigureApiV1Router(this IEndpointRouteBuilder router)
     {
-        router.MapGroup("/v1")
-              .ConfigureUserContextRouter();
-        return router;
+        var apiV1 = router.MapGroup("/v1");
+            apiV1.ConfigureUserContextRouter();
+        return apiV1;
     }
 
     
-    internal static RouteGroupBuilder ConfigureUserContextRouter(this RouteGroupBuilder router)
+    internal static IEndpointRouteBuilder ConfigureUserContextRouter(this IEndpointRouteBuilder router)
     {
-        router.MapGroup("/account")
-            .ConfigurePersonRouter();
-        return router;
+        var account = router.MapGroup("/account");
+            account.ConfigurePersonRouter();
+        return account;
     }
 }

@@ -3,7 +3,7 @@ using SharedKernell.src.Result;
 using UserContext.Application.src.Errors;
 using UserContext.Domain.src.Interface;
 
-namespace UserContext.Application.src.Features.Person.Command.ChangePassword
+namespace UserContext.Application.src.Features.PersonAccount.Command.ChangePassword
 {
     public sealed class ChangePasswordHandler : IHandler<ChangePasswordCommand, Result>
     {

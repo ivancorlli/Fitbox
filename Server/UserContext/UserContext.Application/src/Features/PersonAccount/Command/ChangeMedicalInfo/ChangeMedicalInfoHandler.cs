@@ -4,7 +4,7 @@ using SharedKernell.src.Result;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.ValueObject;
 
-namespace UserContext.Application.src.Features.Person.Command.ChangeMedicalInfo;
+namespace UserContext.Application.src.Features.PersonAccount.Command.ChangeMedicalInfo;
 
 public class ChangeMedicalInfoHandler : IHandler<ChangeMedicalInfoCommand, Result>
 {

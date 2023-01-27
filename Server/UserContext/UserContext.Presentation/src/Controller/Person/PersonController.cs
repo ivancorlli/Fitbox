@@ -2,19 +2,19 @@
 using MediatR;
 using SharedKernell.src.Controller;
 using SharedKernell.src.Result;
-using UserContext.Application.src.Features.Person.Command.ChangeEmail;
-using UserContext.Application.src.Features.Person.Command.ChangePassword;
-using UserContext.Application.src.Features.Person.Command.ChangePhone;
-using UserContext.Application.src.Features.Person.Command.ChangeUsername;
-using UserContext.Application.src.Features.Person.Command.CreateAccount;
-using UserContext.Application.src.Features.Person.Command.VerifyEmail;
-using UserContext.Application.src.Features.Person.Command.VerifyPhone;
+using UserContext.Application.src.Features.PersonAccount.Command.ChangeEmail;
+using UserContext.Application.src.Features.PersonAccount.Command.ChangePassword;
+using UserContext.Application.src.Features.PersonAccount.Command.ChangePhone;
+using UserContext.Application.src.Features.PersonAccount.Command.ChangeUsername;
+using UserContext.Application.src.Features.PersonAccount.Command.CreateAccount;
+using UserContext.Application.src.Features.PersonAccount.Command.VerifyEmail;
+using UserContext.Application.src.Features.PersonAccount.Command.VerifyPhone;
 using UserContext.Presentation.src.Interface;
-using UserContext.Application.src.Features.Person.Command.ChangeMedicalInfo;
-using UserContext.Application.src.Features.Person.Command.ChangeContact;
-using UserContext.Application.src.Features.Person.Command.ChangeProfile;
-using UserContext.Application.src.Features.Person.Command.ChangeAddress;
-using UserContext.Application.src.Features.Person.DTO.Input;
+using UserContext.Application.src.Features.PersonAccount.Command.ChangeMedicalInfo;
+using UserContext.Application.src.Features.PersonAccount.Command.ChangeContact;
+using UserContext.Application.src.Features.PersonAccount.Command.ChangeProfile;
+using UserContext.Application.src.Features.PersonAccount.Command.ChangeAddress;
+using UserContext.Application.src.Features.PersonAccount.DTO.Input;
 
 namespace UserContext.Presentation.src.Controller.Person;
 

@@ -4,12 +4,18 @@ namespace Api.src.Controller.UserContext.Person;
 
 public static class CreateAccount
 {
-    public static RouteGroupBuilder CreateAccountRoute(this RouteGroupBuilder router)
+    public static IEndpointRouteBuilder CreateAccountRoute(this IEndpointRouteBuilder router)
     {
         router.MapGet("/", async (IPersonController person) =>
         {
-            var newAccount = await person.CreateAccount(new("","",""));
-            return Results.Accepted("Cuenta creada exitosamente");
+            try
+            {
+            var newAccount = await person.CreateAccount(new("ivancorlli","corlliivan@gmail.com","A1jc8D62"));
+            return Results.Ok(newAccount);
+            }catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
         });
         return router;
     }

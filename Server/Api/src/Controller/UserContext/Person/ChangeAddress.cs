@@ -4,7 +4,7 @@ namespace Api.src.Controller.UserContext.Person;
 
 public static class ChangeAddress
 {
-    public static RouteGroupBuilder ChangeAddressRoute(this RouteGroupBuilder route)
+    public static IEndpointRouteBuilder ChangeAddressRoute(this IEndpointRouteBuilder route)
     {
         route.MapPost("/", ChangeAddressController);
         return route;

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using UserContext.Domain.src.Abstractions;
 using UserContext.Domain.src.Entity;
 using UserContext.Domain.src.Entity.Account;
 using UserContext.Infrastructure.src.Data;
@@ -11,13 +12,18 @@ namespace UserContext.Infrastructure.src.Context
         {
         }
 
-        public DbSet<Person> Account => Set<Person>();
-        public DbSet<PersonProfile> Person => Set<PersonProfile>();
+        public DbSet<IAccount> Account => Set<IAccount>();
+        public DbSet<Person> Person => Set<Person>(); 
+        public DbSet<PersonProfile> PersonProfile => Set<PersonProfile>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new AccountConfiguration());
-            modelBuilder.ApplyConfiguration(new PersonConfiguration());
+            modelBuilder.Entity<IAccount>()
+                .ToTable("Account")
+                .HasDiscriminator<string>("UserType")
+                .HasValue<Person>("Person");
+            modelBuilder.ApplyConfiguration(new PersonAccountConfiguration());
+            modelBuilder.ApplyConfiguration(new PersonProfileConfiguration());
         }
 
     }

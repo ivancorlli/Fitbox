@@ -5,7 +5,7 @@ using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.ValueObject;
 using UserContext.Domain.src.Entity.Account;
 
-namespace UserContext.Application.src.Features.Person.Command.ChangePhone
+namespace UserContext.Application.src.Features.PersonAccount.Command.ChangePhone
 {
     public class ChangePhoneHandler : IHandler<ChangePhoneCommand, Result>
     {

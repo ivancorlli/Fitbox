@@ -2,12 +2,13 @@ using UserContext.Domain.src.Interface;
 using SharedKernell.src.Result;
 using UserContext.Domain.src.ValueObject;
 using SharedKernell.src.Interface.Mediator;
+using UserContext.Domain.src.Entity.Account;
 
-namespace UserContext.Application.src.Features.Person.Command.CreateAccount;
+namespace UserContext.Application.src.Features.PersonAccount.Command.CreateAccount;
 
 public class CreateAccountHandler : IHandler<CreateAccountCommand, Result>
 {
-    private readonly IAccountManager<UserContext.Domain.src.Entity.Account.Person> _AccountManager;
+    private readonly IAccountManager<Person> _AccountManager;
     private readonly IUnitOfWork _UnitOfWork;
 
     public CreateAccountHandler(IAccountManager<Person> userManager, IUnitOfWork unitOfWork)
