@@ -2,9 +2,9 @@
 
 public record GymName
 {
-    public string Value { get; }
-
-    private GymName(string name)
+    public GymName() { }
+    public string Value { get; } = default!;
+    public GymName(string name)
     {
         this.Value = name;
     }

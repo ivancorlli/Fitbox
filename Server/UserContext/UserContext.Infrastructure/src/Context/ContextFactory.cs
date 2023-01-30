@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace UserContext.Infrastructure.src.Context;
 
@@ -13,6 +12,7 @@ public class ContextFactory : IDesignTimeDbContextFactory<UserDbContext>
         var config = new DbContextOptionsBuilder<UserDbContext>();
         config.UseMySql(Connection,serverVersion).EnableDetailedErrors();
         config.EnableDetailedErrors().EnableSensitiveDataLogging();
-        return new UserDbContext(config.Options);
+        var userDbContext = new UserDbContext(config.Options);
+        return userDbContext;
     }
 }

@@ -14,15 +14,15 @@ namespace UserContext.Infrastructure.src.Context
 
         public DbSet<IAccount> Account => Set<IAccount>();
         public DbSet<Person> Person => Set<Person>(); 
+        public DbSet<Gym> Gym=> Set<Gym>();
         public DbSet<PersonProfile> PersonProfile => Set<PersonProfile>();
+        public DbSet<GymProfile> GymProfile => Set<GymProfile>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<IAccount>()
-                .ToTable("Account")
-                .HasDiscriminator<string>("UserType")
-                .HasValue<Person>("Person");
-            modelBuilder.ApplyConfiguration(new PersonAccountConfiguration());
+            modelBuilder.Entity<IAccount>().HasDiscriminator<string>("Class");
+            modelBuilder.ApplyConfiguration(new AccountConfiguration());
+            modelBuilder.ApplyConfiguration(new GymProfileConfiguration());
             modelBuilder.ApplyConfiguration(new PersonProfileConfiguration());
         }
 

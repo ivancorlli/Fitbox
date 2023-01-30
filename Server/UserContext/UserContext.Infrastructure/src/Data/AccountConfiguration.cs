@@ -1,17 +1,15 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using UserContext.Domain.src.Entity;
-using UserContext.Domain.src.Entity.Account;
+using UserContext.Domain.src.Abstractions;
+using UserContext.Domain.src.Enum;
 using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Infrastructure.src.Data;
 
-public class PersonAccountConfiguration : IEntityTypeConfiguration<Person>
+internal class AccountConfiguration : IEntityTypeConfiguration<IAccount>
 {
-    public void Configure(EntityTypeBuilder<Person> builder)
+    public void Configure(EntityTypeBuilder<IAccount> builder)
     {
-        // LLaves primarias
-
         // Propiedades
         builder.Property(x => x.Id)
             .IsRequired();
@@ -47,9 +45,9 @@ public class PersonAccountConfiguration : IEntityTypeConfiguration<Person>
         // Phone
         builder.OwnsOne(x => x.Phone, nav =>
         {
-            nav.Property(x=>x.AreaCode)
+            nav.Property(x => x.AreaCode)
             .HasColumnType("smallint");
-            nav.Property(x=>x.PhoneNumber)
+            nav.Property(x => x.PhoneNumber)
             .HasColumnType("bigint");
             nav.HasIndex(p => p.PhoneNumber)
             .IsUnique();
@@ -58,14 +56,22 @@ public class PersonAccountConfiguration : IEntityTypeConfiguration<Person>
         builder.OwnsOne(x => x.TimeStamps, nav =>
         {
             nav.Property(x => x.CreatedAt)
-                .HasColumnType("date");
+                .HasColumnType("datetime");
             nav.Property(x => x.UpdatedAt)
-                .HasColumnType("date");
+                .HasColumnType("datetime");
         });
         // IsNew
-        builder.Property(x =>x.IsNew)
+        builder.Property(x => x.IsNew)
                 .HasColumnType("tinyint")
                 .IsRequired();
+        // AccountType
+        builder.Property(x => x.AccountType)
+            .HasConversion( x=>x.ToString(),x=>(AccountType)Enum.Parse(typeof(AccountType),x)
+            );
+        // AccountStatus
+        builder.Property(x => x.Status)
+            .HasConversion(x => x.ToString(),x=>(AccountStatus)Enum.Parse(typeof(AccountStatus),x)
+            );
         // EmailVerified
         builder.Property(x => x.EmailVerified)
             .HasColumnType("tinyint")
@@ -74,10 +80,5 @@ public class PersonAccountConfiguration : IEntityTypeConfiguration<Person>
         builder.Property(x => x.PhoneVerified)
             .HasColumnType("tinyint")
             .IsRequired();
-        // Profile
-        builder.HasOne(x => x.Profile)
-           .WithOne(x => x.Account)
-           .HasForeignKey<PersonProfile>(x => x.Id)
-           .IsRequired(false);
     }
 }

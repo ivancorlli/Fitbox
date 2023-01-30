@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace UserContext.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,25 +19,27 @@ namespace UserContext.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Status = table.Column<int>(type: "int", nullable: false),
+                    UsernameValue = table.Column<string>(name: "Username_Value", type: "varchar(15)", maxLength: 15, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    EmailValue = table.Column<string>(name: "Email_Value", type: "varchar(30)", maxLength: 30, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Status = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    PasswordValue = table.Column<string>(name: "Password_Value", type: "varchar(80)", maxLength: 80, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     IsNew = table.Column<sbyte>(type: "tinyint", nullable: false),
                     EmailVerified = table.Column<sbyte>(type: "tinyint", nullable: false),
                     PhoneVerified = table.Column<sbyte>(type: "tinyint", nullable: false),
-                    AccountType = table.Column<int>(type: "int", nullable: false),
-                    UserType = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    TimeStampsCreatedAt = table.Column<DateTime>(name: "TimeStamps_CreatedAt", type: "date", nullable: true),
-                    TimeStampsUpdatedAt = table.Column<DateTime>(name: "TimeStamps_UpdatedAt", type: "date", nullable: true),
-                    UsernameValue = table.Column<string>(name: "Username_Value", type: "varchar(15)", maxLength: 15, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    EmailValue = table.Column<string>(name: "Email_Value", type: "varchar(30)", maxLength: 30, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    PasswordValue = table.Column<string>(name: "Password_Value", type: "varchar(80)", maxLength: 80, nullable: true)
+                    AccountType = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PhonePhoneNumber = table.Column<long>(name: "Phone_PhoneNumber", type: "bigint", nullable: true),
                     PhoneAreaCode = table.Column<short>(name: "Phone_AreaCode", type: "smallint", nullable: true),
                     PhoneCountryPrefix = table.Column<string>(name: "Phone_CountryPrefix", type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Class = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    TimeStampsCreatedAt = table.Column<DateTime>(name: "TimeStamps_CreatedAt", type: "datetime", nullable: false),
+                    TimeStampsUpdatedAt = table.Column<DateTime>(name: "TimeStamps_UpdatedAt", type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -46,18 +48,54 @@ namespace UserContext.Infrastructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "PersonProfile",
+                name: "GymProfile",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    TimeStampsCreatedAt = table.Column<DateTime>(name: "TimeStamps_CreatedAt", type: "date", nullable: false),
-                    TimeStampsUpdatedAt = table.Column<DateTime>(name: "TimeStamps_UpdatedAt", type: "date", nullable: false),
+                    TimeStampsCreatedAt = table.Column<DateTime>(name: "TimeStamps_CreatedAt", type: "datetime", nullable: false),
+                    TimeStampsUpdatedAt = table.Column<DateTime>(name: "TimeStamps_UpdatedAt", type: "datetime", nullable: false),
+                    NameValue = table.Column<string>(name: "Name_Value", type: "varchar(30)", maxLength: 30, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AddressCountry = table.Column<string>(name: "Address_Country", type: "varchar(15)", maxLength: 15, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AddressCity = table.Column<string>(name: "Address_City", type: "varchar(15)", maxLength: 15, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AddressState = table.Column<string>(name: "Address_State", type: "varchar(15)", maxLength: 15, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AddressZipCodeValue = table.Column<string>(name: "Address_ZipCode_Value", type: "varchar(8)", maxLength: 8, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AddressStreet = table.Column<string>(name: "Address_Street", type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AddressStreetNumber = table.Column<int>(name: "Address_StreetNumber", type: "int", nullable: true),
+                    AccountId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    BioValue = table.Column<string>(name: "Bio_Value", type: "varchar(300)", maxLength: 300, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GymProfile", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_GymProfile_Account_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Account",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "PersonProfile",
+                columns: table => new
+                {
+                    ProfileId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    TimeStampsCreatedAt = table.Column<DateTime>(name: "TimeStamps_CreatedAt", type: "datetime", nullable: false),
+                    TimeStampsUpdatedAt = table.Column<DateTime>(name: "TimeStamps_UpdatedAt", type: "datetime", nullable: false),
                     NameFirstName = table.Column<string>(name: "Name_FirstName", type: "varchar(15)", maxLength: 15, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     NameLastName = table.Column<string>(name: "Name_LastName", type: "varchar(15)", maxLength: 15, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Gender = table.Column<int>(type: "int", nullable: false),
-                    Birth = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Gender = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Birth = table.Column<DateTime>(type: "date", nullable: false),
                     AccountId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     AddressCountry = table.Column<string>(name: "Address_Country", type: "varchar(15)", maxLength: 15, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -88,10 +126,10 @@ namespace UserContext.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PersonProfile", x => x.Id);
+                    table.PrimaryKey("PK_PersonProfile", x => x.ProfileId);
                     table.ForeignKey(
-                        name: "FK_PersonProfile_Account_Id",
-                        column: x => x.Id,
+                        name: "FK_PersonProfile_Account_AccountId",
+                        column: x => x.AccountId,
                         principalTable: "Account",
                         principalColumn: "Id");
                 })
@@ -115,11 +153,26 @@ namespace UserContext.Infrastructure.Migrations
                 column: "Username_Value",
                 unique: true,
                 descending: new bool[0]);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GymProfile_AccountId",
+                table: "GymProfile",
+                column: "AccountId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PersonProfile_AccountId",
+                table: "PersonProfile",
+                column: "AccountId",
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "GymProfile");
+
             migrationBuilder.DropTable(
                 name: "PersonProfile");
 

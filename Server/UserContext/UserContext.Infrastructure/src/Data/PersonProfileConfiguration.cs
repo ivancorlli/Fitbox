@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using UserContext.Domain.src.Abstractions;
 using UserContext.Domain.src.Entity;
-using UserContext.Domain.src.Entity.Account;
+using UserContext.Domain.src.Enum;
 using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Infrastructure.src.Data;
@@ -12,6 +11,9 @@ public class PersonProfileConfiguration : IEntityTypeConfiguration<PersonProfile
     public void Configure(EntityTypeBuilder<PersonProfile> builder)
     {
         builder.HasKey(x => x.Id);
+        builder.Property(x => x.Id)
+            .HasColumnName("ProfileId")
+            .IsRequired();
         // Name
         builder.OwnsOne(x => x.Name, nav =>
         {
@@ -22,6 +24,13 @@ public class PersonProfileConfiguration : IEntityTypeConfiguration<PersonProfile
                 .HasColumnType("varchar")
                 .HasMaxLength(PersonName.MaxLength);
         });
+        // Gender
+        builder.Property(x => x.Gender)
+            .HasConversion(x=>x.ToString(), x=> (Gender)Enum.Parse(typeof(Gender),x)
+            );
+        // Birth
+        builder.Property(x => x.Birth)
+            .HasColumnType("date");
         // Address
         builder.OwnsOne(x => x.Address, nav =>
         {
@@ -40,8 +49,7 @@ public class PersonProfileConfiguration : IEntityTypeConfiguration<PersonProfile
                     .HasMaxLength(ZipCode.MaxLength)
                     .HasColumnType("varchar");
             });
-        }
-        );
+        });
         // Contact
         builder.OwnsOne(x => x.EmergencyContact, nav =>
         {
@@ -87,11 +95,16 @@ public class PersonProfileConfiguration : IEntityTypeConfiguration<PersonProfile
         //TimeStamps
         builder.OwnsOne(x => x.TimeStamps, nav => {
             nav.Property(x => x.CreatedAt)
-                .HasColumnType("date");
+                .HasColumnType("datetime");
             nav.Property(x => x.UpdatedAt)
-                .HasColumnType("date");
+                .HasColumnType("datetime");
         });
         // Account
         builder.Property(x => x.AccountId);
-    }
+        // Profile
+        builder.HasOne(x => x.Account)
+           .WithOne(x => x.Profile)
+           .HasForeignKey<PersonProfile>(x => x.AccountId)
+           .IsRequired(false);
+}
 }

@@ -8,6 +8,7 @@ public static class PersonRouter
     {
         var person = router.MapGroup("/person");
         person.CreateAccountRoute();
+        person.CreateProfileRoute();
             //.CreateAccountRoute()
             //.ChangeEmailRoute()
             //.ChangeUsernameRoute()
@@ -15,7 +16,6 @@ public static class PersonRouter
             //.ChangePasswordRoute()
             //.VerifyEmailRoute()
             //.VerifyPhoneRoute()
-            //.ChangeProfileRoute()
             //.ChangeAddressRoute()
             //.ChangeMedicalInfoRoute()
             //.ChangeContactRoute();

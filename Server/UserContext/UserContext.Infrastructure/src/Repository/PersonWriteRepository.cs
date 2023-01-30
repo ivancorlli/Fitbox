@@ -1,4 +1,5 @@
 using UserContext.Domain.src.Abstractions;
+using UserContext.Domain.src.Entity;
 using UserContext.Domain.src.Entity.Account;
 using UserContext.Domain.src.Repository;
 using UserContext.Infrastructure.src.Context;
@@ -30,6 +31,10 @@ namespace UserContext.Infrastructure.src.Repository
         public void Update(Person entity)
         {
             _AccountContext.Person.Update(entity);
+        }
+        public void UpdateProfile(PersonProfile profile)
+        {
+            _AccountContext.PersonProfile.Add(profile);
         }
     }
 }

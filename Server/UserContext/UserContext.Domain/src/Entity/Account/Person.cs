@@ -43,7 +43,7 @@ namespace UserContext.Domain.src.Entity.Account
         /// <returns></returns>
         public Result AddProfile(PersonName name, Gender gender, DateTime birth)
         {
-            if (Profile != null)
+            if (this.Profile == null)
             {
                 var newPerson = PersonProfile.Create(name, gender, birth,this);
                 if (newPerson.IsFailure) return Result.Fail(newPerson.Error);

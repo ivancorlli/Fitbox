@@ -7,12 +7,12 @@ using UserContext.Domain.src.Utils;
 
 namespace UserContext.Domain.src.ValueObject
 {
-    public record PersonName
+    public partial record PersonName
     {
         private PersonName() { }
-        public static int MaxLength = 15;
-        public static int MinLength = 2;
-        public static Regex Reg = new Regex("^[a-zA-Z]+$");
+        public const int MaxLength = 15;
+        public const int MinLength = 2;
+        public static Regex Reg = MyRegex();
 
         public string FirstName { get; } = default!;
         public string LastName { get; } = default!;
@@ -42,8 +42,8 @@ namespace UserContext.Domain.src.ValueObject
             return Result.Ok(fullName);
         }
 
-
-
+        [GeneratedRegex("^[a-zA-Z]+$")]
+        private static partial Regex MyRegex();
     }
     internal class PersonaNameValidator : AbstractValidator<PersonName>
     {

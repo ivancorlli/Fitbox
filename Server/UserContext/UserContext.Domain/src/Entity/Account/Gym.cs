@@ -7,7 +7,8 @@ namespace UserContext.Domain.src.Entity.Account;
 
 public class Gym :IAccount
 {
-    public GymProfile? GymProfile { get; private set; }
+    private Gym() { }
+    public GymProfile? Profile { get; private set; }
 
     private Gym(Username username, Email email, Password password):base(username,email,password)
     {

@@ -2,16 +2,17 @@ namespace UserContext.Domain.src.Enum
 {
     public enum RelationShip
     {
-        Father,
-        Mother,
-        Brother,
-        Sister,
-        GrandFather,
-        GrandMother,
-        Aunt,
-        Auncle,
-        Cousin,
-        Wife,
-        Husband
+        NotSelected = 0,
+        Father  = 1,
+        Mother = 2,
+        Brother = 3,
+        Sister=4,
+        GrandFather=5,
+        GrandMother=6,
+        Aunt=7,
+        Auncle=8,
+        Cousin=9,
+        Wife=10,
+        Husband=11,
     }
 }

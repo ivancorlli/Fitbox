@@ -29,6 +29,10 @@ public class ChangeProfileHandler : IHandler<ChangeProfileCommand, Result>
         var newProfile = account.AddProfile(name.Value, gender, input.birth);
         if (newProfile.IsFailure)
             return Result.Fail(newProfile.Error);
+        if (account.Profile != null)
+        {
+            _UnitOfWork.PersonWriteRepository.UpdateProfile(account.Profile);
+        }
         _UnitOfWork.PersonWriteRepository.Update(account);
         await _UnitOfWork.SaveChangesAsync(cancellationToken);
         return Result.Ok();

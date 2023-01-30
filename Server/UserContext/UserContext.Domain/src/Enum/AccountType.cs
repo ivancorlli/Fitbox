@@ -2,7 +2,8 @@ namespace UserContext.Domain.src.Enum
 {
     public enum AccountType
     {
-        Personal,
-        Institutional
+        NotSelected = 0,
+        Personal = 1,
+        Institutional = 2
     }
 }

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using UserContext.Application.src.Features.PersonAccount.Command.ChangeAddress;
-using UserContext.Domain.src.Abstractions;
 using UserContext.Domain.src.Entity.Account;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.Repository;
