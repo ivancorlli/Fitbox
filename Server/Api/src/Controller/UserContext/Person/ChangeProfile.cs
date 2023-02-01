@@ -1,4 +1,5 @@
-﻿using UserContext.Presentation.src.Interface;
+﻿using Microsoft.AspNetCore.Mvc;
+using UserContext.Presentation.src.Interface;
 
 namespace Api.src.Controller.UserContext.Person;
 
@@ -6,12 +7,12 @@ public static class ChangeProfile
 {
     public static IEndpointRouteBuilder CreateProfileRoute(this IEndpointRouteBuilder route)
     {
-        route.MapGet("/profile", async (IPersonController profile) =>
+        route.MapPost("/profile", async ([FromServices]IPersonController profile, PersonProfile personProfile) =>
         {
             try
             {
-
-            var newProfile = await profile.ChangeProfile(new(Guid.Parse("3bb030a0-6fee-4e5f-9db1-29a12ac6e9e2"),"Ivan","Corlli","Male",DateTime.Parse("01-04-2000")));
+                Console.WriteLine(personProfile);
+            var newProfile = await profile.ChangeProfile(new(Guid.Parse(personProfile.AccountId),personProfile.Name,personProfile.Surname,personProfile.Gender,DateTime.Parse(personProfile.Birth)));
             return Results.Ok(newProfile);
             }catch (Exception ex)
             {
@@ -21,6 +22,8 @@ public static class ChangeProfile
         });
         return route;
     }
+
+    internal record PersonProfile(string AccountId,string Name,string Surname, string Gender, string Birth);
 
 
 }
