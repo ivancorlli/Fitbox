@@ -1,7 +1,8 @@
 'use client'
-import Provider from "./components/Provider"
+import Provider from "@/components/theme/Provider"
+import RootLayout from "./RootLayout"
 
-export default function RootLayout({
+export default function MainLayout({
   children,
 }: {
   children: React.ReactNode
@@ -13,9 +14,11 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>
-        <Provider>{children}</Provider>
-        </body>
-    </html>
+      <body >
+        <Provider>
+          <RootLayout>{children}</RootLayout>
+        </Provider>
+      </body>
+    </html >
   )
 }
