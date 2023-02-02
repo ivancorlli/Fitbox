@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 // Configure Services
 services.UserContextInstaller();
+services.AddCors();
 
 var app = builder.Build();
 // Configure Pipeline
