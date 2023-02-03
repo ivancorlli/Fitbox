@@ -13,6 +13,7 @@ public class ContextFactory : IDesignTimeDbContextFactory<UserDbContext>
         config.UseMySql(Connection,serverVersion).EnableDetailedErrors();
         config.EnableDetailedErrors().EnableSensitiveDataLogging();
         var userDbContext = new UserDbContext(config.Options);
+        userDbContext.Database.Migrate();
         return userDbContext;
     }
 }

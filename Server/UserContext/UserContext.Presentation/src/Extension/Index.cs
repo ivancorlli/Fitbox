@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using UserContext.Application.src.Features.PersonAccount.Command.ChangeAddress;
+using UserContext.Application.src.Features.PersonAccount.Command.CreateAccount;
 using UserContext.Domain.src.Entity.Account;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.Repository;
@@ -18,7 +18,7 @@ internal static class Index
 {
     internal static IServiceCollection ConfigureMediatR(this IServiceCollection services)
     {
-        services.AddMediatR(typeof(ChangeAddressHandler).Assembly);
+        services.AddMediatR(typeof(CreateAccountCommand).Assembly);
         services.AddMediatR(typeof(Index).Assembly);
         return services;
     }

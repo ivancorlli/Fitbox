@@ -5,5 +5,5 @@ namespace UserContext.Domain.src.Abstractions;
 
 public abstract class IAccountFactory
 {
-    public abstract Result<IAccount> CreateAccount(Username username, Email email, string password);
+    internal abstract Result<IAccount> CreateAccount(Username username, Email email, string password);
 }

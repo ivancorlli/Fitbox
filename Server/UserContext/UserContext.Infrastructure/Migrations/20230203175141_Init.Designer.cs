@@ -11,7 +11,7 @@ using UserContext.Infrastructure.src.Context;
 namespace UserContext.Infrastructure.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20230130174637_Init")]
+    [Migration("20230203175141_Init")]
     partial class Init
     {
         /// <inheritdoc />

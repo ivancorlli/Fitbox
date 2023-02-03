@@ -23,18 +23,18 @@ namespace UserContext.Infrastructure.src.Repository
             await _AccountContext.Person.AddAsync(Entity);
         }
 
-        public void Delete(Person Entity)
+        public async Task DeleteAsync(Person Entity)
         {
-            _AccountContext.Set<Person>().Remove(Entity);
+           await _AccountContext.Set<Person>().Remove(Entity).ReloadAsync();
         }
 
-        public void Update(Person entity)
+        public async Task UpdateAsync(Person entity)
         {
-            _AccountContext.Person.Update(entity);
+            await _AccountContext.Set<Person>().Update(entity).ReloadAsync();
         }
-        public void UpdateProfile(PersonProfile profile)
+        public async Task AddProfileAsync(PersonProfile profile)
         {
-            _AccountContext.PersonProfile.Add(profile);
+            await _AccountContext.PersonProfile.AddAsync(profile);
         }
     }
 }
