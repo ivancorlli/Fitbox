@@ -13,6 +13,7 @@ import {
   VStack,
   HStack,
   Icon,
+  useColorMode,
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import React from 'react'
@@ -21,13 +22,19 @@ import { SlBulb, SlFire, SlFrame, SlMenu, SlSettings, SlSupport } from 'react-ic
 import RegisterButton from '../button/RegisterButton'
 
 export default function Menu() {
-
+  const {toggleColorMode} = useColorMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef<HTMLButtonElement>(null)
 
   return (
     <>
-      <IconButton aria-label='Open Drawer' ref={btnRef} background='none' onClick={onOpen} icon={<SlMenu />}>
+      <IconButton size='md' 
+      aria-label='Open Drawer' 
+      ref={btnRef} background='none' 
+      onClick={onOpen} icon={<SlMenu />} 
+      _pressed={{background:'none'}}
+      _hover={{background:'none'}}
+      >
         Open
       </IconButton>
       <Drawer
@@ -48,7 +55,7 @@ export default function Menu() {
           <Divider />
           <DrawerFooter w='95%'>
             <HStack w='100%' justifyContent='space-between'>
-              <IconButton aria-label='Change Theme' icon={<SlBulb/>} bg='none' borderRadius='50' />
+              <IconButton aria-label='Change Theme' icon={<SlBulb/>} bg='none' borderRadius='50' onClick={toggleColorMode}/>
               <IconButton aria-label='Open Camera' icon={<SlFrame/>} bg='none' borderRadius='50' />
             </HStack>
           </DrawerFooter>

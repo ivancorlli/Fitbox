@@ -1,12 +1,14 @@
 'use client'
-import { Center, Grid, GridItem, IconButton } from "@chakra-ui/react"
+import FitboxBlue from "@/public/icon/FitboxBlue25"
+import FitboxWhite25 from "@/public/icon/FitboxWhite25"
+import { Grid, GridItem, IconButton, useColorMode } from "@chakra-ui/react"
 import { useRouter } from "next/navigation"
-import { SlGhost } from "react-icons/sl"
 import Menu from "../menu/Menu"
 
 
 function MobileNavbar({icon}:{icon:boolean}) {
     const router = useRouter()
+    const {colorMode} = useColorMode()
 
     function BackHomeHandler() {
         return router.push('/')
@@ -20,7 +22,26 @@ function MobileNavbar({icon}:{icon:boolean}) {
                 {
                 icon ?
                 <GridItem w='100%'>
-                        <IconButton icon={<SlGhost />} bg='none' aria-label="Back Home" onClick={BackHomeHandler} />
+                    {
+                        colorMode == 'light' ?
+                        <IconButton  
+                        icon={<FitboxBlue/>} 
+                        bg='none' 
+                        aria-label="Back Home" 
+                        onClick={BackHomeHandler} 
+                        _pressed={{background:'none'}}
+                        _hover={{background:'none'}}
+                        />   
+                        :
+                        <IconButton  
+                        icon={<FitboxWhite25/>} 
+                        bg='none' 
+                        aria-label="Back Home" 
+                        onClick={BackHomeHandler} 
+                        _pressed={{background:'none'}}
+                        _hover={{background:'none'}}
+                        />   
+                    }
                 </GridItem>
                 :''
                 }

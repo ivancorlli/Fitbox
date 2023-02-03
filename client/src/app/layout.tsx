@@ -1,5 +1,7 @@
 'use client'
 import Provider from "@/components/theme/Provider"
+import Theme from "@/components/theme/Theme"
+import { ColorModeScript } from "@chakra-ui/react"
 import RootLayout from "./RootLayout"
 
 export default function MainLayout({
@@ -16,6 +18,7 @@ export default function MainLayout({
       <head />
       <body >
         <Provider>
+          <ColorModeScript initialColorMode={Theme.config.initialColorMode}/>
           <RootLayout>{children}</RootLayout>
         </Provider>
       </body>
