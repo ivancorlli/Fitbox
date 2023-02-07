@@ -17,7 +17,7 @@ namespace SharedKernell.src.Interface.Repository;
     public interface IWriteRepository<TEntity> where TEntity:IAggregateRoot
     {
         Task AddAsync(TEntity Entity);
-        void Update(TEntity entity);
-        void Delete(TEntity entity);
+        Task UpdateAsync(TEntity entity);
+        Task DeleteAsync(TEntity entity);
         
     }

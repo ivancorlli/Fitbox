@@ -7,7 +7,7 @@ namespace UserContext.Domain.src.Factory;
 
 public class PersonFactory:IAccountFactory
 {
-    public override Result<IAccount> CreateAccount(Username username,Email email,string password)
+    internal override Result<IAccount> CreateAccount(Username username,Email email,string password)
     {
         var newPerson = Person.Create(username, email, password);
         if (newPerson.IsFailure)

@@ -1,42 +1,36 @@
-using UserContext.Domain.src.Interface;
+﻿using SharedKernell.src.Interface.Mediator;
 using SharedKernell.src.Result;
-using UserContext.Domain.src.ValueObject;
-using SharedKernell.src.Interface.Mediator;
 using UserContext.Domain.src.Entity.Account;
+using UserContext.Domain.src.Interface;
+using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Application.src.Features.PersonAccount.Command.CreateAccount;
 
-public class CreateAccountHandler : IHandler<CreateAccountCommand, Result>
+internal class CreateAccountHandler : IHandler<CreateAccountCommand, Result>
 {
     private readonly IAccountManager<Person> _AccountManager;
-    private readonly IUnitOfWork _UnitOfWork;
+    private readonly IUnitOfWork _Unit;
 
-    public CreateAccountHandler(IAccountManager<Person> userManager, IUnitOfWork unitOfWork)
+    public CreateAccountHandler(IAccountManager<Person> accountManager, IUnitOfWork unit)
     {
-        _AccountManager = userManager;
-        _UnitOfWork = unitOfWork;
+        _AccountManager = accountManager;
+        _Unit = unit;
     }
 
     public async Task<Result> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
     {
-        var input = request.newAccount;
-
-        // Creamos nombre de usuario            
-        var username = Username.Create(input.username);
+        var input = request.Input;
+        var username = Username.Create(input.Username);
         if (username.IsFailure)
             return Result.Fail(username.Error);
-        // Creamos emaiil
-        var email = Email.Create(input.email);
+        var email = Email.Create(input.Email);
         if (email.IsFailure)
             return Result.Fail(email.Error);
-        // Creamos usuario
-        var newAccount = await _AccountManager.CreateAccount(username.Value, email.Value, input.password);
-        if (newAccount.IsFailure)
-            return Result.Fail(newAccount.Error);
-        // Guardamos usuario en base de datos
-        await _UnitOfWork.PersonWriteRepository.AddAsync(newAccount.Value);
-        await _UnitOfWork.SaveChangesAsync(cancellationToken);
-
+        var person = await _AccountManager.CreateAccount(username.Value, email.Value, input.Password);
+        if(person.IsFailure)
+            return Result.Fail(person.Error);
+        await _Unit.PersonWriteRepository.AddAsync(person.Value);
+        await _Unit.SaveChangesAsync(cancellationToken);
         return Result.Ok();
     }
 }

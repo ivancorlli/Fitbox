@@ -3,6 +3,12 @@
     <ProjectReference Include="..\UserContext.Domain\UserContext.Domain.csproj" />
     <ProjectReference Include="..\..\SharedKernell\SharedKernell.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\Events\" />
+    <Folder Include="src\Features\GymAccount\" />
+    <Folder Include="src\Features\PersonAccount\DTO\Output\" />
+    <Folder Include="src\Features\PersonAccount\Query\" />
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

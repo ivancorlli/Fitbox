@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SharedKernell.src.Interface.Error;
+﻿using SharedKernell.src.Interface.Error;
 using SharedKernell.src.Utils;
 using System.Net;
 
@@ -8,32 +7,22 @@ namespace Api.src.Utils;
 public class ResponseHandler
 {
 
-    public static HttpContext CreateErrorResponse(HttpContext context,IError error)
+    public static IResult HandleError(IError error)
     {
         var getError = AppErrorHandler.GetError(error);
-        var result = new JsonResult(new {Ok=false,StatusCode=getError.Code,Message=getError.Message.ToString()});
-        //context.Response.ContentType = "application/json";
-        context.Response.StatusCode = getError.Code;
-        //await context.Response.WriteAsJsonAsync(result);
-        context.Response.WriteAsync("Nuevo Error");
-        return context;
+        switch (getError.Code)
+        {
+            case (int)HttpStatusCode.BadRequest:
+                return Results.BadRequest(getError.Message);
+            default:
+                return Results.Problem(getError.Message);
+        }
+
     }
 
-    public static HttpContext CreateOkResponse(HttpContext context,HttpStatusCode statusCode, string message) 
+   public static IResult HandleEx(Exception ex)
     {
-        //context.Response.ContentType= "application/json";
-        context.Response.StatusCode = ((int)statusCode);
-        //context.Response.WriteAsJsonAsync(new{Ok=true,StatusCode=((int)statusCode),Response=message});
-        context.Response.WriteAsync("Nuevo");
-        return context;
-    }
-
-    public static HttpContext CreateOkResponse<T>(HttpContext context, HttpStatusCode statusCode, T type)
-    {
-        context.Response.ContentType = "application/json";
-        context.Response.StatusCode = ((int)statusCode);
-        context.Response.WriteAsJsonAsync(new { Ok = true, StatusCode = ((int)statusCode), Response = type });
-        return context;
+        return Results.Problem(ex.StackTrace?.ToString().Trim(), null, 500, ex.Message.ToString());
     }
 
 }
