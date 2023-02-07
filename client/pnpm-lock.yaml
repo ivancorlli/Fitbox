@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@auth0/auth0-react': ^2.0.0
   '@chakra-ui/react': ^2.4.9
   '@emotion/react': ^11.10.5
   '@emotion/styled': ^11.10.5
@@ -18,6 +19,7 @@ specifiers:
   typescript: 4.9.5
 
 dependencies:
+  '@auth0/auth0-react': 2.0.0_biqbaboplfbrettd7655fr4n2y
   '@chakra-ui/react': 2.4.9_qeehdlaaoksqvegffoq57jyhrq
   '@emotion/react': 11.10.5_3stiutgnnbnfnf3uowm5cip22i
   '@emotion/styled': 11.10.5_jrh5enlbqfbnumycmktdqgd6se
@@ -35,6 +37,21 @@ dependencies:
   typescript: 4.9.5
 
 packages:
+
+  /@auth0/auth0-react/2.0.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-3pf41wU6ksm/6uPYAwjX5bZ7ma/K4LethibagTrKkMPuS8UatBvxLDtl3Aq52ZlJi1I+I42ckEfzWqloNxssIg==}
+    peerDependencies:
+      react: ^16.11.0 || ^17 || ^18
+      react-dom: ^16.11.0 || ^17 || ^18
+    dependencies:
+      '@auth0/auth0-spa-js': 2.0.3
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@auth0/auth0-spa-js/2.0.3:
+    resolution: {integrity: sha512-eC3cBJCGOc+k4ZMxvKTo0KhhJJ4/9siA7C2RhDcWqSbrRcjB04RimM4Jp5ExgXtrwFhx8elk7DLxysrhTQYvjQ==}
+    dev: false
 
   /@babel/code-frame/7.18.6:
     resolution: {integrity: sha512-TDCmlK5eOvH+eH7cdAFlNXeVJqWIQ7gW9tY1GJIpUtFb6CmjVyq2VM3u71bOyR8CRihcCgMUYoDNyLXao3+70Q==}

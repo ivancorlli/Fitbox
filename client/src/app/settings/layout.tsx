@@ -1,11 +1,11 @@
-import MobileNavbar from "@/components/navbar/MobileNavbar";
 import React from "react";
+import SettingsPage from "./SettingsPage";
 
 export default function Layout({children}:{children:React.ReactNode})
 {
     return(
-        <div>
+        <SettingsPage>
             {children}
-        </div>
+        </SettingsPage>
     )
 }

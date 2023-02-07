@@ -15,7 +15,16 @@ function MobileNavbar({icon}:{icon:boolean}) {
     }
     return (
         <>
-            <Grid as='nav' w='100%' templateColumns={icon ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)'} alignItems='center' > 
+            <Grid as='nav' 
+            w='100%' 
+            templateColumns={icon ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)'} 
+            paddingY='6px'
+            paddingX='4px'
+            alignItems='center'
+            position='sticky'
+            top='0'
+            bg={colorMode == 'light' ? 'white' : 'dark'}
+            > 
                 <GridItem w='100%'>
                     <Menu />
                 </GridItem>
@@ -31,6 +40,7 @@ function MobileNavbar({icon}:{icon:boolean}) {
                         onClick={BackHomeHandler} 
                         _pressed={{background:'none'}}
                         _hover={{background:'none'}}
+                        size='xs'
                         />   
                         :
                         <IconButton  
@@ -40,6 +50,7 @@ function MobileNavbar({icon}:{icon:boolean}) {
                         onClick={BackHomeHandler} 
                         _pressed={{background:'none'}}
                         _hover={{background:'none'}}
+                        size='xs'
                         />   
                     }
                 </GridItem>
