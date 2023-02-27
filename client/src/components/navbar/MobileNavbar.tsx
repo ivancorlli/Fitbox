@@ -19,7 +19,6 @@ function MobileNavbar({icon}:{icon:boolean}) {
             w='100%' 
             templateColumns={icon ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)'} 
             paddingY='6px'
-            paddingX='4px'
             alignItems='center'
             position='sticky'
             top='0'

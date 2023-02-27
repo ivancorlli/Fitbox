@@ -4,9 +4,8 @@ import InfoNavbar from "@/components/navbar/InfoNavbar"
 import { Container, Grid, GridItem, HStack, Icon, Show, Text, useColorMode, VStack } from "@chakra-ui/react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import React, { useEffect, useLayoutEffect, useState } from "react"
+import React, { useLayoutEffect} from "react"
 import { SlArrowRight } from "react-icons/sl"
-import GeneralLayout from "./GeneralLayout"
 
 
 
@@ -23,7 +22,7 @@ function SettingsPage({ children }: { children: React.ReactNode }) {
             push('/settings/display')
         }
     }
-    useEffect(() => {
+    useLayoutEffect(() => {
 
         handleResize()
 
@@ -36,7 +35,7 @@ function SettingsPage({ children }: { children: React.ReactNode }) {
             <Container
                 w='100%'
                 h='100%'
-                maxW={['100%']}
+                maxW={['100%','100%','100%','100%','100%','85%','80%']}
                 p='0'
             >
                 <Grid

@@ -1,5 +1,5 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { Button, VStack } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 
 function RegisterButton() {
     return (
@@ -14,7 +14,7 @@ function RegisterButton() {
 
 function SignInButton()
 {
-    const { loginWithRedirect } = useAuth0();
+    const {push} = useRouter()
     return(
         <Button maxW='95%' w='100%' bg='blue.400' color='white' 
                 _hover={{
@@ -25,7 +25,7 @@ function SignInButton()
                     background:'blue.600',
                     color:'white'
                 }}
-                onClick={()=>loginWithRedirect()}
+                onClick={()=>push('/api/auth/signin')}
                 >
                     Iniciar Sesion
                 </Button>
@@ -34,6 +34,7 @@ function SignInButton()
 
 function SignUpButton()
 {
+    const {push} = useRouter()
     return(
         <Button maxW='95%' w='100%' variant='outline' color='blue.400' borderColor='blue.400'
         _hover={{
@@ -44,7 +45,7 @@ function SignUpButton()
             borderColor:'blue.600',
             color:'blue.600'
         }}
-        
+        // onClick={}
         >
             Registrarse
         </Button>

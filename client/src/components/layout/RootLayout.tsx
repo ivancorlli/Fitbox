@@ -27,7 +27,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
                             <AsideMenu />
                         </Hide>
                     </SideBars>
-                    <Content>
+                    <Content >
                         {children}
                     </Content>
                 </Grid>
@@ -39,7 +39,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
 function Content({ children }: { children: React.ReactNode }) {
     return (
         <>
-            <GridItem w='100%' h='100%' p='0'>
+            <GridItem w='100%' h='100vh' p='0' className="content">
                 {children}
             </GridItem>
         </>

@@ -134,7 +134,7 @@ function MenuButton({ config,active }: { config: IMenuButton,active:boolean })
         paddingY='5px'
         borderRadius='2px' 
         color={active ? 'blue.500':''}
-        _hover={{background: colorMode == 'light' ? 'gary.700': 'gray.700', borderRadius:'15px',paddingX:'5px'}}
+        _hover={{background: colorMode == 'light' ? 'gray.100': 'gray.700', borderRadius:'15px',paddingX:'5px'}}
         >
           <Icon as={config.icon} boxSize='6' />
           <Text fontSize='lg' fontWeight='bold' >{config.name}</Text>
