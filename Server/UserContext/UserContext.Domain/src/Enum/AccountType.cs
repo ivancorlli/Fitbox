@@ -4,6 +4,6 @@ namespace UserContext.Domain.src.Enum
     {
         NotSelected = 0,
         Personal = 1,
-        Institutional = 2
+        Gym = 2
     }
 }

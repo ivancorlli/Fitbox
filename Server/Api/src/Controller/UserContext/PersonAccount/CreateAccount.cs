@@ -17,7 +17,7 @@ public static class CreateAccount
                 var person = await controller.CreateAccount(new(Body.Username,Body.Email,Body.Password));
                 if(person.IsFailure)
                     return ResponseHandler.HandleError(person.Error);
-                return Results.Created("Usuario Creado","");
+                return Results.Created("Response",person.Value);
             }catch(Exception ex)
             {
                 return ResponseHandler.HandleEx(ex);

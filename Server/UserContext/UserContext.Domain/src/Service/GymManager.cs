@@ -14,6 +14,20 @@ public class GymManager : AccountManager<Gym>
     {
     }
 
+
+    public override async Task<Result<IAccount>> CreateAccount(Email email)
+    {
+        var emailExists = await _AccountRepo.IsEmailInUseAsync(email);
+        if (emailExists)
+            return Result.Fail<IAccount>(new EmailAlreadyInUse(email.Value.ToString()));
+        var accountFactory = new GymFactory();
+        var newAccount = accountFactory.CreateAccount(email);
+        if (newAccount.IsFailure)
+            return Result.Fail<IAccount>(new ValidationError(newAccount.Error.Message));
+        IAccount result = newAccount.Value;
+        return Result.Ok(result);
+    }
+
     public override async Task<Result<IAccount>> CreateAccount(Username username, Email email, string password)
     {
         var emailExists = await _AccountRepo.IsEmailInUseAsync(email);

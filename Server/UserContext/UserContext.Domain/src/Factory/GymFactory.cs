@@ -7,6 +7,17 @@ namespace UserContext.Domain.src.Factory;
 
 public class GymFactory : IAccountFactory
 {
+
+
+    internal override Result<IAccount> CreateAccount(Email email)
+    {
+        var newGym = Gym.Create(email);
+        if (newGym.IsFailure)
+            return Result.Fail<IAccount>(newGym.Error);
+        IAccount result = newGym.Value;
+        return Result.Ok(result);
+    }
+
     internal override Result<IAccount> CreateAccount(Username username, Email email, string password)
     {
         var newGym = Gym.Create(username,email,password);

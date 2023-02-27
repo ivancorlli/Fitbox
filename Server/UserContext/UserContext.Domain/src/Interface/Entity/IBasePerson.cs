@@ -1,5 +1,3 @@
-using SharedKernell.src.Result;
-using UserContext.Domain.src.Entity.Account;
 using UserContext.Domain.src.Enum;
 using UserContext.Domain.src.ValueObject;
 
@@ -13,5 +11,4 @@ public interface IBasePerson
     public EmergencyContact? EmergencyContact { get; }
     public Bio? Bio { get; }
     public MedicalInfo? Medical { get;}
-    public Person Account { init; }
 }

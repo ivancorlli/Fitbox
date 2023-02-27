@@ -10,9 +10,21 @@ namespace UserContext.Domain.src.Entity.Account
     {
         private Person() { }
         public PersonProfile? Profile { get; private set;}
-        public Person(Username username, Email email, Password password) : base(username,email,password)
+        private Person(Email email) : base(email)
         {
             AccountType = AccountType.Personal;
+        }
+        private Person(Username username,Email email,Password password) : base(email)
+        {
+            Username = username;
+            AccountType = AccountType.Personal;
+            Password = password;
+        }
+
+        internal static Result<Person> Create(Email email)
+        {
+            Person newAccount = new(email);
+            return Result.Ok(newAccount);
         }
 
         /// <summary>
@@ -24,13 +36,13 @@ namespace UserContext.Domain.src.Entity.Account
         /// <returns></returns>
         internal static Result<Person> Create(Username username, Email email, string password)
         {
-            var validPass = ValidPasswordData(username, email, password);
+            var validPass = ValidPasswordData(email, password);
             if (validPass.IsFailure)
                 return Result.Fail<Person>(new ValidationError(validPass.Error.Message));
             var newPass = Password.Create(password);
             if (newPass.IsFailure)
                 return Result.Fail<Person>(new ValidationError(newPass.Error.Message));
-            Person newAccount = new (username, email, newPass.Value);
+            Person newAccount = new (username,email,newPass.Value);
             return Result.Ok(newAccount);
         }
 
