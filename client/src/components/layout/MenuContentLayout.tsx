@@ -16,7 +16,6 @@ export default function MenuContentLayout(
         <>
             <BaseContentLayout>
                 <Show below="sm">
-
                     <MobileNavbar icon={false} />
                 </Show>
                 {props.children}

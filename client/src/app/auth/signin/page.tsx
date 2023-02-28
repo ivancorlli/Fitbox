@@ -1,7 +1,7 @@
 'use client'
 
 import SocialButton from "@/components/button/SocialButton";
-import { Button, Container, Divider, Input, InputGroup, InputLeftElement, InputRightElement, Text, useColorMode, VStack } from "@chakra-ui/react";
+import { Button, Center, Container, Divider, Input, InputGroup, InputLeftElement, InputRightElement, Text, useColorMode, VStack } from "@chakra-ui/react";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { SlEnvolope, SlEye } from "react-icons/sl";
@@ -17,7 +17,7 @@ export default function Page() {
         <>
             <MenuContentLayout>
 
-                <Container h='90%' w='100%' display='flex' flexDirection='column' justifyContent='center' >
+                <Center paddingTop={["25px"]} textAlign="start">
 
                     <VStack
                         border='1px'
@@ -32,6 +32,7 @@ export default function Page() {
                             spacing={2}
                             w='100%'
                             px={['10px', '90px', '90px']}
+                            className="text"
                         >
                             <Text
                                 fontSize='4xl'
@@ -39,7 +40,8 @@ export default function Page() {
                             >
                                 Iniciar Sesion
                             </Text>
-                            <VStack>
+                            <VStack
+                            >
 
                                 <Text
                                     color={colorMode == 'light' ? 'gray.500' : 'whiteAlpha.700'}
@@ -88,7 +90,7 @@ export default function Page() {
                             </VStack>
                         </VStack>
                     </VStack>
-                </Container>
+                </Center>
             </MenuContentLayout>
         </>
     )

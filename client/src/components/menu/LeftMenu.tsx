@@ -1,16 +1,34 @@
 import FitboxBlue25 from "@/public/icon/FitboxBlue25"
 import FitboxWhite25 from "@/public/icon/FitboxWhite25"
 import { Avatar, Container, Divider, Icon, IconButton, Popover, PopoverBody, PopoverContent, PopoverTrigger, Portal, Tooltip, useColorMode, VStack } from "@chakra-ui/react"
+import { useSession } from "next-auth/react"
 import { usePathname, useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 import { IconType } from "react-icons"
 import { SlFire, SlSettings, SlSupport } from "react-icons/sl"
 import RegisterButton from "../button/RegisterButton"
+import UserLoggedMenuButton from "./button/UserLoggedMenuButton"
 
 
 
 
 function LeftMenu() {
     const { colorMode } = useColorMode()
+    const [image, setImage] = useState<string>()
+    const { data: session } = useSession()
+
+    useEffect(() => {
+        if (session) {
+            if (session.user) {
+                if (session.user.image) {
+                    setImage(session.user.image)
+                }
+            }
+        } else {
+            setImage('https://chakra-ui.com/docs/components/avatar')
+        }
+    }, [session])
+
     return (
         <>
             <VStack
@@ -49,7 +67,7 @@ function LeftMenu() {
                                 <Avatar
                                     size='sm'
                                     _hover={{ cursor: 'pointer' }}
-                                    src='https://chakra-ui.com/docs/components/avatar'
+                                    src={image}
                                 />
                             </PopoverTrigger>
                             <Portal>
@@ -58,8 +76,13 @@ function LeftMenu() {
                                     paddingY='5px'
                                     marginLeft='25px'
                                 >
-                                    <PopoverBody    >
-                                        <RegisterButton />
+                                    <PopoverBody>
+                                        {
+                                            session ?
+                                                <UserLoggedMenuButton />
+                                                :
+                                                <RegisterButton />
+                                        }
                                     </PopoverBody>
                                 </PopoverContent>
                             </Portal>

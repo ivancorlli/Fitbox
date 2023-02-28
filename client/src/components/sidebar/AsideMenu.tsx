@@ -3,13 +3,16 @@
 import FitboxBlue25 from "@/public/icon/FitboxBlue25"
 import FitboxWhite25 from "@/public/icon/FitboxWhite25"
 import { Container, Divider, Icon, useColorMode, VStack } from "@chakra-ui/react"
+import { useSession } from "next-auth/react"
 import { SignInButton, SignUpButton } from "../button/RegisterButton"
+import UserLoggedMenuButton from "../menu/button/UserLoggedMenuButton"
 import { NonSessionMenu } from "../menu/Menu"
 
 
 
 function AsideMenu() {
     const { colorMode } = useColorMode()
+    const { data: session } = useSession();
     return (
         <>
             <VStack w='100%' h='100%' maxW='250px'
@@ -25,11 +28,16 @@ function AsideMenu() {
                     </VStack>
                 </Container>
                 <Container w='100%' >
-                    <VStack w='100%' spacing={5}>
-                        <Divider />
-                        <SignInButton />
-                        <SignUpButton />
-                    </VStack>
+                    {
+                        session ?
+                            <UserLoggedMenuButton />
+                            :
+                            <VStack w='100%' spacing={5}>
+                                <Divider />
+                                <SignInButton />
+                                <SignUpButton />
+                            </VStack>
+                    }
                 </Container>
             </VStack>
         </>

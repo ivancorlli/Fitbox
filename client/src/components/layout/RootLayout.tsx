@@ -1,5 +1,4 @@
 'use client'
-
 import { Container, Grid, GridItem, Hide, Show } from "@chakra-ui/react"
 import React from "react"
 import LeftMenu from "../menu/LeftMenu"

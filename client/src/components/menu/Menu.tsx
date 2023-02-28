@@ -16,17 +16,37 @@ import {
   useColorMode,
   Avatar,
 } from '@chakra-ui/react'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { usePathname} from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { IconType } from 'react-icons'
 import { SlBulb, SlFire, SlFrame, SlSettings, SlSupport } from 'react-icons/sl'
 import RegisterButton from '../button/RegisterButton'
+import UserLoggedMenuButton from './button/UserLoggedMenuButton'
 
 function Menu() {
+  const [image,setImage] = useState<string>()
+  const { data: session } = useSession()
   const {toggleColorMode} = useColorMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef<HTMLButtonElement>(null)
+
+
+  useEffect(()=>{
+    if(session)
+    {
+      if(session.user)
+      {
+        if(session.user.image)
+        {
+          setImage(session.user.image)
+        }
+      }
+    }else{
+      setImage('https://chakra-ui.com/docs/components/avatar')
+    }
+  },[session])
 
   return (
     <>
@@ -35,18 +55,24 @@ function Menu() {
       ref={btnRef}  
       onClick={onOpen}
       _hover={{cursor:'pointer'}}
-      src='https://chakra-ui.com/docs/components/avatar'
+      src={image}
       />
       <Drawer
         isOpen={isOpen}
         placement='left'
         onClose={onClose}
         finalFocusRef={btnRef}
+        size="xs"
       >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader>
-            <RegisterButton />
+            {
+              session ?
+              <UserLoggedMenuButton/>
+              :
+              <RegisterButton />
+            }
           </DrawerHeader>
           <Divider />
           <DrawerBody>

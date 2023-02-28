@@ -10,9 +10,22 @@ public class Gym :IAccount
     private Gym() { }
     public GymProfile? Profile { get; private set; }
 
-    private Gym(Username username, Email email, Password password):base(username,email,password)
+    private Gym(Email email):base(email)
     {
-        AccountType = Enum.AccountType.Institutional; 
+        AccountType = Enum.AccountType.Gym; 
+    }
+
+    private Gym(Username username, Email email, Password password) : base(email)
+    {
+        Username= username;
+        AccountType = Enum.AccountType.Gym;
+        Password = password;
+    }
+
+    internal static Result<Gym> Create(Email email)
+    {
+        Gym newAccount = new(email);
+        return Result.Ok(newAccount);
     }
 
     internal static Result<Gym> Create(Username username, Email email, string password)

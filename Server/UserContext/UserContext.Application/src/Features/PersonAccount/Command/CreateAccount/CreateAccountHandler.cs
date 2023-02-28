@@ -1,12 +1,13 @@
 ﻿using SharedKernell.src.Interface.Mediator;
 using SharedKernell.src.Result;
+using UserContext.Application.src.Features.PersonAccount.DTO.Output;
 using UserContext.Domain.src.Entity.Account;
 using UserContext.Domain.src.Interface;
 using UserContext.Domain.src.ValueObject;
 
 namespace UserContext.Application.src.Features.PersonAccount.Command.CreateAccount;
 
-internal class CreateAccountHandler : IHandler<CreateAccountCommand, Result>
+internal class CreateAccountHandler : IHandler<CreateAccountCommand, Result<CreateAccountOutput>>
 {
     private readonly IAccountManager<Person> _AccountManager;
     private readonly IUnitOfWork _Unit;
@@ -17,20 +18,21 @@ internal class CreateAccountHandler : IHandler<CreateAccountCommand, Result>
         _Unit = unit;
     }
 
-    public async Task<Result> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
+    public async Task<Result<CreateAccountOutput>> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
     {
         var input = request.Input;
         var username = Username.Create(input.Username);
         if (username.IsFailure)
-            return Result.Fail(username.Error);
+            return Result.Fail<CreateAccountOutput>(username.Error);
         var email = Email.Create(input.Email);
         if (email.IsFailure)
-            return Result.Fail(email.Error);
+            return Result.Fail<CreateAccountOutput>(email.Error);
         var person = await _AccountManager.CreateAccount(username.Value, email.Value, input.Password);
         if(person.IsFailure)
-            return Result.Fail(person.Error);
+            return Result.Fail<CreateAccountOutput>(person.Error);
         await _Unit.PersonWriteRepository.AddAsync(person.Value);
         await _Unit.SaveChangesAsync(cancellationToken);
-        return Result.Ok();
+        var account = person.Value;
+        return Result.Ok(new CreateAccountOutput(account.Username,account.Email));
     }
 }

@@ -17,6 +17,7 @@ namespace UserContext.Domain.src.Service
         }
 
 
+        public abstract Task<Result<IAccount>> CreateAccount(Email email);
         public abstract Task<Result<IAccount>> CreateAccount(Username username, Email email, string password);
 
         /// <summary>

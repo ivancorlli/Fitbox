@@ -9,23 +9,22 @@ namespace UserContext.Domain.src.Abstractions;
 
 public abstract class IAccount :AggregateRoot, IBaseAccount
 {
-    public Username Username { get; protected set; } = default!;
     public Email Email { get; protected set; } = default!;
     public AccountStatus Status { get; protected set; }
-    public Password Password { get; protected set; } = default!;
+    public AccountType AccountType { get; protected set; }
     public bool IsNew { get; protected set; }
     public bool EmailVerified { get; protected set; }
     public bool PhoneVerified { get; protected set; }
-    public AccountType AccountType { get; protected set; }
+    public List<Provider>? Provider { get;protected set; }
+    public Username? Username { get; protected set; } 
+    public Password? Password { get; protected set; } 
     public Phone? Phone { get; protected set; }
 
     protected IAccount() { }
-    protected IAccount(Username username, Email email,Password password)
+    protected IAccount(Email email)
     {
-        Username = username;
         Email = email;
         Status = AccountStatus.Active;
-        Password = password;
         IsNew = true;
         EmailVerified = false;
     }
@@ -59,9 +58,15 @@ public abstract class IAccount :AggregateRoot, IBaseAccount
     /// <returns></returns>
     public Result ChangePassword(string password)
     {
-        var validPass = ValidPasswordData(Username, Email, password);
+        var validPass = ValidPasswordData(Email, password);
         if (validPass.IsFailure)
             return Result.Fail(new ValidationError(validPass.Error.Message));
+        if (Username!= null)
+        {
+            var userp = password.Contains(Username.Value);
+            if (userp)
+                return Result.Fail(new ValidationError("La contraseña no puede contener tu nombre de usuario"));
+        }
         var newPass = Password.Create(password);
         if (newPass.IsFailure)
             return Result.Fail(new ValidationError(newPass.Error.Message));
@@ -126,13 +131,35 @@ public abstract class IAccount :AggregateRoot, IBaseAccount
         PhoneVerified = false;
         this.EntityUpdated();
     }
+
+    public void AddProvider(Provider provider)
+    {
+        if(Provider == null)
+        {
+            Provider = new List<Provider> { provider };
+        }
+        else
+        {
+
+            Provider.Add(provider);
+        }
+
+        this.EntityUpdated();
+    }
     // ============================ VALIDACIONES ================================================================ //
-    protected static Result ValidPasswordData(Username username, Email email, string password)
+    protected static Result ValidPasswordData(Email email, string password)
+    {
+        var emailp = password.Contains(email.Value);
+        if (emailp)
+            return Result.Fail(new ValidationError("La contraseña no puede contener tu email"));
+        return Result.Ok();
+    }
+    protected static Result ValidPasswordData(Username username,Email email, string password)
     {
         var userp = password.Contains(username.Value);
-        var emailp = password.Contains(email.Value);
         if (userp)
             return Result.Fail(new ValidationError("La contraseña no puede contener tu nombre de usuario"));
+        var emailp = password.Contains(email.Value);
         if (emailp)
             return Result.Fail(new ValidationError("La contraseña no puede contener tu email"));
         return Result.Ok();
